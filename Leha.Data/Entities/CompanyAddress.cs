@@ -1,20 +1,21 @@
 ﻿
 namespace Leha.Data.Entities;
 
-public class HomeImage
+public class CompanyAddress
 {
+
     public int ID { get; set; }
-    public string HomeImageBytes { get; set; } = string.Empty;
+    public string Address { get; set; } = string.Empty;
     public int CompanyID { get; set; }
     public Company Company { get; set; } = null!;
-    public HomeImage()
+    public CompanyAddress()
     {
     }
 
-    public HomeImage(int iD, string homeImageBytes, int companyID)
+    public CompanyAddress(int iD, string address, int companyID)
     {
         ID = iD;
-        HomeImageBytes = homeImageBytes;
+        Address = address;
         CompanyID = companyID;
     }
 }

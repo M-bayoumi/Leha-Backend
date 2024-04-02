@@ -1,12 +1,11 @@
 ﻿using Leha.Data.Entities;
 using Leha.Infrastructure.Context;
-using Leha.Infrastructure.Repositories.Companies;
 using Leha.Infrastructure.Repositories.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Infrastructure.Repositories.Services;
 
-public class ServiceRepository : GenericRepository<Company>, ICompanyRepository
+public class ServiceRepository : GenericRepository<Service>, IServiceRepository
 {
     #region Fields
     private readonly DbSet<Company> _companies;

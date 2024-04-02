@@ -8,13 +8,13 @@ namespace Leha.Infrastructure.Repositories.HomeImages;
 public class HomeImageRepository : GenericRepository<HomeImage>, IHomeImageRepository
 {
     #region Fields
-    private readonly DbSet<HomeImage> _homeImage;
+    private readonly DbSet<HomeImage> _homeImages;
     #endregion
 
     #region Constructors
     public HomeImageRepository(AppDbContext appDbContext) : base(appDbContext)
     {
-        _homeImage = appDbContext.Set<HomeImage>();
+        _homeImages = appDbContext.Set<HomeImage>();
     }
 
     #endregion

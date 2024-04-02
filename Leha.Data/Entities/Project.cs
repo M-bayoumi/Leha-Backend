@@ -9,7 +9,7 @@ public class Project
     public string ProjectAddress { get; set; } = string.Empty;
     public string ProjectImage { get; set; } = string.Empty;
     public string SiteEngineerName { get; set; } = string.Empty;
-    public decimal Progresspercentage { get; set; }
+    public decimal ProjectProgressPercentage { get; set; }
     public int CompanyID { get; set; }
     public Company Company { get; set; } = null!;
     public List<ProjectPhase> ProjectPhases { get; set; } = new List<ProjectPhase>();
@@ -19,7 +19,7 @@ public class Project
     {
     }
 
-    public Project(int iD, string projectName, string projectDescription, string projectAddress, string projectImage, string siteEngineerName, decimal progresspercentage, int companyID)
+    public Project(int iD, string projectName, string projectDescription, string projectAddress, string projectImage, string siteEngineerName, decimal projectProgressPercentage, int companyID)
     {
         ID = iD;
         ProjectName = projectName;
@@ -27,7 +27,7 @@ public class Project
         ProjectAddress = projectAddress;
         ProjectImage = projectImage;
         SiteEngineerName = siteEngineerName;
-        Progresspercentage = progresspercentage;
+        ProjectProgressPercentage = projectProgressPercentage;
         CompanyID = companyID;
     }
 }

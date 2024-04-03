@@ -34,7 +34,7 @@ public class BoardMemberSpeechManager : IBoardMemberSpeechManager
 
     public async Task<BoardMemberSpeech?> GetBoardMemberSpeechByIDAsync(int boardMemberSpeechID)
     {
-        return await _boardMemberSpeechRepository.GetByIdAsync(boardMemberSpeechID);
+        return await _boardMemberSpeechRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == boardMemberSpeechID);
     }
 
     public async Task<bool> AddBoardMemberSpeechAsync(BoardMemberSpeech boardMemberSpeech)

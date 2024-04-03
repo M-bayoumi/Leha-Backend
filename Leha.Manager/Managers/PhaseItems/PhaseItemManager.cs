@@ -34,7 +34,7 @@ public class PhaseItemManager : IPhaseItemManager
 
     public async Task<PhaseItem?> GetPhaseItemByIDAsync(int phaseItemID)
     {
-        return await _phaseItemRepository.GetByIdAsync(phaseItemID);
+        return await _phaseItemRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == phaseItemID);
     }
 
     public async Task<bool> AddPhaseItemAsync(PhaseItem phaseItem)

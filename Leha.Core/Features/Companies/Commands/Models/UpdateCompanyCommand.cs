@@ -11,7 +11,9 @@ public class UpdateCompanyCommand : IRequest<Response<string>>
     public string CompanyImage { get; set; } = string.Empty;
     public string CompanyEmail { get; set; } = string.Empty;
     public string CompanyPhone { get; set; } = string.Empty;
-    public UpdateCompanyCommand(int iD, string companyName, int companyEmployees, string companyImage, string companyEmail, string companyPhone)
+    public string CompanyLink { get; set; } = string.Empty;
+
+    public UpdateCompanyCommand(int iD, string companyName, int companyEmployees, string companyImage, string companyEmail, string companyPhone, string companyLink)
     {
         ID = iD;
         CompanyName = companyName;
@@ -19,6 +21,7 @@ public class UpdateCompanyCommand : IRequest<Response<string>>
         CompanyImage = companyImage;
         CompanyEmail = companyEmail;
         CompanyPhone = companyPhone;
+        CompanyLink = companyLink;
     }
     public UpdateCompanyCommand()
     {

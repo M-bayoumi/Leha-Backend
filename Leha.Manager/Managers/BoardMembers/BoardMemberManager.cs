@@ -30,7 +30,7 @@ public class BoardMemberManager : IBoardMemberManager
 
     public async Task<BoardMember?> GetBoardMemberByIDAsync(int boardMemberID)
     {
-        return await _boardMemberRepository.GetByIdAsync(boardMemberID);
+        return await _boardMemberRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == boardMemberID);
     }
     public Task<bool> AddBoardMemberAsync(BoardMember boardMember)
     {

@@ -34,7 +34,7 @@ public class ServiceManager : IServiceManager
 
     public async Task<Service?> GetServiceByIDAsync(int serviceID)
     {
-        return await _serviceRepository.GetByIdAsync(serviceID);
+        return await _serviceRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == serviceID);
     }
     public async Task<bool> AddServiceAsync(Service service)
     {

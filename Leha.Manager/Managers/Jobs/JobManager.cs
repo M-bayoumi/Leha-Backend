@@ -34,7 +34,7 @@ public class JobManager : IJobManager
     }
     public async Task<Job?> GetJobByIDAsync(int jobID)
     {
-        return await _jobRepository.GetByIdAsync(jobID);
+        return await _jobRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == jobID);
     }
     public async Task<bool> AddJobAsync(Job job)
     {

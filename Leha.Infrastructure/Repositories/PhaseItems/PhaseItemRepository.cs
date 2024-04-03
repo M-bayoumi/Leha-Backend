@@ -15,6 +15,7 @@ public class PhaseItemRepository : GenericRepository<PhaseItem>, IPhaseItemRepos
     #region Constructors
     public PhaseItemRepository(AppDbContext appDbContext) : base(appDbContext)
     {
+
         _phaseItems = appDbContext.Set<PhaseItem>();
     }
 

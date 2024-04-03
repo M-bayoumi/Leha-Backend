@@ -37,7 +37,7 @@ public class ProjectManager : IProjectManager
 
     public async Task<Project?> GetProjectByIDAsync(int projectID)
     {
-        return await _projectRepository.GetByIdAsync(projectID);
+        return await _projectRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == projectID);
     }
     public async Task<bool> AddProjectAsync(Project project)
     {

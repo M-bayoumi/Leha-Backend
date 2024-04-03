@@ -114,6 +114,10 @@ namespace Leha.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(max)");
 
+                    b.Property<string>("CompanyLink")
+                        .IsRequired()
+                        .HasColumnType("varchar(max)");
+
                     b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasColumnType("varchar(max)");

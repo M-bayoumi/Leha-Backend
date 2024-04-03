@@ -30,7 +30,7 @@ public class CompanyManager : ICompanyManager
 
     public async Task<Company?> GetCompanyByIDAsync(int companyID)
     {
-        var company = await _companyRepository.GetByIdAsync(companyID);
+        var company = await _companyRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == companyID);
         return company;
     }
 

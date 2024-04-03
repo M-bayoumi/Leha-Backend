@@ -34,7 +34,7 @@ public class PostManager : IPostManager
     }
     public async Task<Post?> GetPostByIDAsync(int postID)
     {
-        return await _postRepository.GetByIdAsync(postID);
+        return await _postRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == postID);
     }
 
     public async Task<bool> AddPostItemAsync(Post post)

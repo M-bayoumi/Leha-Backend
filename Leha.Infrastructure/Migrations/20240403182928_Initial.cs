@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Leha.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,7 +36,8 @@ namespace Leha.Infrastructure.Migrations
                     CompanyEmployees = table.Column<int>(type: "int", nullable: false),
                     CompanyImage = table.Column<string>(type: "varchar(max)", nullable: false),
                     CompanyEmail = table.Column<string>(type: "varchar(max)", nullable: false),
-                    CompanyPhone = table.Column<string>(type: "varchar(max)", nullable: false)
+                    CompanyPhone = table.Column<string>(type: "varchar(max)", nullable: false),
+                    CompanyLink = table.Column<string>(type: "varchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

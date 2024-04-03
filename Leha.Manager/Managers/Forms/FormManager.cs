@@ -34,7 +34,7 @@ public class FormManager : IFormManager
     }
     public async Task<Form?> GetFormByIDAsync(int formID)
     {
-        return await _formRepository.GetByIdAsync(formID);
+        return await _formRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == formID);
     }
 
 

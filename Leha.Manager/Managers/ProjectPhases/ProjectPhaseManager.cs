@@ -37,7 +37,7 @@ public class ProjectPhaseManager : IProjectPhaseManager
 
     public async Task<ProjectPhase?> GetProjectPhaseByIDAsync(int projectPhaseID)
     {
-        return await _projectPhaseRepository.GetByIdAsync(projectPhaseID);
+        return await _projectPhaseRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == projectPhaseID);
     }
     public async Task<bool> AddProjectPhaseAsync(ProjectPhase projectPhase)
     {

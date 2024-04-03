@@ -33,7 +33,7 @@ public class CompanyAddressManager : ICompanyAddressManager
     }
     public async Task<CompanyAddress?> GetCompanyAddressByIDAsync(int companyAddressID)
     {
-        return await _companyAddressRepository.GetByIdAsync(companyAddressID);
+        return await _companyAddressRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == companyAddressID);
     }
 
     public async Task<bool> AddCompanyAddressAsync(CompanyAddress companyAddress)

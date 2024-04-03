@@ -26,10 +26,12 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         return _dbContext.Set<T>().AsQueryable();
     }
+
     public virtual async Task<T?> GetByIdAsync(int id)
     {
         return await _dbContext.Set<T>().FindAsync(id);
     }
+
 
     public virtual async Task<bool> AddAsync(T entity)
     {

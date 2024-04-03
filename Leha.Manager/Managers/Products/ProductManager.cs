@@ -32,7 +32,7 @@ public class ProductManager : IProductManager
     }
     public async Task<Product?> GetProductByIDAsync(int productID)
     {
-        return await _productRepository.GetByIdAsync(productID);
+        return await _productRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == productID);
     }
 
     public async Task<bool> AddProductAsync(Product product)
@@ -46,8 +46,9 @@ public class ProductManager : IProductManager
 
     public async Task<bool> DeleteProductAsync(Product product)
     {
-        return await _productRepository.AddAsync(product);
+        return await _productRepository.DeleteAsync(product);
     }
+
     #endregion
 }
 

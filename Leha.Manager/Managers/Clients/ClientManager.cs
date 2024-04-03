@@ -36,7 +36,7 @@ public class ClientManager : IClientManager
 
     public async Task<Client?> GetClientByIDAsync(int clientID)
     {
-        return await _clientRepository.GetByIdAsync(clientID);
+        return await _clientRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == clientID);
     }
 
     public async Task<bool> AddClientAsync(Client client)

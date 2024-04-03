@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Leha.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240402224358_initial")]
-    partial class initial
+    [Migration("20240403182928_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -114,6 +114,10 @@ namespace Leha.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CompanyImage")
+                        .IsRequired()
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<string>("CompanyLink")
                         .IsRequired()
                         .HasColumnType("varchar(max)");
 

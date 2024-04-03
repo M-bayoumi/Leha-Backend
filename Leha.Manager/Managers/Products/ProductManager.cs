@@ -46,7 +46,7 @@ public class ProductManager : IProductManager
 
     public async Task<bool> DeleteProductAsync(Product product)
     {
-        return await _productRepository.DeleteAsync(product);
+        return await _productRepository.AddAsync(product);
     }
     #endregion
 }

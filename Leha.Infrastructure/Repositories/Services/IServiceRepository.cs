@@ -5,5 +5,6 @@ namespace Leha.Infrastructure.Repositories.Services;
 
 public interface IServiceRepository : IGenericRepository<Service>
 {
+    public Task<List<Service?>> GetServicesListByCompanyId(int companyID);
 
 }

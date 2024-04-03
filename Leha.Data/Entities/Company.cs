@@ -9,6 +9,7 @@ public class Company
     public string CompanyImage { get; set; } = string.Empty;
     public string CompanyEmail { get; set; } = string.Empty;
     public string CompanyPhone { get; set; } = string.Empty;
+    public string CompanyLink { get; set; } = string.Empty;
     public List<CompanyAddress> CompanyAddresses { get; set; } = new List<CompanyAddress>();
     public List<HomeImage> HomeImages { get; set; } = new List<HomeImage>();
     public List<Service> Services { get; set; } = new List<Service>();

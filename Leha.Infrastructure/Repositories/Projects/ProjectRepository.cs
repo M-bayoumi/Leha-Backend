@@ -18,6 +18,11 @@ public class ProjectRepository : GenericRepository<Project>, IProjectRepository
         _projects = appDbContext.Set<Project>();
     }
 
+    public async Task<List<Project?>> GetProjectsListByCompanyId(int companyID)
+    {
+        return await _projects.Where(x => x.CompanyID == companyID).ToListAsync();
+    }
+
     #endregion
 
     #region Handle Functions

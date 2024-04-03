@@ -18,6 +18,11 @@ public class ClientRepository : GenericRepository<Client>, IClientRepository
         _clients = appDbContext.Set<Client>();
     }
 
+    public async Task<List<Client>?> GetClientsListByCompanyId(int companyID)
+    {
+        return await _clients.Where(x => x.CompanyID == companyID).ToListAsync();
+    }
+
     #endregion
 
     #region Handle Functions

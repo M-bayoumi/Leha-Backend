@@ -8,18 +8,23 @@ namespace Leha.Infrastructure.Repositories.Services;
 public class ServiceRepository : GenericRepository<Service>, IServiceRepository
 {
     #region Fields
-    private readonly DbSet<Company> _companies;
+    private readonly DbSet<Service> _services;
     #endregion
 
     #region Constructors
     public ServiceRepository(AppDbContext appDbContext) : base(appDbContext)
     {
-        _companies = appDbContext.Set<Company>();
+        _services = appDbContext.Set<Service>();
     }
 
     #endregion
 
     #region Handle Functions
+
+    public async Task<List<Service?>> GetServicesListByCompanyId(int companyID)
+    {
+        return await _services.Where(x => x.CompanyID == companyID).ToListAsync();
+    }
 
     #endregion
 }

@@ -30,6 +30,10 @@ public class CompanyConfiguration : IEntityTypeConfiguration<Company>
            .HasColumnType("varchar(max)")
            .IsRequired();
 
+        builder.Property(x => x.CompanyLink)
+           .HasColumnType("varchar(max)")
+           .IsRequired();
+
         builder.HasMany(x => x.Services)
            .WithOne(x => x.Company)
            .HasForeignKey(x => x.CompanyID)

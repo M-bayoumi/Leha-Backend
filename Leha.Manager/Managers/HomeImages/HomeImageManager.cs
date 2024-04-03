@@ -27,6 +27,10 @@ public class HomeImageManager : IHomeImageManager
     {
         return await _homeImageRepository.GetTableNoTracking().ToListAsync();
     }
+    public async Task<List<HomeImage?>> GetHomeImagesListByCompanyId(int companyID)
+    {
+        return await _homeImageRepository.GetHomeImagesListByCompanyId(companyID);
+    }
 
     public async Task<HomeImage?> GetHomeImageByIDAsync(int homeImageID)
     {

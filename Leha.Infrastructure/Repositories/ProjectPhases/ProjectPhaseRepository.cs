@@ -21,6 +21,10 @@ public class ProjectPhaseRepository : GenericRepository<ProjectPhase>, IProjectP
     #endregion
 
     #region Handle Functions
+    public async Task<List<ProjectPhase?>> GetProjectPhasesListByProjectId(int projectID)
+    {
+        return await _projectPhases.Where(x => x.ProjectID == projectID).ToListAsync();
+    }
 
     #endregion
 }

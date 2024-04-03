@@ -23,14 +23,14 @@ public class CompanyManager : ICompanyManager
 
     #region Handle Functions
 
-    public async Task<List<Company?>> GetCompaniesListAsync()
+    public async Task<List<Company>?> GetCompaniesListAsync()
     {
         return await _companyRepository.GetTableNoTracking().ToListAsync();
     }
 
     public async Task<Company?> GetCompanyByIDAsync(int companyID)
     {
-        var company = await _companyRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == companyID);
+        var company = await _companyRepository.GetByIdAsync(companyID);
         return company;
     }
 

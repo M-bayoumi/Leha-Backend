@@ -49,19 +49,9 @@ public class HomeImageManager : IHomeImageManager
 
     public async Task<bool> DeleteHomeImageAsync(HomeImage homeImage)
     {
-        var trans = _homeImageRepository.BeginTransaction();
-        try
-        {
-            //company.RemoveAllPosts();
-            await _homeImageRepository.DeleteAsync(homeImage);
-            await trans.CommitAsync();
-            return true;
-        }
-        catch
-        {
-            await trans.RollbackAsync();
-            return false;
-        }
+
+        return await _homeImageRepository.DeleteAsync(homeImage);
+
     }
 
     #endregion

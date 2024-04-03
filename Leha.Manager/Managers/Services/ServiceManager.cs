@@ -18,12 +18,9 @@ public class ServiceManager : IServiceManager
         _unitOfWork = unitOfWork;
         _serviceRepository = unitOfWork.ServiceRepository;
     }
-
-
     #endregion
 
     #region Handle Functions
-
 
     public async Task<List<Service?>> GetServicesListAsync()
     {

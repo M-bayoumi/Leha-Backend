@@ -3,7 +3,7 @@
 namespace Leha.Manager.Managers.Companies;
 public interface ICompanyManager
 {
-    public Task<List<Company>?> GetCompaniesListAsync();
+    public Task<List<Company?>> GetCompaniesListAsync();
     public Task<Company?> GetCompanyByIDAsync(int companyID);
     public Task<bool> AddCompanyAsync(Company company);
     public Task<bool> UpdateCompanyAsync(Company company);

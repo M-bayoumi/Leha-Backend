@@ -5,5 +5,5 @@ namespace Leha.Infrastructure.Repositories.PhaseItems;
 
 public interface IPhaseItemRepository : IGenericRepository<PhaseItem>
 {
-    public Task<List<PhaseItem>?> GetPhaseItemsListByProjectPhaseId(int projectPhaseID);
+    public Task<List<PhaseItem?>> GetPhaseItemsListByProjectPhaseId(int projectPhaseID);
 }

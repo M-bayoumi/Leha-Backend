@@ -21,7 +21,7 @@ public class PhaseItemRepository : GenericRepository<PhaseItem>, IPhaseItemRepos
     #endregion
 
     #region Handle Functions
-    public async Task<List<PhaseItem>?> GetPhaseItemsListByProjectPhaseId(int projectPhaseID)
+    public async Task<List<PhaseItem?>> GetPhaseItemsListByProjectPhaseId(int projectPhaseID)
     {
         return await _phaseItems.Where(x => x.ProjectPhaseID == projectPhaseID).ToListAsync();
     }

@@ -5,5 +5,5 @@ namespace Leha.Infrastructure.Repositories.Forms;
 
 public interface IFormRepository : IGenericRepository<Form>
 {
-    public Task<List<Form>?> GetFormsListByJobId(int jobID);
+    public Task<List<Form?>> GetFormsListByJobId(int jobID);
 }

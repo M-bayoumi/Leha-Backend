@@ -5,6 +5,6 @@ namespace Leha.Infrastructure.Repositories.CompanyAddresses;
 
 public interface ICompanyAddressRepository : IGenericRepository<CompanyAddress>
 {
-    public Task<List<CompanyAddress>?> GetCompanyAddressesListByCompanyId(int companyID);
+    public Task<List<CompanyAddress?>> GetCompanyAddressesListByCompanyId(int companyID);
 
 }

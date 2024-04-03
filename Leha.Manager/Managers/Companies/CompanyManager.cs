@@ -23,7 +23,7 @@ public class CompanyManager : ICompanyManager
 
     #region Handle Functions
 
-    public async Task<List<Company>?> GetCompaniesListAsync()
+    public async Task<List<Company?>> GetCompaniesListAsync()
     {
         return await _companyRepository.GetTableNoTracking().ToListAsync();
     }
@@ -45,17 +45,61 @@ public class CompanyManager : ICompanyManager
 
     public async Task<bool> DeleteCompanyAsync(Company company)
     {
-        var trans = _companyRepository.BeginTransaction();
+        var transaction = _companyRepository.BeginTransaction();
         try
         {
-            //company.RemoveAllPosts();
+            var companyProjects = await _unitOfWork.ProjectRepository.GetProjectsListByCompanyId(company.ID);
+
+            if (companyProjects != null)
+                await _unitOfWork.ProjectRepository.DeleteRangeAsync(companyProjects);
+
+            var companyServices = await _unitOfWork.ServiceRepository.GetServicesListByCompanyId(company.ID);
+
+            if (companyServices != null)
+                await _unitOfWork.ServiceRepository.DeleteRangeAsync(companyServices);
+
+
+            var companyProducts = await _unitOfWork.ProductRepository.GetProductsListByCompanyId(company.ID);
+
+            if (companyProducts != null)
+                await _unitOfWork.ProductRepository.DeleteRangeAsync(companyProducts);
+
+
+            var companyHomeImages = await _unitOfWork.HomeImageRepository.GetHomeImagesListByCompanyId(company.ID);
+
+            if (companyHomeImages != null)
+                await _unitOfWork.HomeImageRepository.DeleteRangeAsync(companyHomeImages);
+
+            var companyAddresss = await _unitOfWork.CompanyAddressRepository.GetCompanyAddressesListByCompanyId(company.ID);
+
+            if (companyAddresss != null)
+                await _unitOfWork.CompanyAddressRepository.DeleteRangeAsync(companyAddresss);
+
+            var companyPosts = await _unitOfWork.PostRepository.GetPostsListByCompanyId(company.ID);
+
+            if (companyPosts != null)
+                await _unitOfWork.PostRepository.DeleteRangeAsync(companyPosts);
+
+            var companyClients = await _unitOfWork.ClientRepository.GetClientsListByCompanyId(company.ID);
+
+            if (companyClients != null)
+                await _unitOfWork.ClientRepository.DeleteRangeAsync(companyClients);
+
+            var companyJobs = await _unitOfWork.JobRepository.GetJobsListByCompanyId(company.ID);
+
+            if (companyJobs != null)
+                await _unitOfWork.JobRepository.DeleteRangeAsync(companyJobs);
+
+
             await _companyRepository.DeleteAsync(company);
-            await trans.CommitAsync();
+
+            await transaction.CommitAsync();
+
             return true;
         }
         catch
         {
-            await trans.RollbackAsync();
+            await transaction.RollbackAsync();
             return false;
         }
     }

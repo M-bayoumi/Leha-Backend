@@ -22,7 +22,7 @@ public class JobRepository : GenericRepository<Job>, IJobRepository
 
     #region Handle Functions
 
-    public async Task<List<Job>?> GetJobsListByCompanyId(int companyID)
+    public async Task<List<Job?>> GetJobsListByCompanyId(int companyID)
     {
         return await _jobs.Where(x => x.CompanyID == companyID).ToListAsync();
     }

@@ -23,9 +23,9 @@ public class CompanyManager : ICompanyManager
 
     #region Handle Functions
 
-    public async Task<List<Company?>> GetCompaniesListAsync()
+    public IQueryable<Company?> GetCompaniesListAsync()
     {
-        return await _companyRepository.GetTableNoTracking().ToListAsync();
+        return _companyRepository.GetTableNoTracking().AsQueryable();
     }
 
     public async Task<Company?> GetCompanyByIDAsync(int companyID)
@@ -48,44 +48,44 @@ public class CompanyManager : ICompanyManager
         var transaction = _companyRepository.BeginTransaction();
         try
         {
-            var companyProjects = await _unitOfWork.ProjectRepository.GetProjectsListByCompanyId(company.ID);
+            var companyProjects = _unitOfWork.ProjectRepository.GetProjectsListByCompanyId(company.ID).ToList();
 
             if (companyProjects != null)
                 await _unitOfWork.ProjectRepository.DeleteRangeAsync(companyProjects);
 
-            var companyServices = await _unitOfWork.ServiceRepository.GetServicesListByCompanyId(company.ID);
+            var companyServices = _unitOfWork.ServiceRepository.GetServicesListByCompanyId(company.ID).ToList();
 
             if (companyServices != null)
                 await _unitOfWork.ServiceRepository.DeleteRangeAsync(companyServices);
 
 
-            var companyProducts = await _unitOfWork.ProductRepository.GetProductsListByCompanyId(company.ID);
+            var companyProducts = _unitOfWork.ProductRepository.GetProductsListByCompanyId(company.ID).ToList();
 
             if (companyProducts != null)
                 await _unitOfWork.ProductRepository.DeleteRangeAsync(companyProducts);
 
 
-            var companyHomeImages = await _unitOfWork.HomeImageRepository.GetHomeImagesListByCompanyId(company.ID);
+            var companyHomeImages = _unitOfWork.HomeImageRepository.GetHomeImagesListByCompanyId(company.ID).ToList();
 
             if (companyHomeImages != null)
                 await _unitOfWork.HomeImageRepository.DeleteRangeAsync(companyHomeImages);
 
-            var companyAddresss = await _unitOfWork.CompanyAddressRepository.GetCompanyAddressesListByCompanyId(company.ID);
+            var companyAddresss = _unitOfWork.CompanyAddressRepository.GetCompanyAddressesListByCompanyId(company.ID).ToList();
 
             if (companyAddresss != null)
                 await _unitOfWork.CompanyAddressRepository.DeleteRangeAsync(companyAddresss);
 
-            var companyPosts = await _unitOfWork.PostRepository.GetPostsListByCompanyId(company.ID);
+            var companyPosts = _unitOfWork.PostRepository.GetPostsListByCompanyId(company.ID).ToList();
 
             if (companyPosts != null)
                 await _unitOfWork.PostRepository.DeleteRangeAsync(companyPosts);
 
-            var companyClients = await _unitOfWork.ClientRepository.GetClientsListByCompanyId(company.ID);
+            var companyClients = _unitOfWork.ClientRepository.GetClientsListByCompanyId(company.ID).ToList();
 
             if (companyClients != null)
                 await _unitOfWork.ClientRepository.DeleteRangeAsync(companyClients);
 
-            var companyJobs = await _unitOfWork.JobRepository.GetJobsListByCompanyId(company.ID);
+            var companyJobs = _unitOfWork.JobRepository.GetJobsListByCompanyId(company.ID).ToList();
 
             if (companyJobs != null)
                 await _unitOfWork.JobRepository.DeleteRangeAsync(companyJobs);

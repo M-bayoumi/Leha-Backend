@@ -25,14 +25,14 @@ public class ProjectManager : IProjectManager
     #region Handle Functions
 
 
-    public async Task<List<Project?>> GetProjectsListAsync()
+    public IQueryable<Project?> GetProjectsListAsync()
     {
-        return await _projectRepository.GetTableNoTracking().ToListAsync();
+        return _projectRepository.GetTableNoTracking().AsQueryable();
     }
 
-    public async Task<List<Project?>> GetProjectsListByCompanyId(int companyID)
+    public IQueryable<Project?> GetProjectsListByCompanyId(int companyID)
     {
-        return await _projectRepository.GetProjectsListByCompanyId(companyID);
+        return _projectRepository.GetProjectsListByCompanyId(companyID).AsQueryable();
     }
 
     public async Task<Project?> GetProjectByIDAsync(int projectID)
@@ -54,7 +54,7 @@ public class ProjectManager : IProjectManager
         var transaction = _projectRepository.BeginTransaction();
         try
         {
-            var projectPhases = await _unitOfWork.ProjectPhaseRepository.GetProjectPhasesListByProjectId(project.ID);
+            var projectPhases = _unitOfWork.ProjectPhaseRepository.GetProjectPhasesListByProjectId(project.ID).ToList();
 
             if (projectPhases != null)
                 await _unitOfWork.ProjectPhaseRepository.DeleteRangeAsync(projectPhases);

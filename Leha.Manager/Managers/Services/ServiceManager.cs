@@ -22,14 +22,14 @@ public class ServiceManager : IServiceManager
 
     #region Handle Functions
 
-    public async Task<List<Service?>> GetServicesListAsync()
+    public IQueryable<Service?> GetServicesListAsync()
     {
-        return await _serviceRepository.GetTableNoTracking().ToListAsync();
+        return _serviceRepository.GetTableNoTracking().AsQueryable();
     }
 
-    public async Task<List<Service?>> GetServicesListByCompanyId(int companyID)
+    public IQueryable<Service?> GetServicesListByCompanyId(int companyID)
     {
-        return await _serviceRepository.GetServicesListByCompanyId(companyID);
+        return _serviceRepository.GetServicesListByCompanyId(companyID).AsQueryable();
     }
 
     public async Task<Service?> GetServiceByIDAsync(int serviceID)

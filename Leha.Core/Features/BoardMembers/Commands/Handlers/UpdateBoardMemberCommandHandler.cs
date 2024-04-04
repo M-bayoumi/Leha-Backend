@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
-using Leha.Core.Features.BoardMemberSpeeches.Commands.Models;
+using Leha.Core.Features.BoardMembers.Commands.Models;
 using Leha.Data.Entities;
 using Leha.Manager.Managers.BoardMembers;
 using MediatR;
 
 namespace Leha.Core.Features.BoardMembers.Commands.Handlers;
 
-public class UpdateBoardMemberCommandHandler : ResponseHandler, IRequestHandler<UpdateBoardMemberSpeechCommand, Response<string>>
+public class UpdateBoardMemberCommandHandler : ResponseHandler, IRequestHandler<UpdateBoardMemberCommand, Response<string>>
 {
 
     #region Fields
@@ -24,7 +24,7 @@ public class UpdateBoardMemberCommandHandler : ResponseHandler, IRequestHandler<
     #endregion
 
     #region Handle Functions
-    public async Task<Response<string>> Handle(UpdateBoardMemberSpeechCommand request, CancellationToken cancellationToken)
+    public async Task<Response<string>> Handle(UpdateBoardMemberCommand request, CancellationToken cancellationToken)
     {
         var boardMember = _mapper.Map<BoardMember>(request);
 

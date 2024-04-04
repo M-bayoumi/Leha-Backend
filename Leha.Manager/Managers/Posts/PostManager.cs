@@ -23,14 +23,14 @@ public class PostManager : IPostManager
 
     #region Handle Functions
 
-    public async Task<List<Post?>> GetPostsListAsync()
+    public IQueryable<Post?> GetPostsListAsync()
     {
-        return await _postRepository.GetTableNoTracking().ToListAsync();
+        return _postRepository.GetTableNoTracking().AsQueryable();
     }
 
-    public async Task<List<Post?>> GetPostsListByCompanyId(int companyID)
+    public IQueryable<Post?> GetPostsListByCompanyId(int companyID)
     {
-        return await _postRepository.GetPostsListByCompanyId(companyID);
+        return _postRepository.GetPostsListByCompanyId(companyID).AsQueryable();
     }
     public async Task<Post?> GetPostByIDAsync(int postID)
     {

@@ -23,14 +23,14 @@ public class BoardMemberManager : IBoardMemberManager
 
     #region Handle Functions
 
-    public async Task<List<BoardMember?>> GetBoardMembersListAsync()
+    public IQueryable<BoardMember?> GetBoardMembersListAsync()
     {
-        return await _boardMemberRepository.GetTableNoTracking().ToListAsync();
+        return _boardMemberRepository.GetTableNoTracking();
     }
 
     public async Task<BoardMember?> GetBoardMemberByIDAsync(int boardMemberID)
     {
-        return await _boardMemberRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == boardMemberID);
+        return await _boardMemberRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x!.ID == boardMemberID);
     }
     public Task<bool> AddBoardMemberAsync(BoardMember boardMember)
     {
@@ -47,7 +47,7 @@ public class BoardMemberManager : IBoardMemberManager
         var transaction = _boardMemberRepository.BeginTransaction();
         try
         {
-            var boardMemberSpeeches = await _unitOfWork.BoardMemberSpeechRepository.GetBoardMemberSpeechesListByBoardMemberId(boardMember.ID);
+            var boardMemberSpeeches = _unitOfWork.BoardMemberSpeechRepository.GetBoardMemberSpeechesListByBoardMemberId(boardMember.ID).ToList();
 
             if (boardMemberSpeeches != null)
                 await _unitOfWork.BoardMemberSpeechRepository.DeleteRangeAsync(boardMemberSpeeches);

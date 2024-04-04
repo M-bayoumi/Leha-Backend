@@ -22,14 +22,14 @@ public class PhaseItemManager : IPhaseItemManager
     #endregion
 
     #region Handle Functions
-    public async Task<List<PhaseItem?>> GetPhaseItemsListAsync()
+    public IQueryable<PhaseItem?> GetPhaseItemsListAsync()
     {
-        return await _phaseItemRepository.GetTableNoTracking().ToListAsync();
+        return _phaseItemRepository.GetTableNoTracking().AsQueryable();
     }
 
-    public async Task<List<PhaseItem>?> GetPhaseItemsListByProjectPhaseId(int projectPhaseID)
+    public IQueryable<PhaseItem?> GetPhaseItemsListByProjectPhaseId(int projectPhaseID)
     {
-        return await _phaseItemRepository.GetPhaseItemsListByProjectPhaseId(projectPhaseID);
+        return _phaseItemRepository.GetPhaseItemsListByProjectPhaseId(projectPhaseID).AsQueryable();
     }
 
     public async Task<PhaseItem?> GetPhaseItemByIDAsync(int phaseItemID)

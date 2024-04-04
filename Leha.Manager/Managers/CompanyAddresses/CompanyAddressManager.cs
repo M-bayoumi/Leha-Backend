@@ -22,14 +22,14 @@ public class CompanyAddressManager : ICompanyAddressManager
     #endregion
 
     #region Handle Functions
-    public async Task<List<CompanyAddress?>> GetCompanyAddressesListAsync()
+    public IQueryable<CompanyAddress?> GetCompanyAddressesListAsync()
     {
-        return await _companyAddressRepository.GetTableNoTracking().ToListAsync();
+        return _companyAddressRepository.GetTableNoTracking().AsQueryable();
     }
 
-    public async Task<List<CompanyAddress>?> GetCompanyAddressesListByCompanyId(int companyID)
+    public IQueryable<CompanyAddress?> GetCompanyAddressesListByCompanyId(int companyID)
     {
-        return await _companyAddressRepository.GetCompanyAddressesListByCompanyId(companyID);
+        return _companyAddressRepository.GetCompanyAddressesListByCompanyId(companyID).AsQueryable();
     }
     public async Task<CompanyAddress?> GetCompanyAddressByIDAsync(int companyAddressID)
     {

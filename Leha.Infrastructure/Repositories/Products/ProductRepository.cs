@@ -21,9 +21,9 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
     #endregion
 
     #region Handle Functions
-    public async Task<List<Product?>> GetProductsListByCompanyId(int companyID)
+    public IQueryable<Product?> GetProductsListByCompanyId(int companyID)
     {
-        return await _products.Where(x => x.CompanyID == companyID).ToListAsync();
+        return _products.Where(x => x.CompanyID == companyID).AsNoTracking().AsQueryable();
     }
 
     #endregion

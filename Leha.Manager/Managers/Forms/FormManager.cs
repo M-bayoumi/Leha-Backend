@@ -23,20 +23,19 @@ public class FormManager : IFormManager
     #endregion
 
     #region Handle Functions
-    public async Task<List<Form?>> GetFormsListAsync()
+    public IQueryable<Form?> GetFormsListAsync()
     {
-        return await _formRepository.GetTableNoTracking().ToListAsync();
+        return _formRepository.GetTableNoTracking().AsQueryable();
     }
 
-    public async Task<List<Form>?> GetFormsListByJobId(int jobID)
+    public IQueryable<Form?> GetFormsListByJobId(int jobID)
     {
-        return await _formRepository.GetFormsListByJobId(jobID);
+        return _formRepository.GetFormsListByJobId(jobID).AsQueryable();
     }
     public async Task<Form?> GetFormByIDAsync(int formID)
     {
         return await _formRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == formID);
     }
-
 
     public async Task<bool> AddFormAsync(Form form)
     {
@@ -46,7 +45,6 @@ public class FormManager : IFormManager
     {
         return await _formRepository.UpdateAsync(form);
     }
-
 
     public async Task<bool> DeleteFormAsync(Form form)
     {

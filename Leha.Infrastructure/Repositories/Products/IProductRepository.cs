@@ -5,6 +5,6 @@ namespace Leha.Infrastructure.Repositories.Products;
 
 public interface IProductRepository : IGenericRepository<Product>
 {
-    public Task<List<Product?>> GetProductsListByCompanyId(int companyID);
+    public IQueryable<Product?> GetProductsListByCompanyId(int companyID);
 
 }

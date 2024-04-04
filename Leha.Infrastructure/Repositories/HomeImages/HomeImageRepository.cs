@@ -21,9 +21,9 @@ public class HomeImageRepository : GenericRepository<HomeImage>, IHomeImageRepos
 
     #region Handle Functions
 
-    public async Task<List<HomeImage?>> GetHomeImagesListByCompanyId(int companyID)
+    public IQueryable<HomeImage?> GetHomeImagesListByCompanyId(int companyID)
     {
-        return await _homeImages.Where(x => x.CompanyID == companyID).ToListAsync();
+        return _homeImages.Where(x => x.CompanyID == companyID).AsNoTracking().AsQueryable();
     }
 
     #endregion

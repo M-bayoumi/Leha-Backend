@@ -21,9 +21,9 @@ public class BoardMemberSpeechRepository : GenericRepository<BoardMemberSpeech>,
 
     #region Handle Functions
 
-    public async Task<List<BoardMemberSpeech?>> GetBoardMemberSpeechesListByBoardMemberId(int boardMemberID)
+    public IQueryable<BoardMemberSpeech?> GetBoardMemberSpeechesListByBoardMemberId(int boardMemberID)
     {
-        return await _boardMemberSpeeches.Where(x => x.BoardMemberID == boardMemberID).ToListAsync();
+        return _boardMemberSpeeches.Where(x => x.BoardMemberID == boardMemberID).AsNoTracking().AsQueryable();
     }
 
     #endregion

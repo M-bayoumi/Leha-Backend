@@ -21,9 +21,9 @@ public class ServiceRepository : GenericRepository<Service>, IServiceRepository
 
     #region Handle Functions
 
-    public async Task<List<Service?>> GetServicesListByCompanyId(int companyID)
+    public IQueryable<Service?> GetServicesListByCompanyId(int companyID)
     {
-        return await _services.Where(x => x.CompanyID == companyID).ToListAsync();
+        return _services.Where(x => x.CompanyID == companyID).AsNoTracking().AsQueryable();
     }
 
     #endregion

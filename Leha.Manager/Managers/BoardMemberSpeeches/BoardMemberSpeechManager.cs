@@ -22,13 +22,14 @@ public class BoardMemberSpeechManager : IBoardMemberSpeechManager
 
     #region Handle Functions
 
-    public async Task<List<BoardMemberSpeech?>> GetBoardMemberSpeechesListAsync()
+    public IQueryable<BoardMemberSpeech?> GetBoardMemberSpeechesListAsync()
     {
-        return await _boardMemberSpeechRepository.GetTableNoTracking().ToListAsync();
+        return _boardMemberSpeechRepository.GetTableNoTracking();
     }
-    public async Task<List<BoardMemberSpeech?>> GetBoardMemberSpeechesListByBoardMemberId(int boardMemberID)
+
+    public IQueryable<BoardMemberSpeech?> GetBoardMemberSpeechesListByBoardMemberId(int boardMemberID)
     {
-        return await _boardMemberSpeechRepository.GetBoardMemberSpeechesListByBoardMemberId(boardMemberID);
+        return _boardMemberSpeechRepository.GetBoardMemberSpeechesListByBoardMemberId(boardMemberID);
 
     }
 
@@ -39,12 +40,18 @@ public class BoardMemberSpeechManager : IBoardMemberSpeechManager
 
     public async Task<bool> AddBoardMemberSpeechAsync(BoardMemberSpeech boardMemberSpeech)
     {
-        return await _boardMemberSpeechRepository.AddAsync(boardMemberSpeech);
+        var boardMember = await _unitOfWork.BoardMemberRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == boardMemberSpeech.BoardMemberID);
+        if (boardMember != null)
+            return await _boardMemberSpeechRepository.AddAsync(boardMemberSpeech);
+        return false;
     }
 
     public async Task<bool> UpdateBoardMemberSpeechAsync(BoardMemberSpeech boardMemberSpeech)
     {
-        return await _boardMemberSpeechRepository.UpdateAsync(boardMemberSpeech);
+        var boardMember = await _unitOfWork.BoardMemberRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == boardMemberSpeech.BoardMemberID);
+        if (boardMember != null)
+            return await _boardMemberSpeechRepository.UpdateAsync(boardMemberSpeech);
+        return false;
     }
 
     public async Task<bool> DeleteBoardMemberSpeechAsync(BoardMemberSpeech boardMemberSpeech)

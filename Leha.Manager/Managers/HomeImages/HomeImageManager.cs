@@ -23,13 +23,13 @@ public class HomeImageManager : IHomeImageManager
 
     #region Handle Functions
 
-    public async Task<List<HomeImage?>> GetHomeImagesListAsync()
+    public IQueryable<HomeImage?> GetHomeImagesListAsync()
     {
-        return await _homeImageRepository.GetTableNoTracking().ToListAsync();
+        return _homeImageRepository.GetTableNoTracking().AsQueryable();
     }
-    public async Task<List<HomeImage?>> GetHomeImagesListByCompanyId(int companyID)
+    public IQueryable<HomeImage?> GetHomeImagesListByCompanyId(int companyID)
     {
-        return await _homeImageRepository.GetHomeImagesListByCompanyId(companyID);
+        return _homeImageRepository.GetHomeImagesListByCompanyId(companyID).AsQueryable();
     }
 
     public async Task<HomeImage?> GetHomeImageByIDAsync(int homeImageID)

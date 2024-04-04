@@ -21,9 +21,9 @@ public class FormRepository : GenericRepository<Form>, IFormRepository
     #endregion
 
     #region Handle Functions
-    public async Task<List<Form?>> GetFormsListByJobId(int jobID)
+    public IQueryable<Form?> GetFormsListByJobId(int jobID)
     {
-        return await _forms.Where(x => x.JobID == jobID).ToListAsync();
+        return _forms.Where(x => x.JobID == jobID).AsNoTracking().AsQueryable();
     }
     #endregion
 }

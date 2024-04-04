@@ -24,13 +24,13 @@ public class JobManager : IJobManager
 
     #region Handle Functions
 
-    public async Task<List<Job?>> GetJobsListAsync()
+    public IQueryable<Job?> GetJobsListAsync()
     {
-        return await _jobRepository.GetTableNoTracking().ToListAsync();
+        return _jobRepository.GetTableNoTracking().AsQueryable();
     }
-    public async Task<List<Job>?> GetJobsListByCompanyId(int companyID)
+    public IQueryable<Job?> GetJobsListByCompanyId(int companyID)
     {
-        return await _jobRepository.GetJobsListByCompanyId(companyID);
+        return _jobRepository.GetJobsListByCompanyId(companyID).AsQueryable();
     }
     public async Task<Job?> GetJobByIDAsync(int jobID)
     {
@@ -49,7 +49,7 @@ public class JobManager : IJobManager
         var transaction = _jobRepository.BeginTransaction();
         try
         {
-            var jobForms = await _unitOfWork.FormRepository.GetFormsListByJobId(job.ID);
+            var jobForms = _unitOfWork.FormRepository.GetFormsListByJobId(job.ID).ToList();
 
             if (jobForms != null)
                 await _unitOfWork.FormRepository.DeleteRangeAsync(jobForms);

@@ -22,9 +22,9 @@ public class CompanyAddressRepository : GenericRepository<CompanyAddress>, IComp
 
     #region Handle Functions
 
-    public async Task<List<CompanyAddress?>> GetCompanyAddressesListByCompanyId(int companyID)
+    public IQueryable<CompanyAddress?> GetCompanyAddressesListByCompanyId(int companyID)
     {
-        return await _companyAddresses.Where(x => x.CompanyID == companyID).ToListAsync();
+        return _companyAddresses.Where(x => x.CompanyID == companyID).AsNoTracking().AsQueryable();
     }
 
     #endregion

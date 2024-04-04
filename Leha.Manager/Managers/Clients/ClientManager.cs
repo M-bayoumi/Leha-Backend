@@ -22,15 +22,16 @@ public class ClientManager : IClientManager
 
     #region Handle Functions
 
-    public async Task<List<Client?>> GetClientsListAsync()
+    public IQueryable<Client?> GetClientsListAsync()
     {
-        return await _clientRepository.GetTableNoTracking().ToListAsync();
+        return _clientRepository.GetTableNoTracking().AsQueryable();
 
     }
 
-    public async Task<List<Client>?> GetClientsListByCompanyId(int companyID)
+
+    public IQueryable<Client?> GetClientsListByCompanyId(int companyID)
     {
-        return await _clientRepository.GetClientsListByCompanyId(companyID);
+        return _clientRepository.GetClientsListByCompanyId(companyID).AsQueryable();
 
     }
 
@@ -43,7 +44,6 @@ public class ClientManager : IClientManager
     {
         return await _clientRepository.AddAsync(client);
     }
-
 
     public async Task<bool> UpdateClientAsync(Client client)
     {

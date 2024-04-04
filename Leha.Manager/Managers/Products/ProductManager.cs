@@ -21,14 +21,14 @@ public class ProductManager : IProductManager
     #endregion
 
     #region Handle Functions   
-    public async Task<List<Product?>> GetProductsListAsync()
+    public IQueryable<Product?> GetProductsListAsync()
     {
-        return await _productRepository.GetTableNoTracking().ToListAsync();
+        return _productRepository.GetTableNoTracking().AsQueryable();
     }
 
-    public async Task<List<Product?>> GetProductsListByCompanyId(int companyID)
+    public IQueryable<Product?> GetProductsListByCompanyId(int companyID)
     {
-        return await _productRepository.GetProductsListByCompanyId(companyID);
+        return _productRepository.GetProductsListByCompanyId(companyID).AsQueryable();
     }
     public async Task<Product?> GetProductByIDAsync(int productID)
     {

@@ -27,5 +27,4 @@ public class UpdateCompanyCommand : IRequest<Response<string>>
     {
 
     }
-
 }

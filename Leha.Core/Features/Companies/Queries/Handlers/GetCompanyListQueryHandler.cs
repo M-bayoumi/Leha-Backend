@@ -10,14 +10,14 @@ namespace Leha.Core.Features.Companies.Queries.Handlers;
 public class GetCompanyListQueryHandler : ResponseHandler, IRequestHandler<GetCompanyListQuery, Response<List<GetCompanyListResponse>>>
 {
     #region Fields
-    private readonly ICompanyManager _companyService;
+    private readonly ICompanyManager _companyManager;
     private readonly IMapper _mapper;
     #endregion
 
     #region Constructors
-    public GetCompanyListQueryHandler(ICompanyManager companyService, IMapper mapper)
+    public GetCompanyListQueryHandler(ICompanyManager companyManager, IMapper mapper)
     {
-        _companyService = companyService;
+        _companyManager = companyManager;
         _mapper = mapper;
     }
     #endregion
@@ -25,7 +25,7 @@ public class GetCompanyListQueryHandler : ResponseHandler, IRequestHandler<GetCo
     #region Handle Functions
     public async Task<Response<List<GetCompanyListResponse>>> Handle(GetCompanyListQuery request, CancellationToken cancellationToken)
     {
-        var companyListDB = await _companyService.GetCompaniesListAsync();
+        var companyListDB = await _companyManager.GetCompaniesListAsync();
         var companyListMapper = _mapper.Map<List<GetCompanyListResponse>>(companyListDB);
         return Success(companyListMapper);
     }

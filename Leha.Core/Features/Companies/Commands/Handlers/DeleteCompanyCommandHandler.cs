@@ -10,14 +10,14 @@ public class DeleteCompanyCommandHandler : ResponseHandler, IRequestHandler<Dele
 {
 
     #region Fields
-    private readonly ICompanyManager _companyService;
+    private readonly ICompanyManager _companyManager;
     private readonly IMapper _mapper;
     #endregion
 
     #region Constructors
-    public DeleteCompanyCommandHandler(ICompanyManager companyService, IMapper mapper)
+    public DeleteCompanyCommandHandler(ICompanyManager companyManager, IMapper mapper)
     {
-        _companyService = companyService;
+        _companyManager = companyManager;
         _mapper = mapper;
     }
     #endregion
@@ -25,9 +25,9 @@ public class DeleteCompanyCommandHandler : ResponseHandler, IRequestHandler<Dele
     #region Handle Functions
     public async Task<Response<string>> Handle(DeleteCompanyCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyService.GetCompanyByIDAsync(request.ID); // GetById without without include 
+        var company = await _companyManager.GetCompanyByIDAsync(request.ID); // GetById without without include 
         if (company == null) return NotFound<string>("Company not found");
-        return await _companyService.DeleteCompanyAsync(company) ? Deleted<string>("Deleted Successfully") : BadRequest<string>();
+        return await _companyManager.DeleteCompanyAsync(company) ? Deleted<string>("Deleted Successfully") : BadRequest<string>();
 
 
     }

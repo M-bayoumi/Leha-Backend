@@ -10,14 +10,14 @@ namespace Leha.Core.Features.Companies.Queries.Handlers;
 public class GetCompanyByIDQueryHandler : ResponseHandler, IRequestHandler<GetCompanyByIDQuery, Response<GetCompanyByIDResponse>>
 {
     #region Fields
-    private readonly ICompanyManager _companyService;
+    private readonly ICompanyManager _companyManager;
     private readonly IMapper _mapper;
     #endregion
 
     #region Constructors
-    public GetCompanyByIDQueryHandler(ICompanyManager companyService, IMapper mapper)
+    public GetCompanyByIDQueryHandler(ICompanyManager companyManager, IMapper mapper)
     {
-        _companyService = companyService;
+        _companyManager = companyManager;
         _mapper = mapper;
     }
     #endregion
@@ -25,7 +25,7 @@ public class GetCompanyByIDQueryHandler : ResponseHandler, IRequestHandler<GetCo
     #region Handle Functions
     public async Task<Response<GetCompanyByIDResponse>> Handle(GetCompanyByIDQuery request, CancellationToken cancellationToken)
     {
-        var companyDB = await _companyService.GetCompanyByIDAsync(request.ID);
+        var companyDB = await _companyManager.GetCompanyByIDAsync(request.ID);
         if (companyDB is null)
         {
             return NotFound<GetCompanyByIDResponse>();

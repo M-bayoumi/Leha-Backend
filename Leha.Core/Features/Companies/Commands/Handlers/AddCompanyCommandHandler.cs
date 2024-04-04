@@ -11,14 +11,14 @@ public class AddCompanyCommandHandler : ResponseHandler, IRequestHandler<AddComp
 {
 
     #region Fields
-    private readonly ICompanyManager _companyService;
+    private readonly ICompanyManager _companyManager;
     private readonly IMapper _mapper;
     #endregion
 
     #region Constructors
-    public AddCompanyCommandHandler(ICompanyManager companyService, IMapper mapper)
+    public AddCompanyCommandHandler(ICompanyManager companyManager, IMapper mapper)
     {
-        _companyService = companyService;
+        _companyManager = companyManager;
         _mapper = mapper;
     }
     #endregion
@@ -28,7 +28,7 @@ public class AddCompanyCommandHandler : ResponseHandler, IRequestHandler<AddComp
     {
         var company = _mapper.Map<Company>(request);
 
-        return await _companyService.AddCompanyAsync(company) ? Created("Added Successfully") : BadRequest<string>();
+        return await _companyManager.AddCompanyAsync(company) ? Created("Added Successfully") : BadRequest<string>();
     }
 
     #endregion

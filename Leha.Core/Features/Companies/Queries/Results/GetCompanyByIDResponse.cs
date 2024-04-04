@@ -8,4 +8,6 @@ public class GetCompanyByIDResponse
     public string CompanyImage { get; set; } = string.Empty;
     public string CompanyEmail { get; set; } = string.Empty;
     public string CompanyPhone { get; set; } = string.Empty;
+    public string CompanyLink { get; set; } = string.Empty;
+
 }

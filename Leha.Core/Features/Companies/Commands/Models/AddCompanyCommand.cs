@@ -18,5 +18,9 @@ public class AddCompanyCommand : IRequest<Response<string>>
         CompanyEmail = companyEmail;
         CompanyPhone = companyPhone;
     }
+    public AddCompanyCommand()
+    {
+
+    }
 }
 

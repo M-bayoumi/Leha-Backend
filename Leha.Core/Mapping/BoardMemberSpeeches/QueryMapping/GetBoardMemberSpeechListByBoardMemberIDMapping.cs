@@ -4,12 +4,11 @@ using Leha.Data.Entities;
 
 namespace Leha.Core.Mapping.BoardMemberSpeeches;
 
-
 public partial class BoardMemberSpeechProfile : Profile
 {
-    public void GetBoardMemberSpeechListMapping()
+    public void GetBoardMemberSpeechListByBoardMemberIDMapping()
     {
-        CreateMap<BoardMemberSpeech, GetBoardMemberSpeechListResponse>()
+        CreateMap<BoardMemberSpeech, GetBoardMemberSpeechListByBoardMemberIDResponse>()
              .ForMember(dist => dist.BoardMemberName, opt => opt.MapFrom(src => src.BoardMember.BoardMemberName))
              .ForMember(dist => dist.BoardMemberPosition, opt => opt.MapFrom(src => src.BoardMember.BoardMemberPosition))
              .ForMember(dist => dist.BoardMemberPosition, opt => opt.MapFrom(src => src.BoardMember.BoardMemberPosition));

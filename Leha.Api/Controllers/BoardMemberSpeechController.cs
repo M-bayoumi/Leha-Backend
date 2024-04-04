@@ -32,6 +32,12 @@ public class BoardMemberSpeechController : AppControllerBase
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
+    [HttpGet(Router.BoardMemberSpeechRouting.GetListByBoardMemberID)]
+    public async Task<IActionResult> GetBoardMemberSpeechListByBoardMemberID([FromRoute] GetBoardMemberSpeechesListByBoardMemberIdQuery command)
+    {
+        var response = await _mediator.Send(command);
+        return NewResult(response);
+    }
 
     [HttpPost(Router.BoardMemberSpeechRouting.Add)]
     public async Task<IActionResult> AddBoardMemberSpeech([FromBody] AddBoardMemberSpeechCommand command)

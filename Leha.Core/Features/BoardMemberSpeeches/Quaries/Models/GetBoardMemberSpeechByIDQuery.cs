@@ -1,5 +1,4 @@
 ﻿using Leha.Core.BaseResponse;
-using Leha.Core.Features.BoardMembers.Quaries.Results;
 using Leha.Core.Features.BoardMemberSpeeches.Quaries.Results;
 using MediatR;
 
@@ -17,4 +16,3 @@ public class GetBoardMemberSpeechByIDQuery : IRequest<Response<GetBoardMemberSpe
     {
     }
 }
-

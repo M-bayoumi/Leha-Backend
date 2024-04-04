@@ -4,6 +4,7 @@ using Leha.Core.Features.BoardMemberSpeeches.Quaries.Models;
 using Leha.Core.Features.BoardMemberSpeeches.Quaries.Results;
 using Leha.Manager.Managers.BoardMemberSpeeches;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Core.Features.BoardMemberSpeeches.Quaries.Handlers;
 
@@ -25,7 +26,7 @@ public class GetBoardMemberSpeechByIDQueryHandler : ResponseHandler, IRequestHan
     #region Handle Functions
     public async Task<Response<GetBoardMemberSpeechByIDResponse>> Handle(GetBoardMemberSpeechByIDQuery request, CancellationToken cancellationToken)
     {
-        var boardMemberDB = await _boardMemberSpeechManager.GetBoardMemberSpeechByIDAsync(request.ID);
+        var boardMemberDB = await _boardMemberSpeechManager.GetBoardMemberSpeechesListAsync().Include(x => x.BoardMember).FirstOrDefaultAsync(x => x.ID == request.ID);
         if (boardMemberDB is null)
         {
             return NotFound<GetBoardMemberSpeechByIDResponse>();

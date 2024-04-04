@@ -6,6 +6,7 @@
         {
             GetBoardMemberSpeechByIDMapping();
             GetBoardMemberSpeechListMapping();
+            GetBoardMemberSpeechListByBoardMemberIDMapping();
             AddBoardMemberSpeechCommandMapping();
             UpdateBoardMemberSpeechCommandMapping();
         }

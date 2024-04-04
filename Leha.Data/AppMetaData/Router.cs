@@ -34,6 +34,7 @@ public static class Router
     {
         private const string Prefix = Rule + "BoardMemberSpeech/";
         public const string GetList = Prefix + ListRoute;
+        public const string GetListByBoardMemberID = Prefix + ListRoute + "/{ID}";
         public const string GetByID = Prefix + GetByIDRoute;
         public const string Add = Prefix + AddRoute;
         public const string Update = Prefix + UpdateRoute;

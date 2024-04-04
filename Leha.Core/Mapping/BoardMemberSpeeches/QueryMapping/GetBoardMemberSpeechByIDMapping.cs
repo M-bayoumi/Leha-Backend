@@ -8,6 +8,9 @@ public partial class BoardMemberSpeechProfile : Profile
 {
     public void GetBoardMemberSpeechByIDMapping()
     {
-        CreateMap<BoardMemberSpeech, GetBoardMemberSpeechByIDResponse>();
+        CreateMap<BoardMemberSpeech, GetBoardMemberSpeechByIDResponse>()
+             .ForMember(dist => dist.BoardMemberName, opt => opt.MapFrom(src => src.BoardMember.BoardMemberName))
+             .ForMember(dist => dist.BoardMemberPosition, opt => opt.MapFrom(src => src.BoardMember.BoardMemberPosition))
+             .ForMember(dist => dist.BoardMemberPosition, opt => opt.MapFrom(src => src.BoardMember.BoardMemberPosition));
     }
 }

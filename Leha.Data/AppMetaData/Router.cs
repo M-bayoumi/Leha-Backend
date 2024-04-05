@@ -40,5 +40,15 @@ public static class Router
         public const string Update = Prefix + UpdateRoute;
         public const string Delete = Prefix + DeleteRoute;
     }
+    public static class ClientRouting
+    {
+        private const string Prefix = Rule + "Client/";
+        public const string GetList = Prefix + ListRoute;
+        public const string GetListByCompanyID = Prefix + ListRoute + "/{ID}";
+        public const string GetByID = Prefix + GetByIDRoute;
+        public const string Add = Prefix + AddRoute;
+        public const string Update = Prefix + UpdateRoute;
+        public const string Delete = Prefix + DeleteRoute;
+    }
 
 }

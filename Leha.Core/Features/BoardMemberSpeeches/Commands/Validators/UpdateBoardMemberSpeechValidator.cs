@@ -22,6 +22,10 @@ public class UpdateBoardMemberSpeechValidator : AbstractValidator<UpdateBoardMem
     #region Handle Functions
     public void ApplyValidationRules()
     {
+        RuleFor(x => x.ID)
+            .NotNull().WithMessage("Required.")
+            .GreaterThanOrEqualTo(1).WithMessage("Not Found");
+
         RuleFor(x => x.BoardMemberID)
             .NotNull().WithMessage("Required.")
             .GreaterThanOrEqualTo(1).WithMessage("Not Found");

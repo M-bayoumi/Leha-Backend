@@ -39,12 +39,70 @@ public class PhaseItemManager : IPhaseItemManager
 
     public async Task<bool> AddPhaseItemAsync(PhaseItem phaseItem)
     {
-        return await _phaseItemRepository.AddAsync(phaseItem);
+        var projectPhase = _unitOfWork.ProjectPhaseRepository.GetTableNoTracking().FirstOrDefault(x => x.ID == phaseItem.ProjectPhaseID);
+        if (projectPhase == null) return false;
+
+        var project = _unitOfWork.ProjectRepository.GetTableAsTracking().Include(x => x.ProjectPhases).ThenInclude(x => x.PhaseItems).FirstOrDefault(x => x.ID == projectPhase.ProjectID);
+        if (project == null) return false;
+
+        var totalAcumulativePercentage = project.ProjectPhases
+            .SelectMany(x => x.PhaseItems)
+            .Sum(c => c.AcumulativePercentage);
+
+        if (totalAcumulativePercentage > 100) return false;
+        phaseItem.PercentageLossOrExceed = (phaseItem.InitialInventoryQuantities - phaseItem.ActualInventoryQuantities) * 100 / phaseItem.InitialInventoryQuantities;
+
+        var transaction = _phaseItemRepository.BeginTransaction();
+        try
+        {
+            await _phaseItemRepository.AddAsync(phaseItem);
+            project.ProjectProgressPercentage = project.ProjectPhases
+                .SelectMany(x => x.PhaseItems)
+                .Sum(c => c.AcumulativePercentage * c.ProgressPercentage / 100);
+            await _unitOfWork.ProjectRepository.SaveChangesAsync();
+            await transaction.CommitAsync();
+
+            return true;
+        }
+        catch
+        {
+            await transaction.RollbackAsync();
+            return false;
+        }
     }
 
     public async Task<bool> UpdatePhaseItemAsync(PhaseItem phaseItem)
     {
-        return await _phaseItemRepository.UpdateAsync(phaseItem);
+        var projectPhase = _unitOfWork.ProjectPhaseRepository.GetTableNoTracking().FirstOrDefault(x => x.ID == phaseItem.ProjectPhaseID);
+        if (projectPhase == null) return false;
+
+        var project = _unitOfWork.ProjectRepository.GetTableAsTracking().Include(x => x.ProjectPhases).ThenInclude(x => x.PhaseItems).FirstOrDefault(x => x.ID == projectPhase.ProjectID);
+        if (project == null) return false;
+
+        var totalAcumulativePercentage = project.ProjectPhases
+            .SelectMany(x => x.PhaseItems)
+            .Sum(c => c.AcumulativePercentage);
+
+        if (totalAcumulativePercentage > 100) return false;
+        phaseItem.PercentageLossOrExceed = (phaseItem.InitialInventoryQuantities - phaseItem.ActualInventoryQuantities) * 100 / phaseItem.InitialInventoryQuantities;
+
+        var transaction = _phaseItemRepository.BeginTransaction();
+        try
+        {
+            await _phaseItemRepository.UpdateAsync(phaseItem);
+            project.ProjectProgressPercentage = project.ProjectPhases
+                .SelectMany(x => x.PhaseItems)
+                .Sum(c => c.AcumulativePercentage * c.ProgressPercentage / 100);
+            await _unitOfWork.ProjectRepository.SaveChangesAsync();
+            await transaction.CommitAsync();
+
+            return true;
+        }
+        catch
+        {
+            await transaction.RollbackAsync();
+            return false;
+        }
     }
 
     public async Task<bool> DeletePhaseItemAsync(PhaseItem phaseItem)

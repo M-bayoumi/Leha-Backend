@@ -27,6 +27,31 @@ public class AddCompanyCommandValidator : AbstractValidator<AddCompanyCommand>
             .NotNull().WithMessage("Required.")
             .NotEmpty().WithMessage("Can't be empty.")
             .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.CompanyEmployees)
+         .NotNull().WithMessage("Required.")
+         .NotEmpty().WithMessage("Can't be empty.")
+         .GreaterThanOrEqualTo(2).WithMessage("CompanyEmployees must be greater than or equal 2.");
+
+        RuleFor(x => x.CompanyImage)
+           .NotNull().WithMessage("Required.")
+           .NotEmpty().WithMessage("Can't be empty.")
+           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.CompanyEmail)
+           .NotNull().WithMessage("Required.")
+           .NotEmpty().WithMessage("Can't be empty.")
+           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.CompanyPhone)
+           .NotNull().WithMessage("Required.")
+           .NotEmpty().WithMessage("Can't be empty.")
+           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.CompanyLink)
+           .NotNull().WithMessage("Required.")
+           .NotEmpty().WithMessage("Can't be empty.")
+           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
     }
 
     public void ApplyCustomValidationRules()

@@ -30,8 +30,10 @@ public class ProjectConfiguration : IEntityTypeConfiguration<Project>
 
 
         builder.Property(x => x.ProjectProgressPercentage)
-           .HasColumnType("decimal(18, 2)")
-           .IsRequired();
+            .HasColumnType("decimal(18, 2)")
+            .IsRequired();
+
+        //builder.HasCheckConstraint("CK_ProjectProgressPercentage", "ProjectProgressPercentage >= 0 AND ProjectProgressPercentage <= 100.00");
 
         builder.HasMany(x => x.ProjectPhases)
            .WithOne(x => x.Project)

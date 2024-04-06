@@ -28,7 +28,7 @@ public class AddCompanyCommandHandler : ResponseHandler, IRequestHandler<AddComp
     {
         var company = _mapper.Map<Company>(request);
 
-        return await _companyManager.AddCompanyAsync(company) ? Created("Added Successfully") : BadRequest<string>();
+        return await _companyManager.AddCompanyAsync(company) ? Created("Added Successfully") : BadRequest<string>("Failed To Add Company");
     }
 
     #endregion

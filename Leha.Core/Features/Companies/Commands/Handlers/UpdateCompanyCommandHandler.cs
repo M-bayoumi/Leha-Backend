@@ -29,7 +29,7 @@ public class UpdateCompanyCommandHandler : ResponseHandler, IRequestHandler<Upda
         var companyDB = await _companyManager.GetCompanyByIDAsync(request.ID);
         if (companyDB == null) return NotFound<string>("Company not found");
         var company = _mapper.Map<Company>(request);
-        return await _companyManager.UpdateCompanyAsync(company) ? Created("Updated Successfully") : BadRequest<string>();
+        return await _companyManager.UpdateCompanyAsync(company) ? Created("Updated Successfully") : BadRequest<string>("Failed To Update Company");
     }
     #endregion
 }

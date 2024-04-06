@@ -14,7 +14,7 @@ public class PostConfiguration : IEntityTypeConfiguration<Post>
            .HasColumnType("varchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.ServcieImage)
+        builder.Property(x => x.PostImage)
            .HasColumnType("varchar(max)")
            .IsRequired();
 

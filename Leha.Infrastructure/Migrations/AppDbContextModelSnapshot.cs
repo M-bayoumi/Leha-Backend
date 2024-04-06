@@ -324,7 +324,7 @@ namespace Leha.Infrastructure.Migrations
                     b.Property<DateTime>("PostDateTime")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("ServcieImage")
+                    b.Property<string>("PostImage")
                         .IsRequired()
                         .HasColumnType("varchar(max)");
 

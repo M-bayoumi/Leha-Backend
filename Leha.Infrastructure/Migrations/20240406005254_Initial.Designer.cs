@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Leha.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240403182928_Initial")]
+    [Migration("20240406005254_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -327,7 +327,7 @@ namespace Leha.Infrastructure.Migrations
                     b.Property<DateTime>("PostDateTime")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("ServcieImage")
+                    b.Property<string>("PostImage")
                         .IsRequired()
                         .HasColumnType("varchar(max)");
 

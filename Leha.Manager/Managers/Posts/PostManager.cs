@@ -37,16 +37,16 @@ public class PostManager : IPostManager
         return await _postRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == postID);
     }
 
-    public async Task<bool> AddPostItemAsync(Post post)
+    public async Task<bool> AddPostAsync(Post post)
     {
         return await _postRepository.AddAsync(post);
     }
-    public async Task<bool> UpdatePostItemAsync(Post post)
+    public async Task<bool> UpdatePostAsync(Post post)
     {
         return await _postRepository.UpdateAsync(post);
     }
 
-    public async Task<bool> DeletePostItemAsync(Post post)
+    public async Task<bool> DeletePostAsync(Post post)
     {
         return await _postRepository.DeleteAsync(post);
     }

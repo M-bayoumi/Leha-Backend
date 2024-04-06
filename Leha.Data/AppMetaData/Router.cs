@@ -50,5 +50,55 @@ public static class Router
         public const string Update = Prefix + UpdateRoute;
         public const string Delete = Prefix + DeleteRoute;
     }
+    public static class CompanyAddressRouting
+    {
+        private const string Prefix = Rule + "CompanyAddress/";
+        public const string GetList = Prefix + ListRoute;
+        public const string GetListByCompanyID = Prefix + ListRoute + "/{ID}";
+        public const string GetByID = Prefix + GetByIDRoute;
+        public const string Add = Prefix + AddRoute;
+        public const string Update = Prefix + UpdateRoute;
+        public const string Delete = Prefix + DeleteRoute;
+    }
+    public static class HomeImageRouting
+    {
+        private const string Prefix = Rule + "HomeImage/";
+        public const string GetList = Prefix + ListRoute;
+        public const string GetListByCompanyID = Prefix + ListRoute + "/{ID}";
+        public const string GetByID = Prefix + GetByIDRoute;
+        public const string Add = Prefix + AddRoute;
+        public const string Update = Prefix + UpdateRoute;
+        public const string Delete = Prefix + DeleteRoute;
+    }
+    public static class JobRouting
+    {
+        private const string Prefix = Rule + "Job/";
+        public const string GetList = Prefix + ListRoute;
+        public const string GetListByCompanyID = Prefix + ListRoute + "/{ID}";
+        public const string GetByID = Prefix + GetByIDRoute;
+        public const string Add = Prefix + AddRoute;
+        public const string Update = Prefix + UpdateRoute;
+        public const string Delete = Prefix + DeleteRoute;
+    }
+    public static class FormRouting
+    {
+        private const string Prefix = Rule + "Form/";
+        public const string GetList = Prefix + ListRoute;
+        public const string GetListByJobID = Prefix + ListRoute + "/{ID}";
+        public const string GetByID = Prefix + GetByIDRoute;
+        public const string Add = Prefix + AddRoute;
+        public const string Update = Prefix + UpdateRoute;
+        public const string Delete = Prefix + DeleteRoute;
+    }
+    public static class PostRouting
+    {
+        private const string Prefix = Rule + "Post/";
+        public const string GetList = Prefix + ListRoute;
+        public const string GetListByCompanyID = Prefix + ListRoute + "/{ID}";
+        public const string GetByID = Prefix + GetByIDRoute;
+        public const string Add = Prefix + AddRoute;
+        public const string Update = Prefix + UpdateRoute;
+        public const string Delete = Prefix + DeleteRoute;
+    }
 
 }

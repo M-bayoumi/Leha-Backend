@@ -155,7 +155,7 @@ namespace Leha.Infrastructure.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PostContent = table.Column<string>(type: "varchar(max)", nullable: false),
-                    ServcieImage = table.Column<string>(type: "varchar(max)", nullable: false),
+                    PostImage = table.Column<string>(type: "varchar(max)", nullable: false),
                     PostDateTime = table.Column<DateTime>(type: "datetime", nullable: false),
                     CompanyID = table.Column<int>(type: "int", nullable: false)
                 },

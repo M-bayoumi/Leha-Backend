@@ -7,7 +7,7 @@ public interface IPostManager
     public IQueryable<Post?> GetPostsListAsync();
     public IQueryable<Post?> GetPostsListByCompanyId(int companyID);
     public Task<Post?> GetPostByIDAsync(int postID);
-    public Task<bool> AddPostItemAsync(Post post);
-    public Task<bool> UpdatePostItemAsync(Post post);
-    public Task<bool> DeletePostItemAsync(Post post);
+    public Task<bool> AddPostAsync(Post post);
+    public Task<bool> UpdatePostAsync(Post post);
+    public Task<bool> DeletePostAsync(Post post);
 }

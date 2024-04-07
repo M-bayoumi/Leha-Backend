@@ -2,9 +2,11 @@
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.Jobs.Quaries.Models;
 using Leha.Core.Features.Jobs.Quaries.Results;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.Jobs;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Jobs.Quaries.Handlers;
 
@@ -16,7 +18,7 @@ public class GetJobListByCompanyIdQueryHandler : ResponseHandler, IRequestHandle
     #endregion
 
     #region Constructors
-    public GetJobListByCompanyIdQueryHandler(IJobManager jobManager, IMapper mapper)
+    public GetJobListByCompanyIdQueryHandler(IJobManager jobManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _jobManager = jobManager;
         _mapper = mapper;

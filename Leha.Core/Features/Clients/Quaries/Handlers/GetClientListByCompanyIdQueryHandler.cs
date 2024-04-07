@@ -2,9 +2,11 @@
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.Clients.Quaries.Models;
 using Leha.Core.Features.Clients.Quaries.Results;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.Clients;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Clients.Quaries.Handlers;
 
@@ -16,7 +18,7 @@ public class GetClientListByCompanyIdQueryHandler : ResponseHandler, IRequestHan
     #endregion
 
     #region Constructors
-    public GetClientListByCompanyIdQueryHandler(IClientManager clientManager, IMapper mapper)
+    public GetClientListByCompanyIdQueryHandler(IClientManager clientManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _clientManager = clientManager;
         _mapper = mapper;

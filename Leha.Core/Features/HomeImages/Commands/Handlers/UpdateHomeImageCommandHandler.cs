@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.HomeImages.Commands.Models;
+using Leha.Core.Resources;
 using Leha.Data.Entities;
 using Leha.Manager.Managers.HomeImages;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.HomeImages.Commands.Handlers;
 
@@ -16,7 +18,7 @@ public class UpdateHomeImageCommandHandler : ResponseHandler, IRequestHandler<Up
     #endregion
 
     #region Constructors
-    public UpdateHomeImageCommandHandler(IHomeImageManager homeImageManager, IMapper mapper)
+    public UpdateHomeImageCommandHandler(IHomeImageManager homeImageManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _homeImageManager = homeImageManager;
         _mapper = mapper;
@@ -29,9 +31,9 @@ public class UpdateHomeImageCommandHandler : ResponseHandler, IRequestHandler<Up
         var homeImage = _mapper.Map<HomeImage>(request);
 
         if (await _homeImageManager.UpdateHomeImageAsync(homeImage))
-            return Created("HomeImage Updated Successfully");
+            return Created("");
 
-        return BadRequest<string>("Failed To Update HomeImage");
+        return BadRequest<string>("");
     }
 
     #endregion

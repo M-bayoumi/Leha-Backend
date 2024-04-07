@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.Clients.Commands.Models;
+using Leha.Core.Resources;
 using Leha.Data.Entities;
 using Leha.Manager.Managers.Clients;
 using Leha.Manager.Managers.Companies;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Clients.Commands.Handlers;
 
@@ -21,7 +23,7 @@ public class AddClientCommandHandler : ResponseHandler, IRequestHandler<AddClien
 
     #region Constructors
 
-    public AddClientCommandHandler(IClientManager clientManager, ICompanyManager companyManager, IMapper mapper)
+    public AddClientCommandHandler(IClientManager clientManager, ICompanyManager companyManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _clientManager = clientManager;
         _companyManager = companyManager;
@@ -38,10 +40,10 @@ public class AddClientCommandHandler : ResponseHandler, IRequestHandler<AddClien
             var client = _mapper.Map<Client>(request);
 
             if (await _clientManager.AddClientAsync(client))
-                return Created("Client Added Successfully");
-            return BadRequest<string>("Failed To Add Client");
+                return Created("");
+            return BadRequest<string>("");
         }
-        return NotFound<string>("Company not found");
+        return NotFound<string>("");
     }
 
     #endregion

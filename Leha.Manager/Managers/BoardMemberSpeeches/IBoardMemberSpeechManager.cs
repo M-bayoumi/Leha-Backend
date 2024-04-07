@@ -5,9 +5,9 @@ namespace Leha.Manager.Managers.BoardMemberSpeeches;
 public interface IBoardMemberSpeechManager
 {
     public IQueryable<BoardMemberSpeech?> GetBoardMemberSpeechesListAsync();
-    public IQueryable<BoardMemberSpeech?> GetBoardMemberSpeechesListByBoardMemberId(int boardMemberID);
-    public Task<BoardMemberSpeech?> GetBoardMemberSpeechByIDAsync(int boardMemberSpeechID);
-    public Task<bool> AddBoardMemberSpeechAsync(BoardMemberSpeech boardMemberSpeech);
-    public Task<bool> UpdateBoardMemberSpeechAsync(BoardMemberSpeech boardMemberSpeech);
-    public Task<bool> DeleteBoardMemberSpeechAsync(BoardMemberSpeech boardMemberSpeech);
+    public IQueryable<BoardMemberSpeech?> GetBoardMemberSpeechesListByBoardMemberId(int id);
+    public Task<BoardMemberSpeech?> GetBoardMemberSpeechByIDAsync(int id);
+    public Task<bool> AddBoardMemberSpeechAsync(BoardMemberSpeech pm);
+    public Task<bool> UpdateBoardMemberSpeechAsync(BoardMemberSpeech pm);
+    public Task<bool> DeleteBoardMemberSpeechAsync(BoardMemberSpeech pm);
 }

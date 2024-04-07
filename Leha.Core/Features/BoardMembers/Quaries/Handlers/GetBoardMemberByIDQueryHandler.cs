@@ -3,11 +3,10 @@ using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.BoardMembers.Quaries.Models;
 using Leha.Core.Features.BoardMembers.Quaries.Results;
-using Leha.Core.Features.Companies.Queries.Models;
-using Leha.Core.Features.Companies.Queries.Results;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.BoardMembers;
-using Leha.Manager.Managers.Companies;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.BoardMembers.Queries.Handlers;
 
@@ -19,7 +18,7 @@ public class GetBoardMemberByIDQueryHandler : ResponseHandler, IRequestHandler<G
     #endregion
 
     #region Constructors
-    public GetBoardMemberByIDQueryHandler(IBoardMemberManager boardMemberManager, IMapper mapper)
+    public GetBoardMemberByIDQueryHandler(IBoardMemberManager boardMemberManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _boardMemberManager = boardMemberManager;
         _mapper = mapper;

@@ -21,9 +21,9 @@ public class ServiceRepository : GenericRepository<Service>, IServiceRepository
 
     #region Handle Functions
 
-    public IQueryable<Service?> GetServicesListByCompanyId(int companyID)
+    public IQueryable<Service?> GetServicesListByCompanyId(int id)
     {
-        return _services.Where(x => x.CompanyID == companyID).AsNoTracking().AsQueryable();
+        return _services.Where(x => x.CompanyID == id).AsNoTracking().AsQueryable();
     }
 
     #endregion

@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.BoardMembers.Commands.Models;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.BoardMembers;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.BoardMembers.Commands.Handlers;
 
@@ -15,7 +17,7 @@ public class DeleteBoardMemberCommandHandler : ResponseHandler, IRequestHandler<
     #endregion
 
     #region Constructors
-    public DeleteBoardMemberCommandHandler(IBoardMemberManager boardMemberManager, IMapper mapper)
+    public DeleteBoardMemberCommandHandler(IBoardMemberManager boardMemberManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _boardMemberManager = boardMemberManager;
         _mapper = mapper;
@@ -26,9 +28,13 @@ public class DeleteBoardMemberCommandHandler : ResponseHandler, IRequestHandler<
 
     public async Task<Response<string>> Handle(DeleteBoardMemberCommand request, CancellationToken cancellationToken)
     {
-        var boardMember = await _boardMemberManager.GetBoardMemberByIDAsync(request.ID); // GetById without without include 
-        if (boardMember == null) return NotFound<string>("BoardMember not found");
-        return await _boardMemberManager.DeleteBoardMemberAsync(boardMember) ? Deleted<string>("Deleted Successfully") : BadRequest<string>();
+        var boardMember = await _boardMemberManager.GetBoardMemberByIDAsync(request.ID);
+
+        if (boardMember == null) return NotFound<string>("");
+        if (await _boardMemberManager.DeleteBoardMemberAsync(boardMember))
+            return Deleted<string>("");
+
+        return BadRequest<string>();
     }
     #endregion
 }

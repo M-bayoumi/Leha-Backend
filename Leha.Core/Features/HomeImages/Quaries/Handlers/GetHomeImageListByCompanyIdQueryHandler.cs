@@ -2,9 +2,11 @@
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.HomeImages.Quaries.Models;
 using Leha.Core.Features.HomeImages.Quaries.Results;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.HomeImages;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.HomeImages.Quaries.Handlers;
 
@@ -16,7 +18,7 @@ public class GetHomeImageListByCompanyIdQueryHandler : ResponseHandler, IRequest
     #endregion
 
     #region Constructors
-    public GetHomeImageListByCompanyIdQueryHandler(IHomeImageManager homeImageManager, IMapper mapper)
+    public GetHomeImageListByCompanyIdQueryHandler(IHomeImageManager homeImageManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _homeImageManager = homeImageManager;
         _mapper = mapper;

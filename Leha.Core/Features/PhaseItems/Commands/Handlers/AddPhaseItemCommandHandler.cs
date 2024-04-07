@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.PhaseItems.Commands.Models;
+using Leha.Core.Resources;
 using Leha.Data.Entities;
 using Leha.Manager.Managers.PhaseItems;
 using Leha.Manager.Managers.ProjectPhases;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.PhaseItems.Commands.Handlers;
 
@@ -21,7 +23,7 @@ public class AddPhaseItemCommandHandler : ResponseHandler, IRequestHandler<AddPh
 
     #region Constructors
 
-    public AddPhaseItemCommandHandler(IPhaseItemManager phaseItemManager, IProjectPhaseManager projectPhaseManager, IMapper mapper)
+    public AddPhaseItemCommandHandler(IPhaseItemManager phaseItemManager, IProjectPhaseManager projectPhaseManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _phaseItemManager = phaseItemManager;
         _projectPhaseManager = projectPhaseManager;
@@ -32,16 +34,16 @@ public class AddPhaseItemCommandHandler : ResponseHandler, IRequestHandler<AddPh
     #region Handle Functions
     public async Task<Response<string>> Handle(AddPhaseItemCommand request, CancellationToken cancellationToken)
     {
-        var projectPhase = await _projectPhaseManager.GetProjectPhaseByIDAsync(request.ProjectPhaseID); // GetById without without include 
+        var projectPhase = await _projectPhaseManager.GetProjectPhaseByIDAsync(request.ProjectPhaseID);
         if (projectPhase != null)
         {
             var phaseItem = _mapper.Map<PhaseItem>(request);
 
             if (await _phaseItemManager.AddPhaseItemAsync(phaseItem))
-                return Created("PhaseItem Added Successfully");
-            return BadRequest<string>("Failed To Add PhaseItem");
+                return Created("");
+            return BadRequest<string>("");
         }
-        return NotFound<string>("ProjectPhase not found");
+        return NotFound<string>("");
     }
 
     #endregion

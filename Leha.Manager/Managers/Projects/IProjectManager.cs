@@ -5,9 +5,9 @@ namespace Leha.Manager.Managers.Projects;
 public interface IProjectManager
 {
     public IQueryable<Project?> GetProjectsListAsync();
-    public IQueryable<Project?> GetProjectsListByCompanyId(int companyID);
-    public Task<Project?> GetProjectByIDAsync(int projectID);
-    public Task<bool> AddProjectAsync(Project project);
-    public Task<bool> UpdateProjectAsync(Project project);
-    public Task<bool> DeleteProjectAsync(Project project);
+    public IQueryable<Project?> GetProjectsListByCompanyId(int id);
+    public Task<Project?> GetProjectByIDAsync(int id);
+    public Task<bool> AddProjectAsync(Project pm);
+    public Task<bool> UpdateProjectAsync(Project pm);
+    public Task<bool> DeleteProjectAsync(Project pm);
 }

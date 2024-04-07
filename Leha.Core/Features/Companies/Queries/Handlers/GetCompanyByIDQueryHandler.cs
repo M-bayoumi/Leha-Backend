@@ -2,8 +2,10 @@
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.Companies.Queries.Models;
 using Leha.Core.Features.Companies.Queries.Results;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.Companies;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Companies.Queries.Handlers;
 
@@ -15,7 +17,7 @@ public class GetCompanyByIDQueryHandler : ResponseHandler, IRequestHandler<GetCo
     #endregion
 
     #region Constructors
-    public GetCompanyByIDQueryHandler(ICompanyManager companyManager, IMapper mapper)
+    public GetCompanyByIDQueryHandler(ICompanyManager companyManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _companyManager = companyManager;
         _mapper = mapper;

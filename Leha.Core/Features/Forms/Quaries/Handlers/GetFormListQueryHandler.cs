@@ -2,9 +2,11 @@
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.Forms.Quaries.Models;
 using Leha.Core.Features.Forms.Quaries.Results;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.Forms;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Forms.Quaries.Handlers;
 
@@ -16,7 +18,7 @@ public class GetFormListQueryHandler : ResponseHandler, IRequestHandler<GetFormL
     #endregion
 
     #region Constructors
-    public GetFormListQueryHandler(IFormManager formManager, IMapper mapper)
+    public GetFormListQueryHandler(IFormManager formManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _formManager = formManager;
         _mapper = mapper;

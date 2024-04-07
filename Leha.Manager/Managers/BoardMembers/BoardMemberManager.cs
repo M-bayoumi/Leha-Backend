@@ -28,31 +28,31 @@ public class BoardMemberManager : IBoardMemberManager
         return _boardMemberRepository.GetTableNoTracking();
     }
 
-    public async Task<BoardMember?> GetBoardMemberByIDAsync(int boardMemberID)
+    public async Task<BoardMember?> GetBoardMemberByIDAsync(int id)
     {
-        return await _boardMemberRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x!.ID == boardMemberID);
+        return await _boardMemberRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x!.ID == id);
     }
-    public Task<bool> AddBoardMemberAsync(BoardMember boardMember)
+    public Task<bool> AddBoardMemberAsync(BoardMember pm)
     {
-        return _boardMemberRepository.AddAsync(boardMember);
+        return _boardMemberRepository.AddAsync(pm);
     }
 
-    public Task<bool> UpdateBoardMemberAsync(BoardMember boardMember)
+    public Task<bool> UpdateBoardMemberAsync(BoardMember pm)
     {
-        return _boardMemberRepository.UpdateAsync(boardMember);
+        return _boardMemberRepository.UpdateAsync(pm);
     }
-    public async Task<bool> DeleteBoardMemberAsync(BoardMember boardMember)
+    public async Task<bool> DeleteBoardMemberAsync(BoardMember pm)
     {
 
         var transaction = _boardMemberRepository.BeginTransaction();
         try
         {
-            var boardMemberSpeeches = _unitOfWork.BoardMemberSpeechRepository.GetBoardMemberSpeechesListByBoardMemberId(boardMember.ID).ToList();
+            var dms = _unitOfWork.BoardMemberSpeechRepository.GetBoardMemberSpeechesListByBoardMemberId(pm.ID).ToList();
 
-            if (boardMemberSpeeches != null)
-                await _unitOfWork.BoardMemberSpeechRepository.DeleteRangeAsync(boardMemberSpeeches);
+            if (dms != null)
+                await _unitOfWork.BoardMemberSpeechRepository.DeleteRangeAsync(dms);
 
-            await _boardMemberRepository.DeleteAsync(boardMember);
+            await _boardMemberRepository.DeleteAsync(pm);
 
             await transaction.CommitAsync();
 

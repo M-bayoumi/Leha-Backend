@@ -28,70 +28,71 @@ public class CompanyManager : ICompanyManager
         return _companyRepository.GetTableNoTracking().AsQueryable();
     }
 
-    public async Task<Company?> GetCompanyByIDAsync(int companyID)
+    public async Task<Company?> GetCompanyByIDAsync(int id)
     {
-        var company = await _companyRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == companyID);
+        var company = await _companyRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
         return company;
     }
 
-    public async Task<bool> AddCompanyAsync(Company company)
+    public async Task<bool> AddCompanyAsync(Company pm)
     {
-        return await _companyRepository.AddAsync(company);
+        return await _companyRepository.AddAsync(pm);
     }
-    public async Task<bool> UpdateCompanyAsync(Company company)
+    public async Task<bool> UpdateCompanyAsync(Company pm)
     {
-        return await _companyRepository.UpdateAsync(company);
+        return await _companyRepository.UpdateAsync(pm);
     }
 
-    public async Task<bool> DeleteCompanyAsync(Company company)
+    public async Task<bool> DeleteCompanyAsync(Company pm)
     {
         var transaction = _companyRepository.BeginTransaction();
         try
         {
-            var companyProjects = _unitOfWork.ProjectRepository.GetProjectsListByCompanyId(company.ID).ToList();
 
-            if (companyProjects != null)
-                await _unitOfWork.ProjectRepository.DeleteRangeAsync(companyProjects);
+            var dms_project = _unitOfWork.ProjectRepository.GetProjectsListByCompanyId(pm.ID).ToList();
 
-            var companyServices = _unitOfWork.ServiceRepository.GetServicesListByCompanyId(company.ID).ToList();
+            if (dms_project != null)
+                await _unitOfWork.ProjectRepository.DeleteRangeAsync(dms_project);
 
-            if (companyServices != null)
-                await _unitOfWork.ServiceRepository.DeleteRangeAsync(companyServices);
+            var dms_service = _unitOfWork.ServiceRepository.GetServicesListByCompanyId(pm.ID).ToList();
 
-
-            var companyProducts = _unitOfWork.ProductRepository.GetProductsListByCompanyId(company.ID).ToList();
-
-            if (companyProducts != null)
-                await _unitOfWork.ProductRepository.DeleteRangeAsync(companyProducts);
+            if (dms_service != null)
+                await _unitOfWork.ServiceRepository.DeleteRangeAsync(dms_service);
 
 
-            var companyHomeImages = _unitOfWork.HomeImageRepository.GetHomeImagesListByCompanyId(company.ID).ToList();
+            var dms_product = _unitOfWork.ProductRepository.GetProductsListByCompanyId(pm.ID).ToList();
 
-            if (companyHomeImages != null)
-                await _unitOfWork.HomeImageRepository.DeleteRangeAsync(companyHomeImages);
-
-            var companyAddresss = _unitOfWork.CompanyAddressRepository.GetCompanyAddressesListByCompanyId(company.ID).ToList();
-
-            if (companyAddresss != null)
-                await _unitOfWork.CompanyAddressRepository.DeleteRangeAsync(companyAddresss);
-
-            var companyPosts = _unitOfWork.PostRepository.GetPostsListByCompanyId(company.ID).ToList();
-
-            if (companyPosts != null)
-                await _unitOfWork.PostRepository.DeleteRangeAsync(companyPosts);
-
-            var companyClients = _unitOfWork.ClientRepository.GetClientsListByCompanyId(company.ID).ToList();
-
-            if (companyClients != null)
-                await _unitOfWork.ClientRepository.DeleteRangeAsync(companyClients);
-
-            var companyJobs = _unitOfWork.JobRepository.GetJobsListByCompanyId(company.ID).ToList();
-
-            if (companyJobs != null)
-                await _unitOfWork.JobRepository.DeleteRangeAsync(companyJobs);
+            if (dms_product != null)
+                await _unitOfWork.ProductRepository.DeleteRangeAsync(dms_product);
 
 
-            await _companyRepository.DeleteAsync(company);
+            var dms_homeImage = _unitOfWork.HomeImageRepository.GetHomeImagesListByCompanyId(pm.ID).ToList();
+
+            if (dms_homeImage != null)
+                await _unitOfWork.HomeImageRepository.DeleteRangeAsync(dms_homeImage);
+
+            var dms_address = _unitOfWork.CompanyAddressRepository.GetCompanyAddressesListByCompanyId(pm.ID).ToList();
+
+            if (dms_address != null)
+                await _unitOfWork.CompanyAddressRepository.DeleteRangeAsync(dms_address);
+
+            var dms_post = _unitOfWork.PostRepository.GetPostsListByCompanyId(pm.ID).ToList();
+
+            if (dms_post != null)
+                await _unitOfWork.PostRepository.DeleteRangeAsync(dms_post);
+
+            var dms_postClients = _unitOfWork.ClientRepository.GetClientsListByCompanyId(pm.ID).ToList();
+
+            if (dms_postClients != null)
+                await _unitOfWork.ClientRepository.DeleteRangeAsync(dms_postClients);
+
+            var dms_jobs = _unitOfWork.JobRepository.GetJobsListByCompanyId(pm.ID).ToList();
+
+            if (dms_jobs != null)
+                await _unitOfWork.JobRepository.DeleteRangeAsync(dms_jobs);
+
+
+            await _companyRepository.DeleteAsync(pm);
 
             await transaction.CommitAsync();
 
@@ -104,15 +105,15 @@ public class CompanyManager : ICompanyManager
         }
     }
 
-    public async Task<bool> IsNameExist(string companyName)
+    public async Task<bool> IsNameExist(string name)
     {
-        var isNameExist = await _companyRepository.GetTableNoTracking().AnyAsync(x => x!.CompanyName == companyName);
+        var isNameExist = await _companyRepository.GetTableNoTracking().AnyAsync(x => x!.CompanyName == name);
         return isNameExist;
     }
 
-    public async Task<bool> IsNameExistExludeSelf(string companyName, int id)
+    public async Task<bool> IsNameExistExludeSelf(string name, int id)
     {
-        var isNameExist = await _companyRepository.GetTableNoTracking().AnyAsync(x => x!.CompanyName == companyName && x.ID != id);
+        var isNameExist = await _companyRepository.GetTableNoTracking().AnyAsync(x => x!.CompanyName == name && x.ID != id);
         return isNameExist;
     }
 

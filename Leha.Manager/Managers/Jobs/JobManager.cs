@@ -28,33 +28,33 @@ public class JobManager : IJobManager
     {
         return _jobRepository.GetTableNoTracking().AsQueryable();
     }
-    public IQueryable<Job?> GetJobsListByCompanyId(int companyID)
+    public IQueryable<Job?> GetJobsListByCompanyId(int id)
     {
-        return _jobRepository.GetJobsListByCompanyId(companyID).AsQueryable();
+        return _jobRepository.GetJobsListByCompanyId(id).AsQueryable();
     }
-    public async Task<Job?> GetJobByIDAsync(int jobID)
+    public async Task<Job?> GetJobByIDAsync(int id)
     {
-        return await _jobRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == jobID);
+        return await _jobRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
     }
-    public async Task<bool> AddJobAsync(Job job)
+    public async Task<bool> AddJobAsync(Job pm)
     {
-        return await _jobRepository.AddAsync(job);
+        return await _jobRepository.AddAsync(pm);
     }
-    public async Task<bool> UpdateJobAsync(Job job)
+    public async Task<bool> UpdateJobAsync(Job pm)
     {
-        return await _jobRepository.UpdateAsync(job);
+        return await _jobRepository.UpdateAsync(pm);
     }
-    public async Task<bool> DeleteJobAsync(Job job)
+    public async Task<bool> DeleteJobAsync(Job pm)
     {
         var transaction = _jobRepository.BeginTransaction();
         try
         {
-            var jobForms = _unitOfWork.FormRepository.GetFormsListByJobId(job.ID).ToList();
+            var dms = _unitOfWork.FormRepository.GetFormsListByJobId(pm.ID).ToList();
 
-            if (jobForms != null)
-                await _unitOfWork.FormRepository.DeleteRangeAsync(jobForms);
+            if (dms != null)
+                await _unitOfWork.FormRepository.DeleteRangeAsync(dms);
 
-            await _jobRepository.DeleteAsync(job);
+            await _jobRepository.DeleteAsync(pm);
 
             await transaction.CommitAsync();
 

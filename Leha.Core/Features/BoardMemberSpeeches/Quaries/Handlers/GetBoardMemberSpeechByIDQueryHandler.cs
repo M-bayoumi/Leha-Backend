@@ -2,9 +2,11 @@
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.BoardMemberSpeeches.Quaries.Models;
 using Leha.Core.Features.BoardMemberSpeeches.Quaries.Results;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.BoardMemberSpeeches;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.BoardMemberSpeeches.Quaries.Handlers;
 
@@ -16,7 +18,7 @@ public class GetBoardMemberSpeechByIDQueryHandler : ResponseHandler, IRequestHan
     #endregion
 
     #region Constructors
-    public GetBoardMemberSpeechByIDQueryHandler(IBoardMemberSpeechManager boardMemberSpeechManager, IMapper mapper)
+    public GetBoardMemberSpeechByIDQueryHandler(IBoardMemberSpeechManager boardMemberSpeechManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _boardMemberSpeechManager = boardMemberSpeechManager;
         _mapper = mapper;

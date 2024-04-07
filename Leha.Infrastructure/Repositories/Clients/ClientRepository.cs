@@ -18,9 +18,9 @@ public class ClientRepository : GenericRepository<Client>, IClientRepository
         _clients = appDbContext.Set<Client>();
     }
 
-    public IQueryable<Client?> GetClientsListByCompanyId(int companyID)
+    public IQueryable<Client?> GetClientsListByCompanyId(int id)
     {
-        return _clients.Where(x => x.CompanyID == companyID).AsNoTracking().AsQueryable();
+        return _clients.Where(x => x.CompanyID == id).AsNoTracking().AsQueryable();
     }
 
     #endregion

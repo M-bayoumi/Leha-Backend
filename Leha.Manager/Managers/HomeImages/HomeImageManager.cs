@@ -27,30 +27,30 @@ public class HomeImageManager : IHomeImageManager
     {
         return _homeImageRepository.GetTableNoTracking().AsQueryable();
     }
-    public IQueryable<HomeImage?> GetHomeImagesListByCompanyId(int companyID)
+    public IQueryable<HomeImage?> GetHomeImagesListByCompanyId(int id)
     {
-        return _homeImageRepository.GetHomeImagesListByCompanyId(companyID).AsQueryable();
+        return _homeImageRepository.GetHomeImagesListByCompanyId(id).AsQueryable();
     }
 
-    public async Task<HomeImage?> GetHomeImageByIDAsync(int homeImageID)
+    public async Task<HomeImage?> GetHomeImageByIDAsync(int id)
     {
-        var homeImage = await _homeImageRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == homeImageID);
+        var homeImage = await _homeImageRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
         return homeImage;
     }
 
-    public async Task<bool> AddHomeImageAsync(HomeImage homeImage)
+    public async Task<bool> AddHomeImageAsync(HomeImage pm)
     {
-        return await _homeImageRepository.AddAsync(homeImage);
+        return await _homeImageRepository.AddAsync(pm);
     }
-    public async Task<bool> UpdateHomeImageAsync(HomeImage homeImage)
+    public async Task<bool> UpdateHomeImageAsync(HomeImage pm)
     {
-        return await _homeImageRepository.UpdateAsync(homeImage);
+        return await _homeImageRepository.UpdateAsync(pm);
     }
 
-    public async Task<bool> DeleteHomeImageAsync(HomeImage homeImage)
+    public async Task<bool> DeleteHomeImageAsync(HomeImage pm)
     {
 
-        return await _homeImageRepository.DeleteAsync(homeImage);
+        return await _homeImageRepository.DeleteAsync(pm);
 
     }
 

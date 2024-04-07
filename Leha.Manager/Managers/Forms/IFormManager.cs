@@ -5,10 +5,10 @@ namespace Leha.Manager.Managers.Forms;
 public interface IFormManager
 {
     public IQueryable<Form?> GetFormsListAsync();
-    public IQueryable<Form?> GetFormsListByJobId(int jobID);
-    public Task<Form?> GetFormByIDAsync(int formID);
-    public Task<bool> AddFormAsync(Form form);
-    public Task<bool> UpdateFormAsync(Form form);
-    public Task<bool> DeleteFormAsync(Form form);
+    public IQueryable<Form?> GetFormsListByJobId(int id);
+    public Task<Form?> GetFormByIDAsync(int id);
+    public Task<bool> AddFormAsync(Form pm);
+    public Task<bool> UpdateFormAsync(Form pm);
+    public Task<bool> DeleteFormAsync(Form pm);
 }
 

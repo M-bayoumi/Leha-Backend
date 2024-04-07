@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.Posts.Commands.Models;
+using Leha.Core.Resources;
 using Leha.Data.Entities;
 using Leha.Manager.Managers.Companies;
 using Leha.Manager.Managers.Posts;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Posts.Commands.Handlers;
 
@@ -21,7 +23,7 @@ public class AddPostCommandHandler : ResponseHandler, IRequestHandler<AddPostCom
 
     #region Constructors
 
-    public AddPostCommandHandler(IPostManager postManager, ICompanyManager companyManager, IMapper mapper)
+    public AddPostCommandHandler(IPostManager postManager, ICompanyManager companyManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _postManager = postManager;
         _companyManager = companyManager;
@@ -32,16 +34,16 @@ public class AddPostCommandHandler : ResponseHandler, IRequestHandler<AddPostCom
     #region Handle Functions
     public async Task<Response<string>> Handle(AddPostCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID); // GetById without without include 
+        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID);
         if (company != null)
         {
             var post = _mapper.Map<Post>(request);
 
             if (await _postManager.AddPostAsync(post))
-                return Created("Post Added Successfully");
-            return BadRequest<string>("Failed To Add Post");
+                return Created("");
+            return BadRequest<string>("");
         }
-        return NotFound<string>("Company not found");
+        return NotFound<string>("");
     }
 
     #endregion

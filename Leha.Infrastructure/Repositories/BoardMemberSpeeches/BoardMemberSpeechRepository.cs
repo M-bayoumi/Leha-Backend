@@ -21,9 +21,9 @@ public class BoardMemberSpeechRepository : GenericRepository<BoardMemberSpeech>,
 
     #region Handle Functions
 
-    public IQueryable<BoardMemberSpeech?> GetBoardMemberSpeechesListByBoardMemberId(int boardMemberID)
+    public IQueryable<BoardMemberSpeech?> GetBoardMemberSpeechesListByBoardMemberId(int id)
     {
-        return _boardMemberSpeeches.Where(x => x.BoardMemberID == boardMemberID).AsNoTracking().AsQueryable();
+        return _boardMemberSpeeches.Where(x => x.BoardMemberID == id).AsNoTracking().AsQueryable();
     }
 
     #endregion

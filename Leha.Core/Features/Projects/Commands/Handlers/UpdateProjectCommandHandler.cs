@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.Projects.Commands.Models;
+using Leha.Core.Resources;
 using Leha.Data.Entities;
-using Leha.Manager.Managers.Projects;
 using Leha.Manager.Managers.Companies;
+using Leha.Manager.Managers.Projects;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Projects.Commands.Handlers;
 
@@ -20,7 +22,7 @@ public class UpdateProjectCommandHandler : ResponseHandler, IRequestHandler<Upda
 
     #region Constructors
 
-    public UpdateProjectCommandHandler(IProjectManager projectManager, ICompanyManager companyManager, IMapper mapper)
+    public UpdateProjectCommandHandler(IProjectManager projectManager, ICompanyManager companyManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _projectManager = projectManager;
         _companyManager = companyManager;
@@ -31,16 +33,16 @@ public class UpdateProjectCommandHandler : ResponseHandler, IRequestHandler<Upda
     #region Handle Functions
     public async Task<Response<string>> Handle(UpdateProjectCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID); // GetById without without include 
+        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID);
         if (company != null)
         {
             var project = _mapper.Map<Project>(request);
 
             if (await _projectManager.UpdateProjectAsync(project))
-                return Created("Project Updated Successfully");
-            return BadRequest<string>("Failed To Update Project");
+                return Created("");
+            return BadRequest<string>("");
         }
-        return NotFound<string>("Company not found");
+        return NotFound<string>("");
     }
 
     #endregion

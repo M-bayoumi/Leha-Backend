@@ -21,9 +21,9 @@ public class ProjectPhaseRepository : GenericRepository<ProjectPhase>, IProjectP
     #endregion
 
     #region Handle Functions
-    public IQueryable<ProjectPhase?> GetProjectPhasesListByProjectId(int projectID)
+    public IQueryable<ProjectPhase?> GetProjectPhasesListByProjectId(int id)
     {
-        return _projectPhases.Where(x => x.ProjectID == projectID).AsNoTracking().AsQueryable();
+        return _projectPhases.Where(x => x.ProjectID == id).AsNoTracking().AsQueryable();
     }
 
     #endregion

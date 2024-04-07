@@ -22,9 +22,9 @@ public class PhaseItemRepository : GenericRepository<PhaseItem>, IPhaseItemRepos
     #endregion
 
     #region Handle Functions
-    public IQueryable<PhaseItem?> GetPhaseItemsListByProjectPhaseId(int projectPhaseID)
+    public IQueryable<PhaseItem?> GetPhaseItemsListByProjectPhaseId(int id)
     {
-        return _phaseItems.Where(x => x.ProjectPhaseID == projectPhaseID).AsNoTracking().AsQueryable();
+        return _phaseItems.Where(x => x.ProjectPhaseID == id).AsNoTracking().AsQueryable();
     }
     #endregion
 }

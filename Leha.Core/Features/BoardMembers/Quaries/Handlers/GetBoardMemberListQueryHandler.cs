@@ -2,8 +2,10 @@
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.BoardMembers.Quaries.Models;
 using Leha.Core.Features.BoardMembers.Quaries.Results;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.BoardMembers;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.BoardMembers.Queries.Handlers;
 
@@ -15,7 +17,7 @@ public class GetBoardMemberListQueryHandler : ResponseHandler, IRequestHandler<G
     #endregion
 
     #region Constructors
-    public GetBoardMemberListQueryHandler(IBoardMemberManager boardMemberManager, IMapper mapper)
+    public GetBoardMemberListQueryHandler(IBoardMemberManager boardMemberManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _boardMemberManager = boardMemberManager;
         _mapper = mapper;

@@ -27,36 +27,36 @@ public class BoardMemberSpeechManager : IBoardMemberSpeechManager
         return _boardMemberSpeechRepository.GetTableNoTracking();
     }
 
-    public IQueryable<BoardMemberSpeech?> GetBoardMemberSpeechesListByBoardMemberId(int boardMemberID)
+    public IQueryable<BoardMemberSpeech?> GetBoardMemberSpeechesListByBoardMemberId(int id)
     {
-        return _boardMemberSpeechRepository.GetBoardMemberSpeechesListByBoardMemberId(boardMemberID);
+        return _boardMemberSpeechRepository.GetBoardMemberSpeechesListByBoardMemberId(id);
 
     }
 
-    public async Task<BoardMemberSpeech?> GetBoardMemberSpeechByIDAsync(int boardMemberSpeechID)
+    public async Task<BoardMemberSpeech?> GetBoardMemberSpeechByIDAsync(int id)
     {
-        return await _boardMemberSpeechRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == boardMemberSpeechID);
+        return await _boardMemberSpeechRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
     }
 
-    public async Task<bool> AddBoardMemberSpeechAsync(BoardMemberSpeech boardMemberSpeech)
+    public async Task<bool> AddBoardMemberSpeechAsync(BoardMemberSpeech pm)
     {
-        var boardMember = await _unitOfWork.BoardMemberRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == boardMemberSpeech.BoardMemberID);
-        if (boardMember != null)
-            return await _boardMemberSpeechRepository.AddAsync(boardMemberSpeech);
+        var dm = await _unitOfWork.BoardMemberRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == pm.BoardMemberID);
+        if (dm != null)
+            return await _boardMemberSpeechRepository.AddAsync(pm);
         return false;
     }
 
-    public async Task<bool> UpdateBoardMemberSpeechAsync(BoardMemberSpeech boardMemberSpeech)
+    public async Task<bool> UpdateBoardMemberSpeechAsync(BoardMemberSpeech pm)
     {
-        var boardMember = await _unitOfWork.BoardMemberRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == boardMemberSpeech.BoardMemberID);
-        if (boardMember != null)
-            return await _boardMemberSpeechRepository.UpdateAsync(boardMemberSpeech);
+        var dm = await _unitOfWork.BoardMemberRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == pm.BoardMemberID);
+        if (dm != null)
+            return await _boardMemberSpeechRepository.UpdateAsync(pm);
         return false;
     }
 
-    public async Task<bool> DeleteBoardMemberSpeechAsync(BoardMemberSpeech boardMemberSpeech)
+    public async Task<bool> DeleteBoardMemberSpeechAsync(BoardMemberSpeech pm)
     {
-        return await _boardMemberSpeechRepository.DeleteAsync(boardMemberSpeech);
+        return await _boardMemberSpeechRepository.DeleteAsync(pm);
 
     }
     #endregion

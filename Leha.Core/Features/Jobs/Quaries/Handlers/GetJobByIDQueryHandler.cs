@@ -1,17 +1,12 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
-using Leha.Core.Features.BoardMemberSpeeches.Quaries.Models;
 using Leha.Core.Features.Jobs.Quaries.Models;
 using Leha.Core.Features.Jobs.Quaries.Results;
-using Leha.Manager.Managers.BoardMemberSpeeches;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.Jobs;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Jobs.Quaries.Handlers;
 
@@ -24,7 +19,7 @@ public class GetJobByIDQueryHandler : ResponseHandler, IRequestHandler<GetJobByI
     #endregion
 
     #region Constructors
-    public GetJobByIDQueryHandler(IJobManager jobManager, IMapper mapper)
+    public GetJobByIDQueryHandler(IJobManager jobManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _jobManager = jobManager;
         _mapper = mapper;

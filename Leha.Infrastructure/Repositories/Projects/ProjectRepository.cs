@@ -18,9 +18,9 @@ public class ProjectRepository : GenericRepository<Project>, IProjectRepository
         _projects = appDbContext.Set<Project>();
     }
 
-    public IQueryable<Project?> GetProjectsListByCompanyId(int companyID)
+    public IQueryable<Project?> GetProjectsListByCompanyId(int id)
     {
-        return _projects.Where(x => x.CompanyID == companyID).AsNoTracking().AsQueryable();
+        return _projects.Where(x => x.CompanyID == id).AsNoTracking().AsQueryable();
     }
 
     #endregion

@@ -22,9 +22,9 @@ public class PostRepository : GenericRepository<Post>, IPostRepository
 
     #region Handle Functions
 
-    public IQueryable<Post?> GetPostsListByCompanyId(int companyID)
+    public IQueryable<Post?> GetPostsListByCompanyId(int id)
     {
-        return _posts.Where(x => x.CompanyID == companyID).AsNoTracking().AsQueryable();
+        return _posts.Where(x => x.CompanyID == id).AsNoTracking().AsQueryable();
     }
 
     #endregion

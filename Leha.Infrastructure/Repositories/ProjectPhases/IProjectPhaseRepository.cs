@@ -5,6 +5,6 @@ namespace Leha.Infrastructure.Repositories.ProjectPhases;
 
 public interface IProjectPhaseRepository : IGenericRepository<ProjectPhase>
 {
-    public IQueryable<ProjectPhase?> GetProjectPhasesListByProjectId(int projectID);
+    public IQueryable<ProjectPhase?> GetProjectPhasesListByProjectId(int id);
 
 }

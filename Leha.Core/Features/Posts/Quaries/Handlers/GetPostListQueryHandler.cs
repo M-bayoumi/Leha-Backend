@@ -2,9 +2,11 @@
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.Posts.Quaries.Models;
 using Leha.Core.Features.Posts.Quaries.Results;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.Posts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Posts.Quaries.Handlers;
 
@@ -16,7 +18,7 @@ public class GetPostListQueryHandler : ResponseHandler, IRequestHandler<GetPostL
     #endregion
 
     #region Constructors
-    public GetPostListQueryHandler(IPostManager postManager, IMapper mapper)
+    public GetPostListQueryHandler(IPostManager postManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _postManager = postManager;
         _mapper = mapper;

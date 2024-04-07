@@ -28,27 +28,27 @@ public class PostManager : IPostManager
         return _postRepository.GetTableNoTracking().AsQueryable();
     }
 
-    public IQueryable<Post?> GetPostsListByCompanyId(int companyID)
+    public IQueryable<Post?> GetPostsListByCompanyId(int id)
     {
-        return _postRepository.GetPostsListByCompanyId(companyID).AsQueryable();
+        return _postRepository.GetPostsListByCompanyId(id).AsQueryable();
     }
-    public async Task<Post?> GetPostByIDAsync(int postID)
+    public async Task<Post?> GetPostByIDAsync(int id)
     {
-        return await _postRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == postID);
-    }
-
-    public async Task<bool> AddPostAsync(Post post)
-    {
-        return await _postRepository.AddAsync(post);
-    }
-    public async Task<bool> UpdatePostAsync(Post post)
-    {
-        return await _postRepository.UpdateAsync(post);
+        return await _postRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
     }
 
-    public async Task<bool> DeletePostAsync(Post post)
+    public async Task<bool> AddPostAsync(Post pm)
     {
-        return await _postRepository.DeleteAsync(post);
+        return await _postRepository.AddAsync(pm);
+    }
+    public async Task<bool> UpdatePostAsync(Post pm)
+    {
+        return await _postRepository.UpdateAsync(pm);
+    }
+
+    public async Task<bool> DeletePostAsync(Post pm)
+    {
+        return await _postRepository.DeleteAsync(pm);
     }
 
     #endregion

@@ -2,9 +2,11 @@
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.Projects.Quaries.Models;
 using Leha.Core.Features.Projects.Quaries.Results;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.Projects;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Projects.Quaries.Handlers;
 
@@ -16,7 +18,7 @@ public class GetProjectListQueryHandler : ResponseHandler, IRequestHandler<GetPr
     #endregion
 
     #region Constructors
-    public GetProjectListQueryHandler(IProjectManager projectManager, IMapper mapper)
+    public GetProjectListQueryHandler(IProjectManager projectManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _projectManager = projectManager;
         _mapper = mapper;

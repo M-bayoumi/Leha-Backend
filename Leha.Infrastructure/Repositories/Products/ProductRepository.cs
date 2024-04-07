@@ -21,9 +21,9 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
     #endregion
 
     #region Handle Functions
-    public IQueryable<Product?> GetProductsListByCompanyId(int companyID)
+    public IQueryable<Product?> GetProductsListByCompanyId(int id)
     {
-        return _products.Where(x => x.CompanyID == companyID).AsNoTracking().AsQueryable();
+        return _products.Where(x => x.CompanyID == id).AsNoTracking().AsQueryable();
     }
 
     #endregion

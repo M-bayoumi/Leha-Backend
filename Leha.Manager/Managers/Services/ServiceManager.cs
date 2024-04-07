@@ -27,29 +27,29 @@ public class ServiceManager : IServiceManager
         return _serviceRepository.GetTableNoTracking().AsQueryable();
     }
 
-    public IQueryable<Service?> GetServicesListByCompanyId(int companyID)
+    public IQueryable<Service?> GetServicesListByCompanyId(int id)
     {
-        return _serviceRepository.GetServicesListByCompanyId(companyID).AsQueryable();
+        return _serviceRepository.GetServicesListByCompanyId(id).AsQueryable();
     }
 
-    public async Task<Service?> GetServiceByIDAsync(int serviceID)
+    public async Task<Service?> GetServiceByIDAsync(int id)
     {
-        return await _serviceRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == serviceID);
+        return await _serviceRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
     }
-    public async Task<bool> AddServiceAsync(Service service)
+    public async Task<bool> AddServiceAsync(Service pm)
     {
-        return await _serviceRepository.AddAsync(service);
-    }
-
-    public async Task<bool> UpdateServiceAsync(Service service)
-    {
-        return await _serviceRepository.AddAsync(service);
+        return await _serviceRepository.AddAsync(pm);
     }
 
-    public async Task<bool> DeleteServiceAsync(Service service)
+    public async Task<bool> UpdateServiceAsync(Service pm)
+    {
+        return await _serviceRepository.AddAsync(pm);
+    }
+
+    public async Task<bool> DeleteServiceAsync(Service pm)
     {
 
-        return await _unitOfWork.ServiceRepository.DeleteAsync(service);
+        return await _unitOfWork.ServiceRepository.DeleteAsync(pm);
     }
 
     #endregion

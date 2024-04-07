@@ -2,9 +2,11 @@
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.Products.Quaries.Models;
 using Leha.Core.Features.Products.Quaries.Results;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.Products;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Products.Quaries.Handlers;
 
@@ -17,7 +19,7 @@ public class GetProductByIDQueryHandler : ResponseHandler, IRequestHandler<GetPr
     #endregion
 
     #region Constructors
-    public GetProductByIDQueryHandler(IProductManager productManager, IMapper mapper)
+    public GetProductByIDQueryHandler(IProductManager productManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _productManager = productManager;
         _mapper = mapper;

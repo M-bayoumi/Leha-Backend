@@ -1,17 +1,12 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
-using Leha.Core.Features.BoardMemberSpeeches.Quaries.Models;
 using Leha.Core.Features.Services.Quaries.Models;
 using Leha.Core.Features.Services.Quaries.Results;
-using Leha.Manager.Managers.BoardMemberSpeeches;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.Services;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Services.Quaries.Handlers;
 
@@ -24,7 +19,7 @@ public class GetServiceByIDQueryHandler : ResponseHandler, IRequestHandler<GetSe
     #endregion
 
     #region Constructors
-    public GetServiceByIDQueryHandler(IServiceManager serviceManager, IMapper mapper)
+    public GetServiceByIDQueryHandler(IServiceManager serviceManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _serviceManager = serviceManager;
         _mapper = mapper;

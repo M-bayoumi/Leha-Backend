@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.CompanyAddresses.Commands.Models;
+using Leha.Core.Resources;
 using Leha.Data.Entities;
 using Leha.Manager.Managers.Companies;
 using Leha.Manager.Managers.CompanyAddresses;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.CompanyAddresses.Commands.Handlers;
 
@@ -21,7 +23,7 @@ public class AddCompanyAddressCommandHandler : ResponseHandler, IRequestHandler<
 
     #region Constructors
 
-    public AddCompanyAddressCommandHandler(ICompanyAddressManager companyAddressManager, ICompanyManager companyManager, IMapper mapper)
+    public AddCompanyAddressCommandHandler(ICompanyAddressManager companyAddressManager, ICompanyManager companyManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _companyAddressManager = companyAddressManager;
         _companyManager = companyManager;
@@ -38,10 +40,10 @@ public class AddCompanyAddressCommandHandler : ResponseHandler, IRequestHandler<
             var companyAddress = _mapper.Map<CompanyAddress>(request);
 
             if (await _companyAddressManager.AddCompanyAddressAsync(companyAddress))
-                return Created("CompanyAddress Added Successfully");
-            return BadRequest<string>("Failed To Add CompanyAddress");
+                return Created("");
+            return BadRequest<string>("");
         }
-        return NotFound<string>("Company not found");
+        return NotFound<string>("");
     }
 
     #endregion

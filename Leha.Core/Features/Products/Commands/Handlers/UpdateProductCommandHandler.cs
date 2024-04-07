@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.Products.Commands.Models;
+using Leha.Core.Resources;
 using Leha.Data.Entities;
-using Leha.Manager.Managers.Products;
 using Leha.Manager.Managers.Companies;
+using Leha.Manager.Managers.Products;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Products.Commands.Handlers;
 
@@ -20,7 +22,7 @@ public class UpdateProductCommandHandler : ResponseHandler, IRequestHandler<Upda
 
     #region Constructors
 
-    public UpdateProductCommandHandler(IProductManager productManager, ICompanyManager companyManager, IMapper mapper)
+    public UpdateProductCommandHandler(IProductManager productManager, ICompanyManager companyManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _productManager = productManager;
         _companyManager = companyManager;
@@ -31,16 +33,16 @@ public class UpdateProductCommandHandler : ResponseHandler, IRequestHandler<Upda
     #region Handle Functions
     public async Task<Response<string>> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID); // GetById without without include 
+        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID);
         if (company != null)
         {
             var product = _mapper.Map<Product>(request);
 
             if (await _productManager.UpdateProductAsync(product))
-                return Created("Product Updated Successfully");
-            return BadRequest<string>("Failed To Update Product");
+                return Created("");
+            return BadRequest<string>("");
         }
-        return NotFound<string>("Company not found");
+        return NotFound<string>("");
     }
 
     #endregion

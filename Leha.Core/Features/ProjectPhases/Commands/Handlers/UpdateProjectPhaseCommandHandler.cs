@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.ProjectPhases.Commands.Models;
+using Leha.Core.Resources;
 using Leha.Data.Entities;
 using Leha.Manager.Managers.ProjectPhases;
 using Leha.Manager.Managers.Projects;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.ProjectPhases.Commands.Handlers;
 
@@ -20,7 +22,7 @@ public class UpdateProjectPhaseCommandHandler : ResponseHandler, IRequestHandler
 
     #region Constructors
 
-    public UpdateProjectPhaseCommandHandler(IProjectPhaseManager projectPhaseManager, IProjectManager projectManager, IMapper mapper)
+    public UpdateProjectPhaseCommandHandler(IProjectPhaseManager projectPhaseManager, IProjectManager projectManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _projectPhaseManager = projectPhaseManager;
         _projectManager = projectManager;
@@ -31,16 +33,16 @@ public class UpdateProjectPhaseCommandHandler : ResponseHandler, IRequestHandler
     #region Handle Functions
     public async Task<Response<string>> Handle(UpdateProjectPhaseCommand request, CancellationToken cancellationToken)
     {
-        var project = await _projectManager.GetProjectByIDAsync(request.ProjectID); // GetById without without include 
+        var project = await _projectManager.GetProjectByIDAsync(request.ProjectID);
         if (project != null)
         {
             var projectPhase = _mapper.Map<ProjectPhase>(request);
 
             if (await _projectPhaseManager.UpdateProjectPhaseAsync(projectPhase))
-                return Created("ProjectPhase Updated Successfully");
-            return BadRequest<string>("Failed To Update ProjectPhase");
+                return Created("");
+            return BadRequest<string>("");
         }
-        return NotFound<string>("Project not found");
+        return NotFound<string>("");
     }
 
     #endregion

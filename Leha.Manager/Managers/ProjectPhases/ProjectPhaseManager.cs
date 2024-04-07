@@ -30,36 +30,36 @@ public class ProjectPhaseManager : IProjectPhaseManager
         return _projectPhaseRepository.GetTableNoTracking().AsQueryable();
     }
 
-    public IQueryable<ProjectPhase?> GetProjectPhasesListByProjectId(int projectID)
+    public IQueryable<ProjectPhase?> GetProjectPhasesListByProjectId(int id)
     {
-        return _projectPhaseRepository.GetProjectPhasesListByProjectId(projectID).AsQueryable();
+        return _projectPhaseRepository.GetProjectPhasesListByProjectId(id).AsQueryable();
     }
 
-    public async Task<ProjectPhase?> GetProjectPhaseByIDAsync(int projectPhaseID)
+    public async Task<ProjectPhase?> GetProjectPhaseByIDAsync(int id)
     {
-        return await _projectPhaseRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == projectPhaseID);
+        return await _projectPhaseRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
     }
-    public async Task<bool> AddProjectPhaseAsync(ProjectPhase projectPhase)
+    public async Task<bool> AddProjectPhaseAsync(ProjectPhase pm)
     {
-        return await _projectPhaseRepository.AddAsync(projectPhase);
-    }
-
-    public async Task<bool> UpdateProjectPhaseAsync(ProjectPhase projectPhase)
-    {
-        return await _projectPhaseRepository.AddAsync(projectPhase);
+        return await _projectPhaseRepository.AddAsync(pm);
     }
 
-    public async Task<bool> DeleteProjectPhaseAsync(ProjectPhase projectPhase)
+    public async Task<bool> UpdateProjectPhaseAsync(ProjectPhase pm)
+    {
+        return await _projectPhaseRepository.AddAsync(pm);
+    }
+
+    public async Task<bool> DeleteProjectPhaseAsync(ProjectPhase pm)
     {
         var transaction = _projectPhaseRepository.BeginTransaction();
         try
         {
-            var projectPhaseItems = _unitOfWork.PhaseItemRepository.GetPhaseItemsListByProjectPhaseId(projectPhase.ID).ToList();
+            var dms = _unitOfWork.PhaseItemRepository.GetPhaseItemsListByProjectPhaseId(pm.ID).ToList();
 
-            if (projectPhaseItems != null)
-                await _unitOfWork.PhaseItemRepository.DeleteRangeAsync(projectPhaseItems);
+            if (dms != null)
+                await _unitOfWork.PhaseItemRepository.DeleteRangeAsync(dms);
 
-            await _projectPhaseRepository.DeleteAsync(projectPhase);
+            await _projectPhaseRepository.DeleteAsync(pm);
 
             await transaction.CommitAsync();
 

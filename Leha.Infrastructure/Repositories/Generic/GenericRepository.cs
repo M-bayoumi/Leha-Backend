@@ -33,40 +33,46 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     }
 
 
-    public virtual async Task<bool> AddAsync(T entity)
+    public virtual async Task<bool> AddAsync(T pm)
     {
-        await _dbContext.Set<T>().AddAsync(entity);
+        await _dbContext.Set<T>().AddAsync(pm);
         return await _dbContext.SaveChangesAsync() == 1;
 
     }
-    public virtual async Task<bool> AddRangeAsync(ICollection<T> entities)
+    public virtual async Task<bool> AddRangeAsync(ICollection<T> pms)
     {
-        await _dbContext.Set<T>().AddRangeAsync(entities);
-        return await _dbContext.SaveChangesAsync() == entities.Count();
+        await _dbContext.Set<T>().AddRangeAsync(pms);
+        return await _dbContext.SaveChangesAsync() == pms.Count();
     }
-    public virtual async Task<bool> UpdateAsync(T entity)
+    public virtual async Task<bool> UpdateAsync(T pm)
     {
-        _dbContext.Set<T>().Update(entity);
+        _dbContext.Set<T>().Update(pm);
         return await _dbContext.SaveChangesAsync() == 1;
     }
-    public virtual async Task<bool> UpdateRangeAsync(ICollection<T> entities)
+    public virtual async Task<bool> UpdateRangeAsync(ICollection<T> pms)
     {
-        _dbContext.Set<T>().UpdateRange(entities);
-        return await _dbContext.SaveChangesAsync() == entities.Count();
+        _dbContext.Set<T>().UpdateRange(pms);
+        return await _dbContext.SaveChangesAsync() == pms.Count();
     }
-    public virtual async Task<bool> DeleteAsync(T entity)
+    public virtual async Task<bool> DeleteAsync(T pm)
     {
-        _dbContext.Set<T>().Remove(entity);
+        _dbContext.Set<T>().Remove(pm);
         return await _dbContext.SaveChangesAsync() == 1;
     }
-    public virtual async Task<bool> DeleteRangeAsync(ICollection<T> entities)
+    public virtual async Task<bool> DeleteRangeAsync(ICollection<T> pms)
     {
-        foreach (var entity in entities)
+        foreach (var pm in pms)
         {
-            _dbContext.Set<T>().Remove(entity);
+            _dbContext.Set<T>().Remove(pm);
         }
-        return await _dbContext.SaveChangesAsync() == entities.Count();
+        return await _dbContext.SaveChangesAsync() == pms.Count();
     }
+    public virtual void DetacheAsync(T pm)
+    {
+        _dbContext.Entry(pm).State = EntityState.Detached;
+    }
+
+
     public IDbContextTransaction BeginTransaction()
     {
         return _dbContext.Database.BeginTransaction();

@@ -26,27 +26,27 @@ public class ProductManager : IProductManager
         return _productRepository.GetTableNoTracking().AsQueryable();
     }
 
-    public IQueryable<Product?> GetProductsListByCompanyId(int companyID)
+    public IQueryable<Product?> GetProductsListByCompanyId(int id)
     {
-        return _productRepository.GetProductsListByCompanyId(companyID).AsQueryable();
+        return _productRepository.GetProductsListByCompanyId(id).AsQueryable();
     }
-    public async Task<Product?> GetProductByIDAsync(int productID)
+    public async Task<Product?> GetProductByIDAsync(int id)
     {
-        return await _productRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == productID);
-    }
-
-    public async Task<bool> AddProductAsync(Product product)
-    {
-        return await _productRepository.AddAsync(product);
-    }
-    public async Task<bool> UpdateProductAsync(Product product)
-    {
-        return await _productRepository.UpdateAsync(product);
+        return await _productRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
     }
 
-    public async Task<bool> DeleteProductAsync(Product product)
+    public async Task<bool> AddProductAsync(Product pm)
     {
-        return await _productRepository.DeleteAsync(product);
+        return await _productRepository.AddAsync(pm);
+    }
+    public async Task<bool> UpdateProductAsync(Product pm)
+    {
+        return await _productRepository.UpdateAsync(pm);
+    }
+
+    public async Task<bool> DeleteProductAsync(Product pm)
+    {
+        return await _productRepository.DeleteAsync(pm);
     }
 
     #endregion

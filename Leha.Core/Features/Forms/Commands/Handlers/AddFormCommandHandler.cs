@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.Forms.Commands.Models;
+using Leha.Core.Resources;
 using Leha.Data.Entities;
 using Leha.Manager.Managers.Forms;
 using Leha.Manager.Managers.Jobs;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Forms.Commands.Handlers;
 
@@ -21,7 +23,7 @@ public class AddFormCommandHandler : ResponseHandler, IRequestHandler<AddFormCom
 
     #region Constructors
 
-    public AddFormCommandHandler(IFormManager formManager, IJobManager jobManager, IMapper mapper)
+    public AddFormCommandHandler(IFormManager formManager, IJobManager jobManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _formManager = formManager;
         _jobManager = jobManager;
@@ -38,10 +40,10 @@ public class AddFormCommandHandler : ResponseHandler, IRequestHandler<AddFormCom
             var form = _mapper.Map<Form>(request);
 
             if (await _formManager.AddFormAsync(form))
-                return Created("Form Added Successfully");
-            return BadRequest<string>("Failed To Add Form");
+                return Created("");
+            return BadRequest<string>("");
         }
-        return NotFound<string>("Job not found");
+        return NotFound<string>("");
     }
 
     #endregion

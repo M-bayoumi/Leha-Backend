@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.ProjectPhases.Commands.Models;
+using Leha.Core.Resources;
 using Leha.Data.Entities;
 using Leha.Manager.Managers.ProjectPhases;
 using Leha.Manager.Managers.Projects;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.ProjectPhases.Commands.Handlers;
 
@@ -21,7 +23,7 @@ public class AddProjectPhaseCommandHandler : ResponseHandler, IRequestHandler<Ad
 
     #region Constructors
 
-    public AddProjectPhaseCommandHandler(IProjectPhaseManager projectPhaseManager, IProjectManager projectManager, IMapper mapper)
+    public AddProjectPhaseCommandHandler(IProjectPhaseManager projectPhaseManager, IProjectManager projectManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _projectPhaseManager = projectPhaseManager;
         _projectManager = projectManager;
@@ -32,16 +34,16 @@ public class AddProjectPhaseCommandHandler : ResponseHandler, IRequestHandler<Ad
     #region Handle Functions
     public async Task<Response<string>> Handle(AddProjectPhaseCommand request, CancellationToken cancellationToken)
     {
-        var project = await _projectManager.GetProjectByIDAsync(request.ProjectID); // GetById without without include 
+        var project = await _projectManager.GetProjectByIDAsync(request.ProjectID);
         if (project != null)
         {
             var projectPhase = _mapper.Map<ProjectPhase>(request);
 
             if (await _projectPhaseManager.AddProjectPhaseAsync(projectPhase))
-                return Created("ProjectPhase Added Successfully");
-            return BadRequest<string>("Failed To Add ProjectPhase");
+                return Created("");
+            return BadRequest<string>("");
         }
-        return NotFound<string>("Project not found");
+        return NotFound<string>("");
     }
 
     #endregion

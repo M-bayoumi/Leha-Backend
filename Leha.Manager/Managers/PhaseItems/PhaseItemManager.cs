@@ -27,14 +27,14 @@ public class PhaseItemManager : IPhaseItemManager
         return _phaseItemRepository.GetTableNoTracking().AsQueryable();
     }
 
-    public IQueryable<PhaseItem?> GetPhaseItemsListByProjectPhaseId(int projectPhaseID)
+    public IQueryable<PhaseItem?> GetPhaseItemsListByProjectPhaseId(int id)
     {
-        return _phaseItemRepository.GetPhaseItemsListByProjectPhaseId(projectPhaseID).AsQueryable();
+        return _phaseItemRepository.GetPhaseItemsListByProjectPhaseId(id).AsQueryable();
     }
 
-    public async Task<PhaseItem?> GetPhaseItemByIDAsync(int phaseItemID)
+    public async Task<PhaseItem?> GetPhaseItemByIDAsync(int id)
     {
-        return await _phaseItemRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == phaseItemID);
+        return await _phaseItemRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
     }
 
     public async Task<bool> AddPhaseItemAsync(PhaseItem phaseItem)

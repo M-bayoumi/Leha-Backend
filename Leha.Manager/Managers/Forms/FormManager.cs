@@ -28,27 +28,28 @@ public class FormManager : IFormManager
         return _formRepository.GetTableNoTracking().AsQueryable();
     }
 
-    public IQueryable<Form?> GetFormsListByJobId(int jobID)
+    public IQueryable<Form?> GetFormsListByJobId(int id)
     {
-        return _formRepository.GetFormsListByJobId(jobID).AsQueryable();
+        return _formRepository.GetFormsListByJobId(id).AsQueryable();
     }
-    public async Task<Form?> GetFormByIDAsync(int formID)
+    public async Task<Form?> GetFormByIDAsync(int id)
     {
-        return await _formRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == formID);
-    }
-
-    public async Task<bool> AddFormAsync(Form form)
-    {
-        return await _formRepository.AddAsync(form);
-    }
-    public async Task<bool> UpdateFormAsync(Form form)
-    {
-        return await _formRepository.UpdateAsync(form);
+        return await _formRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
     }
 
-    public async Task<bool> DeleteFormAsync(Form form)
+    public async Task<bool> AddFormAsync(Form pm)
     {
-        return await _formRepository.DeleteAsync(form);
+        // check job exist
+        return await _formRepository.AddAsync(pm);
+    }
+    public async Task<bool> UpdateFormAsync(Form pm)
+    {
+        return await _formRepository.UpdateAsync(pm);
+    }
+
+    public async Task<bool> DeleteFormAsync(Form pm)
+    {
+        return await _formRepository.DeleteAsync(pm);
     }
     #endregion
 }

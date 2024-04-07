@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.HomeImages.Commands.Models;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.HomeImages;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.HomeImages.Commands.Handlers;
 
@@ -15,7 +17,7 @@ public class DeleteHomeImageCommandHandler : ResponseHandler, IRequestHandler<De
     #endregion
 
     #region Constructors
-    public DeleteHomeImageCommandHandler(IHomeImageManager homeImageManager, IMapper mapper)
+    public DeleteHomeImageCommandHandler(IHomeImageManager homeImageManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _homeImageManager = homeImageManager;
         _mapper = mapper;
@@ -26,8 +28,10 @@ public class DeleteHomeImageCommandHandler : ResponseHandler, IRequestHandler<De
     public async Task<Response<string>> Handle(DeleteHomeImageCommand request, CancellationToken cancellationToken)
     {
         var homeImage = await _homeImageManager.GetHomeImageByIDAsync(request.ID);
-        if (homeImage == null) return NotFound<string>("HomeImage not found");
-        return await _homeImageManager.DeleteHomeImageAsync(homeImage) ? Deleted<string>("Deleted Successfully") : BadRequest<string>();
+        if (homeImage == null) return NotFound<string>("");
+        if (await _homeImageManager.DeleteHomeImageAsync(homeImage))
+            return Deleted<string>("");
+        return BadRequest<string>();
     }
 
     #endregion

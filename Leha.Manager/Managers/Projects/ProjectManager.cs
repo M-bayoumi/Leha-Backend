@@ -30,36 +30,36 @@ public class ProjectManager : IProjectManager
         return _projectRepository.GetTableNoTracking().AsQueryable();
     }
 
-    public IQueryable<Project?> GetProjectsListByCompanyId(int companyID)
+    public IQueryable<Project?> GetProjectsListByCompanyId(int id)
     {
-        return _projectRepository.GetProjectsListByCompanyId(companyID).AsQueryable();
+        return _projectRepository.GetProjectsListByCompanyId(id).AsQueryable();
     }
 
-    public async Task<Project?> GetProjectByIDAsync(int projectID)
+    public async Task<Project?> GetProjectByIDAsync(int id)
     {
-        return await _projectRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == projectID);
+        return await _projectRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
     }
-    public async Task<bool> AddProjectAsync(Project project)
+    public async Task<bool> AddProjectAsync(Project pm)
     {
-        return await _projectRepository.AddAsync(project);
-    }
-
-    public async Task<bool> UpdateProjectAsync(Project project)
-    {
-        return await _projectRepository.AddAsync(project);
+        return await _projectRepository.AddAsync(pm);
     }
 
-    public async Task<bool> DeleteProjectAsync(Project project)
+    public async Task<bool> UpdateProjectAsync(Project pm)
+    {
+        return await _projectRepository.AddAsync(pm);
+    }
+
+    public async Task<bool> DeleteProjectAsync(Project pm)
     {
         var transaction = _projectRepository.BeginTransaction();
         try
         {
-            var projectPhases = _unitOfWork.ProjectPhaseRepository.GetProjectPhasesListByProjectId(project.ID).ToList();
+            var dms = _unitOfWork.ProjectPhaseRepository.GetProjectPhasesListByProjectId(pm.ID).ToList();
 
-            if (projectPhases != null)
-                await _unitOfWork.ProjectPhaseRepository.DeleteRangeAsync(projectPhases);
+            if (dms != null)
+                await _unitOfWork.ProjectPhaseRepository.DeleteRangeAsync(dms);
 
-            await _projectRepository.DeleteAsync(project);
+            await _projectRepository.DeleteAsync(pm);
 
             await transaction.CommitAsync();
 

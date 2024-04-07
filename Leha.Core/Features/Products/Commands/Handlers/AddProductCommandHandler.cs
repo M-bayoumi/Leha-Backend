@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.Products.Commands.Models;
+using Leha.Core.Resources;
 using Leha.Data.Entities;
 using Leha.Manager.Managers.Companies;
 using Leha.Manager.Managers.Products;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Products.Commands.Handlers;
 
@@ -21,7 +23,7 @@ public class AddProductCommandHandler : ResponseHandler, IRequestHandler<AddProd
 
     #region Constructors
 
-    public AddProductCommandHandler(IProductManager productManager, ICompanyManager companyManager, IMapper mapper)
+    public AddProductCommandHandler(IProductManager productManager, ICompanyManager companyManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _productManager = productManager;
         _companyManager = companyManager;
@@ -32,7 +34,7 @@ public class AddProductCommandHandler : ResponseHandler, IRequestHandler<AddProd
     #region Handle Functions
     public async Task<Response<string>> Handle(AddProductCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID); // GetById without without include 
+        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID);
         if (company != null)
         {
             var product = _mapper.Map<Product>(request);

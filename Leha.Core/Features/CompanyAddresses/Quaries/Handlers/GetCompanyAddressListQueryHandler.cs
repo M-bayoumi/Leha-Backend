@@ -2,9 +2,11 @@
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.CompanyAddresses.Quaries.Models;
 using Leha.Core.Features.CompanyAddresses.Quaries.Results;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.CompanyAddresses;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.CompanyAddresses.Quaries.Handlers;
 
@@ -16,7 +18,7 @@ public class GetCompanyAddressListQueryHandler : ResponseHandler, IRequestHandle
     #endregion
 
     #region Constructors
-    public GetCompanyAddressListQueryHandler(ICompanyAddressManager companyAddressManager, IMapper mapper)
+    public GetCompanyAddressListQueryHandler(ICompanyAddressManager companyAddressManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _companyAddressManager = companyAddressManager;
         _mapper = mapper;

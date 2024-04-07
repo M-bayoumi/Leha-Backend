@@ -21,9 +21,9 @@ public class HomeImageRepository : GenericRepository<HomeImage>, IHomeImageRepos
 
     #region Handle Functions
 
-    public IQueryable<HomeImage?> GetHomeImagesListByCompanyId(int companyID)
+    public IQueryable<HomeImage?> GetHomeImagesListByCompanyId(int id)
     {
-        return _homeImages.Where(x => x.CompanyID == companyID).AsNoTracking().AsQueryable();
+        return _homeImages.Where(x => x.CompanyID == id).AsNoTracking().AsQueryable();
     }
 
     #endregion

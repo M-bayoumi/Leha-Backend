@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.Services.Commands.Models;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.Services;
 using MediatR;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Services.Commands.Handlers;
 
@@ -15,7 +17,7 @@ public class DeleteServiceCommandHandler : ResponseHandler, IRequestHandler<Dele
     #endregion
 
     #region Constructors
-    public DeleteServiceCommandHandler(IServiceManager serviceManager, IMapper mapper)
+    public DeleteServiceCommandHandler(IServiceManager serviceManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _serviceManager = serviceManager;
         _mapper = mapper;
@@ -26,8 +28,10 @@ public class DeleteServiceCommandHandler : ResponseHandler, IRequestHandler<Dele
     public async Task<Response<string>> Handle(DeleteServiceCommand request, CancellationToken cancellationToken)
     {
         var service = await _serviceManager.GetServiceByIDAsync(request.ID);
-        if (service == null) return NotFound<string>("Service not found");
-        return await _serviceManager.DeleteServiceAsync(service) ? Deleted<string>("Deleted Successfully") : BadRequest<string>();
+        if (service == null) return NotFound<string>("");
+        if (await _serviceManager.DeleteServiceAsync(service))
+            return Deleted<string>("");
+        return BadRequest<string>();
     }
 
     #endregion

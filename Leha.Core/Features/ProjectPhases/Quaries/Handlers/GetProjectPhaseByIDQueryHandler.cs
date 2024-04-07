@@ -2,9 +2,11 @@
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.ProjectPhases.Quaries.Models;
 using Leha.Core.Features.ProjectPhases.Quaries.Results;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.ProjectPhases;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.ProjectPhases.Quaries.Handlers;
 
@@ -17,7 +19,7 @@ public class GetProjectPhaseByIDQueryHandler : ResponseHandler, IRequestHandler<
     #endregion
 
     #region Constructors
-    public GetProjectPhaseByIDQueryHandler(IProjectPhaseManager projectPhaseManager, IMapper mapper)
+    public GetProjectPhaseByIDQueryHandler(IProjectPhaseManager projectPhaseManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _projectPhaseManager = projectPhaseManager;
         _mapper = mapper;

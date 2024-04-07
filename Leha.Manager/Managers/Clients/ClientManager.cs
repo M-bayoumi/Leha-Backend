@@ -29,29 +29,29 @@ public class ClientManager : IClientManager
     }
 
 
-    public IQueryable<Client?> GetClientsListByCompanyId(int companyID)
+    public IQueryable<Client?> GetClientsListByCompanyId(int id)
     {
-        return _clientRepository.GetClientsListByCompanyId(companyID).AsQueryable();
+        return _clientRepository.GetClientsListByCompanyId(id).AsQueryable();
 
     }
 
-    public async Task<Client?> GetClientByIDAsync(int clientID)
+    public async Task<Client?> GetClientByIDAsync(int id)
     {
-        return await _clientRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == clientID);
+        return await _clientRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
     }
 
-    public async Task<bool> AddClientAsync(Client client)
-    {
-        return await _clientRepository.AddAsync(client);
+    public async Task<bool> AddClientAsync(Client pm)
+    { // check if company is exist
+        return await _clientRepository.AddAsync(pm);
     }
 
-    public async Task<bool> UpdateClientAsync(Client client)
+    public async Task<bool> UpdateClientAsync(Client pm)
     {
-        return await _clientRepository.UpdateAsync(client);
+        return await _clientRepository.UpdateAsync(pm);
     }
-    public async Task<bool> DeleteClientAsync(Client client)
+    public async Task<bool> DeleteClientAsync(Client pm)
     {
-        return await _clientRepository.DeleteAsync(client);
+        return await _clientRepository.DeleteAsync(pm);
     }
 
     #endregion

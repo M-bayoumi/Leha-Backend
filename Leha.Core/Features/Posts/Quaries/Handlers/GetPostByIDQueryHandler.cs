@@ -1,17 +1,12 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
-using Leha.Core.Features.BoardMemberSpeeches.Quaries.Models;
 using Leha.Core.Features.Posts.Quaries.Models;
 using Leha.Core.Features.Posts.Quaries.Results;
-using Leha.Manager.Managers.BoardMemberSpeeches;
+using Leha.Core.Resources;
 using Leha.Manager.Managers.Posts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Posts.Quaries.Handlers;
 
@@ -24,7 +19,7 @@ public class GetPostByIDQueryHandler : ResponseHandler, IRequestHandler<GetPostB
     #endregion
 
     #region Constructors
-    public GetPostByIDQueryHandler(IPostManager postManager, IMapper mapper)
+    public GetPostByIDQueryHandler(IPostManager postManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _postManager = postManager;
         _mapper = mapper;

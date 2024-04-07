@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
 using Leha.Core.BaseResponse;
 using Leha.Core.Features.BoardMemberSpeeches.Commands.Models;
+using Leha.Core.Resources;
 using Leha.Data.Entities;
 using Leha.Manager.Managers.BoardMembers;
 using Leha.Manager.Managers.BoardMemberSpeeches;
 using MediatR;
+using Microsoft.Extensions.Localization;
+
 namespace Leha.Core.Features.BoardMemberSpeachSpeeches.Commands.Handlers;
 
 public class UpdateBoardMemberSpeachCommandHandler : ResponseHandler, IRequestHandler<UpdateBoardMemberSpeechCommand, Response<string>>
@@ -18,7 +21,7 @@ public class UpdateBoardMemberSpeachCommandHandler : ResponseHandler, IRequestHa
     #endregion
 
     #region Constructors
-    public UpdateBoardMemberSpeachCommandHandler(IBoardMemberSpeechManager boardMemberSpeachManager, IBoardMemberManager boardMemberManager, IMapper mapper)
+    public UpdateBoardMemberSpeachCommandHandler(IBoardMemberSpeechManager boardMemberSpeachManager, IBoardMemberManager boardMemberManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _boardMemberSpeachManager = boardMemberSpeachManager;
         _boardMemberManager = boardMemberManager;
@@ -34,12 +37,11 @@ public class UpdateBoardMemberSpeachCommandHandler : ResponseHandler, IRequestHa
         if (boardMember != null)
         {
             var boardMemberSpeach = _mapper.Map<BoardMemberSpeech>(request);
-
             if (await _boardMemberSpeachManager.UpdateBoardMemberSpeechAsync(boardMemberSpeach))
-                return Created("Board Member Speach Updated Successfully");
-            return BadRequest<string>("Failed To Update Board Member Speach");
+                return Created("");
+            return BadRequest<string>("");
         }
-        return NotFound<string>("BoardMember not found");
+        return NotFound<string>("");
 
     }
 

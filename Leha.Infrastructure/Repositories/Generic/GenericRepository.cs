@@ -18,11 +18,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     #endregion
 
     #region Handle Functions
-    public IQueryable<T?> GetTableNoTracking()
+    public IQueryable<T?> GetAll()
     {
         return _dbContext.Set<T>().AsNoTracking().AsQueryable();
     }
-    public IQueryable<T?> GetTableAsTracking()
+    public IQueryable<T?> GetAllAsTracking()
     {
         return _dbContext.Set<T>().AsQueryable();
     }
@@ -31,7 +31,13 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         return await _dbContext.Set<T>().FindAsync(id);
     }
-
+    public virtual async Task<T?> GetById(int id)
+    {
+        var dm = await _dbContext.Set<T>().FindAsync(id);
+        if (dm != null)
+            _dbContext.Entry(dm).State = EntityState.Detached;
+        return dm;
+    }
 
     public virtual async Task<bool> AddAsync(T pm)
     {
@@ -67,12 +73,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         }
         return await _dbContext.SaveChangesAsync() == pms.Count();
     }
-    public virtual void DetacheAsync(T pm)
-    {
-        _dbContext.Entry(pm).State = EntityState.Detached;
-    }
-
-
     public IDbContextTransaction BeginTransaction()
     {
         return _dbContext.Database.BeginTransaction();

@@ -17,15 +17,14 @@ public class PostRepository : GenericRepository<Post>, IPostRepository
     {
         _posts = appDbContext.Set<Post>();
     }
-
     #endregion
 
     #region Handle Functions
-
-    public IQueryable<Post?> GetPostsListByCompanyId(int id)
+    public IQueryable<Post?> GetAllByCompanyID(int id)
     {
-        return _posts.Where(x => x.CompanyID == id).AsNoTracking().AsQueryable();
+        return _posts.Where(x => x.CompanyID == id)
+            .AsNoTracking()
+            .AsQueryable();
     }
-
     #endregion
 }

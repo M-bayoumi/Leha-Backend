@@ -4,15 +4,15 @@ using MediatR;
 
 namespace Leha.Core.Features.Products.Quaries.Models;
 
-public class GetProductByIDQuery : IRequest<Response<GetProductByIDResponse>>
+public class GetProductByIdQuery : IRequest<Response<GetProductByIdResponse>>
 {
     public int ID { get; set; }
 
-    public GetProductByIDQuery(int productID)
+    public GetProductByIdQuery(int productID)
     {
         ID = productID;
     }
-    public GetProductByIDQuery()
+    public GetProductByIdQuery()
     {
     }
 }

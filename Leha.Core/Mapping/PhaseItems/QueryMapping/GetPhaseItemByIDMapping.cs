@@ -6,9 +6,9 @@ namespace Leha.Core.Mapping.PhaseItems;
 
 public partial class PhaseItemProfile : Profile
 {
-    public void GetPhaseItemByIDMapping()
+    public void GetPhaseItemByIdMapping()
     {
-        CreateMap<PhaseItem, GetPhaseItemByIDResponse>()
+        CreateMap<PhaseItem, GetPhaseItemByIdResponse>()
              .ForMember(dist => dist.ProjectPhaseName, opt => opt.MapFrom(src => src.ProjectPhase.ProjectPhaseName));
     }
 }

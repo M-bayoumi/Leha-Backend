@@ -34,12 +34,12 @@ public class AddJobCommandHandler : ResponseHandler, IRequestHandler<AddJobComma
     #region Handle Functions
     public async Task<Response<string>> Handle(AddJobCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID);
+        var company = await _companyManager.GetByIdAsync(request.CompanyID);
         if (company != null)
         {
             var job = _mapper.Map<Job>(request);
 
-            if (await _jobManager.AddJobAsync(job))
+            if (await _jobManager.AddAsync(job))
                 return Created("");
             return BadRequest<string>("");
         }

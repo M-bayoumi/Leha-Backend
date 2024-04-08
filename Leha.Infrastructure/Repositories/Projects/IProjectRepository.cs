@@ -5,6 +5,6 @@ namespace Leha.Infrastructure.Repositories.Projects;
 
 public interface IProjectRepository : IGenericRepository<Project>
 {
-    public IQueryable<Project?> GetProjectsListByCompanyId(int id);
+    public IQueryable<Project?> GetAllByCompanyID(int id);
 
 }

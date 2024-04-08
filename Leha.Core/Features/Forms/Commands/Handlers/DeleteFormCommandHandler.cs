@@ -27,9 +27,9 @@ public class DeleteFormCommandHandler : ResponseHandler, IRequestHandler<DeleteF
     #region Handle Functions
     public async Task<Response<string>> Handle(DeleteFormCommand request, CancellationToken cancellationToken)
     {
-        var form = await _formManager.GetFormByIDAsync(request.ID);
+        var form = await _formManager.GetByIdAsync(request.ID);
         if (form == null) return NotFound<string>("");
-        if (await _formManager.DeleteFormAsync(form))
+        if (await _formManager.DeleteAsync(form))
             return Deleted<string>("");
         return BadRequest<string>();
     }

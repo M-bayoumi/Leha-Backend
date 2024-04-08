@@ -33,12 +33,12 @@ public class UpdateProductCommandHandler : ResponseHandler, IRequestHandler<Upda
     #region Handle Functions
     public async Task<Response<string>> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID);
+        var company = await _companyManager.GetByIdAsync(request.CompanyID);
         if (company != null)
         {
             var product = _mapper.Map<Product>(request);
 
-            if (await _productManager.UpdateProductAsync(product))
+            if (await _productManager.UpdateAsync(product))
                 return Created("");
             return BadRequest<string>("");
         }

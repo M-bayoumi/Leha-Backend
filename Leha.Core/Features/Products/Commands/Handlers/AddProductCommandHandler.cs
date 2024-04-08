@@ -18,11 +18,9 @@ public class AddProductCommandHandler : ResponseHandler, IRequestHandler<AddProd
     private readonly IProductManager _productManager;
     private readonly ICompanyManager _companyManager;
     private readonly IMapper _mapper;
-
     #endregion
 
     #region Constructors
-
     public AddProductCommandHandler(IProductManager productManager, ICompanyManager companyManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _productManager = productManager;
@@ -34,17 +32,16 @@ public class AddProductCommandHandler : ResponseHandler, IRequestHandler<AddProd
     #region Handle Functions
     public async Task<Response<string>> Handle(AddProductCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID);
+        var company = await _companyManager.GetByIdAsync(request.CompanyID);
         if (company != null)
         {
             var product = _mapper.Map<Product>(request);
 
-            if (await _productManager.AddProductAsync(product))
-                return Created("Product Added Successfully");
-            return BadRequest<string>("Failed To Add Product");
+            if (await _productManager.AddAsync(product))
+                return Created("");
+            return BadRequest<string>("");
         }
-        return NotFound<string>("Company not found");
+        return NotFound<string>("");
     }
-
     #endregion
 }

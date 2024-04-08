@@ -5,7 +5,7 @@ public partial class ProjectProfile
 {
     public ProjectProfile()
     {
-        GetProjectByIDMapping();
+        GetProjectByIdMapping();
         GetProjectListMapping();
         GetProjectListByCompanyIDMapping();
         AddProjectCommandMapping();

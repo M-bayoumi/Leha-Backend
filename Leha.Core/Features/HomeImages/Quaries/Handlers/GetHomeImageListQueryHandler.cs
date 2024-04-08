@@ -28,7 +28,7 @@ public class GetHomeImageListQueryHandler : ResponseHandler, IRequestHandler<Get
     #region Handle Functions
     public async Task<Response<List<GetHomeImageListResponse>>> Handle(GetHomeImageListQuery request, CancellationToken cancellationToken)
     {
-        var homeImageListDB = await _homeImageManager.GetHomeImagesListAsync().Include(x => x.Company).ToListAsync();
+        var homeImageListDB = await _homeImageManager.GetAll().Include(x => x.Company).ToListAsync();
         if (homeImageListDB is null)
         {
             return NotFound<List<GetHomeImageListResponse>>();

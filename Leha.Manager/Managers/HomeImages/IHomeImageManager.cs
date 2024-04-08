@@ -4,10 +4,10 @@ namespace Leha.Manager.Managers.HomeImages;
 
 public interface IHomeImageManager
 {
-    public IQueryable<HomeImage?> GetHomeImagesListAsync();
-    public IQueryable<HomeImage?> GetHomeImagesListByCompanyId(int id);
-    public Task<HomeImage?> GetHomeImageByIDAsync(int id);
-    public Task<bool> AddHomeImageAsync(HomeImage pm);
-    public Task<bool> UpdateHomeImageAsync(HomeImage pm);
-    public Task<bool> DeleteHomeImageAsync(HomeImage pm);
+    public IQueryable<HomeImage?> GetAll();
+    public IQueryable<HomeImage?> GetAllByCompanyID(int id);
+    public Task<HomeImage?> GetByIdAsync(int id);
+    public Task<bool> AddAsync(HomeImage pm);
+    public Task<bool> UpdateAsync(HomeImage pm);
+    public Task<bool> DeleteAsync(HomeImage pm);
 }

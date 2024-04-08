@@ -6,8 +6,8 @@ namespace Leha.Core.Mapping.Companies;
 
 public partial class CompanyProfile : Profile
 {
-    public void GetCompanyByIDMapping()
+    public void GetCompanyByIdMapping()
     {
-        CreateMap<Company, GetCompanyByIDResponse>();
+        CreateMap<Company, GetCompanyByIdResponse>();
     }
 }

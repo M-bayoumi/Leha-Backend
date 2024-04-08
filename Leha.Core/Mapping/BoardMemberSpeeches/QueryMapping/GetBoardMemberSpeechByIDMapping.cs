@@ -6,9 +6,9 @@ namespace Leha.Core.Mapping.BoardMemberSpeeches;
 
 public partial class BoardMemberSpeechProfile : Profile
 {
-    public void GetBoardMemberSpeechByIDMapping()
+    public void GetBoardMemberSpeechByIdMapping()
     {
-        CreateMap<BoardMemberSpeech, GetBoardMemberSpeechByIDResponse>()
+        CreateMap<BoardMemberSpeech, GetBoardMemberSpeechByIdResponse>()
              .ForMember(dist => dist.BoardMemberName, opt => opt.MapFrom(src => src.BoardMember.BoardMemberName))
              .ForMember(dist => dist.BoardMemberPosition, opt => opt.MapFrom(src => src.BoardMember.BoardMemberPosition))
              .ForMember(dist => dist.BoardMemberPosition, opt => opt.MapFrom(src => src.BoardMember.BoardMemberPosition));

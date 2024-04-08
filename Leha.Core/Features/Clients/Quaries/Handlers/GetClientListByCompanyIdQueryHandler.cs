@@ -10,7 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Clients.Quaries.Handlers;
 
-public class GetClientListByCompanyIdQueryHandler : ResponseHandler, IRequestHandler<GetClientListByCompanyIdQuery, Response<List<GetClientListByCompanyIDResponse>>>
+public class GetClientListByCompanyIDQueryHandler : ResponseHandler, IRequestHandler<GetClientListByCompanyIDQuery, Response<List<GetClientListByCompanyIDResponse>>>
 {
     #region Fields
     private readonly IClientManager _clientManager;
@@ -18,7 +18,7 @@ public class GetClientListByCompanyIdQueryHandler : ResponseHandler, IRequestHan
     #endregion
 
     #region Constructors
-    public GetClientListByCompanyIdQueryHandler(IClientManager clientManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetClientListByCompanyIDQueryHandler(IClientManager clientManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _clientManager = clientManager;
         _mapper = mapper;
@@ -26,9 +26,9 @@ public class GetClientListByCompanyIdQueryHandler : ResponseHandler, IRequestHan
     #endregion
 
     #region Handle Functions
-    public async Task<Response<List<GetClientListByCompanyIDResponse>>> Handle(GetClientListByCompanyIdQuery request, CancellationToken cancellationToken)
+    public async Task<Response<List<GetClientListByCompanyIDResponse>>> Handle(GetClientListByCompanyIDQuery request, CancellationToken cancellationToken)
     {
-        var clientListDB = await _clientManager.GetClientsListByCompanyId(request.ID).Include(x => x.Company).ToListAsync();
+        var clientListDB = await _clientManager.GetAllByCompanyID(request.ID).Include(x => x.Company).ToListAsync();
         if (clientListDB is null)
         {
             return NotFound<List<GetClientListByCompanyIDResponse>>();

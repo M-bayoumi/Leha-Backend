@@ -34,12 +34,12 @@ public class AddClientCommandHandler : ResponseHandler, IRequestHandler<AddClien
     #region Handle Functions
     public async Task<Response<string>> Handle(AddClientCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID); // GetById without without include 
+        var company = await _companyManager.GetByIdAsync(request.CompanyID);
         if (company != null)
         {
             var client = _mapper.Map<Client>(request);
 
-            if (await _clientManager.AddClientAsync(client))
+            if (await _clientManager.AddAsync(client))
                 return Created("");
             return BadRequest<string>("");
         }

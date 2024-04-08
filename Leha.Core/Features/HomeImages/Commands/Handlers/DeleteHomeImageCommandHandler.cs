@@ -27,9 +27,9 @@ public class DeleteHomeImageCommandHandler : ResponseHandler, IRequestHandler<De
     #region Handle Functions
     public async Task<Response<string>> Handle(DeleteHomeImageCommand request, CancellationToken cancellationToken)
     {
-        var homeImage = await _homeImageManager.GetHomeImageByIDAsync(request.ID);
+        var homeImage = await _homeImageManager.GetByIdAsync(request.ID);
         if (homeImage == null) return NotFound<string>("");
-        if (await _homeImageManager.DeleteHomeImageAsync(homeImage))
+        if (await _homeImageManager.DeleteAsync(homeImage))
             return Deleted<string>("");
         return BadRequest<string>();
     }

@@ -4,7 +4,7 @@
     {
         public BoardMemberSpeechProfile()
         {
-            GetBoardMemberSpeechByIDMapping();
+            GetBoardMemberSpeechByIdMapping();
             GetBoardMemberSpeechListMapping();
             GetBoardMemberSpeechListByBoardMemberIDMapping();
             AddBoardMemberSpeechCommandMapping();

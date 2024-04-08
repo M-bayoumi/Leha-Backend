@@ -33,12 +33,12 @@ public class UpdateJobCommandHandler : ResponseHandler, IRequestHandler<UpdateJo
     #region Handle Functions
     public async Task<Response<string>> Handle(UpdateJobCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID);
+        var company = await _companyManager.GetByIdAsync(request.CompanyID);
         if (company != null)
         {
             var job = _mapper.Map<Job>(request);
 
-            if (await _jobManager.UpdateJobAsync(job))
+            if (await _jobManager.UpdateAsync(job))
                 return Created("");
             return BadRequest<string>("");
         }

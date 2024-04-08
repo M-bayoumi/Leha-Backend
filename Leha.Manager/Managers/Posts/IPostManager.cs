@@ -4,10 +4,10 @@ namespace Leha.Manager.Managers.Posts;
 
 public interface IPostManager
 {
-    public IQueryable<Post?> GetPostsListAsync();
-    public IQueryable<Post?> GetPostsListByCompanyId(int id);
-    public Task<Post?> GetPostByIDAsync(int id);
-    public Task<bool> AddPostAsync(Post pm);
-    public Task<bool> UpdatePostAsync(Post pm);
-    public Task<bool> DeletePostAsync(Post pm);
+    public IQueryable<Post?> GetAll();
+    public IQueryable<Post?> GetAllByCompanyID(int id);
+    public Task<Post?> GetByIdAsync(int id);
+    public Task<bool> AddAsync(Post pm);
+    public Task<bool> UpdateAsync(Post pm);
+    public Task<bool> DeleteAsync(Post pm);
 }

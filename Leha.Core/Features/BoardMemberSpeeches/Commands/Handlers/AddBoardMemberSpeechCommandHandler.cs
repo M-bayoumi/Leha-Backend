@@ -33,11 +33,11 @@ public class AddBoardMemberSpeachCommandHandler : ResponseHandler, IRequestHandl
     #region Handle Functions
     public async Task<Response<string>> Handle(AddBoardMemberSpeechCommand request, CancellationToken cancellationToken)
     {
-        var boardMember = await _boardMemberManager.GetBoardMemberByIDAsync(request.BoardMemberID);
+        var boardMember = await _boardMemberManager.GetByIdAsync(request.BoardMemberID);
         if (boardMember != null)
         {
             var boardMemberSpeach = _mapper.Map<BoardMemberSpeech>(request);
-            if (await _boardMemberSpeachManager.AddBoardMemberSpeechAsync(boardMemberSpeach))
+            if (await _boardMemberSpeachManager.AddAsync(boardMemberSpeach))
                 return Created("");
             return BadRequest<string>("");
         }

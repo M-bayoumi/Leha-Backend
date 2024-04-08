@@ -28,7 +28,7 @@ public class GetProjectListQueryHandler : ResponseHandler, IRequestHandler<GetPr
     #region Handle Functions
     public async Task<Response<List<GetProjectListResponse>>> Handle(GetProjectListQuery request, CancellationToken cancellationToken)
     {
-        var projectListDB = await _projectManager.GetProjectsListAsync().Include(x => x.Company).ToListAsync();
+        var projectListDB = await _projectManager.GetAll().Include(x => x.Company).ToListAsync();
         if (projectListDB is null)
         {
             return NotFound<List<GetProjectListResponse>>();

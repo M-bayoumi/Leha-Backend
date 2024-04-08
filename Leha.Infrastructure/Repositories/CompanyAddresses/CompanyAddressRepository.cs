@@ -17,15 +17,14 @@ public class CompanyAddressRepository : GenericRepository<CompanyAddress>, IComp
     {
         _companyAddresses = appDbContext.Set<CompanyAddress>();
     }
-
     #endregion
 
     #region Handle Functions
-
-    public IQueryable<CompanyAddress?> GetCompanyAddressesListByCompanyId(int id)
+    public IQueryable<CompanyAddress?> GetAllByCompanyID(int id)
     {
-        return _companyAddresses.Where(x => x.CompanyID == id).AsNoTracking().AsQueryable();
+        return _companyAddresses.Where(x => x.CompanyID == id)
+            .AsNoTracking()
+            .AsQueryable();
     }
-
     #endregion
 }

@@ -6,9 +6,9 @@ namespace Leha.Core.Mapping.Services;
 
 public partial class ServiceProfile : Profile
 {
-    public void GetServiceByIDMapping()
+    public void GetServiceByIdMapping()
     {
-        CreateMap<Service, GetServiceByIDResponse>()
+        CreateMap<Service, GetServiceByIdResponse>()
              .ForMember(dist => dist.CompanyName, opt => opt.MapFrom(src => src.Company.CompanyName))
              .ForMember(dist => dist.CompanyEmployees, opt => opt.MapFrom(src => src.Company.CompanyEmployees))
              .ForMember(dist => dist.CompanyImage, opt => opt.MapFrom(src => src.Company.CompanyImage))

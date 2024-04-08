@@ -18,44 +18,44 @@ public class PostController : AppControllerBase
 
     #region Handle Functions
 
-    [HttpGet(Router.PostRouting.GetList)]
+    [HttpGet(Router.PostRouting.GetAll)]
 
-    public async Task<IActionResult> GetPostList()
+    public async Task<IActionResult> GetAll()
     {
         var response = await _mediator.Send(new GetPostListQuery());
         return NewResult(response);
     }
 
-    [HttpGet(Router.PostRouting.GetListByCompanyID)]
+    [HttpGet(Router.PostRouting.GetAllByCompanyID)]
 
-    public async Task<IActionResult> GetPostListByCompanyID([FromRoute] GetPostListByCompanyIdQuery command)
+    public async Task<IActionResult> GetAllByCompanyID([FromRoute] GetPostListByCompanyIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
 
 
     }
-    [HttpGet(Router.PostRouting.GetByID)]
-    public async Task<IActionResult> GetPostByID([FromRoute] GetPostByIDQuery command)
+    [HttpGet(Router.PostRouting.GetById)]
+    public async Task<IActionResult> GetById([FromRoute] GetPostByIdQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
 
     [HttpPost(Router.PostRouting.Add)]
-    public async Task<IActionResult> AddPost([FromBody] AddPostCommand command)
+    public async Task<IActionResult> Add([FromBody] AddPostCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpPut(Router.PostRouting.Update)]
-    public async Task<IActionResult> UpdatePost([FromBody] UpdatePostCommand command)
+    public async Task<IActionResult> Update([FromBody] UpdatePostCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpDelete(Router.PostRouting.Delete)]
-    public async Task<IActionResult> DeletePost([FromRoute] DeletePostCommand command)
+    public async Task<IActionResult> Delete([FromRoute] DeletePostCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

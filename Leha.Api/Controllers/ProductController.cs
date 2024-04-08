@@ -18,44 +18,43 @@ public class ProductController : AppControllerBase
 
     #region Handle Functions
 
-    [HttpGet(Router.ProductRouting.GetList)]
-
-    public async Task<IActionResult> GetProductList()
+    [HttpGet(Router.ProductRouting.GetAll)]
+    public async Task<IActionResult> GetAll()
     {
         var response = await _mediator.Send(new GetProductListQuery());
         return NewResult(response);
     }
 
-    [HttpGet(Router.ProductRouting.GetListByCompanyID)]
+    [HttpGet(Router.ProductRouting.GetAllByCompanyID)]
 
-    public async Task<IActionResult> GetProductListByCompanyID([FromRoute] GetProductListByCompanyIdQuery command)
+    public async Task<IActionResult> GetAllByCompanyID([FromRoute] GetProductListByCompanyIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
 
 
     }
-    [HttpGet(Router.ProductRouting.GetByID)]
-    public async Task<IActionResult> GetProductByID([FromRoute] GetProductByIDQuery command)
+    [HttpGet(Router.ProductRouting.GetById)]
+    public async Task<IActionResult> GetById([FromRoute] GetProductByIdQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
 
     [HttpPost(Router.ProductRouting.Add)]
-    public async Task<IActionResult> AddProduct([FromBody] AddProductCommand command)
+    public async Task<IActionResult> Add([FromBody] AddProductCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpPut(Router.ProductRouting.Update)]
-    public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductCommand command)
+    public async Task<IActionResult> Update([FromBody] UpdateProductCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpDelete(Router.ProductRouting.Delete)]
-    public async Task<IActionResult> DeleteProduct([FromRoute] DeleteProductCommand command)
+    public async Task<IActionResult> Delete([FromRoute] DeleteProductCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

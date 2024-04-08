@@ -1,6 +1,6 @@
 ﻿namespace Leha.Core.Features.BoardMembers.Quaries.Results;
 
-public class GetBoardMemberByIDResponse
+public class GetBoardMemberByIdResponse
 {
     public int ID { get; set; }
     public string BoardMemberName { get; set; } = string.Empty;

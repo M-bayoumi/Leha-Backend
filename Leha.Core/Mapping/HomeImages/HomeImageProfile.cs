@@ -5,7 +5,7 @@ public partial class HomeImageProfile
 {
     public HomeImageProfile()
     {
-        GetHomeImageByIDMapping();
+        GetHomeImageByIdMapping();
         GetHomeImageListMapping();
         GetHomeImageListByCompanyIDMapping();
         AddHomeImageCommandMapping();

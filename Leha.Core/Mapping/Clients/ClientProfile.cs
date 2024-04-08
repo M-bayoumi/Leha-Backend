@@ -5,7 +5,7 @@ public partial class ClientProfile
 {
     public ClientProfile()
     {
-        GetClientByIDMapping();
+        GetClientByIdMapping();
         GetClientListMapping();
         GetClientListByCompanyIDMapping();
         AddClientCommandMapping();

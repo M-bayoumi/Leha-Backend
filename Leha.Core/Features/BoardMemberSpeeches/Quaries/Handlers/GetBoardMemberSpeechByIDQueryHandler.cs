@@ -10,7 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.BoardMemberSpeeches.Quaries.Handlers;
 
-public class GetBoardMemberSpeechByIDQueryHandler : ResponseHandler, IRequestHandler<GetBoardMemberSpeechByIDQuery, Response<GetBoardMemberSpeechByIDResponse>>
+public class GetBoardMemberSpeechByIdQueryHandler : ResponseHandler, IRequestHandler<GetBoardMemberSpeechByIdQuery, Response<GetBoardMemberSpeechByIdResponse>>
 {
     #region Fields
     private readonly IBoardMemberSpeechManager _boardMemberSpeechManager;
@@ -18,7 +18,7 @@ public class GetBoardMemberSpeechByIDQueryHandler : ResponseHandler, IRequestHan
     #endregion
 
     #region Constructors
-    public GetBoardMemberSpeechByIDQueryHandler(IBoardMemberSpeechManager boardMemberSpeechManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetBoardMemberSpeechByIdQueryHandler(IBoardMemberSpeechManager boardMemberSpeechManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _boardMemberSpeechManager = boardMemberSpeechManager;
         _mapper = mapper;
@@ -26,14 +26,14 @@ public class GetBoardMemberSpeechByIDQueryHandler : ResponseHandler, IRequestHan
     #endregion
 
     #region Handle Functions
-    public async Task<Response<GetBoardMemberSpeechByIDResponse>> Handle(GetBoardMemberSpeechByIDQuery request, CancellationToken cancellationToken)
+    public async Task<Response<GetBoardMemberSpeechByIdResponse>> Handle(GetBoardMemberSpeechByIdQuery request, CancellationToken cancellationToken)
     {
-        var boardMemberDB = await _boardMemberSpeechManager.GetBoardMemberSpeechesListAsync().Include(x => x.BoardMember).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var boardMemberDB = await _boardMemberSpeechManager.GetAll().Include(x => x.BoardMember).FirstOrDefaultAsync(x => x.ID == request.ID);
         if (boardMemberDB is null)
         {
-            return NotFound<GetBoardMemberSpeechByIDResponse>();
+            return NotFound<GetBoardMemberSpeechByIdResponse>();
         }
-        var boardMemberSpeechMapper = _mapper.Map<GetBoardMemberSpeechByIDResponse>(boardMemberDB);
+        var boardMemberSpeechMapper = _mapper.Map<GetBoardMemberSpeechByIdResponse>(boardMemberDB);
         return Success(boardMemberSpeechMapper);
     }
     #endregion

@@ -27,7 +27,7 @@ public class GetBoardMemberListQueryHandler : ResponseHandler, IRequestHandler<G
     #region Handle Functions
     public async Task<Response<List<GetBoardMemberListResponse>>> Handle(GetBoardMemberListQuery request, CancellationToken cancellationToken)
     {
-        var boardMemberListDB = _boardMemberManager.GetBoardMembersListAsync();
+        var boardMemberListDB = _boardMemberManager.GetAll();
         var boardMemberListMapper = _mapper.Map<List<GetBoardMemberListResponse>>(boardMemberListDB);
         return Success(boardMemberListMapper);
     }

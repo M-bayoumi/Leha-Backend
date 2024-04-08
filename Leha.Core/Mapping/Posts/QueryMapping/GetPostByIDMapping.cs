@@ -6,9 +6,9 @@ namespace Leha.Core.Mapping.Posts;
 
 public partial class PostProfile : Profile
 {
-    public void GetPostByIDMapping()
+    public void GetPostByIdMapping()
     {
-        CreateMap<Post, GetPostByIDResponse>()
+        CreateMap<Post, GetPostByIdResponse>()
              .ForMember(dist => dist.CompanyName, opt => opt.MapFrom(src => src.Company.CompanyName))
              .ForMember(dist => dist.CompanyEmployees, opt => opt.MapFrom(src => src.Company.CompanyEmployees))
              .ForMember(dist => dist.CompanyImage, opt => opt.MapFrom(src => src.Company.CompanyImage))

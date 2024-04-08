@@ -28,7 +28,7 @@ public class GetPostListQueryHandler : ResponseHandler, IRequestHandler<GetPostL
     #region Handle Functions
     public async Task<Response<List<GetPostListResponse>>> Handle(GetPostListQuery request, CancellationToken cancellationToken)
     {
-        var postListDB = await _postManager.GetPostsListAsync().Include(x => x.Company).ToListAsync();
+        var postListDB = await _postManager.GetAll().Include(x => x.Company).ToListAsync();
         if (postListDB is null)
         {
             return NotFound<List<GetPostListResponse>>();

@@ -6,8 +6,8 @@ namespace Leha.Core.Mapping.BoardMembers;
 
 public partial class BoardMemberProfile : Profile
 {
-    public void GetBoardMemberByIDMapping()
+    public void GetBoardMemberByIdMapping()
     {
-        CreateMap<BoardMember, GetBoardMemberByIDResponse>();
+        CreateMap<BoardMember, GetBoardMemberByIdResponse>();
     }
 }

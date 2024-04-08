@@ -4,15 +4,15 @@ using MediatR;
 
 namespace Leha.Core.Features.Posts.Quaries.Models;
 
-public class GetPostByIDQuery : IRequest<Response<GetPostByIDResponse>>
+public class GetPostByIdQuery : IRequest<Response<GetPostByIdResponse>>
 {
     public int ID { get; set; }
 
-    public GetPostByIDQuery(int postID)
+    public GetPostByIdQuery(int postID)
     {
         ID = postID;
     }
-    public GetPostByIDQuery()
+    public GetPostByIdQuery()
     {
     }
 }

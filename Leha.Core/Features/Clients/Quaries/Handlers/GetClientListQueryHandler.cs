@@ -28,7 +28,7 @@ public class GetClientListQueryHandler : ResponseHandler, IRequestHandler<GetCli
     #region Handle Functions
     public async Task<Response<List<GetClientListResponse>>> Handle(GetClientListQuery request, CancellationToken cancellationToken)
     {
-        var clientListDB = await _clientManager.GetClientsListAsync().Include(x => x.Company).ToListAsync();
+        var clientListDB = await _clientManager.GetAll().Include(x => x.Company).ToListAsync();
         if (clientListDB is null)
         {
             return NotFound<List<GetClientListResponse>>();

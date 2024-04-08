@@ -11,7 +11,7 @@ using Microsoft.Extensions.Localization;
 namespace Leha.Core.Features.Jobs.Quaries.Handlers;
 
 
-public class GetJobByIDQueryHandler : ResponseHandler, IRequestHandler<GetJobByIDQuery, Response<GetJobByIDResponse>>
+public class GetJobByIdQueryHandler : ResponseHandler, IRequestHandler<GetJobByIdQuery, Response<GetJobByIdResponse>>
 {
     #region Fields
     private readonly IJobManager _jobManager;
@@ -19,7 +19,7 @@ public class GetJobByIDQueryHandler : ResponseHandler, IRequestHandler<GetJobByI
     #endregion
 
     #region Constructors
-    public GetJobByIDQueryHandler(IJobManager jobManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetJobByIdQueryHandler(IJobManager jobManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _jobManager = jobManager;
         _mapper = mapper;
@@ -27,15 +27,15 @@ public class GetJobByIDQueryHandler : ResponseHandler, IRequestHandler<GetJobByI
     #endregion
 
     #region Handle Functions
-    public async Task<Response<GetJobByIDResponse>> Handle(GetJobByIDQuery request, CancellationToken cancellationToken)
+    public async Task<Response<GetJobByIdResponse>> Handle(GetJobByIdQuery request, CancellationToken cancellationToken)
     {
-        var jobDB = await _jobManager.GetJobsListAsync().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var jobDB = await _jobManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
 
         if (jobDB is null)
         {
-            return NotFound<GetJobByIDResponse>();
+            return NotFound<GetJobByIdResponse>();
         }
-        var jobMapper = _mapper.Map<GetJobByIDResponse>(jobDB);
+        var jobMapper = _mapper.Map<GetJobByIdResponse>(jobDB);
         return Success(jobMapper);
     }
     #endregion

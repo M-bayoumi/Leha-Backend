@@ -30,7 +30,7 @@ public class UpdateHomeImageCommandHandler : ResponseHandler, IRequestHandler<Up
     {
         var homeImage = _mapper.Map<HomeImage>(request);
 
-        if (await _homeImageManager.UpdateHomeImageAsync(homeImage))
+        if (await _homeImageManager.UpdateAsync(homeImage))
             return Created("");
 
         return BadRequest<string>("");

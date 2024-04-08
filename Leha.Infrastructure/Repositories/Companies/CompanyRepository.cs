@@ -16,7 +16,6 @@ public class CompanyRepository : GenericRepository<Company>, ICompanyRepository
     {
         _companies = appDbContext.Set<Company>();
     }
-
     #endregion
 
     #region Handle Functions

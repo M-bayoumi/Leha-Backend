@@ -9,7 +9,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Companies.Queries.Handlers;
 
-public class GetCompanyByIDQueryHandler : ResponseHandler, IRequestHandler<GetCompanyByIDQuery, Response<GetCompanyByIDResponse>>
+public class GetCompanyByIdQueryHandler : ResponseHandler, IRequestHandler<GetCompanyByIdQuery, Response<GetCompanyByIdResponse>>
 {
     #region Fields
     private readonly ICompanyManager _companyManager;
@@ -17,7 +17,7 @@ public class GetCompanyByIDQueryHandler : ResponseHandler, IRequestHandler<GetCo
     #endregion
 
     #region Constructors
-    public GetCompanyByIDQueryHandler(ICompanyManager companyManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetCompanyByIdQueryHandler(ICompanyManager companyManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _companyManager = companyManager;
         _mapper = mapper;
@@ -25,14 +25,14 @@ public class GetCompanyByIDQueryHandler : ResponseHandler, IRequestHandler<GetCo
     #endregion
 
     #region Handle Functions
-    public async Task<Response<GetCompanyByIDResponse>> Handle(GetCompanyByIDQuery request, CancellationToken cancellationToken)
+    public async Task<Response<GetCompanyByIdResponse>> Handle(GetCompanyByIdQuery request, CancellationToken cancellationToken)
     {
-        var companyDB = await _companyManager.GetCompanyByIDAsync(request.ID);
+        var companyDB = await _companyManager.GetByIdAsync(request.ID);
         if (companyDB is null)
         {
-            return NotFound<GetCompanyByIDResponse>();
+            return NotFound<GetCompanyByIdResponse>();
         }
-        var companyMapper = _mapper.Map<GetCompanyByIDResponse>(companyDB);
+        var companyMapper = _mapper.Map<GetCompanyByIdResponse>(companyDB);
         return Success(companyMapper);
     }
     #endregion

@@ -18,44 +18,44 @@ public class ProjectController : AppControllerBase
 
     #region Handle Functions
 
-    [HttpGet(Router.ProjectRouting.GetList)]
+    [HttpGet(Router.ProjectRouting.GetAll)]
 
-    public async Task<IActionResult> GetProjectList()
+    public async Task<IActionResult> GetAll()
     {
         var response = await _mediator.Send(new GetProjectListQuery());
         return NewResult(response);
     }
 
-    [HttpGet(Router.ProjectRouting.GetListByCompanyID)]
-
-    public async Task<IActionResult> GetProjectListByCompanyID([FromRoute] GetProjectListByCompanyIdQuery command)
+    [HttpGet(Router.ProjectRouting.GetAllByCompanyID)]
+    public async Task<IActionResult> GetAllByCompanyID([FromRoute] GetProjectListByCompanyIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
-
-
     }
-    [HttpGet(Router.ProjectRouting.GetByID)]
-    public async Task<IActionResult> GetProjectByID([FromRoute] GetProjectByIDQuery command)
+
+    [HttpGet(Router.ProjectRouting.GetById)]
+    public async Task<IActionResult> GetById([FromRoute] GetProjectByIdQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
 
     [HttpPost(Router.ProjectRouting.Add)]
-    public async Task<IActionResult> AddProject([FromBody] AddProjectCommand command)
+    public async Task<IActionResult> Add([FromBody] AddProjectCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
+
     [HttpPut(Router.ProjectRouting.Update)]
-    public async Task<IActionResult> UpdateProject([FromBody] UpdateProjectCommand command)
+    public async Task<IActionResult> Update([FromBody] UpdateProjectCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
+
     [HttpDelete(Router.ProjectRouting.Delete)]
-    public async Task<IActionResult> DeleteProject([FromRoute] DeleteProjectCommand command)
+    public async Task<IActionResult> Delete([FromRoute] DeleteProjectCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

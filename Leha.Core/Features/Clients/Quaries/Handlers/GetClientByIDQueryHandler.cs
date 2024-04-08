@@ -11,7 +11,7 @@ using Microsoft.Extensions.Localization;
 namespace Leha.Core.Features.Clients.Quaries.Handlers;
 
 
-public class GetClientByIDQueryHandler : ResponseHandler, IRequestHandler<GetClientByIDQuery, Response<GetClientByIDResponse>>
+public class GetClientByIdQueryHandler : ResponseHandler, IRequestHandler<GetClientByIdQuery, Response<GetClientByIdResponse>>
 {
     #region Fields
     private readonly IClientManager _clientManager;
@@ -19,7 +19,7 @@ public class GetClientByIDQueryHandler : ResponseHandler, IRequestHandler<GetCli
     #endregion
 
     #region Constructors
-    public GetClientByIDQueryHandler(IClientManager clientManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetClientByIdQueryHandler(IClientManager clientManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _clientManager = clientManager;
         _mapper = mapper;
@@ -27,15 +27,15 @@ public class GetClientByIDQueryHandler : ResponseHandler, IRequestHandler<GetCli
     #endregion
 
     #region Handle Functions
-    public async Task<Response<GetClientByIDResponse>> Handle(GetClientByIDQuery request, CancellationToken cancellationToken)
+    public async Task<Response<GetClientByIdResponse>> Handle(GetClientByIdQuery request, CancellationToken cancellationToken)
     {
-        var clientDB = await _clientManager.GetClientsListAsync().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var clientDB = await _clientManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
 
         if (clientDB is null)
         {
-            return NotFound<GetClientByIDResponse>();
+            return NotFound<GetClientByIdResponse>();
         }
-        var clientMapper = _mapper.Map<GetClientByIDResponse>(clientDB);
+        var clientMapper = _mapper.Map<GetClientByIdResponse>(clientDB);
         return Success(clientMapper);
     }
     #endregion

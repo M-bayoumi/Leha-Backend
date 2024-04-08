@@ -33,12 +33,12 @@ public class UpdateClientCommandHandler : ResponseHandler, IRequestHandler<Updat
     #region Handle Functions
     public async Task<Response<string>> Handle(UpdateClientCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID);
+        var company = await _companyManager.GetByIdAsync(request.CompanyID);
         if (company != null)
         {
             var client = _mapper.Map<Client>(request);
 
-            if (await _clientManager.UpdateClientAsync(client))
+            if (await _clientManager.UpdateAsync(client))
                 return Created("");
             return BadRequest<string>("");
         }

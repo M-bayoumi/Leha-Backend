@@ -10,7 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.CompanyAddresses.Quaries.Handlers;
 
-public class GetCompanyAddressListByCompanyIdQueryHandler : ResponseHandler, IRequestHandler<GetCompanyAddressListByCompanyIdQuery, Response<List<GetCompanyAddressListByCompanyIDResponse>>>
+public class GetCompanyAddressListByCompanyIDQueryHandler : ResponseHandler, IRequestHandler<GetCompanyAddressListByCompanyIDQuery, Response<List<GetCompanyAddressListByCompanyIDResponse>>>
 {
     #region Fields
     private readonly ICompanyAddressManager _companyAddressManager;
@@ -18,7 +18,7 @@ public class GetCompanyAddressListByCompanyIdQueryHandler : ResponseHandler, IRe
     #endregion
 
     #region Constructors
-    public GetCompanyAddressListByCompanyIdQueryHandler(ICompanyAddressManager companyAddressManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetCompanyAddressListByCompanyIDQueryHandler(ICompanyAddressManager companyAddressManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _companyAddressManager = companyAddressManager;
         _mapper = mapper;
@@ -26,9 +26,9 @@ public class GetCompanyAddressListByCompanyIdQueryHandler : ResponseHandler, IRe
     #endregion
 
     #region Handle Functions
-    public async Task<Response<List<GetCompanyAddressListByCompanyIDResponse>>> Handle(GetCompanyAddressListByCompanyIdQuery request, CancellationToken cancellationToken)
+    public async Task<Response<List<GetCompanyAddressListByCompanyIDResponse>>> Handle(GetCompanyAddressListByCompanyIDQuery request, CancellationToken cancellationToken)
     {
-        var companyAddressListDB = _companyAddressManager.GetCompanyAddressesListByCompanyId(request.ID).Include(x => x.Company).ToList();
+        var companyAddressListDB = await _companyAddressManager.GetAllByCompanyID(request.ID).Include(x => x.Company).ToListAsync();
         if (companyAddressListDB is null)
         {
             return NotFound<List<GetCompanyAddressListByCompanyIDResponse>>();

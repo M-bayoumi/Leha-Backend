@@ -18,44 +18,44 @@ public class ClientController : AppControllerBase
 
     #region Handle Functions
 
-    [HttpGet(Router.ClientRouting.GetList)]
+    [HttpGet(Router.ClientRouting.GetAll)]
 
-    public async Task<IActionResult> GetClientList()
+    public async Task<IActionResult> GetAll()
     {
         var response = await _mediator.Send(new GetClientListQuery());
         return NewResult(response);
     }
 
-    [HttpGet(Router.ClientRouting.GetListByCompanyID)]
+    [HttpGet(Router.ClientRouting.GetAllByCompanyID)]
 
-    public async Task<IActionResult> GetClientListByCompanyID([FromRoute] GetClientListByCompanyIdQuery command)
+    public async Task<IActionResult> GetAllByCompanyID([FromRoute] GetClientListByCompanyIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
 
 
     }
-    [HttpGet(Router.ClientRouting.GetByID)]
-    public async Task<IActionResult> GetClientByID([FromRoute] GetClientByIDQuery command)
+    [HttpGet(Router.ClientRouting.GetById)]
+    public async Task<IActionResult> GetById([FromRoute] GetClientByIdQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
 
     [HttpPost(Router.ClientRouting.Add)]
-    public async Task<IActionResult> AddClient([FromBody] AddClientCommand command)
+    public async Task<IActionResult> Add([FromBody] AddClientCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpPut(Router.ClientRouting.Update)]
-    public async Task<IActionResult> UpdateClient([FromBody] UpdateClientCommand command)
+    public async Task<IActionResult> Update([FromBody] UpdateClientCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpDelete(Router.ClientRouting.Delete)]
-    public async Task<IActionResult> DeleteClient([FromRoute] DeleteClientCommand command)
+    public async Task<IActionResult> Delete([FromRoute] DeleteClientCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

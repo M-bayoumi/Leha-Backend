@@ -5,7 +5,7 @@
         public CompanyProfile()
         {
             GetCountryListMapping();
-            GetCompanyByIDMapping();
+            GetCompanyByIdMapping();
             AddCompanyCommandMapping();
             UpdateCompanyCommandMapping();
         }

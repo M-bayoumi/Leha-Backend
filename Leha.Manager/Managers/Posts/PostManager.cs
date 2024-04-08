@@ -1,7 +1,6 @@
 ﻿using Leha.Data.Entities;
 using Leha.Infrastructure.Repositories.Posts;
 using Leha.Infrastructure.UnitOfWorks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Manager.Managers.Posts;
 
@@ -23,33 +22,39 @@ public class PostManager : IPostManager
 
     #region Handle Functions
 
-    public IQueryable<Post?> GetPostsListAsync()
+    public IQueryable<Post?> GetAll()
     {
-        return _postRepository.GetTableNoTracking().AsQueryable();
+        return _postRepository.GetAll();
     }
 
-    public IQueryable<Post?> GetPostsListByCompanyId(int id)
+    public IQueryable<Post?> GetAllByCompanyID(int id)
     {
-        return _postRepository.GetPostsListByCompanyId(id).AsQueryable();
-    }
-    public async Task<Post?> GetPostByIDAsync(int id)
-    {
-        return await _postRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
+        return _postRepository.GetAllByCompanyID(id);
     }
 
-    public async Task<bool> AddPostAsync(Post pm)
+    public async Task<Post?> GetByIdAsync(int id)
     {
-        return await _postRepository.AddAsync(pm);
-    }
-    public async Task<bool> UpdatePostAsync(Post pm)
-    {
-        return await _postRepository.UpdateAsync(pm);
+        return await _postRepository.GetByIdAsync(id);
     }
 
-    public async Task<bool> DeletePostAsync(Post pm)
+    public async Task<bool> AddAsync(Post pm)
+    {
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _postRepository.AddAsync(pm);
+        return false;
+    }
+    public async Task<bool> UpdateAsync(Post pm)
+    {
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _postRepository.UpdateAsync(pm);
+        return false;
+    }
+
+    public async Task<bool> DeleteAsync(Post pm)
     {
         return await _postRepository.DeleteAsync(pm);
     }
-
     #endregion
 }

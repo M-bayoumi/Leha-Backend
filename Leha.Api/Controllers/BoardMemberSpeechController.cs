@@ -18,41 +18,44 @@ public class BoardMemberSpeechController : AppControllerBase
 
     #region Handle Functions
 
-    [HttpGet(Router.BoardMemberSpeechRouting.GetList)]
+    [HttpGet(Router.BoardMemberSpeechRouting.GetAll)]
 
-    public async Task<IActionResult> GetBoardMemberSpeechList()
+    public async Task<IActionResult> GetAll()
     {
         var response = await _mediator.Send(new GetBoardMemberSpeechListQuery());
         return NewResult(response);
     }
 
-    [HttpGet(Router.BoardMemberSpeechRouting.GetByID)]
-    public async Task<IActionResult> GetBoardMemberSpeechByID([FromRoute] GetBoardMemberSpeechByIDQuery command)
+    [HttpGet(Router.BoardMemberSpeechRouting.GetAllByBoardMemberID)]
+    public async Task<IActionResult> GetAllByBoardMemberID([FromRoute] GetBoardMemberSpeechesListByBoardMemberIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
-    [HttpGet(Router.BoardMemberSpeechRouting.GetListByBoardMemberID)]
-    public async Task<IActionResult> GetBoardMemberSpeechListByBoardMemberID([FromRoute] GetBoardMemberSpeechesListByBoardMemberIdQuery command)
+
+    [HttpGet(Router.BoardMemberSpeechRouting.GetById)]
+    public async Task<IActionResult> GetById([FromRoute] GetBoardMemberSpeechByIdQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
 
     [HttpPost(Router.BoardMemberSpeechRouting.Add)]
-    public async Task<IActionResult> AddBoardMemberSpeech([FromBody] AddBoardMemberSpeechCommand command)
+    public async Task<IActionResult> Add([FromBody] AddBoardMemberSpeechCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
+
     [HttpPut(Router.BoardMemberSpeechRouting.Update)]
-    public async Task<IActionResult> UpdateBoardMemberSpeech([FromBody] UpdateBoardMemberSpeechCommand command)
+    public async Task<IActionResult> Update([FromBody] UpdateBoardMemberSpeechCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
+
     [HttpDelete(Router.BoardMemberSpeechRouting.Delete)]
-    public async Task<IActionResult> DeleteBoardMemberSpeech([FromRoute] DeleteBoardMemberSpeachCommand command)
+    public async Task<IActionResult> Delete([FromRoute] DeleteBoardMemberSpeachCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

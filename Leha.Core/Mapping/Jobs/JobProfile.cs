@@ -5,7 +5,7 @@ public partial class JobProfile
 {
     public JobProfile()
     {
-        GetJobByIDMapping();
+        GetJobByIdMapping();
         GetJobListMapping();
         GetJobListByCompanyIDMapping();
         AddJobCommandMapping();

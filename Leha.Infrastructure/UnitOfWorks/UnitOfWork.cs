@@ -1,4 +1,4 @@
-﻿#region Fields
+﻿#region using
 using Leha.Infrastructure.Context;
 using Leha.Infrastructure.Repositories.BoardMemberSpeeches;
 using Leha.Infrastructure.Repositories.Clients;
@@ -38,7 +38,6 @@ public class UnitOfWork : IUnitOfWork
     #endregion
 
     #region Constructors
-
     public UnitOfWork(AppDbContext appDbContext,
         IBoardMemberRepository boardMemberRepository,
         IBoardMemberSpeechRepository boardMemberSpeechRepository,
@@ -71,8 +70,6 @@ public class UnitOfWork : IUnitOfWork
         ProjectPhaseRepository = projectPhaseRepository;
         ServiceRepository = serviceRepository;
     }
-
-
     #endregion
 
     #region Handle Functions
@@ -81,8 +78,4 @@ public class UnitOfWork : IUnitOfWork
         return await AppDbContext.SaveChangesAsync();
     }
     #endregion
-
-
-
-
 }

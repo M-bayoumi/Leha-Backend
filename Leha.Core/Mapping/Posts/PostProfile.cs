@@ -5,7 +5,7 @@ public partial class PostProfile
 {
     public PostProfile()
     {
-        GetPostByIDMapping();
+        GetPostByIdMapping();
         GetPostListMapping();
         GetPostListByCompanyIDMapping();
         AddPostCommandMapping();

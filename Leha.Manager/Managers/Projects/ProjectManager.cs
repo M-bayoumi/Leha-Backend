@@ -1,7 +1,6 @@
 ﻿using Leha.Data.Entities;
 using Leha.Infrastructure.Repositories.Projects;
 using Leha.Infrastructure.UnitOfWorks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Manager.Managers.Projects;
 
@@ -25,36 +24,43 @@ public class ProjectManager : IProjectManager
     #region Handle Functions
 
 
-    public IQueryable<Project?> GetProjectsListAsync()
+    public IQueryable<Project?> GetAll()
     {
-        return _projectRepository.GetTableNoTracking().AsQueryable();
+        return _projectRepository.GetAll();
     }
 
-    public IQueryable<Project?> GetProjectsListByCompanyId(int id)
+    public IQueryable<Project?> GetAllByCompanyID(int id)
     {
-        return _projectRepository.GetProjectsListByCompanyId(id).AsQueryable();
+        return _projectRepository.GetAllByCompanyID(id);
     }
 
-    public async Task<Project?> GetProjectByIDAsync(int id)
+    public async Task<Project?> GetByIdAsync(int id)
     {
-        return await _projectRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
-    }
-    public async Task<bool> AddProjectAsync(Project pm)
-    {
-        return await _projectRepository.AddAsync(pm);
+        return await _projectRepository.GetByIdAsync(id);
     }
 
-    public async Task<bool> UpdateProjectAsync(Project pm)
+    public async Task<bool> AddAsync(Project pm)
     {
-        return await _projectRepository.AddAsync(pm);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _projectRepository.AddAsync(pm);
+        return false;
     }
 
-    public async Task<bool> DeleteProjectAsync(Project pm)
+    public async Task<bool> UpdateAsync(Project pm)
+    {
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _projectRepository.UpdateAsync(pm);
+        return false;
+    }
+
+    public async Task<bool> DeleteAsync(Project pm)
     {
         var transaction = _projectRepository.BeginTransaction();
         try
         {
-            var dms = _unitOfWork.ProjectPhaseRepository.GetProjectPhasesListByProjectId(pm.ID).ToList();
+            var dms = _unitOfWork.ProjectPhaseRepository.GetAllByProjectID(pm.ID).ToList();
 
             if (dms != null)
                 await _unitOfWork.ProjectPhaseRepository.DeleteRangeAsync(dms);

@@ -28,10 +28,10 @@ public class DeleteBoardMemberCommandHandler : ResponseHandler, IRequestHandler<
 
     public async Task<Response<string>> Handle(DeleteBoardMemberCommand request, CancellationToken cancellationToken)
     {
-        var boardMember = await _boardMemberManager.GetBoardMemberByIDAsync(request.ID);
+        var boardMember = await _boardMemberManager.GetByIdAsync(request.ID);
 
         if (boardMember == null) return NotFound<string>("");
-        if (await _boardMemberManager.DeleteBoardMemberAsync(boardMember))
+        if (await _boardMemberManager.DeleteAsync(boardMember))
             return Deleted<string>("");
 
         return BadRequest<string>();

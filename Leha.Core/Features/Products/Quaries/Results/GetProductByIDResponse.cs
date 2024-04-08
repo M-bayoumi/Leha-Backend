@@ -1,6 +1,6 @@
 ﻿namespace Leha.Core.Features.Products.Quaries.Results;
 
-public class GetProductByIDResponse
+public class GetProductByIdResponse
 {
     public int ID { get; set; }
     public string ProductName { get; set; } = string.Empty;

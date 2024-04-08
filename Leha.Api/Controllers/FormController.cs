@@ -18,44 +18,44 @@ public class FormController : AppControllerBase
 
     #region Handle Functions
 
-    [HttpGet(Router.FormRouting.GetList)]
+    [HttpGet(Router.FormRouting.GetAll)]
 
-    public async Task<IActionResult> GetFormList()
+    public async Task<IActionResult> GetAll()
     {
         var response = await _mediator.Send(new GetFormListQuery());
         return NewResult(response);
     }
 
-    [HttpGet(Router.FormRouting.GetListByJobID)]
+    [HttpGet(Router.FormRouting.GetAllByJobID)]
 
-    public async Task<IActionResult> GetFormListByJobID([FromRoute] GetFormListByJobIdQuery command)
+    public async Task<IActionResult> GetAllByJobID([FromRoute] GetFormListByJobIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
 
 
     }
-    [HttpGet(Router.FormRouting.GetByID)]
-    public async Task<IActionResult> GetFormByID([FromRoute] GetFormByIDQuery command)
+    [HttpGet(Router.FormRouting.GetById)]
+    public async Task<IActionResult> GetById([FromRoute] GetFormByIdQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
 
     [HttpPost(Router.FormRouting.Add)]
-    public async Task<IActionResult> AddForm([FromBody] AddFormCommand command)
+    public async Task<IActionResult> Add([FromBody] AddFormCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpPut(Router.FormRouting.Update)]
-    public async Task<IActionResult> UpdateForm([FromBody] UpdateFormCommand command)
+    public async Task<IActionResult> Update([FromBody] UpdateFormCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpDelete(Router.FormRouting.Delete)]
-    public async Task<IActionResult> DeleteForm([FromRoute] DeleteFormCommand command)
+    public async Task<IActionResult> Delete([FromRoute] DeleteFormCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

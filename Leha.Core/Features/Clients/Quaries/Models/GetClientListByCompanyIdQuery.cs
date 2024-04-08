@@ -4,15 +4,15 @@ using MediatR;
 
 namespace Leha.Core.Features.Clients.Quaries.Models;
 
-public class GetClientListByCompanyIdQuery : IRequest<Response<List<GetClientListByCompanyIDResponse>>>
+public class GetClientListByCompanyIDQuery : IRequest<Response<List<GetClientListByCompanyIDResponse>>>
 {
     public int ID { get; set; }
 
-    public GetClientListByCompanyIdQuery(int companyID)
+    public GetClientListByCompanyIDQuery(int companyID)
     {
         ID = companyID;
     }
-    public GetClientListByCompanyIdQuery()
+    public GetClientListByCompanyIDQuery()
     {
     }
 }

@@ -5,7 +5,7 @@ public partial class ProjectPhaseProfile
 {
     public ProjectPhaseProfile()
     {
-        GetProjectPhaseByIDMapping();
+        GetProjectPhaseByIdMapping();
         GetProjectPhaseListMapping();
         GetProjectPhaseListByCompanyIDMapping();
         AddProjectPhaseCommandMapping();

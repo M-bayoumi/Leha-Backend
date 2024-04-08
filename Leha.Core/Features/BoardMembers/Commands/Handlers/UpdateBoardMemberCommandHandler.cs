@@ -28,13 +28,13 @@ public class UpdateBoardMemberCommandHandler : ResponseHandler, IRequestHandler<
     #region Handle Functions
     public async Task<Response<string>> Handle(UpdateBoardMemberCommand request, CancellationToken cancellationToken)
     {
-        var boardMember = await _boardMemberManager.GetBoardMemberByIDAsync(request.ID);
+        var boardMember = await _boardMemberManager.GetByIdAsync(request.ID);
 
         if (boardMember == null) return NotFound<string>("");
 
         boardMember = _mapper.Map<BoardMember>(request);
 
-        if (await _boardMemberManager.UpdateBoardMemberAsync(boardMember))
+        if (await _boardMemberManager.UpdateAsync(boardMember))
             return Created("");
 
         return BadRequest<string>("");

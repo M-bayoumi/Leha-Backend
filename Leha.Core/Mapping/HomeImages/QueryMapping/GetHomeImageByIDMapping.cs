@@ -6,9 +6,9 @@ namespace Leha.Core.Mapping.HomeImages;
 
 public partial class HomeImageProfile : Profile
 {
-    public void GetHomeImageByIDMapping()
+    public void GetHomeImageByIdMapping()
     {
-        CreateMap<HomeImage, GetHomeImageByIDResponse>()
+        CreateMap<HomeImage, GetHomeImageByIdResponse>()
              .ForMember(dist => dist.CompanyName, opt => opt.MapFrom(src => src.Company.CompanyName))
              .ForMember(dist => dist.CompanyEmployees, opt => opt.MapFrom(src => src.Company.CompanyEmployees))
              .ForMember(dist => dist.CompanyImage, opt => opt.MapFrom(src => src.Company.CompanyImage))

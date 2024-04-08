@@ -4,15 +4,15 @@ using MediatR;
 
 namespace Leha.Core.Features.Services.Quaries.Models;
 
-public class GetServiceByIDQuery : IRequest<Response<GetServiceByIDResponse>>
+public class GetServiceByIdQuery : IRequest<Response<GetServiceByIdResponse>>
 {
     public int ID { get; set; }
 
-    public GetServiceByIDQuery(int serviceID)
+    public GetServiceByIdQuery(int serviceID)
     {
         ID = serviceID;
     }
-    public GetServiceByIDQuery()
+    public GetServiceByIdQuery()
     {
     }
 }

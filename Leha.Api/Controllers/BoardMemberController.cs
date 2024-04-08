@@ -18,35 +18,34 @@ public class BoardMemberController : AppControllerBase
 
     #region Handle Functions
 
-    [HttpGet(Router.BoardMemberRouting.GetList)]
-
-    public async Task<IActionResult> GetBoardMemberList()
+    [HttpGet(Router.BoardMemberRouting.GetAll)]
+    public async Task<IActionResult> GetAll()
     {
         var response = await _mediator.Send(new GetBoardMemberListQuery());
         return NewResult(response);
     }
 
-    [HttpGet(Router.BoardMemberRouting.GetByID)]
-    public async Task<IActionResult> GetBoardMemberByID([FromRoute] GetBoardMemberByIDQuery command)
+    [HttpGet(Router.BoardMemberRouting.GetById)]
+    public async Task<IActionResult> GetById([FromRoute] GetBoardMemberByIdQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
 
     [HttpPost(Router.BoardMemberRouting.Add)]
-    public async Task<IActionResult> AddBoardMember([FromBody] AddBoardMemberCommand command)
+    public async Task<IActionResult> Add([FromBody] AddBoardMemberCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpPut(Router.BoardMemberRouting.Update)]
-    public async Task<IActionResult> UpdateBoardMember([FromBody] UpdateBoardMemberCommand command)
+    public async Task<IActionResult> Update([FromBody] UpdateBoardMemberCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpDelete(Router.BoardMemberRouting.Delete)]
-    public async Task<IActionResult> DeleteBoardMember([FromRoute] DeleteBoardMemberCommand command)
+    public async Task<IActionResult> Delete([FromRoute] DeleteBoardMemberCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

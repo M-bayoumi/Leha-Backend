@@ -11,7 +11,7 @@ using Microsoft.Extensions.Localization;
 namespace Leha.Core.Features.Forms.Quaries.Handlers;
 
 
-public class GetFormByIDQueryHandler : ResponseHandler, IRequestHandler<GetFormByIDQuery, Response<GetFormByIDResponse>>
+public class GetFormByIdQueryHandler : ResponseHandler, IRequestHandler<GetFormByIdQuery, Response<GetFormByIdResponse>>
 {
     #region Fields
     private readonly IFormManager _formManager;
@@ -19,7 +19,7 @@ public class GetFormByIDQueryHandler : ResponseHandler, IRequestHandler<GetFormB
     #endregion
 
     #region Constructors
-    public GetFormByIDQueryHandler(IFormManager formManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetFormByIdQueryHandler(IFormManager formManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _formManager = formManager;
         _mapper = mapper;
@@ -27,15 +27,15 @@ public class GetFormByIDQueryHandler : ResponseHandler, IRequestHandler<GetFormB
     #endregion
 
     #region Handle Functions
-    public async Task<Response<GetFormByIDResponse>> Handle(GetFormByIDQuery request, CancellationToken cancellationToken)
+    public async Task<Response<GetFormByIdResponse>> Handle(GetFormByIdQuery request, CancellationToken cancellationToken)
     {
-        var formDB = await _formManager.GetFormsListAsync().Include(x => x.Job).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var formDB = await _formManager.GetAll().Include(x => x.Job).FirstOrDefaultAsync(x => x.ID == request.ID);
 
         if (formDB is null)
         {
-            return NotFound<GetFormByIDResponse>();
+            return NotFound<GetFormByIdResponse>();
         }
-        var formMapper = _mapper.Map<GetFormByIDResponse>(formDB);
+        var formMapper = _mapper.Map<GetFormByIdResponse>(formDB);
         return Success(formMapper);
     }
     #endregion

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Localization;
 namespace Leha.Core.Features.Projects.Quaries.Handlers;
 
 
-public class GetProjectByIDQueryHandler : ResponseHandler, IRequestHandler<GetProjectByIDQuery, Response<GetProjectByIDResponse>>
+public class GetProjectByIdQueryHandler : ResponseHandler, IRequestHandler<GetProjectByIdQuery, Response<GetProjectByIdResponse>>
 {
     #region Fields
     private readonly IProjectManager _projectManager;
@@ -19,7 +19,7 @@ public class GetProjectByIDQueryHandler : ResponseHandler, IRequestHandler<GetPr
     #endregion
 
     #region Constructors
-    public GetProjectByIDQueryHandler(IProjectManager projectManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetProjectByIdQueryHandler(IProjectManager projectManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _projectManager = projectManager;
         _mapper = mapper;
@@ -27,15 +27,15 @@ public class GetProjectByIDQueryHandler : ResponseHandler, IRequestHandler<GetPr
     #endregion
 
     #region Handle Functions
-    public async Task<Response<GetProjectByIDResponse>> Handle(GetProjectByIDQuery request, CancellationToken cancellationToken)
+    public async Task<Response<GetProjectByIdResponse>> Handle(GetProjectByIdQuery request, CancellationToken cancellationToken)
     {
-        var projectDB = await _projectManager.GetProjectsListAsync().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var projectDB = await _projectManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
 
         if (projectDB is null)
         {
-            return NotFound<GetProjectByIDResponse>();
+            return NotFound<GetProjectByIdResponse>();
         }
-        var projectMapper = _mapper.Map<GetProjectByIDResponse>(projectDB);
+        var projectMapper = _mapper.Map<GetProjectByIdResponse>(projectDB);
         return Success(projectMapper);
     }
     #endregion

@@ -3,11 +3,11 @@
 namespace Leha.Manager.Managers.Companies;
 public interface ICompanyManager
 {
-    public IQueryable<Company?> GetCompaniesListAsync();
-    public Task<Company?> GetCompanyByIDAsync(int id);
-    public Task<bool> AddCompanyAsync(Company pm);
-    public Task<bool> UpdateCompanyAsync(Company pm);
-    public Task<bool> DeleteCompanyAsync(Company pm);
+    public IQueryable<Company?> GetAll();
+    public Task<Company?> GetByIdAsync(int id);
+    public Task<bool> AddAsync(Company pm);
+    public Task<bool> UpdateAsync(Company pm);
+    public Task<bool> DeleteAsync(Company pm);
     public Task<bool> IsNameExist(string name);
     public Task<bool> IsNameExistExludeSelf(string name, int id);
 }

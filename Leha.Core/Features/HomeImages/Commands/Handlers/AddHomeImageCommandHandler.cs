@@ -35,12 +35,12 @@ public class AddHomeImageCommandHandler : ResponseHandler, IRequestHandler<AddHo
     #region Handle Functions
     public async Task<Response<string>> Handle(AddHomeImageCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID);
+        var company = await _companyManager.GetByIdAsync(request.CompanyID);
         if (company != null)
         {
             var homeImage = _mapper.Map<HomeImage>(request);
 
-            if (await _homeImageManager.AddHomeImageAsync(homeImage))
+            if (await _homeImageManager.AddAsync(homeImage))
                 return Created("");
             return BadRequest<string>("");
         }

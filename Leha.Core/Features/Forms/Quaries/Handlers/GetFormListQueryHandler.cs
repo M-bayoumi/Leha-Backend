@@ -28,7 +28,7 @@ public class GetFormListQueryHandler : ResponseHandler, IRequestHandler<GetFormL
     #region Handle Functions
     public async Task<Response<List<GetFormListResponse>>> Handle(GetFormListQuery request, CancellationToken cancellationToken)
     {
-        var formListDB = await _formManager.GetFormsListAsync().Include(x => x.Job).ToListAsync();
+        var formListDB = await _formManager.GetAll().Include(x => x.Job).ToListAsync();
         if (formListDB is null)
         {
             return NotFound<List<GetFormListResponse>>();

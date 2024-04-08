@@ -10,7 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Jobs.Quaries.Handlers;
 
-public class GetJobListByCompanyIdQueryHandler : ResponseHandler, IRequestHandler<GetJobListByCompanyIdQuery, Response<List<GetJobListByCompanyIDResponse>>>
+public class GetJobListByCompanyIDQueryHandler : ResponseHandler, IRequestHandler<GetJobListByCompanyIDQuery, Response<List<GetJobListByCompanyIDResponse>>>
 {
     #region Fields
     private readonly IJobManager _jobManager;
@@ -18,7 +18,7 @@ public class GetJobListByCompanyIdQueryHandler : ResponseHandler, IRequestHandle
     #endregion
 
     #region Constructors
-    public GetJobListByCompanyIdQueryHandler(IJobManager jobManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetJobListByCompanyIDQueryHandler(IJobManager jobManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _jobManager = jobManager;
         _mapper = mapper;
@@ -26,9 +26,9 @@ public class GetJobListByCompanyIdQueryHandler : ResponseHandler, IRequestHandle
     #endregion
 
     #region Handle Functions
-    public async Task<Response<List<GetJobListByCompanyIDResponse>>> Handle(GetJobListByCompanyIdQuery request, CancellationToken cancellationToken)
+    public async Task<Response<List<GetJobListByCompanyIDResponse>>> Handle(GetJobListByCompanyIDQuery request, CancellationToken cancellationToken)
     {
-        var jobListDB = await _jobManager.GetJobsListByCompanyId(request.ID).Include(x => x.Company).ToListAsync();
+        var jobListDB = await _jobManager.GetAllByCompanyID(request.ID).Include(x => x.Company).ToListAsync();
         if (jobListDB is null)
         {
             return NotFound<List<GetJobListByCompanyIDResponse>>();

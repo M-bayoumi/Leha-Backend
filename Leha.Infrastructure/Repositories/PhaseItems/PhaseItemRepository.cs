@@ -18,13 +18,14 @@ public class PhaseItemRepository : GenericRepository<PhaseItem>, IPhaseItemRepos
 
         _phaseItems = appDbContext.Set<PhaseItem>();
     }
-
     #endregion
 
     #region Handle Functions
-    public IQueryable<PhaseItem?> GetPhaseItemsListByProjectPhaseId(int id)
+    public IQueryable<PhaseItem?> GetAllByProjectPhaseID(int id)
     {
-        return _phaseItems.Where(x => x.ProjectPhaseID == id).AsNoTracking().AsQueryable();
+        return _phaseItems.Where(x => x.ProjectPhaseID == id)
+            .AsNoTracking()
+            .AsQueryable();
     }
     #endregion
 }

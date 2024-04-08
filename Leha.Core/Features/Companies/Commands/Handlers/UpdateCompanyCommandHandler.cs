@@ -28,10 +28,10 @@ public class UpdateCompanyCommandHandler : ResponseHandler, IRequestHandler<Upda
     #region Handle Functions
     public async Task<Response<string>> Handle(UpdateCompanyCommand request, CancellationToken cancellationToken)
     {
-        var companyDB = await _companyManager.GetCompanyByIDAsync(request.ID);
+        var companyDB = await _companyManager.GetByIdAsync(request.ID);
         if (companyDB == null) return NotFound<string>("");
         var company = _mapper.Map<Company>(request);
-        if (await _companyManager.UpdateCompanyAsync(company))
+        if (await _companyManager.UpdateAsync(company))
             return Created("");
         return BadRequest<string>("");
     }

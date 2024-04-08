@@ -1,7 +1,6 @@
 ﻿using Leha.Data.Entities;
 using Leha.Infrastructure.Repositories.Services;
 using Leha.Infrastructure.UnitOfWorks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Manager.Managers.BoardMembers;
 
@@ -18,44 +17,37 @@ public class BoardMemberManager : IBoardMemberManager
         _unitOfWork = unitOfWork;
         _boardMemberRepository = unitOfWork.BoardMemberRepository;
     }
-
     #endregion
 
     #region Handle Functions
-
-    public IQueryable<BoardMember?> GetBoardMembersListAsync()
+    public IQueryable<BoardMember?> GetAll()
     {
-        return _boardMemberRepository.GetTableNoTracking();
+        return _boardMemberRepository.GetAll();
     }
-
-    public async Task<BoardMember?> GetBoardMemberByIDAsync(int id)
+    public async Task<BoardMember?> GetByIdAsync(int id)
     {
-        return await _boardMemberRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x!.ID == id);
+        return await _boardMemberRepository.GetByIdAsync(id);
     }
-    public Task<bool> AddBoardMemberAsync(BoardMember pm)
+    public Task<bool> AddAsync(BoardMember pm)
     {
         return _boardMemberRepository.AddAsync(pm);
     }
-
-    public Task<bool> UpdateBoardMemberAsync(BoardMember pm)
+    public Task<bool> UpdateAsync(BoardMember pm)
     {
         return _boardMemberRepository.UpdateAsync(pm);
     }
-    public async Task<bool> DeleteBoardMemberAsync(BoardMember pm)
+    public async Task<bool> DeleteAsync(BoardMember pm)
     {
-
         var transaction = _boardMemberRepository.BeginTransaction();
         try
         {
-            var dms = _unitOfWork.BoardMemberSpeechRepository.GetBoardMemberSpeechesListByBoardMemberId(pm.ID).ToList();
+            var dms = _unitOfWork.BoardMemberSpeechRepository.GetAllByBoardMemberID(pm.ID).ToList();
 
             if (dms != null)
                 await _unitOfWork.BoardMemberSpeechRepository.DeleteRangeAsync(dms);
 
             await _boardMemberRepository.DeleteAsync(pm);
-
             await transaction.CommitAsync();
-
             return true;
         }
         catch

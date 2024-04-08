@@ -27,9 +27,9 @@ public class DeletePhaseItemCommandHandler : ResponseHandler, IRequestHandler<De
     #region Handle Functions
     public async Task<Response<string>> Handle(DeletePhaseItemCommand request, CancellationToken cancellationToken)
     {
-        var phaseItem = await _phaseItemManager.GetPhaseItemByIDAsync(request.ID);
+        var phaseItem = await _phaseItemManager.GetByIdAsync(request.ID);
         if (phaseItem == null) return NotFound<string>("");
-        if (await _phaseItemManager.DeletePhaseItemAsync(phaseItem))
+        if (await _phaseItemManager.DeleteAsync(phaseItem))
             return Deleted<string>("");
         return BadRequest<string>();
     }

@@ -10,7 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Services.Quaries.Handlers;
 
-public class GetServiceListByCompanyIdQueryHandler : ResponseHandler, IRequestHandler<GetServiceListByCompanyIdQuery, Response<List<GetServiceListByCompanyIDResponse>>>
+public class GetServiceListByCompanyIDQueryHandler : ResponseHandler, IRequestHandler<GetServiceListByCompanyIDQuery, Response<List<GetServiceListByCompanyIDResponse>>>
 {
     #region Fields
     private readonly IServiceManager _serviceManager;
@@ -18,7 +18,7 @@ public class GetServiceListByCompanyIdQueryHandler : ResponseHandler, IRequestHa
     #endregion
 
     #region Constructors
-    public GetServiceListByCompanyIdQueryHandler(IServiceManager serviceManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetServiceListByCompanyIDQueryHandler(IServiceManager serviceManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _serviceManager = serviceManager;
         _mapper = mapper;
@@ -26,9 +26,9 @@ public class GetServiceListByCompanyIdQueryHandler : ResponseHandler, IRequestHa
     #endregion
 
     #region Handle Functions
-    public async Task<Response<List<GetServiceListByCompanyIDResponse>>> Handle(GetServiceListByCompanyIdQuery request, CancellationToken cancellationToken)
+    public async Task<Response<List<GetServiceListByCompanyIDResponse>>> Handle(GetServiceListByCompanyIDQuery request, CancellationToken cancellationToken)
     {
-        var serviceListDB = await _serviceManager.GetServicesListByCompanyId(request.ID).Include(x => x.Company).ToListAsync();
+        var serviceListDB = await _serviceManager.GetAllByCompanyID(request.ID).Include(x => x.Company).ToListAsync();
         if (serviceListDB is null)
         {
             return NotFound<List<GetServiceListByCompanyIDResponse>>();

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Localization;
 namespace Leha.Core.Features.PhaseItems.Quaries.Handlers;
 
 
-public class GetPhaseItemByIDQueryHandler : ResponseHandler, IRequestHandler<GetPhaseItemByIDQuery, Response<GetPhaseItemByIDResponse>>
+public class GetPhaseItemByIdQueryHandler : ResponseHandler, IRequestHandler<GetPhaseItemByIdQuery, Response<GetPhaseItemByIdResponse>>
 {
     #region Fields
     private readonly IPhaseItemManager _phaseItemManager;
@@ -19,7 +19,7 @@ public class GetPhaseItemByIDQueryHandler : ResponseHandler, IRequestHandler<Get
     #endregion
 
     #region Constructors
-    public GetPhaseItemByIDQueryHandler(IPhaseItemManager phaseItemManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetPhaseItemByIdQueryHandler(IPhaseItemManager phaseItemManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _phaseItemManager = phaseItemManager;
         _mapper = mapper;
@@ -27,15 +27,15 @@ public class GetPhaseItemByIDQueryHandler : ResponseHandler, IRequestHandler<Get
     #endregion
 
     #region Handle Functions
-    public async Task<Response<GetPhaseItemByIDResponse>> Handle(GetPhaseItemByIDQuery request, CancellationToken cancellationToken)
+    public async Task<Response<GetPhaseItemByIdResponse>> Handle(GetPhaseItemByIdQuery request, CancellationToken cancellationToken)
     {
-        var phaseItemDB = await _phaseItemManager.GetPhaseItemsListAsync().Include(x => x.ProjectPhase).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var phaseItemDB = await _phaseItemManager.GetAll().Include(x => x.ProjectPhase).FirstOrDefaultAsync(x => x.ID == request.ID);
 
         if (phaseItemDB is null)
         {
-            return NotFound<GetPhaseItemByIDResponse>();
+            return NotFound<GetPhaseItemByIdResponse>();
         }
-        var phaseItemMapper = _mapper.Map<GetPhaseItemByIDResponse>(phaseItemDB);
+        var phaseItemMapper = _mapper.Map<GetPhaseItemByIdResponse>(phaseItemDB);
         return Success(phaseItemMapper);
     }
     #endregion

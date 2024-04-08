@@ -4,15 +4,15 @@ using MediatR;
 
 namespace Leha.Core.Features.Forms.Quaries.Models;
 
-public class GetFormByIDQuery : IRequest<Response<GetFormByIDResponse>>
+public class GetFormByIdQuery : IRequest<Response<GetFormByIdResponse>>
 {
     public int ID { get; set; }
 
-    public GetFormByIDQuery(int formID)
+    public GetFormByIdQuery(int formID)
     {
         ID = formID;
     }
-    public GetFormByIDQuery()
+    public GetFormByIdQuery()
     {
     }
 }

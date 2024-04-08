@@ -1,7 +1,6 @@
 ﻿using Leha.Data.Entities;
 using Leha.Infrastructure.Repositories.Jobs;
 using Leha.Infrastructure.UnitOfWorks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Manager.Managers.Jobs;
 
@@ -24,32 +23,43 @@ public class JobManager : IJobManager
 
     #region Handle Functions
 
-    public IQueryable<Job?> GetJobsListAsync()
+    public IQueryable<Job?> GetAll()
     {
-        return _jobRepository.GetTableNoTracking().AsQueryable();
+        return _jobRepository.GetAll();
     }
-    public IQueryable<Job?> GetJobsListByCompanyId(int id)
+
+    public IQueryable<Job?> GetAllByCompanyID(int id)
     {
-        return _jobRepository.GetJobsListByCompanyId(id).AsQueryable();
+        return _jobRepository.GetAllByCompanyID(id);
     }
-    public async Task<Job?> GetJobByIDAsync(int id)
+
+    public async Task<Job?> GetByIdAsync(int id)
     {
-        return await _jobRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
+        return await _jobRepository.GetByIdAsync(id);
     }
-    public async Task<bool> AddJobAsync(Job pm)
+
+    public async Task<bool> AddAsync(Job pm)
     {
-        return await _jobRepository.AddAsync(pm);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _jobRepository.AddAsync(pm);
+        return false;
     }
-    public async Task<bool> UpdateJobAsync(Job pm)
+
+    public async Task<bool> UpdateAsync(Job pm)
     {
-        return await _jobRepository.UpdateAsync(pm);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _jobRepository.UpdateAsync(pm);
+        return false;
     }
-    public async Task<bool> DeleteJobAsync(Job pm)
+
+    public async Task<bool> DeleteAsync(Job pm)
     {
         var transaction = _jobRepository.BeginTransaction();
         try
         {
-            var dms = _unitOfWork.FormRepository.GetFormsListByJobId(pm.ID).ToList();
+            var dms = _unitOfWork.FormRepository.GetAllByJobID(pm.ID).ToList();
 
             if (dms != null)
                 await _unitOfWork.FormRepository.DeleteRangeAsync(dms);

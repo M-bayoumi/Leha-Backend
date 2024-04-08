@@ -18,44 +18,44 @@ public class ProjectPhaseController : AppControllerBase
 
     #region Handle Functions
 
-    [HttpGet(Router.ProjectPhaseRouting.GetList)]
+    [HttpGet(Router.ProjectPhaseRouting.GetAll)]
 
-    public async Task<IActionResult> GetProjectPhaseList()
+    public async Task<IActionResult> GetAll()
     {
         var response = await _mediator.Send(new GetProjectPhaseListQuery());
         return NewResult(response);
     }
 
-    [HttpGet(Router.ProjectPhaseRouting.GetListByProjectID)]
+    [HttpGet(Router.ProjectPhaseRouting.GetAllByProjectID)]
 
-    public async Task<IActionResult> GetProjectPhaseListByCompanyID([FromRoute] GetProjectPhaseListByProjectIdQuery command)
+    public async Task<IActionResult> GetAllByProjectID([FromRoute] GetProjectPhaseListByProjectIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
 
 
     }
-    [HttpGet(Router.ProjectPhaseRouting.GetByID)]
-    public async Task<IActionResult> GetProjectPhaseByID([FromRoute] GetProjectPhaseByIDQuery command)
+    [HttpGet(Router.ProjectPhaseRouting.GetById)]
+    public async Task<IActionResult> GetById([FromRoute] GetProjectPhaseByIdQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
 
     [HttpPost(Router.ProjectPhaseRouting.Add)]
-    public async Task<IActionResult> AddProjectPhase([FromBody] AddProjectPhaseCommand command)
+    public async Task<IActionResult> Add([FromBody] AddProjectPhaseCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpPut(Router.ProjectPhaseRouting.Update)]
-    public async Task<IActionResult> UpdateProjectPhase([FromBody] UpdateProjectPhaseCommand command)
+    public async Task<IActionResult> Update([FromBody] UpdateProjectPhaseCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpDelete(Router.ProjectPhaseRouting.Delete)]
-    public async Task<IActionResult> DeleteProjectPhase([FromRoute] DeleteProjectPhaseCommand command)
+    public async Task<IActionResult> Delete([FromRoute] DeleteProjectPhaseCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Localization;
 namespace Leha.Core.Features.HomeImages.Quaries.Handlers;
 
 
-public class GetHomeImageByIDQueryHandler : ResponseHandler, IRequestHandler<GetHomeImageByIDQuery, Response<GetHomeImageByIDResponse>>
+public class GetHomeImageByIdQueryHandler : ResponseHandler, IRequestHandler<GetHomeImageByIdQuery, Response<GetHomeImageByIdResponse>>
 {
     #region Fields
     private readonly IHomeImageManager _homeImageManager;
@@ -19,7 +19,7 @@ public class GetHomeImageByIDQueryHandler : ResponseHandler, IRequestHandler<Get
     #endregion
 
     #region Constructors
-    public GetHomeImageByIDQueryHandler(IHomeImageManager homeImageManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetHomeImageByIdQueryHandler(IHomeImageManager homeImageManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _homeImageManager = homeImageManager;
         _mapper = mapper;
@@ -27,15 +27,15 @@ public class GetHomeImageByIDQueryHandler : ResponseHandler, IRequestHandler<Get
     #endregion
 
     #region Handle Functions
-    public async Task<Response<GetHomeImageByIDResponse>> Handle(GetHomeImageByIDQuery request, CancellationToken cancellationToken)
+    public async Task<Response<GetHomeImageByIdResponse>> Handle(GetHomeImageByIdQuery request, CancellationToken cancellationToken)
     {
-        var homeImageDB = await _homeImageManager.GetHomeImagesListAsync().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var homeImageDB = await _homeImageManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
 
         if (homeImageDB is null)
         {
-            return NotFound<GetHomeImageByIDResponse>();
+            return NotFound<GetHomeImageByIdResponse>();
         }
-        var homeImageMapper = _mapper.Map<GetHomeImageByIDResponse>(homeImageDB);
+        var homeImageMapper = _mapper.Map<GetHomeImageByIdResponse>(homeImageDB);
         return Success(homeImageMapper);
     }
     #endregion

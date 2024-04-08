@@ -27,10 +27,10 @@ public class DeleteBoardMemberSpeachCommandHandler : ResponseHandler, IRequestHa
     #region Handle Functions
     public async Task<Response<string>> Handle(DeleteBoardMemberSpeachCommand request, CancellationToken cancellationToken)
     {
-        var boardMemberSpeech = await _boardMemberSpeachManager.GetBoardMemberSpeechByIDAsync(request.ID);
-        if (boardMemberSpeech == null) return NotFound<string>("BoardMember not found");
-        if (await _boardMemberSpeachManager.DeleteBoardMemberSpeechAsync(boardMemberSpeech))
-            return Deleted<string>("Deleted Successfully");
+        var boardMemberSpeech = await _boardMemberSpeachManager.GetByIdAsync(request.ID);
+        if (boardMemberSpeech == null) return NotFound<string>("");
+        if (await _boardMemberSpeachManager.DeleteAsync(boardMemberSpeech))
+            return Deleted<string>("");
         return BadRequest<string>();
     }
 

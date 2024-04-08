@@ -20,25 +20,26 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     #region Handle Functions
     public IQueryable<T?> GetAll()
     {
-        return _dbContext.Set<T>().AsNoTracking().AsQueryable();
+        return _dbContext.Set<T>()
+            .AsNoTracking()
+            .AsQueryable();
     }
     public IQueryable<T?> GetAllAsTracking()
     {
-        return _dbContext.Set<T>().AsQueryable();
+        return _dbContext.Set<T>()
+            .AsQueryable();
     }
-
     public virtual async Task<T?> GetByIdAsync(int id)
-    {
-        return await _dbContext.Set<T>().FindAsync(id);
-    }
-    public virtual async Task<T?> GetById(int id)
     {
         var dm = await _dbContext.Set<T>().FindAsync(id);
         if (dm != null)
             _dbContext.Entry(dm).State = EntityState.Detached;
         return dm;
     }
-
+    public virtual async Task<T?> GetByIdAsTrackingAsync(int id)
+    {
+        return await _dbContext.Set<T>().FindAsync(id);
+    }
     public virtual async Task<bool> AddAsync(T pm)
     {
         await _dbContext.Set<T>().AddAsync(pm);

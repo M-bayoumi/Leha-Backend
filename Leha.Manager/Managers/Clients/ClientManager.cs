@@ -1,7 +1,6 @@
 ﻿using Leha.Data.Entities;
 using Leha.Infrastructure.Repositories.Clients;
 using Leha.Infrastructure.UnitOfWorks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Manager.Managers.Clients;
 
@@ -21,38 +20,40 @@ public class ClientManager : IClientManager
     #endregion
 
     #region Handle Functions
-
-    public IQueryable<Client?> GetClientsListAsync()
+    public IQueryable<Client?> GetAll()
     {
-        return _clientRepository.GetTableNoTracking().AsQueryable();
-
+        return _clientRepository.GetAll();
     }
 
-
-    public IQueryable<Client?> GetClientsListByCompanyId(int id)
+    public IQueryable<Client?> GetAllByCompanyID(int id)
     {
-        return _clientRepository.GetClientsListByCompanyId(id).AsQueryable();
-
+        return _clientRepository.GetAllByCompanyID(id);
     }
 
-    public async Task<Client?> GetClientByIDAsync(int id)
+    public async Task<Client?> GetByIdAsync(int id)
     {
-        return await _clientRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
+        return await _clientRepository.GetByIdAsync(id);
     }
 
-    public async Task<bool> AddClientAsync(Client pm)
-    { // check if company is exist
-        return await _clientRepository.AddAsync(pm);
-    }
-
-    public async Task<bool> UpdateClientAsync(Client pm)
+    public async Task<bool> AddAsync(Client pm)
     {
-        return await _clientRepository.UpdateAsync(pm);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _clientRepository.AddAsync(pm);
+        return false;
     }
-    public async Task<bool> DeleteClientAsync(Client pm)
+
+    public async Task<bool> UpdateAsync(Client pm)
+    {
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _clientRepository.UpdateAsync(pm);
+        return false;
+    }
+
+    public async Task<bool> DeleteAsync(Client pm)
     {
         return await _clientRepository.DeleteAsync(pm);
     }
-
     #endregion
 }

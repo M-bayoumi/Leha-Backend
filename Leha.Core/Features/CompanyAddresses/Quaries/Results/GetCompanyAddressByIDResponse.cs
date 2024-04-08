@@ -1,6 +1,6 @@
 ﻿namespace Leha.Core.Features.CompanyAddresses.Quaries.Results;
 
-public class GetCompanyAddressByIDResponse
+public class GetCompanyAddressByIdResponse
 {
     public int ID { get; set; }
     public string Address { get; set; } = string.Empty;

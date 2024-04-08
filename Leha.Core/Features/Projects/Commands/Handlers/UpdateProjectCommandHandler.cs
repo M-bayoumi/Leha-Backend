@@ -33,12 +33,12 @@ public class UpdateProjectCommandHandler : ResponseHandler, IRequestHandler<Upda
     #region Handle Functions
     public async Task<Response<string>> Handle(UpdateProjectCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID);
+        var company = await _companyManager.GetByIdAsync(request.CompanyID);
         if (company != null)
         {
             var project = _mapper.Map<Project>(request);
 
-            if (await _projectManager.UpdateProjectAsync(project))
+            if (await _projectManager.UpdateAsync(project))
                 return Created("");
             return BadRequest<string>("");
         }

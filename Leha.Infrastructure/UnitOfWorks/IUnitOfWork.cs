@@ -1,4 +1,4 @@
-﻿#region Fields
+﻿#region using
 using Leha.Infrastructure.Repositories.BoardMemberSpeeches;
 using Leha.Infrastructure.Repositories.Clients;
 using Leha.Infrastructure.Repositories.Companies;
@@ -32,7 +32,6 @@ public interface IUnitOfWork
     public IProjectRepository ProjectRepository { get; }
     public IProjectPhaseRepository ProjectPhaseRepository { get; }
     public IServiceRepository ServiceRepository { get; }
-
 
     Task<int> SaveChangesAsync();
 }

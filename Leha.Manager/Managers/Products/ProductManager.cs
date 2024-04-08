@@ -1,7 +1,6 @@
 ﻿using Leha.Data.Entities;
 using Leha.Infrastructure.Repositories.Products;
 using Leha.Infrastructure.UnitOfWorks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Manager.Managers.Products;
 
@@ -21,34 +20,41 @@ public class ProductManager : IProductManager
     #endregion
 
     #region Handle Functions   
-    public IQueryable<Product?> GetProductsListAsync()
+    public IQueryable<Product?> GetAll()
     {
-        return _productRepository.GetTableNoTracking().AsQueryable();
+        return _productRepository.GetAll();
     }
 
-    public IQueryable<Product?> GetProductsListByCompanyId(int id)
+    public IQueryable<Product?> GetAllByCompanyID(int id)
     {
-        return _productRepository.GetProductsListByCompanyId(id).AsQueryable();
-    }
-    public async Task<Product?> GetProductByIDAsync(int id)
-    {
-        return await _productRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
+        return _productRepository.GetAllByCompanyID(id);
     }
 
-    public async Task<bool> AddProductAsync(Product pm)
+    public async Task<Product?> GetByIdAsync(int id)
     {
-        return await _productRepository.AddAsync(pm);
-    }
-    public async Task<bool> UpdateProductAsync(Product pm)
-    {
-        return await _productRepository.UpdateAsync(pm);
+        return await _productRepository.GetByIdAsync(id);
     }
 
-    public async Task<bool> DeleteProductAsync(Product pm)
+    public async Task<bool> AddAsync(Product pm)
+    {
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _productRepository.AddAsync(pm);
+        return false;
+    }
+
+    public async Task<bool> UpdateAsync(Product pm)
+    {
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _productRepository.UpdateAsync(pm);
+        return false;
+    }
+
+    public async Task<bool> DeleteAsync(Product pm)
     {
         return await _productRepository.DeleteAsync(pm);
     }
-
     #endregion
 }
 

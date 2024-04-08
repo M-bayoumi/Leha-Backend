@@ -6,9 +6,9 @@ namespace Leha.Core.Mapping.Clients;
 
 public partial class ClientProfile : Profile
 {
-    public void GetClientByIDMapping()
+    public void GetClientByIdMapping()
     {
-        CreateMap<Client, GetClientByIDResponse>()
+        CreateMap<Client, GetClientByIdResponse>()
              .ForMember(dist => dist.CompanyName, opt => opt.MapFrom(src => src.Company.CompanyName))
              .ForMember(dist => dist.CompanyEmployees, opt => opt.MapFrom(src => src.Company.CompanyEmployees))
              .ForMember(dist => dist.CompanyImage, opt => opt.MapFrom(src => src.Company.CompanyImage))

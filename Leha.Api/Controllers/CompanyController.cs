@@ -18,35 +18,35 @@ public class CompanyController : AppControllerBase
 
     #region Handle Functions
 
-    [HttpGet(Router.CompanyRouting.GetList)]
+    [HttpGet(Router.CompanyRouting.GetAll)]
 
-    public async Task<IActionResult> GetCompanyList()
+    public async Task<IActionResult> GetAll()
     {
         var response = await _mediator.Send(new GetCompanyListQuery());
         return NewResult(response);
     }
 
-    [HttpGet(Router.CompanyRouting.GetByID)]
-    public async Task<IActionResult> GetCompanyByID([FromRoute] GetCompanyByIDQuery command)
+    [HttpGet(Router.CompanyRouting.GetById)]
+    public async Task<IActionResult> GetById([FromRoute] GetCompanyByIdQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
 
     [HttpPost(Router.CompanyRouting.Add)]
-    public async Task<IActionResult> AddCompany([FromBody] AddCompanyCommand command)
+    public async Task<IActionResult> Add([FromBody] AddCompanyCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpPut(Router.CompanyRouting.Update)]
-    public async Task<IActionResult> UpdateCompany([FromBody] UpdateCompanyCommand command)
+    public async Task<IActionResult> Update([FromBody] UpdateCompanyCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpDelete(Router.CompanyRouting.Delete)]
-    public async Task<IActionResult> DeleteCompany([FromRoute] DeleteCompanyCommand command)
+    public async Task<IActionResult> Delete([FromRoute] DeleteCompanyCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

@@ -4,7 +4,7 @@
     {
         public BoardMemberProfile()
         {
-            GetBoardMemberByIDMapping();
+            GetBoardMemberByIdMapping();
             GetBoardMemberListMapping();
             AddBoardMemberCommandMapping();
             UpdateBoardMemberCommandMapping();

@@ -1,6 +1,6 @@
 ﻿namespace Leha.Core.Features.Forms.Quaries.Results;
 
-public class GetFormByIDResponse
+public class GetFormByIdResponse
 {
     public int ID { get; set; }
     public string FormFullName { get; set; } = string.Empty;

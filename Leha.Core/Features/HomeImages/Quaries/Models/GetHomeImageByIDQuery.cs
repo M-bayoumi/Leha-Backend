@@ -4,15 +4,15 @@ using MediatR;
 
 namespace Leha.Core.Features.HomeImages.Quaries.Models;
 
-public class GetHomeImageByIDQuery : IRequest<Response<GetHomeImageByIDResponse>>
+public class GetHomeImageByIdQuery : IRequest<Response<GetHomeImageByIdResponse>>
 {
     public int ID { get; set; }
 
-    public GetHomeImageByIDQuery(int homeImageID)
+    public GetHomeImageByIdQuery(int homeImageID)
     {
         ID = homeImageID;
     }
-    public GetHomeImageByIDQuery()
+    public GetHomeImageByIdQuery()
     {
     }
 }

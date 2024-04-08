@@ -17,13 +17,14 @@ public class FormRepository : GenericRepository<Form>, IFormRepository
     {
         _forms = appDbContext.Set<Form>();
     }
-
     #endregion
 
     #region Handle Functions
-    public IQueryable<Form?> GetFormsListByJobId(int id)
+    public IQueryable<Form?> GetAllByJobID(int id)
     {
-        return _forms.Where(x => x.JobID == id).AsNoTracking().AsQueryable();
+        return _forms.Where(x => x.JobID == id)
+            .AsNoTracking()
+            .AsQueryable();
     }
     #endregion
 }

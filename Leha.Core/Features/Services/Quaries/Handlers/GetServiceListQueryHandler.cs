@@ -28,7 +28,7 @@ public class GetServiceListQueryHandler : ResponseHandler, IRequestHandler<GetSe
     #region Handle Functions
     public async Task<Response<List<GetServiceListResponse>>> Handle(GetServiceListQuery request, CancellationToken cancellationToken)
     {
-        var serviceListDB = await _serviceManager.GetServicesListAsync().Include(x => x.Company).ToListAsync();
+        var serviceListDB = await _serviceManager.GetAll().Include(x => x.Company).ToListAsync();
         if (serviceListDB is null)
         {
             return NotFound<List<GetServiceListResponse>>();

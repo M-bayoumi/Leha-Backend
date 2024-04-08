@@ -17,15 +17,14 @@ public class ClientRepository : GenericRepository<Client>, IClientRepository
     {
         _clients = appDbContext.Set<Client>();
     }
-
-    public IQueryable<Client?> GetClientsListByCompanyId(int id)
-    {
-        return _clients.Where(x => x.CompanyID == id).AsNoTracking().AsQueryable();
-    }
-
     #endregion
 
     #region Handle Functions
-
+    public IQueryable<Client?> GetAllByCompanyID(int id)
+    {
+        return _clients.Where(x => x.CompanyID == id)
+            .AsNoTracking()
+            .AsQueryable();
+    }
     #endregion
 }

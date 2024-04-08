@@ -6,9 +6,9 @@ namespace Leha.Core.Mapping.Jobs;
 
 public partial class JobProfile : Profile
 {
-    public void GetJobByIDMapping()
+    public void GetJobByIdMapping()
     {
-        CreateMap<Job, GetJobByIDResponse>()
+        CreateMap<Job, GetJobByIdResponse>()
              .ForMember(dist => dist.CompanyName, opt => opt.MapFrom(src => src.Company.CompanyName))
              .ForMember(dist => dist.CompanyEmployees, opt => opt.MapFrom(src => src.Company.CompanyEmployees))
              .ForMember(dist => dist.CompanyImage, opt => opt.MapFrom(src => src.Company.CompanyImage))

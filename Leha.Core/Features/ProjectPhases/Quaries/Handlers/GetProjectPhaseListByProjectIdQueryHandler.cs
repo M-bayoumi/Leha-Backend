@@ -10,7 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.ProjectPhases.Quaries.Handlers;
 
-public class GetProjectPhaseListByProjectIdQueryHandler : ResponseHandler, IRequestHandler<GetProjectPhaseListByProjectIdQuery, Response<List<GetProjectPhaseListByProjectIDResponse>>>
+public class GetProjectPhaseListByProjectIDQueryHandler : ResponseHandler, IRequestHandler<GetProjectPhaseListByProjectIDQuery, Response<List<GetProjectPhaseListByProjectIDResponse>>>
 {
     #region Fields
     private readonly IProjectPhaseManager _projectPhaseManager;
@@ -18,7 +18,7 @@ public class GetProjectPhaseListByProjectIdQueryHandler : ResponseHandler, IRequ
     #endregion
 
     #region Constructors
-    public GetProjectPhaseListByProjectIdQueryHandler(IProjectPhaseManager projectPhaseManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetProjectPhaseListByProjectIDQueryHandler(IProjectPhaseManager projectPhaseManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _projectPhaseManager = projectPhaseManager;
         _mapper = mapper;
@@ -26,9 +26,9 @@ public class GetProjectPhaseListByProjectIdQueryHandler : ResponseHandler, IRequ
     #endregion
 
     #region Handle Functions
-    public async Task<Response<List<GetProjectPhaseListByProjectIDResponse>>> Handle(GetProjectPhaseListByProjectIdQuery request, CancellationToken cancellationToken)
+    public async Task<Response<List<GetProjectPhaseListByProjectIDResponse>>> Handle(GetProjectPhaseListByProjectIDQuery request, CancellationToken cancellationToken)
     {
-        var projectPhaseListDB = await _projectPhaseManager.GetProjectPhasesListByProjectId(request.ID).Include(x => x.Project).ToListAsync();
+        var projectPhaseListDB = await _projectPhaseManager.GetAllByProjectID(request.ID).Include(x => x.Project).ToListAsync();
         if (projectPhaseListDB is null)
         {
             return NotFound<List<GetProjectPhaseListByProjectIDResponse>>();

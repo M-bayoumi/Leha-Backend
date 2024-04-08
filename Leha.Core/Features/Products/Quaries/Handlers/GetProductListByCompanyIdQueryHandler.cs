@@ -10,7 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Products.Quaries.Handlers;
 
-public class GetProductListByCompanyIdQueryHandler : ResponseHandler, IRequestHandler<GetProductListByCompanyIdQuery, Response<List<GetProductListByCompanyIDResponse>>>
+public class GetProductListByCompanyIDQueryHandler : ResponseHandler, IRequestHandler<GetProductListByCompanyIDQuery, Response<List<GetProductListByCompanyIDResponse>>>
 {
     #region Fields
     private readonly IProductManager _productManager;
@@ -18,7 +18,7 @@ public class GetProductListByCompanyIdQueryHandler : ResponseHandler, IRequestHa
     #endregion
 
     #region Constructors
-    public GetProductListByCompanyIdQueryHandler(IProductManager productManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetProductListByCompanyIDQueryHandler(IProductManager productManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _productManager = productManager;
         _mapper = mapper;
@@ -26,9 +26,9 @@ public class GetProductListByCompanyIdQueryHandler : ResponseHandler, IRequestHa
     #endregion
 
     #region Handle Functions
-    public async Task<Response<List<GetProductListByCompanyIDResponse>>> Handle(GetProductListByCompanyIdQuery request, CancellationToken cancellationToken)
+    public async Task<Response<List<GetProductListByCompanyIDResponse>>> Handle(GetProductListByCompanyIDQuery request, CancellationToken cancellationToken)
     {
-        var productListDB = await _productManager.GetProductsListByCompanyId(request.ID).Include(x => x.Company).ToListAsync();
+        var productListDB = await _productManager.GetAllByCompanyID(request.ID).Include(x => x.Company).ToListAsync();
         if (productListDB is null)
         {
             return NotFound<List<GetProductListByCompanyIDResponse>>();

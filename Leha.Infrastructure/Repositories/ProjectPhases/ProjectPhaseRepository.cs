@@ -17,14 +17,14 @@ public class ProjectPhaseRepository : GenericRepository<ProjectPhase>, IProjectP
     {
         _projectPhases = appDbContext.Set<ProjectPhase>();
     }
-
     #endregion
 
     #region Handle Functions
-    public IQueryable<ProjectPhase?> GetProjectPhasesListByProjectId(int id)
+    public IQueryable<ProjectPhase?> GetAllByProjectID(int id)
     {
-        return _projectPhases.Where(x => x.ProjectID == id).AsNoTracking().AsQueryable();
+        return _projectPhases.Where(x => x.ProjectID == id)
+            .AsNoTracking()
+            .AsQueryable();
     }
-
     #endregion
 }

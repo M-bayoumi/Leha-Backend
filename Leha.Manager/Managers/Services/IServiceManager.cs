@@ -4,10 +4,10 @@ namespace Leha.Manager.Managers.Services;
 
 public interface IServiceManager
 {
-    public IQueryable<Service?> GetServicesListAsync();
-    public IQueryable<Service?> GetServicesListByCompanyId(int id);
-    public Task<Service?> GetServiceByIDAsync(int id);
-    public Task<bool> AddServiceAsync(Service pm);
-    public Task<bool> UpdateServiceAsync(Service pm);
-    public Task<bool> DeleteServiceAsync(Service pm);
+    public IQueryable<Service?> GetAll();
+    public IQueryable<Service?> GetAllByCompanyID(int id);
+    public Task<Service?> GetByIdAsync(int id);
+    public Task<bool> AddAsync(Service pm);
+    public Task<bool> UpdateAsync(Service pm);
+    public Task<bool> DeleteAsync(Service pm);
 }

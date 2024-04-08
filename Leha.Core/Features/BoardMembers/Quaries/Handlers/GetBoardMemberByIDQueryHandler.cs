@@ -10,7 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.BoardMembers.Queries.Handlers;
 
-public class GetBoardMemberByIDQueryHandler : ResponseHandler, IRequestHandler<GetBoardMemberByIDQuery, Response<GetBoardMemberByIDResponse>>
+public class GetBoardMemberByIdQueryHandler : ResponseHandler, IRequestHandler<GetBoardMemberByIdQuery, Response<GetBoardMemberByIdResponse>>
 {
     #region Fields
     private readonly IBoardMemberManager _boardMemberManager;
@@ -18,7 +18,7 @@ public class GetBoardMemberByIDQueryHandler : ResponseHandler, IRequestHandler<G
     #endregion
 
     #region Constructors
-    public GetBoardMemberByIDQueryHandler(IBoardMemberManager boardMemberManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetBoardMemberByIdQueryHandler(IBoardMemberManager boardMemberManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _boardMemberManager = boardMemberManager;
         _mapper = mapper;
@@ -26,14 +26,14 @@ public class GetBoardMemberByIDQueryHandler : ResponseHandler, IRequestHandler<G
     #endregion
 
     #region Handle Functions
-    public async Task<Response<GetBoardMemberByIDResponse>> Handle(GetBoardMemberByIDQuery request, CancellationToken cancellationToken)
+    public async Task<Response<GetBoardMemberByIdResponse>> Handle(GetBoardMemberByIdQuery request, CancellationToken cancellationToken)
     {
-        var boardMemberDB = await _boardMemberManager.GetBoardMemberByIDAsync(request.ID);
+        var boardMemberDB = await _boardMemberManager.GetByIdAsync(request.ID);
         if (boardMemberDB is null)
         {
-            return NotFound<GetBoardMemberByIDResponse>();
+            return NotFound<GetBoardMemberByIdResponse>();
         }
-        var boardMemberMapper = _mapper.Map<GetBoardMemberByIDResponse>(boardMemberDB);
+        var boardMemberMapper = _mapper.Map<GetBoardMemberByIdResponse>(boardMemberDB);
         return Success(boardMemberMapper);
     }
     #endregion

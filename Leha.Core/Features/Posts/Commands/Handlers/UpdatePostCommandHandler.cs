@@ -33,12 +33,12 @@ public class UpdatePostCommandHandler : ResponseHandler, IRequestHandler<UpdateP
     #region Handle Functions
     public async Task<Response<string>> Handle(UpdatePostCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID);
+        var company = await _companyManager.GetByIdAsync(request.CompanyID);
         if (company != null)
         {
             var post = _mapper.Map<Post>(request);
 
-            if (await _postManager.UpdatePostAsync(post))
+            if (await _postManager.UpdateAsync(post))
                 return Created("");
             return BadRequest<string>("");
         }

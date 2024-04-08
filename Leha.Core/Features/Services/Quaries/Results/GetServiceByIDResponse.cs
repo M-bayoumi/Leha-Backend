@@ -1,6 +1,6 @@
 ﻿namespace Leha.Core.Features.Services.Quaries.Results;
 
-public class GetServiceByIDResponse
+public class GetServiceByIdResponse
 {
     public int ID { get; set; }
     public string ServiceName { get; set; } = string.Empty;

@@ -30,7 +30,7 @@ public class AddBoardMemberCommandHandler : ResponseHandler, IRequestHandler<Add
     {
         var boardMember = _mapper.Map<BoardMember>(request);
 
-        if (await _boardMemberManager.AddBoardMemberAsync(boardMember))
+        if (await _boardMemberManager.AddAsync(boardMember))
             return Created("");
 
         return BadRequest<string>("");

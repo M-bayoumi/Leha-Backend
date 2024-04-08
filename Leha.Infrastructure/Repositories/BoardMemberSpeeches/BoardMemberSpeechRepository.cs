@@ -16,15 +16,15 @@ public class BoardMemberSpeechRepository : GenericRepository<BoardMemberSpeech>,
     {
         _boardMemberSpeeches = appDbContext.Set<BoardMemberSpeech>();
     }
-
     #endregion
 
     #region Handle Functions
 
-    public IQueryable<BoardMemberSpeech?> GetBoardMemberSpeechesListByBoardMemberId(int id)
+    public IQueryable<BoardMemberSpeech?> GetAllByBoardMemberID(int id)
     {
-        return _boardMemberSpeeches.Where(x => x.BoardMemberID == id).AsNoTracking().AsQueryable();
+        return _boardMemberSpeeches.Where(x => x.BoardMemberID == id)
+            .AsNoTracking()
+            .AsQueryable();
     }
-
     #endregion
 }

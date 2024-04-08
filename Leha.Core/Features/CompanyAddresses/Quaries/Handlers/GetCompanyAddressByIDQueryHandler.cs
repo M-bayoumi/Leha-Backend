@@ -11,7 +11,7 @@ using Microsoft.Extensions.Localization;
 namespace Leha.Core.Features.CompanyAddresses.Quaries.Handlers;
 
 
-public class GetCompanyAddressByIDQueryHandler : ResponseHandler, IRequestHandler<GetCompanyAddressByIDQuery, Response<GetCompanyAddressByIDResponse>>
+public class GetCompanyAddressByIdQueryHandler : ResponseHandler, IRequestHandler<GetCompanyAddressByIdQuery, Response<GetCompanyAddressByIdResponse>>
 {
     #region Fields
     private readonly ICompanyAddressManager _companyAddressManager;
@@ -19,7 +19,7 @@ public class GetCompanyAddressByIDQueryHandler : ResponseHandler, IRequestHandle
     #endregion
 
     #region Constructors
-    public GetCompanyAddressByIDQueryHandler(ICompanyAddressManager companyAddressManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetCompanyAddressByIdQueryHandler(ICompanyAddressManager companyAddressManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _companyAddressManager = companyAddressManager;
         _mapper = mapper;
@@ -27,15 +27,15 @@ public class GetCompanyAddressByIDQueryHandler : ResponseHandler, IRequestHandle
     #endregion
 
     #region Handle Functions
-    public async Task<Response<GetCompanyAddressByIDResponse>> Handle(GetCompanyAddressByIDQuery request, CancellationToken cancellationToken)
+    public async Task<Response<GetCompanyAddressByIdResponse>> Handle(GetCompanyAddressByIdQuery request, CancellationToken cancellationToken)
     {
-        var companyAddresstDB = await _companyAddressManager.GetCompanyAddressesListAsync().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var companyAddresstDB = await _companyAddressManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
 
         if (companyAddresstDB is null)
         {
-            return NotFound<GetCompanyAddressByIDResponse>();
+            return NotFound<GetCompanyAddressByIdResponse>();
         }
-        var companyAddressMapper = _mapper.Map<GetCompanyAddressByIDResponse>(companyAddresstDB);
+        var companyAddressMapper = _mapper.Map<GetCompanyAddressByIdResponse>(companyAddresstDB);
         return Success(companyAddressMapper);
     }
     #endregion

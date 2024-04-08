@@ -5,6 +5,5 @@ namespace Leha.Infrastructure.Repositories.Clients;
 
 public interface IClientRepository : IGenericRepository<Client>
 {
-    public IQueryable<Client?> GetClientsListByCompanyId(int id);
-
+    public IQueryable<Client?> GetAllByCompanyID(int id);
 }

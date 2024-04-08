@@ -4,10 +4,10 @@ namespace Leha.Manager.Managers.Clients;
 
 public interface IClientManager
 {
-    public IQueryable<Client?> GetClientsListAsync();
-    public IQueryable<Client?> GetClientsListByCompanyId(int id);
-    public Task<Client?> GetClientByIDAsync(int id);
-    public Task<bool> AddClientAsync(Client pm);
-    public Task<bool> UpdateClientAsync(Client pm);
-    public Task<bool> DeleteClientAsync(Client pm);
+    public IQueryable<Client?> GetAll();
+    public IQueryable<Client?> GetAllByCompanyID(int id);
+    public Task<Client?> GetByIdAsync(int id);
+    public Task<bool> AddAsync(Client pm);
+    public Task<bool> UpdateAsync(Client pm);
+    public Task<bool> DeleteAsync(Client pm);
 }

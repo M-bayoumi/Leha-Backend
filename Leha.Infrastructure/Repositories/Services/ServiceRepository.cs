@@ -16,15 +16,14 @@ public class ServiceRepository : GenericRepository<Service>, IServiceRepository
     {
         _services = appDbContext.Set<Service>();
     }
-
     #endregion
 
     #region Handle Functions
-
-    public IQueryable<Service?> GetServicesListByCompanyId(int id)
+    public IQueryable<Service?> GetAllByCompanyID(int id)
     {
-        return _services.Where(x => x.CompanyID == id).AsNoTracking().AsQueryable();
+        return _services.Where(x => x.CompanyID == id)
+            .AsNoTracking()
+            .AsQueryable();
     }
-
     #endregion
 }

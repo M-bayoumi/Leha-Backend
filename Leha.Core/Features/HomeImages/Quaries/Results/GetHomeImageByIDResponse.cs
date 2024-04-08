@@ -1,6 +1,6 @@
 ﻿namespace Leha.Core.Features.HomeImages.Quaries.Results;
 
-public class GetHomeImageByIDResponse
+public class GetHomeImageByIdResponse
 {
     public int ID { get; set; }
     public string HomeImageBytes { get; set; } = string.Empty;

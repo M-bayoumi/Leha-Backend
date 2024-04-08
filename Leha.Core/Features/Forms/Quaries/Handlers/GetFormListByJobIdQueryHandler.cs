@@ -10,7 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Forms.Quaries.Handlers;
 
-public class GetFormListByJobIdQueryHandler : ResponseHandler, IRequestHandler<GetFormListByJobIdQuery, Response<List<GetFormListByJobIDResponse>>>
+public class GetFormListByJobIDQueryHandler : ResponseHandler, IRequestHandler<GetFormListByJobIDQuery, Response<List<GetFormListByJobIDResponse>>>
 {
     #region Fields
     private readonly IFormManager _formManager;
@@ -18,7 +18,7 @@ public class GetFormListByJobIdQueryHandler : ResponseHandler, IRequestHandler<G
     #endregion
 
     #region Constructors
-    public GetFormListByJobIdQueryHandler(IFormManager formManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetFormListByJobIDQueryHandler(IFormManager formManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _formManager = formManager;
         _mapper = mapper;
@@ -26,9 +26,9 @@ public class GetFormListByJobIdQueryHandler : ResponseHandler, IRequestHandler<G
     #endregion
 
     #region Handle Functions
-    public async Task<Response<List<GetFormListByJobIDResponse>>> Handle(GetFormListByJobIdQuery request, CancellationToken cancellationToken)
+    public async Task<Response<List<GetFormListByJobIDResponse>>> Handle(GetFormListByJobIDQuery request, CancellationToken cancellationToken)
     {
-        var formListDB = await _formManager.GetFormsListByJobId(request.ID).Include(x => x.Job).ToListAsync();
+        var formListDB = await _formManager.GetAllByJobID(request.ID).Include(x => x.Job).ToListAsync();
         if (formListDB is null)
         {
             return NotFound<List<GetFormListByJobIDResponse>>();

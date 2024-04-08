@@ -4,9 +4,9 @@ namespace Leha.Manager.Managers.BoardMembers;
 
 public interface IBoardMemberManager
 {
-    public IQueryable<BoardMember?> GetBoardMembersListAsync();
-    public Task<BoardMember?> GetBoardMemberByIDAsync(int id);
-    public Task<bool> AddBoardMemberAsync(BoardMember pm);
-    public Task<bool> UpdateBoardMemberAsync(BoardMember pm);
-    public Task<bool> DeleteBoardMemberAsync(BoardMember pm);
+    public IQueryable<BoardMember?> GetAll();
+    public Task<BoardMember?> GetByIdAsync(int id);
+    public Task<bool> AddAsync(BoardMember pm);
+    public Task<bool> UpdateAsync(BoardMember pm);
+    public Task<bool> DeleteAsync(BoardMember pm);
 }

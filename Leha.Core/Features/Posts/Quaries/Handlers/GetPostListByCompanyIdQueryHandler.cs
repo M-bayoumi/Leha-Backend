@@ -10,7 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Posts.Quaries.Handlers;
 
-public class GetPostListByCompanyIdQueryHandler : ResponseHandler, IRequestHandler<GetPostListByCompanyIdQuery, Response<List<GetPostListByCompanyIDResponse>>>
+public class GetPostListByCompanyIDQueryHandler : ResponseHandler, IRequestHandler<GetPostListByCompanyIDQuery, Response<List<GetPostListByCompanyIDResponse>>>
 {
     #region Fields
     private readonly IPostManager _postManager;
@@ -18,7 +18,7 @@ public class GetPostListByCompanyIdQueryHandler : ResponseHandler, IRequestHandl
     #endregion
 
     #region Constructors
-    public GetPostListByCompanyIdQueryHandler(IPostManager postManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetPostListByCompanyIDQueryHandler(IPostManager postManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _postManager = postManager;
         _mapper = mapper;
@@ -26,9 +26,9 @@ public class GetPostListByCompanyIdQueryHandler : ResponseHandler, IRequestHandl
     #endregion
 
     #region Handle Functions
-    public async Task<Response<List<GetPostListByCompanyIDResponse>>> Handle(GetPostListByCompanyIdQuery request, CancellationToken cancellationToken)
+    public async Task<Response<List<GetPostListByCompanyIDResponse>>> Handle(GetPostListByCompanyIDQuery request, CancellationToken cancellationToken)
     {
-        var postListDB = await _postManager.GetPostsListByCompanyId(request.ID).Include(x => x.Company).ToListAsync();
+        var postListDB = await _postManager.GetAllByCompanyID(request.ID).Include(x => x.Company).ToListAsync();
         if (postListDB is null)
         {
             return NotFound<List<GetPostListByCompanyIDResponse>>();

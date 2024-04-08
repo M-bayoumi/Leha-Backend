@@ -28,7 +28,7 @@ public class GetCompanyAddressListQueryHandler : ResponseHandler, IRequestHandle
     #region Handle Functions
     public async Task<Response<List<GetCompanyAddressListResponse>>> Handle(GetCompanyAddressListQuery request, CancellationToken cancellationToken)
     {
-        var companyAddressListDB = _companyAddressManager.GetCompanyAddressesListAsync().Include(x => x.Company).ToList();
+        var companyAddressListDB = await _companyAddressManager.GetAll().Include(x => x.Company).ToListAsync();
         if (companyAddressListDB is null)
         {
             return NotFound<List<GetCompanyAddressListResponse>>();

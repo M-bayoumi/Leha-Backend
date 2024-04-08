@@ -10,7 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.PhaseItems.Quaries.Handlers;
 
-public class GetPhaseItemListByProjectPhaseIdQueryHandler : ResponseHandler, IRequestHandler<GetPhaseItemListByProjectPhaseIdQuery, Response<List<GetPhaseItemListByProjectPhaseIDResponse>>>
+public class GetPhaseItemListByProjectPhaseIDQueryHandler : ResponseHandler, IRequestHandler<GetPhaseItemListByProjectPhaseIDQuery, Response<List<GetPhaseItemListByProjectPhaseIDResponse>>>
 {
     #region Fields
     private readonly IPhaseItemManager _phaseItemManager;
@@ -18,7 +18,7 @@ public class GetPhaseItemListByProjectPhaseIdQueryHandler : ResponseHandler, IRe
     #endregion
 
     #region Constructors
-    public GetPhaseItemListByProjectPhaseIdQueryHandler(IPhaseItemManager phaseItemManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetPhaseItemListByProjectPhaseIDQueryHandler(IPhaseItemManager phaseItemManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _phaseItemManager = phaseItemManager;
         _mapper = mapper;
@@ -26,9 +26,9 @@ public class GetPhaseItemListByProjectPhaseIdQueryHandler : ResponseHandler, IRe
     #endregion
 
     #region Handle Functions
-    public async Task<Response<List<GetPhaseItemListByProjectPhaseIDResponse>>> Handle(GetPhaseItemListByProjectPhaseIdQuery request, CancellationToken cancellationToken)
+    public async Task<Response<List<GetPhaseItemListByProjectPhaseIDResponse>>> Handle(GetPhaseItemListByProjectPhaseIDQuery request, CancellationToken cancellationToken)
     {
-        var phaseItemListDB = await _phaseItemManager.GetPhaseItemsListByProjectPhaseId(request.ID).Include(x => x.ProjectPhase).ToListAsync();
+        var phaseItemListDB = await _phaseItemManager.GetAllByProjectPhaseID(request.ID).Include(x => x.ProjectPhase).ToListAsync();
         if (phaseItemListDB is null)
         {
             return NotFound<List<GetPhaseItemListByProjectPhaseIDResponse>>();

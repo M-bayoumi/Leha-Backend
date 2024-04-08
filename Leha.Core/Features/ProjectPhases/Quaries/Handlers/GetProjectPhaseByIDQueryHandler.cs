@@ -11,7 +11,7 @@ using Microsoft.Extensions.Localization;
 namespace Leha.Core.Features.ProjectPhases.Quaries.Handlers;
 
 
-public class GetProjectPhaseByIDQueryHandler : ResponseHandler, IRequestHandler<GetProjectPhaseByIDQuery, Response<GetProjectPhaseByIDResponse>>
+public class GetProjectPhaseByIdQueryHandler : ResponseHandler, IRequestHandler<GetProjectPhaseByIdQuery, Response<GetProjectPhaseByIdResponse>>
 {
     #region Fields
     private readonly IProjectPhaseManager _projectPhaseManager;
@@ -19,7 +19,7 @@ public class GetProjectPhaseByIDQueryHandler : ResponseHandler, IRequestHandler<
     #endregion
 
     #region Constructors
-    public GetProjectPhaseByIDQueryHandler(IProjectPhaseManager projectPhaseManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetProjectPhaseByIdQueryHandler(IProjectPhaseManager projectPhaseManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _projectPhaseManager = projectPhaseManager;
         _mapper = mapper;
@@ -27,15 +27,15 @@ public class GetProjectPhaseByIDQueryHandler : ResponseHandler, IRequestHandler<
     #endregion
 
     #region Handle Functions
-    public async Task<Response<GetProjectPhaseByIDResponse>> Handle(GetProjectPhaseByIDQuery request, CancellationToken cancellationToken)
+    public async Task<Response<GetProjectPhaseByIdResponse>> Handle(GetProjectPhaseByIdQuery request, CancellationToken cancellationToken)
     {
-        var projectPhaseDB = await _projectPhaseManager.GetProjectPhasesListAsync().Include(x => x.Project).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var projectPhaseDB = await _projectPhaseManager.GetAll().Include(x => x.Project).FirstOrDefaultAsync(x => x.ID == request.ID);
 
         if (projectPhaseDB is null)
         {
-            return NotFound<GetProjectPhaseByIDResponse>();
+            return NotFound<GetProjectPhaseByIdResponse>();
         }
-        var projectPhaseMapper = _mapper.Map<GetProjectPhaseByIDResponse>(projectPhaseDB);
+        var projectPhaseMapper = _mapper.Map<GetProjectPhaseByIdResponse>(projectPhaseDB);
         return Success(projectPhaseMapper);
     }
     #endregion

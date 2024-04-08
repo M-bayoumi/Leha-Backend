@@ -30,7 +30,7 @@ public class AddCompanyCommandHandler : ResponseHandler, IRequestHandler<AddComp
     {
         var company = _mapper.Map<Company>(request);
 
-        if (await _companyManager.AddCompanyAsync(company))
+        if (await _companyManager.AddAsync(company))
             return Created("");
         return BadRequest<string>("");
     }

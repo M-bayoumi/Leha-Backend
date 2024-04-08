@@ -4,15 +4,15 @@ using MediatR;
 
 namespace Leha.Core.Features.Jobs.Quaries.Models;
 
-public class GetJobByIDQuery : IRequest<Response<GetJobByIDResponse>>
+public class GetJobByIdQuery : IRequest<Response<GetJobByIdResponse>>
 {
     public int ID { get; set; }
 
-    public GetJobByIDQuery(int jobID)
+    public GetJobByIdQuery(int jobID)
     {
         ID = jobID;
     }
-    public GetJobByIDQuery()
+    public GetJobByIdQuery()
     {
     }
 }

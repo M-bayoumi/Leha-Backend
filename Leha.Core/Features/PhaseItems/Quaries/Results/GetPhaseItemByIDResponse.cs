@@ -1,6 +1,6 @@
 ﻿namespace Leha.Core.Features.PhaseItems.Quaries.Results;
 
-public class GetPhaseItemByIDResponse
+public class GetPhaseItemByIdResponse
 {
     public int ID { get; set; }
     public string PhaseItemNumber { get; set; } = string.Empty;

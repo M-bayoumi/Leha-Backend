@@ -27,9 +27,9 @@ public class DeleteProductCommandHandler : ResponseHandler, IRequestHandler<Dele
     #region Handle Functions
     public async Task<Response<string>> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
     {
-        var product = await _productManager.GetProductByIDAsync(request.ID);
+        var product = await _productManager.GetByIdAsync(request.ID);
         if (product == null) return NotFound<string>("");
-        if (await _productManager.DeleteProductAsync(product))
+        if (await _productManager.DeleteAsync(product))
             return Deleted<string>("");
         return BadRequest<string>();
     }

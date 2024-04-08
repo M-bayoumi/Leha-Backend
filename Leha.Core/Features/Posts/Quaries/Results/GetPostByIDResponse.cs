@@ -1,6 +1,6 @@
 ﻿namespace Leha.Core.Features.Posts.Quaries.Results;
 
-public class GetPostByIDResponse
+public class GetPostByIdResponse
 {
     public int ID { get; set; }
     public string PostContent { get; set; } = string.Empty;

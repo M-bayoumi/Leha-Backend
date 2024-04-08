@@ -6,9 +6,9 @@ namespace Leha.Core.Mapping.ProjectPhases;
 
 public partial class ProjectPhaseProfile : Profile
 {
-    public void GetProjectPhaseByIDMapping()
+    public void GetProjectPhaseByIdMapping()
     {
-        CreateMap<ProjectPhase, GetProjectPhaseByIDResponse>()
+        CreateMap<ProjectPhase, GetProjectPhaseByIdResponse>()
              .ForMember(dist => dist.ProjectName, opt => opt.MapFrom(src => src.Project.ProjectName))
              .ForMember(dist => dist.ProjectDescription, opt => opt.MapFrom(src => src.Project.ProjectDescription))
              .ForMember(dist => dist.ProjectAddress, opt => opt.MapFrom(src => src.Project.ProjectAddress))

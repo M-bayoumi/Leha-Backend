@@ -1,7 +1,6 @@
 ﻿using Leha.Data.Entities;
 using Leha.Infrastructure.Repositories.HomeImages;
 using Leha.Infrastructure.UnitOfWorks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Manager.Managers.HomeImages;
 
@@ -22,37 +21,41 @@ public class HomeImageManager : IHomeImageManager
     #endregion
 
     #region Handle Functions
-
-    public IQueryable<HomeImage?> GetHomeImagesListAsync()
+    public IQueryable<HomeImage?> GetAll()
     {
-        return _homeImageRepository.GetTableNoTracking().AsQueryable();
-    }
-    public IQueryable<HomeImage?> GetHomeImagesListByCompanyId(int id)
-    {
-        return _homeImageRepository.GetHomeImagesListByCompanyId(id).AsQueryable();
+        return _homeImageRepository.GetAll();
     }
 
-    public async Task<HomeImage?> GetHomeImageByIDAsync(int id)
+    public IQueryable<HomeImage?> GetAllByCompanyID(int id)
     {
-        var homeImage = await _homeImageRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
+        return _homeImageRepository.GetAllByCompanyID(id);
+    }
+
+    public async Task<HomeImage?> GetByIdAsync(int id)
+    {
+        var homeImage = await _homeImageRepository.GetByIdAsync(id);
         return homeImage;
     }
 
-    public async Task<bool> AddHomeImageAsync(HomeImage pm)
+    public async Task<bool> AddAsync(HomeImage pm)
     {
-        return await _homeImageRepository.AddAsync(pm);
-    }
-    public async Task<bool> UpdateHomeImageAsync(HomeImage pm)
-    {
-        return await _homeImageRepository.UpdateAsync(pm);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _homeImageRepository.AddAsync(pm);
+        return false;
     }
 
-    public async Task<bool> DeleteHomeImageAsync(HomeImage pm)
+    public async Task<bool> UpdateAsync(HomeImage pm)
     {
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _homeImageRepository.UpdateAsync(pm);
+        return false;
+    }
 
+    public async Task<bool> DeleteAsync(HomeImage pm)
+    {
         return await _homeImageRepository.DeleteAsync(pm);
-
     }
-
     #endregion
 }

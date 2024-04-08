@@ -16,15 +16,14 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
         _products = appDbContext.Set<Product>();
     }
-
-
     #endregion
 
     #region Handle Functions
-    public IQueryable<Product?> GetProductsListByCompanyId(int id)
+    public IQueryable<Product?> GetAllByCompanyID(int id)
     {
-        return _products.Where(x => x.CompanyID == id).AsNoTracking().AsQueryable();
+        return _products.Where(x => x.CompanyID == id)
+            .AsNoTracking()
+            .AsQueryable();
     }
-
     #endregion
 }

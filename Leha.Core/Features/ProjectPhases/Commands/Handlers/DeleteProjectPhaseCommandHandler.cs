@@ -27,9 +27,9 @@ public class DeleteProjectPhaseCommandHandler : ResponseHandler, IRequestHandler
     #region Handle Functions
     public async Task<Response<string>> Handle(DeleteProjectPhaseCommand request, CancellationToken cancellationToken)
     {
-        var projectPhase = await _projectPhaseManager.GetProjectPhaseByIDAsync(request.ID);
+        var projectPhase = await _projectPhaseManager.GetByIdAsync(request.ID);
         if (projectPhase == null) return NotFound<string>("");
-        if (await _projectPhaseManager.DeleteProjectPhaseAsync(projectPhase))
+        if (await _projectPhaseManager.DeleteAsync(projectPhase))
             return Deleted<string>("");
         return BadRequest<string>();
     }

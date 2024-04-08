@@ -10,7 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.BoardMemberSpeeches.Quaries.Handlers;
 
-public class GetBoardMemberSpeechesListByBoardMemberIdQueryHandler : ResponseHandler, IRequestHandler<GetBoardMemberSpeechesListByBoardMemberIdQuery, Response<List<GetBoardMemberSpeechListByBoardMemberIDResponse>>>
+public class GetBoardMemberSpeechesListByBoardMemberIDQueryHandler : ResponseHandler, IRequestHandler<GetBoardMemberSpeechesListByBoardMemberIDQuery, Response<List<GetBoardMemberSpeechListByBoardMemberIDResponse>>>
 {
     #region Fields
     private readonly IBoardMemberSpeechManager _boardMemberSpeechManager;
@@ -18,7 +18,7 @@ public class GetBoardMemberSpeechesListByBoardMemberIdQueryHandler : ResponseHan
     #endregion
 
     #region Constructors
-    public GetBoardMemberSpeechesListByBoardMemberIdQueryHandler(IBoardMemberSpeechManager boardMemberSpeechManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetBoardMemberSpeechesListByBoardMemberIDQueryHandler(IBoardMemberSpeechManager boardMemberSpeechManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _boardMemberSpeechManager = boardMemberSpeechManager;
         _mapper = mapper;
@@ -26,9 +26,9 @@ public class GetBoardMemberSpeechesListByBoardMemberIdQueryHandler : ResponseHan
     #endregion
 
     #region Handle Functions
-    public async Task<Response<List<GetBoardMemberSpeechListByBoardMemberIDResponse>>> Handle(GetBoardMemberSpeechesListByBoardMemberIdQuery request, CancellationToken cancellationToken)
+    public async Task<Response<List<GetBoardMemberSpeechListByBoardMemberIDResponse>>> Handle(GetBoardMemberSpeechesListByBoardMemberIDQuery request, CancellationToken cancellationToken)
     {
-        var boardMemberSpeechListDB = await _boardMemberSpeechManager.GetBoardMemberSpeechesListByBoardMemberId(request.ID).Include(x => x.BoardMember).ToListAsync();
+        var boardMemberSpeechListDB = await _boardMemberSpeechManager.GetAllByBoardMemberID(request.ID).Include(x => x.BoardMember).ToListAsync();
         if (boardMemberSpeechListDB is null)
         {
             return NotFound<List<GetBoardMemberSpeechListByBoardMemberIDResponse>>();

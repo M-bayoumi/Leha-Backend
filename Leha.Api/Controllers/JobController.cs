@@ -18,44 +18,44 @@ public class JobController : AppControllerBase
 
     #region Handle Functions
 
-    [HttpGet(Router.JobRouting.GetList)]
+    [HttpGet(Router.JobRouting.GetAll)]
 
-    public async Task<IActionResult> GetJobList()
+    public async Task<IActionResult> GetAll()
     {
         var response = await _mediator.Send(new GetJobListQuery());
         return NewResult(response);
     }
 
-    [HttpGet(Router.JobRouting.GetListByCompanyID)]
+    [HttpGet(Router.JobRouting.GetAllByCompanyID)]
 
-    public async Task<IActionResult> GetJobListByCompanyID([FromRoute] GetJobListByCompanyIdQuery command)
+    public async Task<IActionResult> GetAllByCompanyID([FromRoute] GetJobListByCompanyIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
 
 
     }
-    [HttpGet(Router.JobRouting.GetByID)]
-    public async Task<IActionResult> GetJobByID([FromRoute] GetJobByIDQuery command)
+    [HttpGet(Router.JobRouting.GetById)]
+    public async Task<IActionResult> GetById([FromRoute] GetJobByIdQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
 
     [HttpPost(Router.JobRouting.Add)]
-    public async Task<IActionResult> AddJob([FromBody] AddJobCommand command)
+    public async Task<IActionResult> Add([FromBody] AddJobCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpPut(Router.JobRouting.Update)]
-    public async Task<IActionResult> UpdateJob([FromBody] UpdateJobCommand command)
+    public async Task<IActionResult> Update([FromBody] UpdateJobCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpDelete(Router.JobRouting.Delete)]
-    public async Task<IActionResult> DeleteJob([FromRoute] DeleteJobCommand command)
+    public async Task<IActionResult> Delete([FromRoute] DeleteJobCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

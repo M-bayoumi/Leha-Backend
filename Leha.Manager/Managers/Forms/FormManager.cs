@@ -1,7 +1,6 @@
 ﻿using Leha.Data.Entities;
 using Leha.Infrastructure.Repositories.Forms;
 using Leha.Infrastructure.UnitOfWorks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Manager.Managers.Forms;
 
@@ -23,31 +22,38 @@ public class FormManager : IFormManager
     #endregion
 
     #region Handle Functions
-    public IQueryable<Form?> GetFormsListAsync()
+    public IQueryable<Form?> GetAll()
     {
-        return _formRepository.GetTableNoTracking().AsQueryable();
+        return _formRepository.GetAll();
     }
 
-    public IQueryable<Form?> GetFormsListByJobId(int id)
+    public IQueryable<Form?> GetAllByJobID(int id)
     {
-        return _formRepository.GetFormsListByJobId(id).AsQueryable();
-    }
-    public async Task<Form?> GetFormByIDAsync(int id)
-    {
-        return await _formRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
+        return _formRepository.GetAllByJobID(id);
     }
 
-    public async Task<bool> AddFormAsync(Form pm)
+    public async Task<Form?> GetByIdAsync(int id)
     {
-        // check job exist
-        return await _formRepository.AddAsync(pm);
-    }
-    public async Task<bool> UpdateFormAsync(Form pm)
-    {
-        return await _formRepository.UpdateAsync(pm);
+        return await _formRepository.GetByIdAsync(id);
     }
 
-    public async Task<bool> DeleteFormAsync(Form pm)
+    public async Task<bool> AddAsync(Form pm)
+    {
+        var dm = await _unitOfWork.JobRepository.GetByIdAsync(pm.JobID);
+        if (dm != null)
+            return await _formRepository.AddAsync(pm);
+        return false;
+    }
+
+    public async Task<bool> UpdateAsync(Form pm)
+    {
+        var dm = await _unitOfWork.JobRepository.GetByIdAsync(pm.JobID);
+        if (dm != null)
+            return await _formRepository.UpdateAsync(pm);
+        return false;
+    }
+
+    public async Task<bool> DeleteAsync(Form pm)
     {
         return await _formRepository.DeleteAsync(pm);
     }

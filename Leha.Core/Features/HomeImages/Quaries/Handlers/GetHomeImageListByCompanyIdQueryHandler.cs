@@ -10,7 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.HomeImages.Quaries.Handlers;
 
-public class GetHomeImageListByCompanyIdQueryHandler : ResponseHandler, IRequestHandler<GetHomeImageListByCompanyIdQuery, Response<List<GetHomeImageListByCompanyIDResponse>>>
+public class GetHomeImageListByCompanyIDQueryHandler : ResponseHandler, IRequestHandler<GetHomeImageListByCompanyIDQuery, Response<List<GetHomeImageListByCompanyIDResponse>>>
 {
     #region Fields
     private readonly IHomeImageManager _homeImageManager;
@@ -18,7 +18,7 @@ public class GetHomeImageListByCompanyIdQueryHandler : ResponseHandler, IRequest
     #endregion
 
     #region Constructors
-    public GetHomeImageListByCompanyIdQueryHandler(IHomeImageManager homeImageManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetHomeImageListByCompanyIDQueryHandler(IHomeImageManager homeImageManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _homeImageManager = homeImageManager;
         _mapper = mapper;
@@ -26,9 +26,9 @@ public class GetHomeImageListByCompanyIdQueryHandler : ResponseHandler, IRequest
     #endregion
 
     #region Handle Functions
-    public async Task<Response<List<GetHomeImageListByCompanyIDResponse>>> Handle(GetHomeImageListByCompanyIdQuery request, CancellationToken cancellationToken)
+    public async Task<Response<List<GetHomeImageListByCompanyIDResponse>>> Handle(GetHomeImageListByCompanyIDQuery request, CancellationToken cancellationToken)
     {
-        var homeImageListDB = await _homeImageManager.GetHomeImagesListByCompanyId(request.ID).Include(x => x.Company).ToListAsync();
+        var homeImageListDB = await _homeImageManager.GetAllByCompanyID(request.ID).Include(x => x.Company).ToListAsync();
         if (homeImageListDB is null)
         {
             return NotFound<List<GetHomeImageListByCompanyIDResponse>>();

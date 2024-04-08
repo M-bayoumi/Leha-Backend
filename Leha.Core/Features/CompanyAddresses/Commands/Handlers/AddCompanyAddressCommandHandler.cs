@@ -34,12 +34,12 @@ public class AddCompanyAddressCommandHandler : ResponseHandler, IRequestHandler<
     #region Handle Functions
     public async Task<Response<string>> Handle(AddCompanyAddressCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetCompanyByIDAsync(request.CompanyID); // GetById without without include 
+        var company = await _companyManager.GetByIdAsync(request.CompanyID);
         if (company != null)
         {
             var companyAddress = _mapper.Map<CompanyAddress>(request);
 
-            if (await _companyAddressManager.AddCompanyAddressAsync(companyAddress))
+            if (await _companyAddressManager.AddAsync(companyAddress))
                 return Created("");
             return BadRequest<string>("");
         }

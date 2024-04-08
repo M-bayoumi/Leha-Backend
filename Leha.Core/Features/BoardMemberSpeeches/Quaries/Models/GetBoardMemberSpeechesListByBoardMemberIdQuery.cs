@@ -4,15 +4,15 @@ using MediatR;
 
 namespace Leha.Core.Features.BoardMemberSpeeches.Quaries.Models;
 
-public class GetBoardMemberSpeechesListByBoardMemberIdQuery : IRequest<Response<List<GetBoardMemberSpeechListByBoardMemberIDResponse>>>
+public class GetBoardMemberSpeechesListByBoardMemberIDQuery : IRequest<Response<List<GetBoardMemberSpeechListByBoardMemberIDResponse>>>
 {
     public int ID { get; set; }
 
-    public GetBoardMemberSpeechesListByBoardMemberIdQuery(int boardMemberID)
+    public GetBoardMemberSpeechesListByBoardMemberIDQuery(int boardMemberID)
     {
         ID = boardMemberID;
     }
-    public GetBoardMemberSpeechesListByBoardMemberIdQuery()
+    public GetBoardMemberSpeechesListByBoardMemberIDQuery()
     {
     }
 }

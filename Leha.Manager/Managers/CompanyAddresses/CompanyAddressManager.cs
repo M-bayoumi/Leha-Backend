@@ -1,7 +1,6 @@
 ﻿using Leha.Data.Entities;
 using Leha.Infrastructure.Repositories.CompanyAddresses;
 using Leha.Infrastructure.UnitOfWorks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Manager.Managers.CompanyAddresses;
 
@@ -18,35 +17,41 @@ public class CompanyAddressManager : ICompanyAddressManager
         _unitOfWork = unitOfWork;
         _companyAddressRepository = unitOfWork.CompanyAddressRepository;
     }
-
     #endregion
 
     #region Handle Functions
-    public IQueryable<CompanyAddress?> GetCompanyAddressesListAsync()
+    public IQueryable<CompanyAddress?> GetAll()
     {
-        return _companyAddressRepository.GetTableNoTracking().AsQueryable();
+        return _companyAddressRepository.GetAll();
     }
 
-    public IQueryable<CompanyAddress?> GetCompanyAddressesListByCompanyId(int id)
+    public IQueryable<CompanyAddress?> GetAllByCompanyID(int id)
     {
-        return _companyAddressRepository.GetCompanyAddressesListByCompanyId(id).AsQueryable();
-    }
-    public async Task<CompanyAddress?> GetCompanyAddressByIDAsync(int id)
-    {
-        return await _companyAddressRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
+        return _companyAddressRepository.GetAllByCompanyID(id);
     }
 
-    public async Task<bool> AddCompanyAddressAsync(CompanyAddress pm)
+    public async Task<CompanyAddress?> GetByIdAsync(int id)
     {
-        return await _companyAddressRepository.AddAsync(pm);
+        return await _companyAddressRepository.GetByIdAsync(id);
     }
 
-    public async Task<bool> UpdateCompanyAddressAsync(CompanyAddress pm)
+    public async Task<bool> AddAsync(CompanyAddress pm)
     {
-        return await _companyAddressRepository.UpdateAsync(pm);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _companyAddressRepository.AddAsync(pm);
+        return false;
     }
 
-    public async Task<bool> DeleteCompanyAddressAsync(CompanyAddress pm)
+    public async Task<bool> UpdateAsync(CompanyAddress pm)
+    {
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _companyAddressRepository.UpdateAsync(pm);
+        return false;
+    }
+
+    public async Task<bool> DeleteAsync(CompanyAddress pm)
     {
         return await _companyAddressRepository.DeleteAsync(pm);
     }

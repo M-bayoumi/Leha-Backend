@@ -7,6 +7,7 @@ public interface IGenericRepository<T> where T : class
     IQueryable<T?> GetAll();
     IQueryable<T?> GetAllAsTracking();
     Task<T?> GetByIdAsync(int id);
+    Task<T?> GetByIdAsTrackingAsync(int id);
     Task<bool> AddAsync(T pm);
     Task<bool> AddRangeAsync(ICollection<T> pms);
     Task<bool> UpdateAsync(T pm);

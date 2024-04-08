@@ -1,6 +1,6 @@
 ﻿namespace Leha.Core.Features.ProjectPhases.Quaries.Results;
 
-public class GetProjectPhaseByIDResponse
+public class GetProjectPhaseByIdResponse
 {
     public int ID { get; set; }
     public string ProjectPhaseName { get; set; } = string.Empty;

@@ -4,15 +4,15 @@ using MediatR;
 
 namespace Leha.Core.Features.PhaseItems.Quaries.Models;
 
-public class GetPhaseItemListByProjectPhaseIdQuery : IRequest<Response<List<GetPhaseItemListByProjectPhaseIDResponse>>>
+public class GetPhaseItemListByProjectPhaseIDQuery : IRequest<Response<List<GetPhaseItemListByProjectPhaseIDResponse>>>
 {
     public int ID { get; set; }
 
-    public GetPhaseItemListByProjectPhaseIdQuery(int projectPhaseID)
+    public GetPhaseItemListByProjectPhaseIDQuery(int projectPhaseID)
     {
         ID = projectPhaseID;
     }
-    public GetPhaseItemListByProjectPhaseIdQuery()
+    public GetPhaseItemListByProjectPhaseIDQuery()
     {
     }
 }

@@ -6,9 +6,9 @@ namespace Leha.Core.Mapping.Forms;
 
 public partial class FormProfile : Profile
 {
-    public void GetFormByIDMapping()
+    public void GetFormByIdMapping()
     {
-        CreateMap<Form, GetFormByIDResponse>()
+        CreateMap<Form, GetFormByIdResponse>()
              .ForMember(dist => dist.JobTitle, opt => opt.MapFrom(src => src.Job.JobTitle))
              .ForMember(dist => dist.JobDescription, opt => opt.MapFrom(src => src.Job.JobDescription))
              .ForMember(dist => dist.JobAverageSalary, opt => opt.MapFrom(src => src.Job.JobAverageSalary))

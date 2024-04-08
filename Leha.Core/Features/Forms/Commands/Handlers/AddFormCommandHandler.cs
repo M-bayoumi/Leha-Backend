@@ -34,12 +34,12 @@ public class AddFormCommandHandler : ResponseHandler, IRequestHandler<AddFormCom
     #region Handle Functions
     public async Task<Response<string>> Handle(AddFormCommand request, CancellationToken cancellationToken)
     {
-        var job = await _jobManager.GetJobByIDAsync(request.JobID); // GetById without without include 
+        var job = await _jobManager.GetByIdAsync(request.JobID);
         if (job != null)
         {
             var form = _mapper.Map<Form>(request);
 
-            if (await _formManager.AddFormAsync(form))
+            if (await _formManager.AddAsync(form))
                 return Created("");
             return BadRequest<string>("");
         }

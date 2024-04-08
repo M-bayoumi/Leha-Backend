@@ -27,7 +27,7 @@ public class GetCompanyListQueryHandler : ResponseHandler, IRequestHandler<GetCo
     #region Handle Functions
     public async Task<Response<List<GetCompanyListResponse>>> Handle(GetCompanyListQuery request, CancellationToken cancellationToken)
     {
-        var companyListDB = _companyManager.GetCompaniesListAsync().ToList();
+        var companyListDB = _companyManager.GetAll().ToList();
         var companyListMapper = _mapper.Map<List<GetCompanyListResponse>>(companyListDB);
         return Success(companyListMapper);
     }

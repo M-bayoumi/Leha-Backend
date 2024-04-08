@@ -4,15 +4,15 @@ using MediatR;
 
 namespace Leha.Core.Features.Companies.Queries.Models;
 
-public class GetCompanyByIDQuery : IRequest<Response<GetCompanyByIDResponse>>
+public class GetCompanyByIdQuery : IRequest<Response<GetCompanyByIdResponse>>
 {
     public int ID { get; set; }
 
-    public GetCompanyByIDQuery(int companyID)
+    public GetCompanyByIdQuery(int companyID)
     {
         ID = companyID;
     }
-    public GetCompanyByIDQuery()
+    public GetCompanyByIdQuery()
     {
     }
 }

@@ -4,10 +4,10 @@ namespace Leha.Manager.Managers.PhaseItems;
 
 public interface IPhaseItemManager
 {
-    public IQueryable<PhaseItem?> GetPhaseItemsListAsync();
-    public IQueryable<PhaseItem?> GetPhaseItemsListByProjectPhaseId(int id);
-    public Task<PhaseItem?> GetPhaseItemByIDAsync(int id);
-    public Task<bool> AddPhaseItemAsync(PhaseItem pm);
-    public Task<bool> UpdatePhaseItemAsync(PhaseItem pm);
-    public Task<bool> DeletePhaseItemAsync(PhaseItem pm);
+    public IQueryable<PhaseItem?> GetAll();
+    public IQueryable<PhaseItem?> GetAllByProjectPhaseID(int id);
+    public Task<PhaseItem?> GetByIdAsync(int id);
+    public Task<bool> AddAsync(PhaseItem pm);
+    public Task<bool> UpdateAsync(PhaseItem pm);
+    public Task<bool> DeleteAsync(PhaseItem pm);
 }

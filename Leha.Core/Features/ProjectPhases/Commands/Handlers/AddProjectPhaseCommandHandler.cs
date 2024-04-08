@@ -34,12 +34,12 @@ public class AddProjectPhaseCommandHandler : ResponseHandler, IRequestHandler<Ad
     #region Handle Functions
     public async Task<Response<string>> Handle(AddProjectPhaseCommand request, CancellationToken cancellationToken)
     {
-        var project = await _projectManager.GetProjectByIDAsync(request.ProjectID);
+        var project = await _projectManager.GetByIdAsync(request.ProjectID);
         if (project != null)
         {
             var projectPhase = _mapper.Map<ProjectPhase>(request);
 
-            if (await _projectPhaseManager.AddProjectPhaseAsync(projectPhase))
+            if (await _projectPhaseManager.AddAsync(projectPhase))
                 return Created("");
             return BadRequest<string>("");
         }

@@ -5,7 +5,7 @@ public partial class CompanyAddressProfile
 {
     public CompanyAddressProfile()
     {
-        GetCompanyAddressByIDMapping();
+        GetCompanyAddressByIdMapping();
         GetCompanyAddressListMapping();
         GetCompanyAddressListByCompanyIDMapping();
         AddCompanyAddressCommandMapping();

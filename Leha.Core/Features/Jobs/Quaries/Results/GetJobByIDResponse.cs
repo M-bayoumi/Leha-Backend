@@ -1,6 +1,6 @@
 ﻿namespace Leha.Core.Features.Jobs.Quaries.Results;
 
-public class GetJobByIDResponse
+public class GetJobByIdResponse
 {
     public int ID { get; set; }
     public string JobTitle { get; set; } = string.Empty;

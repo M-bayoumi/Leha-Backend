@@ -1,6 +1,6 @@
 ﻿namespace Leha.Core.Features.Companies.Queries.Results;
 
-public class GetCompanyByIDResponse
+public class GetCompanyByIdResponse
 {
     public int ID { get; set; }
     public string CompanyName { get; set; } = string.Empty;

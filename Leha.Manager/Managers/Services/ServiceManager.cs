@@ -1,7 +1,6 @@
 ﻿using Leha.Data.Entities;
 using Leha.Infrastructure.Repositories.Services;
 using Leha.Infrastructure.UnitOfWorks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Manager.Managers.Services;
 
@@ -22,31 +21,37 @@ public class ServiceManager : IServiceManager
 
     #region Handle Functions
 
-    public IQueryable<Service?> GetServicesListAsync()
+    public IQueryable<Service?> GetAll()
     {
-        return _serviceRepository.GetTableNoTracking().AsQueryable();
+        return _serviceRepository.GetAll();
     }
 
-    public IQueryable<Service?> GetServicesListByCompanyId(int id)
+    public IQueryable<Service?> GetAllByCompanyID(int id)
     {
-        return _serviceRepository.GetServicesListByCompanyId(id).AsQueryable();
+        return _serviceRepository.GetAllByCompanyID(id);
     }
 
-    public async Task<Service?> GetServiceByIDAsync(int id)
+    public async Task<Service?> GetByIdAsync(int id)
     {
-        return await _serviceRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
+        return await _serviceRepository.GetByIdAsync(id);
     }
-    public async Task<bool> AddServiceAsync(Service pm)
+    public async Task<bool> AddAsync(Service pm)
     {
-        return await _serviceRepository.AddAsync(pm);
-    }
-
-    public async Task<bool> UpdateServiceAsync(Service pm)
-    {
-        return await _serviceRepository.AddAsync(pm);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _serviceRepository.AddAsync(pm);
+        return false;
     }
 
-    public async Task<bool> DeleteServiceAsync(Service pm)
+    public async Task<bool> UpdateAsync(Service pm)
+    {
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        if (dm != null)
+            return await _serviceRepository.UpdateAsync(pm);
+        return false;
+    }
+
+    public async Task<bool> DeleteAsync(Service pm)
     {
 
         return await _unitOfWork.ServiceRepository.DeleteAsync(pm);

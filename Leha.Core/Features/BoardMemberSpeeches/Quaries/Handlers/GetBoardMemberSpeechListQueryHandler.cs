@@ -28,7 +28,7 @@ public class GetBoardMemberSpeechListQueryHandler : ResponseHandler, IRequestHan
     #region Handle Functions
     public async Task<Response<List<GetBoardMemberSpeechListResponse>>> Handle(GetBoardMemberSpeechListQuery request, CancellationToken cancellationToken)
     {
-        var boardMemberSpeechListDB = await _boardMemberSpeechManager.GetBoardMemberSpeechesListAsync().Include(x => x.BoardMember).ToListAsync();
+        var boardMemberSpeechListDB = await _boardMemberSpeechManager.GetAll().Include(x => x.BoardMember).ToListAsync();
         if (boardMemberSpeechListDB is null)
         {
             return NotFound<List<GetBoardMemberSpeechListResponse>>();

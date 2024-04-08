@@ -23,71 +23,62 @@ public class CompanyManager : ICompanyManager
 
     #region Handle Functions
 
-    public IQueryable<Company?> GetCompaniesListAsync()
+    public IQueryable<Company?> GetAll()
     {
-        return _companyRepository.GetTableNoTracking().AsQueryable();
+        return _companyRepository.GetAll();
     }
 
-    public async Task<Company?> GetCompanyByIDAsync(int id)
+    public async Task<Company?> GetByIdAsync(int id)
     {
-        var company = await _companyRepository.GetTableNoTracking().FirstOrDefaultAsync(x => x.ID == id);
-        return company;
+        var dm = await _companyRepository.GetByIdAsync(id);
+        return dm;
     }
 
-    public async Task<bool> AddCompanyAsync(Company pm)
+    public async Task<bool> AddAsync(Company pm)
     {
         return await _companyRepository.AddAsync(pm);
     }
-    public async Task<bool> UpdateCompanyAsync(Company pm)
+    public async Task<bool> UpdateAsync(Company pm)
     {
         return await _companyRepository.UpdateAsync(pm);
     }
 
-    public async Task<bool> DeleteCompanyAsync(Company pm)
+    public async Task<bool> DeleteAsync(Company pm)
     {
         var transaction = _companyRepository.BeginTransaction();
         try
         {
-
-            var dms_project = _unitOfWork.ProjectRepository.GetProjectsListByCompanyId(pm.ID).ToList();
-
+            var dms_project = _unitOfWork.ProjectRepository.GetAllByCompanyID(pm.ID).ToList();
             if (dms_project != null)
                 await _unitOfWork.ProjectRepository.DeleteRangeAsync(dms_project);
 
-            var dms_service = _unitOfWork.ServiceRepository.GetServicesListByCompanyId(pm.ID).ToList();
-
+            var dms_service = _unitOfWork.ServiceRepository.GetAllByCompanyID(pm.ID).ToList();
             if (dms_service != null)
                 await _unitOfWork.ServiceRepository.DeleteRangeAsync(dms_service);
 
 
-            var dms_product = _unitOfWork.ProductRepository.GetProductsListByCompanyId(pm.ID).ToList();
-
+            var dms_product = _unitOfWork.ProductRepository.GetAllByCompanyID(pm.ID).ToList();
             if (dms_product != null)
                 await _unitOfWork.ProductRepository.DeleteRangeAsync(dms_product);
 
 
-            var dms_homeImage = _unitOfWork.HomeImageRepository.GetHomeImagesListByCompanyId(pm.ID).ToList();
-
+            var dms_homeImage = _unitOfWork.HomeImageRepository.GetAllByCompanyID(pm.ID).ToList();
             if (dms_homeImage != null)
                 await _unitOfWork.HomeImageRepository.DeleteRangeAsync(dms_homeImage);
 
-            var dms_address = _unitOfWork.CompanyAddressRepository.GetCompanyAddressesListByCompanyId(pm.ID).ToList();
-
+            var dms_address = _unitOfWork.CompanyAddressRepository.GetAllByCompanyID(pm.ID).ToList();
             if (dms_address != null)
                 await _unitOfWork.CompanyAddressRepository.DeleteRangeAsync(dms_address);
 
-            var dms_post = _unitOfWork.PostRepository.GetPostsListByCompanyId(pm.ID).ToList();
-
+            var dms_post = _unitOfWork.PostRepository.GetAllByCompanyID(pm.ID).ToList();
             if (dms_post != null)
                 await _unitOfWork.PostRepository.DeleteRangeAsync(dms_post);
 
-            var dms_postClients = _unitOfWork.ClientRepository.GetClientsListByCompanyId(pm.ID).ToList();
-
+            var dms_postClients = _unitOfWork.ClientRepository.GetAllByCompanyID(pm.ID).ToList();
             if (dms_postClients != null)
                 await _unitOfWork.ClientRepository.DeleteRangeAsync(dms_postClients);
 
-            var dms_jobs = _unitOfWork.JobRepository.GetJobsListByCompanyId(pm.ID).ToList();
-
+            var dms_jobs = _unitOfWork.JobRepository.GetAllByCompanyID(pm.ID).ToList();
             if (dms_jobs != null)
                 await _unitOfWork.JobRepository.DeleteRangeAsync(dms_jobs);
 
@@ -107,16 +98,15 @@ public class CompanyManager : ICompanyManager
 
     public async Task<bool> IsNameExist(string name)
     {
-        var isNameExist = await _companyRepository.GetTableNoTracking().AnyAsync(x => x!.CompanyName == name);
+        var isNameExist = await _companyRepository.GetAll().AnyAsync(x => x!.CompanyName == name);
         return isNameExist;
     }
 
     public async Task<bool> IsNameExistExludeSelf(string name, int id)
     {
-        var isNameExist = await _companyRepository.GetTableNoTracking().AnyAsync(x => x!.CompanyName == name && x.ID != id);
+        var isNameExist = await _companyRepository.GetAll().AnyAsync(x => x!.CompanyName == name && x.ID != id);
         return isNameExist;
     }
-
     #endregion
 }
 

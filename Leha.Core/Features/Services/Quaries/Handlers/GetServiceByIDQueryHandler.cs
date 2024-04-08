@@ -11,7 +11,7 @@ using Microsoft.Extensions.Localization;
 namespace Leha.Core.Features.Services.Quaries.Handlers;
 
 
-public class GetServiceByIDQueryHandler : ResponseHandler, IRequestHandler<GetServiceByIDQuery, Response<GetServiceByIDResponse>>
+public class GetServiceByIdQueryHandler : ResponseHandler, IRequestHandler<GetServiceByIdQuery, Response<GetServiceByIdResponse>>
 {
     #region Fields
     private readonly IServiceManager _serviceManager;
@@ -19,7 +19,7 @@ public class GetServiceByIDQueryHandler : ResponseHandler, IRequestHandler<GetSe
     #endregion
 
     #region Constructors
-    public GetServiceByIDQueryHandler(IServiceManager serviceManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetServiceByIdQueryHandler(IServiceManager serviceManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _serviceManager = serviceManager;
         _mapper = mapper;
@@ -27,15 +27,15 @@ public class GetServiceByIDQueryHandler : ResponseHandler, IRequestHandler<GetSe
     #endregion
 
     #region Handle Functions
-    public async Task<Response<GetServiceByIDResponse>> Handle(GetServiceByIDQuery request, CancellationToken cancellationToken)
+    public async Task<Response<GetServiceByIdResponse>> Handle(GetServiceByIdQuery request, CancellationToken cancellationToken)
     {
-        var serviceDB = await _serviceManager.GetServicesListAsync().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var serviceDB = await _serviceManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
 
         if (serviceDB is null)
         {
-            return NotFound<GetServiceByIDResponse>();
+            return NotFound<GetServiceByIdResponse>();
         }
-        var serviceMapper = _mapper.Map<GetServiceByIDResponse>(serviceDB);
+        var serviceMapper = _mapper.Map<GetServiceByIdResponse>(serviceDB);
         return Success(serviceMapper);
     }
     #endregion

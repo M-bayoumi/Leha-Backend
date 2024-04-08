@@ -6,9 +6,9 @@ namespace Leha.Core.Mapping.CompanyAddresses;
 
 public partial class CompanyAddressProfile : Profile
 {
-    public void GetCompanyAddressByIDMapping()
+    public void GetCompanyAddressByIdMapping()
     {
-        CreateMap<CompanyAddress, GetCompanyAddressByIDResponse>()
+        CreateMap<CompanyAddress, GetCompanyAddressByIdResponse>()
              .ForMember(dist => dist.CompanyName, opt => opt.MapFrom(src => src.Company.CompanyName))
              .ForMember(dist => dist.CompanyEmployees, opt => opt.MapFrom(src => src.Company.CompanyEmployees))
              .ForMember(dist => dist.CompanyImage, opt => opt.MapFrom(src => src.Company.CompanyImage))

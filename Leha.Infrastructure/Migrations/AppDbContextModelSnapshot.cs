@@ -81,7 +81,11 @@ namespace Leha.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(max)");
 
-                    b.Property<string>("ClientName")
+                    b.Property<string>("ClientNameAr")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.Property<string>("ClientNameEn")
                         .IsRequired()
                         .HasColumnType("varchar(max)");
 

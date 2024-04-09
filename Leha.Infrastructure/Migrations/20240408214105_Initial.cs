@@ -70,7 +70,8 @@ namespace Leha.Infrastructure.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientName = table.Column<string>(type: "varchar(max)", nullable: false),
+                    ClientNameAr = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    ClientNameEn = table.Column<string>(type: "varchar(max)", nullable: false),
                     ClientImage = table.Column<string>(type: "varchar(max)", nullable: false),
                     CompanyID = table.Column<int>(type: "int", nullable: false)
                 },

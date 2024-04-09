@@ -1,10 +1,12 @@
-﻿
+﻿using Leha.Data.Commons;
+
 namespace Leha.Data.Entities;
 
-public class Client
+public class Client : LocalizableEntity
 {
     public int ID { get; set; }
-    public string ClientName { get; set; } = string.Empty;
+    public string ClientNameAr { get; set; } = string.Empty;
+    public string ClientNameEn { get; set; } = string.Empty;
     public string ClientImage { get; set; } = string.Empty;
     public int CompanyID { get; set; }
     public Company Company { get; set; } = null!;
@@ -13,10 +15,11 @@ public class Client
     {
     }
 
-    public Client(int iD, string clientName, string clientImage, int companyID)
+    public Client(int iD, string clientNameAr, string clientNameEn, string clientImage, int companyID)
     {
         ID = iD;
-        ClientName = clientName;
+        ClientNameAr = clientNameAr;
+        ClientNameEn = clientNameEn;
         ClientImage = clientImage;
         CompanyID = companyID;
     }

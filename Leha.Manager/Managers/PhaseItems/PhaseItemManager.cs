@@ -39,7 +39,7 @@ public class PhaseItemManager : IPhaseItemManager
 
     public async Task<bool> AddAsync(PhaseItem pm)
     {
-        var dm_projectPhase = await _unitOfWork.ProjectPhaseRepository.GetByIdAsync(pm.ProjectPhaseID);
+        var dm_projectPhase = await _unitOfWork.ProjectPhaseRepository.GetAll().Include(x => x.PhaseItems).FirstOrDefaultAsync(x => x.ID == pm.ProjectPhaseID);
         if (dm_projectPhase == null) return false;
 
         var dm_project = _unitOfWork.ProjectRepository
@@ -61,9 +61,10 @@ public class PhaseItemManager : IPhaseItemManager
         try
         {
             await _phaseItemRepository.AddAsync(pm);
+            await _phaseItemRepository.SaveChangesAsync();
             dm_project.ProjectProgressPercentage = dm_project.ProjectPhases
                 .SelectMany(x => x.PhaseItems)
-                .Sum(c => c.AcumulativePercentage * c.ProgressPercentage / 100);
+                .Sum(c => (c.AcumulativePercentage * c.ProgressPercentage) / 100);
 
             await _unitOfWork.ProjectRepository
                 .UpdateAsync(dm_project);
@@ -80,7 +81,7 @@ public class PhaseItemManager : IPhaseItemManager
 
     public async Task<bool> UpdateAsync(PhaseItem pm)
     {
-        var dm_projectPhase = await _unitOfWork.ProjectPhaseRepository.GetByIdAsync(pm.ProjectPhaseID);
+        var dm_projectPhase = await _unitOfWork.ProjectPhaseRepository.GetAll().Include(x => x.PhaseItems).FirstOrDefaultAsync(x => x.ID == pm.ProjectPhaseID);
         if (dm_projectPhase == null) return false;
 
         var dm_project = _unitOfWork.ProjectRepository
@@ -102,9 +103,10 @@ public class PhaseItemManager : IPhaseItemManager
         try
         {
             await _phaseItemRepository.UpdateAsync(pm);
+            await _phaseItemRepository.SaveChangesAsync();
             dm_project.ProjectProgressPercentage = dm_project.ProjectPhases
                 .SelectMany(x => x.PhaseItems)
-                .Sum(c => c.AcumulativePercentage * c.ProgressPercentage / 100);
+                .Sum(c => (c.AcumulativePercentage * c.ProgressPercentage) / 100);
 
             await _unitOfWork.ProjectRepository
                 .UpdateAsync(dm_project);
@@ -121,7 +123,7 @@ public class PhaseItemManager : IPhaseItemManager
 
     public async Task<bool> DeleteAsync(PhaseItem pm)
     {
-        var dm_projectPhase = await _unitOfWork.ProjectPhaseRepository.GetByIdAsync(pm.ProjectPhaseID);
+        var dm_projectPhase = await _unitOfWork.ProjectPhaseRepository.GetAll().Include(x => x.PhaseItems).FirstOrDefaultAsync(x => x.ID == pm.ProjectPhaseID);
         if (dm_projectPhase == null) return false;
 
         var dm_project = _unitOfWork.ProjectRepository
@@ -139,25 +141,16 @@ public class PhaseItemManager : IPhaseItemManager
         if (totalAcumulativePercentage > 100) return false;
         pm.PercentageLossOrExceed = (pm.InitialInventoryQuantities - pm.ActualInventoryQuantities) * 100 / pm.InitialInventoryQuantities;
 
-        var transaction = _phaseItemRepository.BeginTransaction();
-        try
-        {
-            await _phaseItemRepository.DeleteAsync(pm);
-            dm_project.ProjectProgressPercentage = dm_project.ProjectPhases
-                .SelectMany(x => x.PhaseItems)
-                .Sum(c => c.AcumulativePercentage * c.ProgressPercentage / 100);
 
-            await _unitOfWork.ProjectRepository
-                .UpdateAsync(dm_project);
-            await transaction.CommitAsync();
 
-            return true;
-        }
-        catch
-        {
-            await transaction.RollbackAsync();
-            return false;
-        }
+        await _phaseItemRepository.DeleteAsync(pm);
+        dm_project.ProjectProgressPercentage = dm_project.ProjectPhases
+            .SelectMany(x => x.PhaseItems)
+            .Sum(c => (c.AcumulativePercentage * c.ProgressPercentage) / 100);
+
+        await _unitOfWork.ProjectRepository
+            .UpdateAsync(dm_project);
+        return true;
     }
     #endregion
 }

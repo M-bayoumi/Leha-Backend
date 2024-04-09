@@ -8,6 +8,7 @@ public partial class ClientProfile : Profile
     public void GetClientListMapping()
     {
         CreateMap<Client, GetClientListResponse>()
+             .ForMember(dist => dist.ClientName, opt => opt.MapFrom(src => src.GetLocalized(src.ClientNameAr, src.ClientNameEn)))
              .ForMember(dist => dist.CompanyName, opt => opt.MapFrom(src => src.Company.CompanyName))
              .ForMember(dist => dist.CompanyEmployees, opt => opt.MapFrom(src => src.Company.CompanyEmployees))
              .ForMember(dist => dist.CompanyImage, opt => opt.MapFrom(src => src.Company.CompanyImage))

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Leha.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240406005254_Initial")]
+    [Migration("20240408214105_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -84,7 +84,11 @@ namespace Leha.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(max)");
 
-                    b.Property<string>("ClientName")
+                    b.Property<string>("ClientNameAr")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.Property<string>("ClientNameEn")
                         .IsRequired()
                         .HasColumnType("varchar(max)");
 

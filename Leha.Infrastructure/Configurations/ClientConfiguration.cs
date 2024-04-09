@@ -10,7 +10,11 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
     {
         builder.HasKey(x => x.ID);
 
-        builder.Property(x => x.ClientName)
+        builder.Property(x => x.ClientNameAr)
+           .HasColumnType("Nvarchar(max)")
+           .IsRequired();
+
+        builder.Property(x => x.ClientNameEn)
            .HasColumnType("varchar(max)")
            .IsRequired();
 

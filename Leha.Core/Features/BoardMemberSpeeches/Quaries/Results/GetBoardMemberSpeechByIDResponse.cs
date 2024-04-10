@@ -2,10 +2,13 @@
 
 public class GetBoardMemberSpeechByIdResponse
 {
-    public int ID { get; set; }
-    public string BoardMemberSpeechContent { get; set; } = string.Empty;
-    public int BoardMemberID { get; set; }
-    public string BoardMemberName { get; set; } = string.Empty;
-    public string BoardMemberImage { get; set; } = string.Empty;
-    public string BoardMemberPosition { get; set; } = string.Empty;
+    public int Id { get; set; }
+    public string ContentAr { get; set; } = string.Empty;
+    public string ContentEn { get; set; } = string.Empty;
+    public int BoardMemberId { get; set; }
+    public string NameAr { get; set; } = string.Empty;
+    public string NameEn { get; set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
+    public string PositionAr { get; set; } = string.Empty;
+    public string PositionEn { get; set; } = string.Empty;
 }

@@ -27,7 +27,7 @@ public class DeleteCompanyCommandHandler : ResponseHandler, IRequestHandler<Dele
     #region Handle Functions
     public async Task<Response<string>> Handle(DeleteCompanyCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetByIdAsync(request.ID);
+        var company = await _companyManager.GetByIdAsync(request.Id);
         if (company == null) return NotFound<string>("");
         if (await _companyManager.DeleteAsync(company))
             return Deleted<string>("");

@@ -7,11 +7,11 @@ namespace Leha.Core.Features.BoardMembers.Quaries.Models;
 
 public class GetBoardMemberByIdQuery : IRequest<Response<GetBoardMemberByIdResponse>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
-    public GetBoardMemberByIdQuery(int boardMemberID)
+    public GetBoardMemberByIdQuery(int boardMemberId)
     {
-        ID = boardMemberID;
+        Id = boardMemberId;
     }
     public GetBoardMemberByIdQuery()
     {

@@ -26,9 +26,9 @@ public class HomeImageManager : IHomeImageManager
         return _homeImageRepository.GetAll();
     }
 
-    public IQueryable<HomeImage?> GetAllByCompanyID(int id)
+    public IQueryable<HomeImage?> GetAllByCompanyId(int id)
     {
-        return _homeImageRepository.GetAllByCompanyID(id);
+        return _homeImageRepository.GetAllByCompanyId(id);
     }
 
     public async Task<HomeImage?> GetByIdAsync(int id)
@@ -39,7 +39,7 @@ public class HomeImageManager : IHomeImageManager
 
     public async Task<bool> AddAsync(HomeImage pm)
     {
-        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
             return await _homeImageRepository.AddAsync(pm);
         return false;
@@ -47,7 +47,7 @@ public class HomeImageManager : IHomeImageManager
 
     public async Task<bool> UpdateAsync(HomeImage pm)
     {
-        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
             return await _homeImageRepository.UpdateAsync(pm);
         return false;

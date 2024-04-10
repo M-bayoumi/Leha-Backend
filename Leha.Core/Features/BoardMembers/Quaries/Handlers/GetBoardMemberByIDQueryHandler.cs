@@ -28,7 +28,7 @@ public class GetBoardMemberByIdQueryHandler : ResponseHandler, IRequestHandler<G
     #region Handle Functions
     public async Task<Response<GetBoardMemberByIdResponse>> Handle(GetBoardMemberByIdQuery request, CancellationToken cancellationToken)
     {
-        var boardMemberDB = await _boardMemberManager.GetByIdAsync(request.ID);
+        var boardMemberDB = await _boardMemberManager.GetByIdAsync(request.Id);
         if (boardMemberDB is null)
         {
             return NotFound<GetBoardMemberByIdResponse>();

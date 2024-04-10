@@ -28,7 +28,7 @@ public class GetFormListByJobIDQueryHandler : ResponseHandler, IRequestHandler<G
     #region Handle Functions
     public async Task<Response<List<GetFormListByJobIDResponse>>> Handle(GetFormListByJobIDQuery request, CancellationToken cancellationToken)
     {
-        var formListDB = await _formManager.GetAllByJobID(request.ID).Include(x => x.Job).ToListAsync();
+        var formListDB = await _formManager.GetAllByJobId(request.Id).Include(x => x.Job).ToListAsync();
         if (formListDB is null)
         {
             return NotFound<List<GetFormListByJobIDResponse>>();

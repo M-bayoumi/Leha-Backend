@@ -25,9 +25,9 @@ public class ProductManager : IProductManager
         return _productRepository.GetAll();
     }
 
-    public IQueryable<Product?> GetAllByCompanyID(int id)
+    public IQueryable<Product?> GetAllByCompanyId(int id)
     {
-        return _productRepository.GetAllByCompanyID(id);
+        return _productRepository.GetAllByCompanyId(id);
     }
 
     public async Task<Product?> GetByIdAsync(int id)
@@ -37,7 +37,7 @@ public class ProductManager : IProductManager
 
     public async Task<bool> AddAsync(Product pm)
     {
-        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
             return await _productRepository.AddAsync(pm);
         return false;
@@ -45,7 +45,7 @@ public class ProductManager : IProductManager
 
     public async Task<bool> UpdateAsync(Product pm)
     {
-        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
             return await _productRepository.UpdateAsync(pm);
         return false;

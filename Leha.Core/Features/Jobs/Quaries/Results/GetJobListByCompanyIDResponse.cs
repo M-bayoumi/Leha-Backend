@@ -2,16 +2,19 @@
 
 public class GetJobListByCompanyIDResponse
 {
-    public int ID { get; set; }
-    public string JobTitle { get; set; } = string.Empty;
-    public string JobDescription { get; set; } = string.Empty;
-    public string JobAverageSalary { get; set; } = string.Empty;
-    public DateTime JobDateTime { get; set; } = DateTime.Now;
-    public int CompanyID { get; set; }
-    public string CompanyName { get; set; } = string.Empty;
-    public int CompanyEmployees { get; set; }
-    public string CompanyImage { get; set; } = string.Empty;
-    public string CompanyEmail { get; set; } = string.Empty;
-    public string CompanyPhone { get; set; } = string.Empty;
-    public string CompanyLink { get; set; } = string.Empty;
+    public int Id { get; set; }
+    public string TitleAr { get; set; } = string.Empty;
+    public string TitleEn { get; set; } = string.Empty;
+    public string DescriptionAr { get; set; } = string.Empty;
+    public string DescriptionEn { get; set; } = string.Empty;
+    public string AverageSalary { get; set; } = string.Empty;
+    public DateTime DateTime { get; set; } = DateTime.Now;
+    public int CompanyId { get; set; }
+    public string NameAr { get; set; } = string.Empty;
+    public string NameEn { get; set; } = string.Empty;
+    public int Employees { get; set; }
+    public string Image { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string Phone { get; set; } = string.Empty;
+    public string Link { get; set; } = string.Empty;
 }

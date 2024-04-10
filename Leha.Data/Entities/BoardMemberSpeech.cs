@@ -1,20 +1,26 @@
 ﻿
+using Leha.Data.Commons;
+
 namespace Leha.Data.Entities;
 
-public class BoardMemberSpeech
+public class BoardMemberSpeech : LocalizableEntity
 {
-    public int ID { get; set; }
-    public string BoardMemberSpeechContent { get; set; } = string.Empty;
-    public int BoardMemberID { get; set; }
+    public int Id { get; set; }
+    public string ContentAr { get; set; } = string.Empty;
+    public string ContentEn { get; set; } = string.Empty;
+    public DateTime DateTime { get; set; } = DateTime.Now;
+    public int BoardMemberId { get; set; }
     public BoardMember BoardMember { get; set; } = null!;
+
     public BoardMemberSpeech()
     {
     }
 
-    public BoardMemberSpeech(int iD, string boardMemberSpeechContent, int boardMemberID)
+    public BoardMemberSpeech(int id, string contentAr, string contentEn, int boardMemberId)
     {
-        ID = iD;
-        BoardMemberSpeechContent = boardMemberSpeechContent;
-        BoardMemberID = boardMemberID;
+        Id = id;
+        ContentAr = contentAr;
+        ContentEn = contentEn;
+        BoardMemberId = boardMemberId;
     }
 }

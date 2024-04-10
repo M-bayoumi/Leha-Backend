@@ -28,7 +28,7 @@ public class UpdateBoardMemberCommandHandler : ResponseHandler, IRequestHandler<
     #region Handle Functions
     public async Task<Response<string>> Handle(UpdateBoardMemberCommand request, CancellationToken cancellationToken)
     {
-        var boardMember = await _boardMemberManager.GetByIdAsync(request.ID);
+        var boardMember = await _boardMemberManager.GetByIdAsync(request.Id);
 
         if (boardMember == null) return NotFound<string>("");
 

@@ -5,6 +5,6 @@ namespace Leha.Infrastructure.Repositories.Posts;
 
 public interface IPostRepository : IGenericRepository<Post>
 {
-    public IQueryable<Post?> GetAllByCompanyID(int id);
+    public IQueryable<Post?> GetAllByCompanyId(int id);
 
 }

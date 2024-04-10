@@ -22,9 +22,9 @@ public class JobRepository : GenericRepository<Job>, IJobRepository
 
     #region Handle Functions
 
-    public IQueryable<Job?> GetAllByCompanyID(int id)
+    public IQueryable<Job?> GetAllByCompanyId(int id)
     {
-        return _jobs.Where(x => x.CompanyID == id)
+        return _jobs.Where(x => x.CompanyId == id)
             .AsNoTracking()
             .AsQueryable();
     }

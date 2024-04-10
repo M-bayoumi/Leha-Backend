@@ -8,6 +8,8 @@ public interface ICompanyManager
     public Task<bool> AddAsync(Company pm);
     public Task<bool> UpdateAsync(Company pm);
     public Task<bool> DeleteAsync(Company pm);
-    public Task<bool> IsNameExist(string name);
-    public Task<bool> IsNameExistExludeSelf(string name, int id);
+    public Task<bool> IsNameArExist(string nameAr);
+    public Task<bool> IsNameEnExist(string nameEn);
+    public Task<bool> IsNameArExistExludeSelf(string nameAr, int id);
+    public Task<bool> IsNameEnExistExludeSelf(string nameEn, int id);
 }

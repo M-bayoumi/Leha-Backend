@@ -6,11 +6,11 @@ namespace Leha.Core.Features.BoardMemberSpeeches.Quaries.Models;
 
 public class GetBoardMemberSpeechesListByBoardMemberIDQuery : IRequest<Response<List<GetBoardMemberSpeechListByBoardMemberIDResponse>>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public GetBoardMemberSpeechesListByBoardMemberIDQuery(int boardMemberID)
     {
-        ID = boardMemberID;
+        Id = boardMemberID;
     }
     public GetBoardMemberSpeechesListByBoardMemberIDQuery()
     {

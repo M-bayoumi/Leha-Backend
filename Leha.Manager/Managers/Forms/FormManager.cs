@@ -27,9 +27,9 @@ public class FormManager : IFormManager
         return _formRepository.GetAll();
     }
 
-    public IQueryable<Form?> GetAllByJobID(int id)
+    public IQueryable<Form?> GetAllByJobId(int id)
     {
-        return _formRepository.GetAllByJobID(id);
+        return _formRepository.GetAllByJobId(id);
     }
 
     public async Task<Form?> GetByIdAsync(int id)
@@ -39,7 +39,7 @@ public class FormManager : IFormManager
 
     public async Task<bool> AddAsync(Form pm)
     {
-        var dm = await _unitOfWork.JobRepository.GetByIdAsync(pm.JobID);
+        var dm = await _unitOfWork.JobRepository.GetByIdAsync(pm.JobId);
         if (dm != null)
             return await _formRepository.AddAsync(pm);
         return false;
@@ -47,7 +47,7 @@ public class FormManager : IFormManager
 
     public async Task<bool> UpdateAsync(Form pm)
     {
-        var dm = await _unitOfWork.JobRepository.GetByIdAsync(pm.JobID);
+        var dm = await _unitOfWork.JobRepository.GetByIdAsync(pm.JobId);
         if (dm != null)
             return await _formRepository.UpdateAsync(pm);
         return false;

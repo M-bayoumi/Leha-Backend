@@ -5,7 +5,7 @@ namespace Leha.Manager.Managers.Jobs;
 public interface IJobManager
 {
     public IQueryable<Job?> GetAll();
-    public IQueryable<Job?> GetAllByCompanyID(int id);
+    public IQueryable<Job?> GetAllByCompanyId(int id);
     public Task<Job?> GetByIdAsync(int id);
     public Task<bool> AddAsync(Job pm);
     public Task<bool> UpdateAsync(Job pm);

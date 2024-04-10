@@ -26,9 +26,9 @@ public class ClientController : AppControllerBase
         return NewResult(response);
     }
 
-    [HttpGet(Router.ClientRouting.GetAllByCompanyID)]
+    [HttpGet(Router.ClientRouting.GetAllByCompanyId)]
 
-    public async Task<IActionResult> GetAllByCompanyID([FromRoute] GetClientListByCompanyIDQuery command)
+    public async Task<IActionResult> GetAllByCompanyId([FromRoute] GetClientListByCompanyIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

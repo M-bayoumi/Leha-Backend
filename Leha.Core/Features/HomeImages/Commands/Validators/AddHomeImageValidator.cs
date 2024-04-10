@@ -27,7 +27,7 @@ public class AddHomeImageValidator : AbstractValidator<AddHomeImageCommand>
             .NotEmpty().WithMessage("Can't be empty.")
             .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.CompanyID)
+        RuleFor(x => x.CompanyId)
         .NotNull().WithMessage("Required.")
         .GreaterThanOrEqualTo(1).WithMessage("Not Found");
     }

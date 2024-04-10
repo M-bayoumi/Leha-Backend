@@ -28,7 +28,7 @@ public class GetProductListByCompanyIDQueryHandler : ResponseHandler, IRequestHa
     #region Handle Functions
     public async Task<Response<List<GetProductListByCompanyIDResponse>>> Handle(GetProductListByCompanyIDQuery request, CancellationToken cancellationToken)
     {
-        var productListDB = await _productManager.GetAllByCompanyID(request.ID).Include(x => x.Company).ToListAsync();
+        var productListDB = await _productManager.GetAllByCompanyId(request.ID).Include(x => x.Company).ToListAsync();
         if (productListDB is null)
         {
             return NotFound<List<GetProductListByCompanyIDResponse>>();

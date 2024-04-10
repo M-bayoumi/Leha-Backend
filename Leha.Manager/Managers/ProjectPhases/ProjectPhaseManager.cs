@@ -41,7 +41,7 @@ public class ProjectPhaseManager : IProjectPhaseManager
 
     public async Task<bool> AddAsync(ProjectPhase pm)
     {
-        var dm = await _unitOfWork.ProjectRepository.GetByIdAsync(pm.ProjectID);
+        var dm = await _unitOfWork.ProjectRepository.GetByIdAsync(pm.ProjectId);
         if (dm != null)
             return await _projectPhaseRepository.AddAsync(pm);
         return false;
@@ -57,7 +57,7 @@ public class ProjectPhaseManager : IProjectPhaseManager
         var transaction = _projectPhaseRepository.BeginTransaction();
         try
         {
-            var dms = _unitOfWork.PhaseItemRepository.GetAllByProjectPhaseID(pm.ID).ToList();
+            var dms = _unitOfWork.PhaseItemRepository.GetAllByProjectPhaseID(pm.Id).ToList();
 
             if (dms != null)
                 await _unitOfWork.PhaseItemRepository.DeleteRangeAsync(dms);

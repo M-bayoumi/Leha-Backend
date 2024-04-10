@@ -5,10 +5,10 @@ namespace Leha.Core.Features.BoardMembers.Commands.Models;
 
 public class DeleteBoardMemberCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
-    public DeleteBoardMemberCommand(int iD)
+    public int Id { get; set; }
+    public DeleteBoardMemberCommand(int id)
     {
-        ID = iD;
+        Id = id;
     }
     public DeleteBoardMemberCommand()
     {

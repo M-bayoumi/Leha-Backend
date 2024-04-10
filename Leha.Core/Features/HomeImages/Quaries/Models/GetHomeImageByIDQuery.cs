@@ -6,11 +6,11 @@ namespace Leha.Core.Features.HomeImages.Quaries.Models;
 
 public class GetHomeImageByIdQuery : IRequest<Response<GetHomeImageByIdResponse>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public GetHomeImageByIdQuery(int homeImageID)
     {
-        ID = homeImageID;
+        Id = homeImageID;
     }
     public GetHomeImageByIdQuery()
     {

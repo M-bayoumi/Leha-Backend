@@ -33,7 +33,7 @@ public class UpdateFormCommandHandler : ResponseHandler, IRequestHandler<UpdateF
     #region Handle Functions
     public async Task<Response<string>> Handle(UpdateFormCommand request, CancellationToken cancellationToken)
     {
-        var job = await _jobManager.GetByIdAsync(request.JobID);
+        var job = await _jobManager.GetByIdAsync(request.JobId);
         if (job != null)
         {
             var form = _mapper.Map<Form>(request);

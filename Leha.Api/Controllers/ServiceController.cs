@@ -26,9 +26,9 @@ public class ServiceController : AppControllerBase
         return NewResult(response);
     }
 
-    [HttpGet(Router.ServiceRouting.GetAllByCompanyID)]
+    [HttpGet(Router.ServiceRouting.GetAllByCompanyId)]
 
-    public async Task<IActionResult> GetAllByCompanyID([FromRoute] GetServiceListByCompanyIDQuery command)
+    public async Task<IActionResult> GetAllByCompanyId([FromRoute] GetServiceListByCompanyIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

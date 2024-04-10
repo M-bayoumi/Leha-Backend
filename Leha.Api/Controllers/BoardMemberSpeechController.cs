@@ -26,8 +26,8 @@ public class BoardMemberSpeechController : AppControllerBase
         return NewResult(response);
     }
 
-    [HttpGet(Router.BoardMemberSpeechRouting.GetAllByBoardMemberID)]
-    public async Task<IActionResult> GetAllByBoardMemberID([FromRoute] GetBoardMemberSpeechesListByBoardMemberIDQuery command)
+    [HttpGet(Router.BoardMemberSpeechRouting.GetAllByBoardMemberId)]
+    public async Task<IActionResult> GetAllByBoardMemberId([FromRoute] GetBoardMemberSpeechesListByBoardMemberIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

@@ -20,9 +20,9 @@ public class ProjectRepository : GenericRepository<Project>, IProjectRepository
     #endregion
 
     #region Handle Functions
-    public IQueryable<Project?> GetAllByCompanyID(int id)
+    public IQueryable<Project?> GetAllByCompanyId(int id)
     {
-        return _projects.Where(x => x.CompanyID == id)
+        return _projects.Where(x => x.CompanyId == id)
             .AsNoTracking()
             .AsQueryable();
     }

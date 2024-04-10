@@ -28,9 +28,9 @@ public class JobManager : IJobManager
         return _jobRepository.GetAll();
     }
 
-    public IQueryable<Job?> GetAllByCompanyID(int id)
+    public IQueryable<Job?> GetAllByCompanyId(int id)
     {
-        return _jobRepository.GetAllByCompanyID(id);
+        return _jobRepository.GetAllByCompanyId(id);
     }
 
     public async Task<Job?> GetByIdAsync(int id)
@@ -40,7 +40,7 @@ public class JobManager : IJobManager
 
     public async Task<bool> AddAsync(Job pm)
     {
-        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
             return await _jobRepository.AddAsync(pm);
         return false;
@@ -48,7 +48,7 @@ public class JobManager : IJobManager
 
     public async Task<bool> UpdateAsync(Job pm)
     {
-        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
             return await _jobRepository.UpdateAsync(pm);
         return false;
@@ -59,7 +59,7 @@ public class JobManager : IJobManager
         var transaction = _jobRepository.BeginTransaction();
         try
         {
-            var dms = _unitOfWork.FormRepository.GetAllByJobID(pm.ID).ToList();
+            var dms = _unitOfWork.FormRepository.GetAllByJobId(pm.Id).ToList();
 
             if (dms != null)
                 await _unitOfWork.FormRepository.DeleteRangeAsync(dms);

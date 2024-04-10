@@ -5,7 +5,7 @@ namespace Leha.Core.Features.HomeImages.Commands.Models;
 
 public class DeleteHomeImageCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public DeleteHomeImageCommand()
     {
@@ -14,6 +14,6 @@ public class DeleteHomeImageCommand : IRequest<Response<string>>
 
     public DeleteHomeImageCommand(int iD)
     {
-        ID = iD;
+        Id = iD;
     }
 }

@@ -1,14 +1,18 @@
 ﻿
+using Leha.Data.Commons;
+
 namespace Leha.Data.Entities;
 
-public class Job
+public class Job : LocalizableEntity
 {
-    public int ID { get; set; }
-    public string JobTitle { get; set; } = string.Empty;
-    public string JobDescription { get; set; } = string.Empty;
-    public string JobAverageSalary { get; set; } = string.Empty;
-    public DateTime JobDateTime { get; set; } = DateTime.Now;
-    public int CompanyID { get; set; }
+    public int Id { get; set; }
+    public string TitleAr { get; set; } = string.Empty;
+    public string TitleEn { get; set; } = string.Empty;
+    public string DescriptionAr { get; set; } = string.Empty;
+    public string DescriptionEn { get; set; } = string.Empty;
+    public string AverageSalary { get; set; } = string.Empty;
+    public DateTime DateTime { get; set; } = DateTime.Now;
+    public int CompanyId { get; set; }
     public Company Company { get; set; } = null!;
     public List<Form> Forms { get; set; } = new List<Form>();
 
@@ -16,14 +20,15 @@ public class Job
     {
     }
 
-    public Job(int iD, string jobTitle, string jobDescription, string jobAverageSalary, DateTime jobDateTime, int companyID)
+    public Job(int id, string titleAr, string titleEn, string descriptionAr, string descriptionEn, string averageSalary, int companyId)
     {
-        ID = iD;
-        JobTitle = jobTitle;
-        JobDescription = jobDescription;
-        JobAverageSalary = jobAverageSalary;
-        JobDateTime = jobDateTime;
-        CompanyID = companyID;
+        Id = id;
+        TitleAr = titleAr;
+        TitleEn = titleEn;
+        DescriptionAr = descriptionAr;
+        DescriptionEn = descriptionEn;
+        AverageSalary = averageSalary;
+        CompanyId = companyId;
     }
 }
 

@@ -27,9 +27,9 @@ public class PostManager : IPostManager
         return _postRepository.GetAll();
     }
 
-    public IQueryable<Post?> GetAllByCompanyID(int id)
+    public IQueryable<Post?> GetAllByCompanyId(int id)
     {
-        return _postRepository.GetAllByCompanyID(id);
+        return _postRepository.GetAllByCompanyId(id);
     }
 
     public async Task<Post?> GetByIdAsync(int id)
@@ -39,14 +39,14 @@ public class PostManager : IPostManager
 
     public async Task<bool> AddAsync(Post pm)
     {
-        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
             return await _postRepository.AddAsync(pm);
         return false;
     }
     public async Task<bool> UpdateAsync(Post pm)
     {
-        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
             return await _postRepository.UpdateAsync(pm);
         return false;

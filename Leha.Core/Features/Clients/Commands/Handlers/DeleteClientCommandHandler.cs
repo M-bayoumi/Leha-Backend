@@ -27,7 +27,7 @@ public class DeleteClientCommandHandler : ResponseHandler, IRequestHandler<Delet
     #region Handle Functions
     public async Task<Response<string>> Handle(DeleteClientCommand request, CancellationToken cancellationToken)
     {
-        var client = await _clientManager.GetByIdAsync(request.ID);
+        var client = await _clientManager.GetByIdAsync(request.Id);
         if (client == null) return NotFound<string>("");
         if (await _clientManager.DeleteAsync(client))
             return Deleted<string>("");

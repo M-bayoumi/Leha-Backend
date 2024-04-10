@@ -26,9 +26,9 @@ public class JobController : AppControllerBase
         return NewResult(response);
     }
 
-    [HttpGet(Router.JobRouting.GetAllByCompanyID)]
+    [HttpGet(Router.JobRouting.GetAllByCompanyId)]
 
-    public async Task<IActionResult> GetAllByCompanyID([FromRoute] GetJobListByCompanyIDQuery command)
+    public async Task<IActionResult> GetAllByCompanyId([FromRoute] GetJobListByCompanyIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

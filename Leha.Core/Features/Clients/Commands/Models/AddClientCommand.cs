@@ -5,19 +5,21 @@ namespace Leha.Core.Features.Clients.Commands.Models;
 
 public class AddClientCommand : IRequest<Response<string>>
 {
-    public string ClientNameAr { get; set; } = string.Empty;
-    public string ClientNameEn { get; set; } = string.Empty;
-    public string ClientImage { get; set; } = string.Empty;
-    public int CompanyID { get; set; }
-    public AddClientCommand(string clientNameAr, string clientNameEn, string clientImage, int companyID)
-    {
-        ClientNameAr = clientNameAr;
-        ClientNameEn = clientNameEn;
-        ClientImage = clientImage;
-        CompanyID = companyID;
-    }
+    public string NameAr { get; set; } = string.Empty;
+    public string NameEn { get; set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
+    public int CompanyId { get; set; }
+
     public AddClientCommand()
     {
 
+    }
+
+    public AddClientCommand(string nameAr, string nameEn, string image, int companyId)
+    {
+        NameAr = nameAr;
+        NameEn = nameEn;
+        Image = image;
+        CompanyId = companyId;
     }
 }

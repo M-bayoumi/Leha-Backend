@@ -4,24 +4,24 @@ namespace Leha.Data.Entities;
 
 public class Client : LocalizableEntity
 {
-    public int ID { get; set; }
-    public string ClientNameAr { get; set; } = string.Empty;
-    public string ClientNameEn { get; set; } = string.Empty;
-    public string ClientImage { get; set; } = string.Empty;
-    public int CompanyID { get; set; }
+    public int Id { get; set; }
+    public string NameAr { get; set; } = string.Empty;
+    public string NameEn { get; set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
+    public int CompanyId { get; set; }
     public Company Company { get; set; } = null!;
 
     public Client()
     {
     }
 
-    public Client(int iD, string clientNameAr, string clientNameEn, string clientImage, int companyID)
+    public Client(int id, string nameAr, string nameEn, string image, int companyId)
     {
-        ID = iD;
-        ClientNameAr = clientNameAr;
-        ClientNameEn = clientNameEn;
-        ClientImage = clientImage;
-        CompanyID = companyID;
+        Id = id;
+        NameAr = nameAr;
+        NameEn = nameEn;
+        Image = image;
+        CompanyId = companyId;
     }
 }
 

@@ -27,7 +27,7 @@ public class DeleteJobCommandHandler : ResponseHandler, IRequestHandler<DeleteJo
     #region Handle Functions
     public async Task<Response<string>> Handle(DeleteJobCommand request, CancellationToken cancellationToken)
     {
-        var job = await _jobManager.GetByIdAsync(request.ID);
+        var job = await _jobManager.GetByIdAsync(request.Id);
         if (job == null) return NotFound<string>("");
         if (await _jobManager.DeleteAsync(job))
             return Deleted<string>("");

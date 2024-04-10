@@ -26,9 +26,9 @@ public class PostController : AppControllerBase
         return NewResult(response);
     }
 
-    [HttpGet(Router.PostRouting.GetAllByCompanyID)]
+    [HttpGet(Router.PostRouting.GetAllByCompanyId)]
 
-    public async Task<IActionResult> GetAllByCompanyID([FromRoute] GetPostListByCompanyIDQuery command)
+    public async Task<IActionResult> GetAllByCompanyId([FromRoute] GetPostListByCompanyIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

@@ -6,11 +6,11 @@ namespace Leha.Core.Features.Forms.Quaries.Models;
 
 public class GetFormByIdQuery : IRequest<Response<GetFormByIdResponse>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public GetFormByIdQuery(int formID)
     {
-        ID = formID;
+        Id = formID;
     }
     public GetFormByIdQuery()
     {

@@ -22,7 +22,12 @@ public class AddBoardMemberSpeechValidator : AbstractValidator<AddBoardMemberSpe
     #region Handle Functions
     public void ApplyValidationRules()
     {
-        RuleFor(x => x.BoardMemberSpeechContent)
+        RuleFor(x => x.ContentAr)
+            .NotNull().WithMessage("Required.")
+            .NotEmpty().WithMessage("Can't be empty.")
+            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.ContentEn)
             .NotNull().WithMessage("Required.")
             .NotEmpty().WithMessage("Can't be empty.")
             .MinimumLength(3).WithMessage("Minimum length is 3 char.");

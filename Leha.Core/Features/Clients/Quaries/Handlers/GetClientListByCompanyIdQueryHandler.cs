@@ -28,7 +28,7 @@ public class GetClientListByCompanyIDQueryHandler : ResponseHandler, IRequestHan
     #region Handle Functions
     public async Task<Response<List<GetClientListByCompanyIDResponse>>> Handle(GetClientListByCompanyIDQuery request, CancellationToken cancellationToken)
     {
-        var clientListDB = await _clientManager.GetAllByCompanyID(request.ID).Include(x => x.Company).ToListAsync();
+        var clientListDB = await _clientManager.GetAllByCompanyId(request.Id).Include(x => x.Company).ToListAsync();
         if (clientListDB is null)
         {
             return NotFound<List<GetClientListByCompanyIDResponse>>();

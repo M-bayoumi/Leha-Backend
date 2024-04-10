@@ -41,7 +41,7 @@ public class BoardMemberManager : IBoardMemberManager
         var transaction = _boardMemberRepository.BeginTransaction();
         try
         {
-            var dms = _unitOfWork.BoardMemberSpeechRepository.GetAllByBoardMemberID(pm.ID).ToList();
+            var dms = _unitOfWork.BoardMemberSpeechRepository.GetAllByBoardMemberId(pm.Id).ToList();
 
             if (dms != null)
                 await _unitOfWork.BoardMemberSpeechRepository.DeleteRangeAsync(dms);

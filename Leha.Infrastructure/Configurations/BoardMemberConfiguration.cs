@@ -8,23 +8,27 @@ public class BoardMemberConfiguration : IEntityTypeConfiguration<BoardMember>
 {
     public void Configure(EntityTypeBuilder<BoardMember> builder)
     {
-        builder.HasKey(x => x.ID);
+        builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.BoardMemberName)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.NameAr)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.BoardMemberImage)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.NameEn)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.BoardMemberPosition)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.PositionAr)
+           .HasColumnType("Nvarchar(max)")
+           .IsRequired();
+
+        builder.Property(x => x.PositionEn)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
         builder.HasMany(x => x.BoardMemberSpeeches)
            .WithOne(x => x.BoardMember)
-           .HasForeignKey(x => x.BoardMemberID)
+           .HasForeignKey(x => x.BoardMemberId)
            .IsRequired();
 
         builder.ToTable("BoardMembers");

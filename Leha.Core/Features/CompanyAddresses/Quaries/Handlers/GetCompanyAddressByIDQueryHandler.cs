@@ -29,7 +29,7 @@ public class GetCompanyAddressByIdQueryHandler : ResponseHandler, IRequestHandle
     #region Handle Functions
     public async Task<Response<GetCompanyAddressByIdResponse>> Handle(GetCompanyAddressByIdQuery request, CancellationToken cancellationToken)
     {
-        var companyAddresstDB = await _companyAddressManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var companyAddresstDB = await _companyAddressManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.Id == request.Id);
 
         if (companyAddresstDB is null)
         {

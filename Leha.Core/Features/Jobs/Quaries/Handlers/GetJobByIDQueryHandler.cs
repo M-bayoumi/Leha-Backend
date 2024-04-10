@@ -29,7 +29,7 @@ public class GetJobByIdQueryHandler : ResponseHandler, IRequestHandler<GetJobByI
     #region Handle Functions
     public async Task<Response<GetJobByIdResponse>> Handle(GetJobByIdQuery request, CancellationToken cancellationToken)
     {
-        var jobDB = await _jobManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var jobDB = await _jobManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.Id == request.Id);
 
         if (jobDB is null)
         {

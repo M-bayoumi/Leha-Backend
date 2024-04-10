@@ -29,7 +29,7 @@ public class GetPhaseItemByIdQueryHandler : ResponseHandler, IRequestHandler<Get
     #region Handle Functions
     public async Task<Response<GetPhaseItemByIdResponse>> Handle(GetPhaseItemByIdQuery request, CancellationToken cancellationToken)
     {
-        var phaseItemDB = await _phaseItemManager.GetAll().Include(x => x.ProjectPhase).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var phaseItemDB = await _phaseItemManager.GetAll().Include(x => x.ProjectPhase).FirstOrDefaultAsync(x => x.Id == request.Id);
 
         if (phaseItemDB is null)
         {

@@ -34,7 +34,7 @@ public class AddClientCommandHandler : ResponseHandler, IRequestHandler<AddClien
     #region Handle Functions
     public async Task<Response<string>> Handle(AddClientCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetByIdAsync(request.CompanyID);
+        var company = await _companyManager.GetByIdAsync(request.CompanyId);
         if (company != null)
         {
             var client = _mapper.Map<Client>(request);

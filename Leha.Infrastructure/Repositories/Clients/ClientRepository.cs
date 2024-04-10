@@ -20,9 +20,9 @@ public class ClientRepository : GenericRepository<Client>, IClientRepository
     #endregion
 
     #region Handle Functions
-    public IQueryable<Client?> GetAllByCompanyID(int id)
+    public IQueryable<Client?> GetAllByCompanyId(int id)
     {
-        return _clients.Where(x => x.CompanyID == id)
+        return _clients.Where(x => x.CompanyId == id)
             .AsNoTracking()
             .AsQueryable();
     }

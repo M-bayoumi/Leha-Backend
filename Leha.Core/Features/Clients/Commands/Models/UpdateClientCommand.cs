@@ -5,21 +5,23 @@ namespace Leha.Core.Features.Clients.Commands.Models;
 
 public class UpdateClientCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
-    public string ClientName { get; set; } = string.Empty;
-    public string ClientImage { get; set; } = string.Empty;
-    public int CompanyID { get; set; }
+    public int Id { get; set; }
+    public string NameAr { get; set; } = string.Empty;
+    public string NameEn { get; set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
+    public int CompanyId { get; set; }
 
     public UpdateClientCommand()
     {
 
     }
-    public UpdateClientCommand(int iD, string clientName, string clientImage, int companyID)
-    {
-        ID = iD;
-        ClientName = clientName;
-        ClientImage = clientImage;
-        CompanyID = companyID;
-    }
 
+    public UpdateClientCommand(int id, string nameAr, string nameEn, string image, int companyId)
+    {
+        Id = id;
+        NameAr = nameAr;
+        NameEn = nameEn;
+        Image = image;
+        CompanyId = companyId;
+    }
 }

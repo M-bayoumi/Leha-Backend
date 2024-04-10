@@ -26,9 +26,9 @@ public class CompanyAddressController : AppControllerBase
         return NewResult(response);
     }
 
-    [HttpGet(Router.CompanyAddressRouting.GetAllByCompanyID)]
+    [HttpGet(Router.CompanyAddressRouting.GetAllByCompanyId)]
 
-    public async Task<IActionResult> GetAllByCompanyID([FromRoute] GetCompanyAddressListByCompanyIDQuery command)
+    public async Task<IActionResult> GetAllByCompanyId([FromRoute] GetCompanyAddressListByCompanyIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

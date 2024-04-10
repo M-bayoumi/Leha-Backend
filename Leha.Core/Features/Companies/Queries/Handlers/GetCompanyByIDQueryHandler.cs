@@ -27,7 +27,7 @@ public class GetCompanyByIdQueryHandler : ResponseHandler, IRequestHandler<GetCo
     #region Handle Functions
     public async Task<Response<GetCompanyByIdResponse>> Handle(GetCompanyByIdQuery request, CancellationToken cancellationToken)
     {
-        var companyDB = await _companyManager.GetByIdAsync(request.ID);
+        var companyDB = await _companyManager.GetByIdAsync(request.Id);
         if (companyDB is null)
         {
             return NotFound<GetCompanyByIdResponse>();

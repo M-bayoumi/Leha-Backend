@@ -29,7 +29,7 @@ public class GetClientByIdQueryHandler : ResponseHandler, IRequestHandler<GetCli
     #region Handle Functions
     public async Task<Response<GetClientByIdResponse>> Handle(GetClientByIdQuery request, CancellationToken cancellationToken)
     {
-        var clientDB = await _clientManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var clientDB = await _clientManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.Id == request.Id);
 
         if (clientDB is null)
         {

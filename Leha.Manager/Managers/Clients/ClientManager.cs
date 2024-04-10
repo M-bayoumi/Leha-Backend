@@ -25,9 +25,9 @@ public class ClientManager : IClientManager
         return _clientRepository.GetAll();
     }
 
-    public IQueryable<Client?> GetAllByCompanyID(int id)
+    public IQueryable<Client?> GetAllByCompanyId(int id)
     {
-        return _clientRepository.GetAllByCompanyID(id);
+        return _clientRepository.GetAllByCompanyId(id);
     }
 
     public async Task<Client?> GetByIdAsync(int id)
@@ -37,7 +37,7 @@ public class ClientManager : IClientManager
 
     public async Task<bool> AddAsync(Client pm)
     {
-        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
             return await _clientRepository.AddAsync(pm);
         return false;
@@ -45,7 +45,7 @@ public class ClientManager : IClientManager
 
     public async Task<bool> UpdateAsync(Client pm)
     {
-        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
             return await _clientRepository.UpdateAsync(pm);
         return false;

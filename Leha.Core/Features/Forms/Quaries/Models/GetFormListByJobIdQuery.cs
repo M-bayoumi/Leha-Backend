@@ -6,11 +6,11 @@ namespace Leha.Core.Features.Forms.Quaries.Models;
 
 public class GetFormListByJobIDQuery : IRequest<Response<List<GetFormListByJobIDResponse>>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public GetFormListByJobIDQuery(int jobID)
     {
-        ID = jobID;
+        Id = jobID;
     }
     public GetFormListByJobIDQuery()
     {

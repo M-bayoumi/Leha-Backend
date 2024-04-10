@@ -8,10 +8,10 @@ public class HomeImageConfiguration : IEntityTypeConfiguration<HomeImage>
 {
     public void Configure(EntityTypeBuilder<HomeImage> builder)
     {
-        builder.HasKey(x => x.ID);
+        builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.HomeImageBytes)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.ImageBytes)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
         builder.ToTable("HomeImages");

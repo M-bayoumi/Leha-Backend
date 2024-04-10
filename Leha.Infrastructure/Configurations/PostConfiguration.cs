@@ -8,20 +8,23 @@ public class PostConfiguration : IEntityTypeConfiguration<Post>
 {
     public void Configure(EntityTypeBuilder<Post> builder)
     {
-        builder.HasKey(x => x.ID);
+        builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.PostContent)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.ContentAr)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.PostImage)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.ContentEn)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.PostDateTime)
+        builder.Property(x => x.Image)
+           .HasColumnType("Nvarchar(max)")
+           .IsRequired();
+
+        builder.Property(x => x.DateTime)
            .HasColumnType("datetime")
            .IsRequired();
-
 
         builder.ToTable("Posts");
     }

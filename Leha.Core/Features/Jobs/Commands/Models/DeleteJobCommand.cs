@@ -5,7 +5,7 @@ namespace Leha.Core.Features.Jobs.Commands.Models;
 
 public class DeleteJobCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public DeleteJobCommand()
     {
@@ -14,6 +14,6 @@ public class DeleteJobCommand : IRequest<Response<string>>
 
     public DeleteJobCommand(int iD)
     {
-        ID = iD;
+        Id = iD;
     }
 }

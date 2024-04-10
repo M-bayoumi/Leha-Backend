@@ -1,25 +1,31 @@
 ﻿
+using Leha.Data.Commons;
+
 namespace Leha.Data.Entities;
 
-public class Product
+public class Product : LocalizableEntity
 {
-    public int ID { get; set; }
-    public string ProductName { get; set; } = string.Empty;
-    public string ProductDescription { get; set; } = string.Empty;
-    public string ProductImage { get; set; } = string.Empty;
-    public int CompanyID { get; set; }
+    public int Id { get; set; }
+    public string NameAr { get; set; } = string.Empty;
+    public string NameEn { get; set; } = string.Empty;
+    public string DescriptionAr { get; set; } = string.Empty;
+    public string DescriptionEn { get; set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
+    public int CompanyId { get; set; }
     public Company Company { get; set; } = null!;
 
     public Product()
     {
     }
 
-    public Product(int iD, string productName, string productDescription, string productImage, int companyID)
+    public Product(int id, string nameAr, string nameEn, string descriptionAr, string descriptionEn, string image, int companyId)
     {
-        ID = iD;
-        ProductName = productName;
-        ProductDescription = productDescription;
-        ProductImage = productImage;
-        CompanyID = companyID;
+        Id = id;
+        NameAr = nameAr;
+        NameEn = nameEn;
+        DescriptionAr = descriptionAr;
+        DescriptionEn = descriptionEn;
+        Image = image;
+        CompanyId = companyId;
     }
 }

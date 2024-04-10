@@ -26,9 +26,9 @@ public class HomeImageController : AppControllerBase
         return NewResult(response);
     }
 
-    [HttpGet(Router.HomeImageRouting.GetAllByCompanyID)]
+    [HttpGet(Router.HomeImageRouting.GetAllByCompanyId)]
 
-    public async Task<IActionResult> GetAllByCompanyID([FromRoute] GetHomeImageListByCompanyIDQuery command)
+    public async Task<IActionResult> GetAllByCompanyId([FromRoute] GetHomeImageListByCompanyIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

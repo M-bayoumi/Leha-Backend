@@ -33,7 +33,7 @@ public class UpdateCompanyAddressCommandHandler : ResponseHandler, IRequestHandl
     #region Handle Functions
     public async Task<Response<string>> Handle(UpdateCompanyAddressCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetByIdAsync(request.CompanyID);
+        var company = await _companyManager.GetByIdAsync(request.CompanyId);
         if (company != null)
         {
             var companyAddress = _mapper.Map<CompanyAddress>(request);

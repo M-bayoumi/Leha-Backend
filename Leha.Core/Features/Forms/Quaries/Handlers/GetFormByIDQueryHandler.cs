@@ -29,7 +29,7 @@ public class GetFormByIdQueryHandler : ResponseHandler, IRequestHandler<GetFormB
     #region Handle Functions
     public async Task<Response<GetFormByIdResponse>> Handle(GetFormByIdQuery request, CancellationToken cancellationToken)
     {
-        var formDB = await _formManager.GetAll().Include(x => x.Job).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var formDB = await _formManager.GetAll().Include(x => x.Job).FirstOrDefaultAsync(x => x.Id == request.Id);
 
         if (formDB is null)
         {

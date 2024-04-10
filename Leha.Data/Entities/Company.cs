@@ -1,15 +1,18 @@
 ﻿
+using Leha.Data.Commons;
+
 namespace Leha.Data.Entities;
 
-public class Company
+public class Company : LocalizableEntity
 {
-    public int ID { get; set; }
-    public string CompanyName { get; set; } = string.Empty;
-    public int CompanyEmployees { get; set; }
-    public string CompanyImage { get; set; } = string.Empty;
-    public string CompanyEmail { get; set; } = string.Empty;
-    public string CompanyPhone { get; set; } = string.Empty;
-    public string CompanyLink { get; set; } = string.Empty;
+    public int Id { get; set; }
+    public string NameAr { get; set; } = string.Empty;
+    public string NameEn { get; set; } = string.Empty;
+    public int Employees { get; set; }
+    public string Image { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string Phone { get; set; } = string.Empty;
+    public string Link { get; set; } = string.Empty;
     public List<CompanyAddress> CompanyAddresses { get; set; } = new List<CompanyAddress>();
     public List<HomeImage> HomeImages { get; set; } = new List<HomeImage>();
     public List<Service> Services { get; set; } = new List<Service>();
@@ -24,13 +27,15 @@ public class Company
     {
     }
 
-    public Company(int iD, string companyName, int companyEmployees, string companyImage, string companyEmail, string companyPhone)
+    public Company(int id, string nameAr, string nameEn, int employees, string image, string email, string phone, string link)
     {
-        ID = iD;
-        CompanyName = companyName;
-        CompanyEmployees = companyEmployees;
-        CompanyImage = companyImage;
-        CompanyEmail = companyEmail;
-        CompanyPhone = companyPhone;
+        Id = id;
+        NameAr = nameAr;
+        NameEn = nameEn;
+        Employees = employees;
+        Image = image;
+        Email = email;
+        Phone = phone;
+        Link = link;
     }
 }

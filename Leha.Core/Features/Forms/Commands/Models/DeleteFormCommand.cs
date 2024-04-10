@@ -5,7 +5,7 @@ namespace Leha.Core.Features.Forms.Commands.Models;
 
 public class DeleteFormCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public DeleteFormCommand()
     {
@@ -14,6 +14,6 @@ public class DeleteFormCommand : IRequest<Response<string>>
 
     public DeleteFormCommand(int iD)
     {
-        ID = iD;
+        Id = iD;
     }
 }

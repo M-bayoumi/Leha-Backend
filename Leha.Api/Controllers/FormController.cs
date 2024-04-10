@@ -26,9 +26,9 @@ public class FormController : AppControllerBase
         return NewResult(response);
     }
 
-    [HttpGet(Router.FormRouting.GetAllByJobID)]
+    [HttpGet(Router.FormRouting.GetAllByJobId)]
 
-    public async Task<IActionResult> GetAllByJobID([FromRoute] GetFormListByJobIDQuery command)
+    public async Task<IActionResult> GetAllByJobId([FromRoute] GetFormListByJobIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

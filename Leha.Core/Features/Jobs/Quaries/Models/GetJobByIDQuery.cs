@@ -6,11 +6,11 @@ namespace Leha.Core.Features.Jobs.Quaries.Models;
 
 public class GetJobByIdQuery : IRequest<Response<GetJobByIdResponse>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public GetJobByIdQuery(int jobID)
     {
-        ID = jobID;
+        Id = jobID;
     }
     public GetJobByIdQuery()
     {

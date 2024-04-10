@@ -5,7 +5,7 @@ namespace Leha.Manager.Managers.Services;
 public interface IServiceManager
 {
     public IQueryable<Service?> GetAll();
-    public IQueryable<Service?> GetAllByCompanyID(int id);
+    public IQueryable<Service?> GetAllByCompanyId(int id);
     public Task<Service?> GetByIdAsync(int id);
     public Task<bool> AddAsync(Service pm);
     public Task<bool> UpdateAsync(Service pm);

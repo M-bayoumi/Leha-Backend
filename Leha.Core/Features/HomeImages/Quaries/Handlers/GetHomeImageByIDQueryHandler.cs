@@ -29,7 +29,7 @@ public class GetHomeImageByIdQueryHandler : ResponseHandler, IRequestHandler<Get
     #region Handle Functions
     public async Task<Response<GetHomeImageByIdResponse>> Handle(GetHomeImageByIdQuery request, CancellationToken cancellationToken)
     {
-        var homeImageDB = await _homeImageManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var homeImageDB = await _homeImageManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.Id == request.Id);
 
         if (homeImageDB is null)
         {

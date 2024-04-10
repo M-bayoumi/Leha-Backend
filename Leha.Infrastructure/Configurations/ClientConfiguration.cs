@@ -8,20 +8,19 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
 {
     public void Configure(EntityTypeBuilder<Client> builder)
     {
-        builder.HasKey(x => x.ID);
+        builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.ClientNameAr)
+        builder.Property(x => x.NameAr)
            .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.ClientNameEn)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.NameEn)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.ClientImage)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.Image)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
-
 
         builder.ToTable("Clients");
     }

@@ -20,9 +20,9 @@ public class CompanyAddressRepository : GenericRepository<CompanyAddress>, IComp
     #endregion
 
     #region Handle Functions
-    public IQueryable<CompanyAddress?> GetAllByCompanyID(int id)
+    public IQueryable<CompanyAddress?> GetAllByCompanyId(int id)
     {
-        return _companyAddresses.Where(x => x.CompanyID == id)
+        return _companyAddresses.Where(x => x.CompanyId == id)
             .AsNoTracking()
             .AsQueryable();
     }

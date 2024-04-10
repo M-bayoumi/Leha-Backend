@@ -22,7 +22,7 @@ public class ProjectPhaseRepository : GenericRepository<ProjectPhase>, IProjectP
     #region Handle Functions
     public IQueryable<ProjectPhase?> GetAllByProjectID(int id)
     {
-        return _projectPhases.Where(x => x.ProjectID == id)
+        return _projectPhases.Where(x => x.ProjectId == id)
             .AsNoTracking()
             .AsQueryable();
     }

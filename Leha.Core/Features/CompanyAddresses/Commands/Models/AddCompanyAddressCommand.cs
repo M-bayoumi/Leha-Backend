@@ -5,17 +5,19 @@ namespace Leha.Core.Features.CompanyAddresses.Commands.Models;
 
 public class AddCompanyAddressCommand : IRequest<Response<string>>
 {
-    public string Address { get; set; } = string.Empty;
-    public int CompanyID { get; set; }
+    public string AddressAr { get; set; } = string.Empty;
+    public string AddressEn { get; set; } = string.Empty;
+    public int CompanyId { get; set; }
 
     public AddCompanyAddressCommand()
     {
 
     }
 
-    public AddCompanyAddressCommand(string address, int companyID)
+    public AddCompanyAddressCommand(string addressAr, string addressEn, int companyId)
     {
-        Address = address;
-        CompanyID = companyID;
+        AddressAr = addressAr;
+        AddressEn = addressEn;
+        CompanyId = companyId;
     }
 }

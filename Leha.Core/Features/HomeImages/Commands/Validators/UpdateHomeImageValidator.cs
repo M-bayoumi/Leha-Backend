@@ -22,7 +22,7 @@ public class UpdateHomeImageValidator : AbstractValidator<UpdateHomeImageCommand
     #region Handle Functions
     public void ApplyValidationRules()
     {
-        RuleFor(x => x.ID)
+        RuleFor(x => x.Id)
             .NotNull().WithMessage("Required.")
             .GreaterThanOrEqualTo(1).WithMessage("Not Found");
 
@@ -31,7 +31,7 @@ public class UpdateHomeImageValidator : AbstractValidator<UpdateHomeImageCommand
             .NotEmpty().WithMessage("Can't be empty.")
             .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.CompanyID)
+        RuleFor(x => x.CompanyId)
            .NotNull().WithMessage("Required.")
            .GreaterThanOrEqualTo(1).WithMessage("Not Found");
     }

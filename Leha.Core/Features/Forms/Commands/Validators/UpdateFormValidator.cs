@@ -22,33 +22,48 @@ public class UpdateFormValidator : AbstractValidator<UpdateFormCommand>
     #region Handle Functions
     public void ApplyValidationRules()
     {
-        RuleFor(x => x.ID)
+        RuleFor(x => x.Id)
             .NotNull().WithMessage("Required.")
             .GreaterThanOrEqualTo(1).WithMessage("Not Found");
 
-        RuleFor(x => x.FormFullName)
+        RuleFor(x => x.FullNameAr)
+            .NotNull().WithMessage("Required.")
+            .NotEmpty().WithMessage("Can't be empty.")
+            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.FullNameEn)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.FormAddress)
+        RuleFor(x => x.AddressAr)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.FormJobTitle)
+        RuleFor(x => x.AddressEn)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.FormCV)
-         .NotNull().WithMessage("Required.")
-         .NotEmpty().WithMessage("Can't be empty.")
-         .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+        RuleFor(x => x.JobTitleAr)
+           .NotNull().WithMessage("Required.")
+           .NotEmpty().WithMessage("Can't be empty.")
+           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.JobID)
-         .NotNull().WithMessage("Required.")
-         .GreaterThanOrEqualTo(1).WithMessage("Not Found");
+        RuleFor(x => x.JobTitleEn)
+          .NotNull().WithMessage("Required.")
+          .NotEmpty().WithMessage("Can't be empty.")
+          .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.CV)
+          .NotNull().WithMessage("Required.")
+          .NotEmpty().WithMessage("Can't be empty.")
+          .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.JobId)
+          .NotNull().WithMessage("Required.")
+          .GreaterThanOrEqualTo(1).WithMessage("Not Found");
     }
     #endregion
 }

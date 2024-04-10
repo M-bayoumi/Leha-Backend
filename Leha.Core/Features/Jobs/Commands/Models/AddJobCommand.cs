@@ -5,21 +5,29 @@ namespace Leha.Core.Features.Jobs.Commands.Models;
 
 public class AddJobCommand : IRequest<Response<string>>
 {
-    public string JobTitle { get; set; } = string.Empty;
-    public string JobDescription { get; set; } = string.Empty;
-    public string JobAverageSalary { get; set; } = string.Empty;
-    public int CompanyID { get; set; }
+    public string TitleAr { get; set; } = string.Empty;
+    public string TitleEn { get; set; } = string.Empty;
+    public string DescriptionAr { get; set; } = string.Empty;
+    public string DescriptionEn { get; set; } = string.Empty;
+    public string AverageSalary { get; set; } = string.Empty;
+    public int CompanyId { get; set; }
 
     public AddJobCommand()
     {
 
     }
 
-    public AddJobCommand(string jobTitle, string jobDescription, string jobAverageSalary, int companyID)
+    public AddJobCommand(
+        string titleAr, string titleEn,
+        string descriptionAr, string descriptionEn,
+        string averageSalary,
+        int companyId)
     {
-        JobTitle = jobTitle;
-        JobDescription = jobDescription;
-        JobAverageSalary = jobAverageSalary;
-        CompanyID = companyID;
+        TitleAr = titleAr;
+        TitleEn = titleEn;
+        DescriptionAr = descriptionAr;
+        DescriptionEn = descriptionEn;
+        AverageSalary = averageSalary;
+        CompanyId = companyId;
     }
 }

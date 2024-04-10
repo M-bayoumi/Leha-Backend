@@ -39,14 +39,14 @@ public class PhaseItemManager : IPhaseItemManager
 
     public async Task<bool> AddAsync(PhaseItem pm)
     {
-        var dm_projectPhase = await _unitOfWork.ProjectPhaseRepository.GetAll().Include(x => x.PhaseItems).FirstOrDefaultAsync(x => x.ID == pm.ProjectPhaseID);
+        var dm_projectPhase = await _unitOfWork.ProjectPhaseRepository.GetAll().Include(x => x.PhaseItems).FirstOrDefaultAsync(x => x.Id == pm.ProjectPhaseId);
         if (dm_projectPhase == null) return false;
 
         var dm_project = _unitOfWork.ProjectRepository
             .GetAll()
             .Include(x => x.ProjectPhases)
             .ThenInclude(x => x.PhaseItems)
-            .FirstOrDefault(x => x.ID == dm_projectPhase.ProjectID);
+            .FirstOrDefault(x => x.Id == dm_projectPhase.ProjectId);
 
         if (dm_project == null) return false;
 
@@ -81,14 +81,14 @@ public class PhaseItemManager : IPhaseItemManager
 
     public async Task<bool> UpdateAsync(PhaseItem pm)
     {
-        var dm_projectPhase = await _unitOfWork.ProjectPhaseRepository.GetAll().Include(x => x.PhaseItems).FirstOrDefaultAsync(x => x.ID == pm.ProjectPhaseID);
+        var dm_projectPhase = await _unitOfWork.ProjectPhaseRepository.GetAll().Include(x => x.PhaseItems).FirstOrDefaultAsync(x => x.Id == pm.ProjectPhaseId);
         if (dm_projectPhase == null) return false;
 
         var dm_project = _unitOfWork.ProjectRepository
             .GetAll()
             .Include(x => x.ProjectPhases)
             .ThenInclude(x => x.PhaseItems)
-            .FirstOrDefault(x => x.ID == dm_projectPhase.ProjectID);
+            .FirstOrDefault(x => x.Id == dm_projectPhase.ProjectId);
 
         if (dm_project == null) return false;
 
@@ -123,14 +123,14 @@ public class PhaseItemManager : IPhaseItemManager
 
     public async Task<bool> DeleteAsync(PhaseItem pm)
     {
-        var dm_projectPhase = await _unitOfWork.ProjectPhaseRepository.GetAll().Include(x => x.PhaseItems).FirstOrDefaultAsync(x => x.ID == pm.ProjectPhaseID);
+        var dm_projectPhase = await _unitOfWork.ProjectPhaseRepository.GetAll().Include(x => x.PhaseItems).FirstOrDefaultAsync(x => x.Id == pm.ProjectPhaseId);
         if (dm_projectPhase == null) return false;
 
         var dm_project = _unitOfWork.ProjectRepository
             .GetAll()
             .Include(x => x.ProjectPhases)
             .ThenInclude(x => x.PhaseItems)
-            .FirstOrDefault(x => x.ID == dm_projectPhase.ProjectID);
+            .FirstOrDefault(x => x.Id == dm_projectPhase.ProjectId);
 
         if (dm_project == null) return false;
 

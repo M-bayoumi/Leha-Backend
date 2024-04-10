@@ -25,9 +25,9 @@ public class CompanyAddressManager : ICompanyAddressManager
         return _companyAddressRepository.GetAll();
     }
 
-    public IQueryable<CompanyAddress?> GetAllByCompanyID(int id)
+    public IQueryable<CompanyAddress?> GetAllByCompanyId(int id)
     {
-        return _companyAddressRepository.GetAllByCompanyID(id);
+        return _companyAddressRepository.GetAllByCompanyId(id);
     }
 
     public async Task<CompanyAddress?> GetByIdAsync(int id)
@@ -37,7 +37,7 @@ public class CompanyAddressManager : ICompanyAddressManager
 
     public async Task<bool> AddAsync(CompanyAddress pm)
     {
-        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
             return await _companyAddressRepository.AddAsync(pm);
         return false;
@@ -45,7 +45,7 @@ public class CompanyAddressManager : ICompanyAddressManager
 
     public async Task<bool> UpdateAsync(CompanyAddress pm)
     {
-        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
             return await _companyAddressRepository.UpdateAsync(pm);
         return false;

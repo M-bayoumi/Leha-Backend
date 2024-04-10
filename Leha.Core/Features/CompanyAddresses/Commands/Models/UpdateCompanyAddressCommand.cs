@@ -5,19 +5,21 @@ namespace Leha.Core.Features.CompanyAddresses.Commands.Models;
 
 public class UpdateCompanyAddressCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
-    public string Address { get; set; } = string.Empty;
-    public int CompanyID { get; set; }
+    public int Id { get; set; }
+    public string AddressAr { get; set; } = string.Empty;
+    public string AddressEn { get; set; } = string.Empty;
+    public int CompanyId { get; set; }
 
     public UpdateCompanyAddressCommand()
     {
 
     }
 
-    public UpdateCompanyAddressCommand(int iD, string address, int companyID)
+    public UpdateCompanyAddressCommand(int id, string addressAr, string addressEn, int companyId)
     {
-        ID = iD;
-        Address = address;
-        CompanyID = companyID;
+        Id = id;
+        AddressAr = addressAr;
+        AddressEn = addressEn;
+        CompanyId = companyId;
     }
 }

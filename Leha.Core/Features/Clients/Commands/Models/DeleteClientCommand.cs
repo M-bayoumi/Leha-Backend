@@ -5,15 +5,15 @@ namespace Leha.Core.Features.Clients.Commands.Models;
 
 public class DeleteClientCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public DeleteClientCommand()
     {
 
     }
 
-    public DeleteClientCommand(int iD)
+    public DeleteClientCommand(int id)
     {
-        ID = iD;
+        Id = id;
     }
 }

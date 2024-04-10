@@ -22,17 +22,27 @@ public class AddBoardMemberValidator : AbstractValidator<AddBoardMemberCommand>
     #region Handle Functions
     public void ApplyValidationRules()
     {
-        RuleFor(x => x.BoardMemberName)
+        RuleFor(x => x.NameAr)
             .NotNull().WithMessage("Required.")
             .NotEmpty().WithMessage("Can't be empty.")
             .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.BoardMemberImage)
+        RuleFor(x => x.NameEn)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.BoardMemberPosition)
+        RuleFor(x => x.Image)
+           .NotNull().WithMessage("Required.")
+           .NotEmpty().WithMessage("Can't be empty.")
+           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.PositionAr)
+           .NotNull().WithMessage("Required.")
+           .NotEmpty().WithMessage("Can't be empty.")
+           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.PositionEn)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");

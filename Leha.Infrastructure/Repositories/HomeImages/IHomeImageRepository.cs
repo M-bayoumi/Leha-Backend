@@ -5,6 +5,6 @@ namespace Leha.Infrastructure.Repositories.HomeImages;
 
 public interface IHomeImageRepository : IGenericRepository<HomeImage>
 {
-    public IQueryable<HomeImage?> GetAllByCompanyID(int id);
+    public IQueryable<HomeImage?> GetAllByCompanyId(int id);
 
 }

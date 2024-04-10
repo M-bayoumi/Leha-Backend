@@ -22,18 +22,23 @@ public class UpdateCompanyAddressValidator : AbstractValidator<UpdateCompanyAddr
     #region Handle Functions
     public void ApplyValidationRules()
     {
-        RuleFor(x => x.ID)
+        RuleFor(x => x.Id)
             .NotNull().WithMessage("Required.")
             .GreaterThanOrEqualTo(1).WithMessage("Not Found");
 
-        RuleFor(x => x.Address)
+        RuleFor(x => x.AddressAr)
             .NotNull().WithMessage("Required.")
             .NotEmpty().WithMessage("Can't be empty.")
             .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.CompanyID)
+        RuleFor(x => x.AddressEn)
            .NotNull().WithMessage("Required.")
-           .GreaterThanOrEqualTo(1).WithMessage("Not Found");
+           .NotEmpty().WithMessage("Can't be empty.")
+           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.CompanyId)
+          .NotNull().WithMessage("Required.")
+          .GreaterThanOrEqualTo(1).WithMessage("Not Found");
     }
     #endregion
 }

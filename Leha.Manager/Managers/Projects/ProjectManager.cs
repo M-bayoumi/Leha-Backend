@@ -29,9 +29,9 @@ public class ProjectManager : IProjectManager
         return _projectRepository.GetAll();
     }
 
-    public IQueryable<Project?> GetAllByCompanyID(int id)
+    public IQueryable<Project?> GetAllByCompanyId(int id)
     {
-        return _projectRepository.GetAllByCompanyID(id);
+        return _projectRepository.GetAllByCompanyId(id);
     }
 
     public async Task<Project?> GetByIdAsync(int id)
@@ -41,7 +41,7 @@ public class ProjectManager : IProjectManager
 
     public async Task<bool> AddAsync(Project pm)
     {
-        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
             return await _projectRepository.AddAsync(pm);
         return false;
@@ -49,7 +49,7 @@ public class ProjectManager : IProjectManager
 
     public async Task<bool> UpdateAsync(Project pm)
     {
-        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyID);
+        var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
             return await _projectRepository.UpdateAsync(pm);
         return false;
@@ -60,7 +60,7 @@ public class ProjectManager : IProjectManager
         var transaction = _projectRepository.BeginTransaction();
         try
         {
-            var dms = _unitOfWork.ProjectPhaseRepository.GetAllByProjectID(pm.ID).ToList();
+            var dms = _unitOfWork.ProjectPhaseRepository.GetAllByProjectID(pm.Id).ToList();
 
             if (dms != null)
                 await _unitOfWork.ProjectPhaseRepository.DeleteRangeAsync(dms);

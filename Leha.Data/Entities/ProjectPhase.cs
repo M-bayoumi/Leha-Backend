@@ -1,11 +1,14 @@
 ﻿
+using Leha.Data.Commons;
+
 namespace Leha.Data.Entities;
 
-public class ProjectPhase
+public class ProjectPhase : LocalizableEntity
 {
-    public int ID { get; set; }
-    public string ProjectPhaseName { get; set; } = string.Empty;
-    public int ProjectID { get; set; }
+    public int Id { get; set; }
+    public string NameAr { get; set; } = string.Empty;
+    public string NameEn { get; set; } = string.Empty;
+    public int ProjectId { get; set; }
     public Project Project { get; set; } = null!;
     public List<PhaseItem> PhaseItems { get; set; } = new List<PhaseItem>();
 
@@ -13,10 +16,11 @@ public class ProjectPhase
     {
     }
 
-    public ProjectPhase(int iD, string projectPhaseName, int projectID)
+    public ProjectPhase(int id, string nameAr, string nameEn, int projectId)
     {
-        ID = iD;
-        ProjectPhaseName = projectPhaseName;
-        ProjectID = projectID;
+        Id = id;
+        NameAr = nameAr;
+        NameEn = nameEn;
+        ProjectId = projectId;
     }
 }

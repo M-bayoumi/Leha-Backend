@@ -1,21 +1,26 @@
 ﻿
+using Leha.Data.Commons;
+
 namespace Leha.Data.Entities;
 
-public class CompanyAddress
+public class CompanyAddress : LocalizableEntity
 {
 
-    public int ID { get; set; }
-    public string Address { get; set; } = string.Empty;
-    public int CompanyID { get; set; }
+    public int Id { get; set; }
+    public string AddressAr { get; set; } = string.Empty;
+    public string AddressEn { get; set; } = string.Empty;
+    public int CompanyId { get; set; }
     public Company Company { get; set; } = null!;
+
     public CompanyAddress()
     {
     }
 
-    public CompanyAddress(int iD, string address, int companyID)
+    public CompanyAddress(int id, string addressAr, string addressEn, int companyId)
     {
-        ID = iD;
-        Address = address;
-        CompanyID = companyID;
+        Id = id;
+        AddressAr = addressAr;
+        AddressEn = addressEn;
+        CompanyId = companyId;
     }
 }

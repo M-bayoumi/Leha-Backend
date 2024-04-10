@@ -8,28 +8,39 @@ public class FormConfiguration : IEntityTypeConfiguration<Form>
 {
     public void Configure(EntityTypeBuilder<Form> builder)
     {
-        builder.HasKey(x => x.ID);
+        builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.FormFullName)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.FullNameAr)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.FormAddress)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.FullNameEn)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.FormJobTitle)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.AddressAr)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.FormCV)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.AddressEn)
+          .HasColumnType("Nvarchar(max)")
+          .IsRequired();
+
+        builder.Property(x => x.JobTitleAr)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.FormDateTime)
+        builder.Property(x => x.JobTitleEn)
+         .HasColumnType("Nvarchar(max)")
+         .IsRequired();
+
+        builder.Property(x => x.CV)
+           .HasColumnType("Nvarchar(max)")
+           .IsRequired();
+
+        builder.Property(x => x.DateTime)
            .HasColumnType("datetime")
            .IsRequired();
-
 
         builder.ToTable("Forms");
     }

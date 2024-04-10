@@ -5,10 +5,10 @@ namespace Leha.Core.Features.Companies.Commands.Models;
 
 public class DeleteCompanyCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
     public DeleteCompanyCommand(int companyID)
     {
-        ID = companyID;
+        Id = companyID;
     }
     public DeleteCompanyCommand()
     {

@@ -20,9 +20,9 @@ public class BoardMemberSpeechRepository : GenericRepository<BoardMemberSpeech>,
 
     #region Handle Functions
 
-    public IQueryable<BoardMemberSpeech?> GetAllByBoardMemberID(int id)
+    public IQueryable<BoardMemberSpeech?> GetAllByBoardMemberId(int id)
     {
-        return _boardMemberSpeeches.Where(x => x.BoardMemberID == id)
+        return _boardMemberSpeeches.Where(x => x.BoardMemberId == id)
             .AsNoTracking()
             .AsQueryable();
     }

@@ -25,9 +25,9 @@ public class ProductController : AppControllerBase
         return NewResult(response);
     }
 
-    [HttpGet(Router.ProductRouting.GetAllByCompanyID)]
+    [HttpGet(Router.ProductRouting.GetAllByCompanyId)]
 
-    public async Task<IActionResult> GetAllByCompanyID([FromRoute] GetProductListByCompanyIDQuery command)
+    public async Task<IActionResult> GetAllByCompanyId([FromRoute] GetProductListByCompanyIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

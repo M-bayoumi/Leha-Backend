@@ -26,14 +26,20 @@ public class UpdateBoardMemberSpeechValidator : AbstractValidator<UpdateBoardMem
             .NotNull().WithMessage("Required.")
             .GreaterThanOrEqualTo(1).WithMessage("Not Found");
 
+        RuleFor(x => x.ContentAr)
+            .NotNull().WithMessage("Required.")
+            .NotEmpty().WithMessage("Can't be empty.")
+            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.ContentEn)
+            .NotNull().WithMessage("Required.")
+            .NotEmpty().WithMessage("Can't be empty.")
+            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
         RuleFor(x => x.BoardMemberID)
             .NotNull().WithMessage("Required.")
             .GreaterThanOrEqualTo(1).WithMessage("Not Found");
 
-        RuleFor(x => x.BoardMemberSpeechContent)
-            .NotNull().WithMessage("Required.")
-            .NotEmpty().WithMessage("Can't be empty.")
-            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
     }
     #endregion

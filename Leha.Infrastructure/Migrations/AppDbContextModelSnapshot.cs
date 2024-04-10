@@ -32,15 +32,15 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("BoardMemberImage")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("BoardMemberName")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("BoardMemberPosition")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -60,7 +60,7 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("BoardMemberSpeechContent")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -79,7 +79,7 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("ClientImage")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("ClientNameAr")
                         .IsRequired()
@@ -87,7 +87,7 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("ClientNameEn")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<int>("CompanyID")
                         .HasColumnType("int");
@@ -109,26 +109,26 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("CompanyEmail")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<int>("CompanyEmployees")
                         .HasColumnType("int");
 
                     b.Property<string>("CompanyImage")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("CompanyLink")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("CompanyPhone")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -145,7 +145,7 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<int>("CompanyID")
                         .HasColumnType("int");
@@ -167,22 +167,22 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("FormAddress")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("FormCV")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<DateTime>("FormDateTime")
                         .HasColumnType("datetime");
 
                     b.Property<string>("FormFullName")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("FormJobTitle")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<int>("JobID")
                         .HasColumnType("int");
@@ -207,7 +207,7 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("HomeImageBytes")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -229,18 +229,18 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("JobAverageSalary")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<DateTime>("JobDateTime")
                         .HasColumnType("datetime");
 
                     b.Property<string>("JobDescription")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("JobTitle")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -265,7 +265,7 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("ExecutionProgress")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<decimal>("InitialInventoryQuantities")
                         .HasColumnType("decimal(18, 2)");
@@ -275,11 +275,11 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("PhaseItemName")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("PhaseItemNumber")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<decimal>("ProgressPercentage")
                         .HasColumnType("decimal(18, 2)");
@@ -289,19 +289,19 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("RFI")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("Schedule")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("Unit")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("WIR")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -323,14 +323,14 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("PostContent")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<DateTime>("PostDateTime")
                         .HasColumnType("datetime");
 
                     b.Property<string>("PostImage")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -352,15 +352,15 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("ProductDescription")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("ProductImage")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -382,26 +382,26 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("ProjectAddress")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("ProjectDescription")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("ProjectImage")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("ProjectName")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<decimal>("ProjectProgressPercentage")
                         .HasColumnType("decimal(18, 2)");
 
                     b.Property<string>("SiteEngineerName")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -423,7 +423,7 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("ProjectPhaseName")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -445,15 +445,15 @@ namespace Leha.Infrastructure.Migrations
 
                     b.Property<string>("ServiceDescription")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("ServiceImage")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<string>("ServiceName")
                         .IsRequired()
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("Nvarchar(max)");
 
                     b.HasKey("ID");
 

@@ -6,11 +6,11 @@ namespace Leha.Core.Features.CompanyAddresses.Quaries.Models;
 
 public class GetCompanyAddressListByCompanyIDQuery : IRequest<Response<List<GetCompanyAddressListByCompanyIDResponse>>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public GetCompanyAddressListByCompanyIDQuery(int companyID)
     {
-        ID = companyID;
+        Id = companyID;
     }
     public GetCompanyAddressListByCompanyIDQuery()
     {

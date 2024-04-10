@@ -23,7 +23,7 @@ public class PhaseItemRepository : GenericRepository<PhaseItem>, IPhaseItemRepos
     #region Handle Functions
     public IQueryable<PhaseItem?> GetAllByProjectPhaseID(int id)
     {
-        return _phaseItems.Where(x => x.ProjectPhaseID == id)
+        return _phaseItems.Where(x => x.ProjectPhaseId == id)
             .AsNoTracking()
             .AsQueryable();
     }

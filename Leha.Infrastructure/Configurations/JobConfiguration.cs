@@ -8,29 +8,36 @@ public class JobConfiguration : IEntityTypeConfiguration<Job>
 {
     public void Configure(EntityTypeBuilder<Job> builder)
     {
-        builder.HasKey(x => x.ID);
+        builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.JobTitle)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.TitleAr)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.JobDescription)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.TitleEn)
+          .HasColumnType("Nvarchar(max)")
+          .IsRequired();
+
+        builder.Property(x => x.DescriptionAr)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.JobAverageSalary)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.DescriptionEn)
+          .HasColumnType("Nvarchar(max)")
+          .IsRequired();
+
+        builder.Property(x => x.AverageSalary)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.JobDateTime)
+        builder.Property(x => x.DateTime)
            .HasColumnType("datetime")
            .IsRequired();
 
         builder.HasMany(x => x.Forms)
            .WithOne(x => x.Job)
-           .HasForeignKey(x => x.JobID)
+           .HasForeignKey(x => x.JobId)
            .IsRequired();
-
 
         builder.ToTable("Jobs");
     }

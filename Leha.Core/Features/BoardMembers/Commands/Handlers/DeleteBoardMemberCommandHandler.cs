@@ -28,7 +28,7 @@ public class DeleteBoardMemberCommandHandler : ResponseHandler, IRequestHandler<
 
     public async Task<Response<string>> Handle(DeleteBoardMemberCommand request, CancellationToken cancellationToken)
     {
-        var boardMember = await _boardMemberManager.GetByIdAsync(request.ID);
+        var boardMember = await _boardMemberManager.GetByIdAsync(request.Id);
 
         if (boardMember == null) return NotFound<string>("");
         if (await _boardMemberManager.DeleteAsync(boardMember))

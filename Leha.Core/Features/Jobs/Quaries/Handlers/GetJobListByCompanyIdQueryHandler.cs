@@ -28,7 +28,7 @@ public class GetJobListByCompanyIDQueryHandler : ResponseHandler, IRequestHandle
     #region Handle Functions
     public async Task<Response<List<GetJobListByCompanyIDResponse>>> Handle(GetJobListByCompanyIDQuery request, CancellationToken cancellationToken)
     {
-        var jobListDB = await _jobManager.GetAllByCompanyID(request.ID).Include(x => x.Company).ToListAsync();
+        var jobListDB = await _jobManager.GetAllByCompanyId(request.Id).Include(x => x.Company).ToListAsync();
         if (jobListDB is null)
         {
             return NotFound<List<GetJobListByCompanyIDResponse>>();

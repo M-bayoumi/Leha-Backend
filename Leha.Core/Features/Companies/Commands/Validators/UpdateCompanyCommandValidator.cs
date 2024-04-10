@@ -23,36 +23,41 @@ public class UpdateCompanyCommandValidator : AbstractValidator<UpdateCompanyComm
     #region Handle Functions
     public void ApplyValidationRules()
     {
-        RuleFor(x => x.ID)
+        RuleFor(x => x.Id)
             .NotNull().WithMessage("Required.")
             .GreaterThanOrEqualTo(1).WithMessage("Not Found");
 
-        RuleFor(x => x.CompanyName)
+        RuleFor(x => x.NameAr)
+            .NotNull().WithMessage("Required.")
+            .NotEmpty().WithMessage("Can't be empty.")
+            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.NameEn)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.CompanyEmployees)
+        RuleFor(x => x.Employees)
          .NotNull().WithMessage("Required.")
          .NotEmpty().WithMessage("Can't be empty.")
          .GreaterThanOrEqualTo(2).WithMessage("CompanyEmployees must be greater than or equal 2.");
 
-        RuleFor(x => x.CompanyImage)
+        RuleFor(x => x.Image)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.CompanyEmail)
+        RuleFor(x => x.Email)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.CompanyPhone)
+        RuleFor(x => x.Phone)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.CompanyLink)
+        RuleFor(x => x.Link)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
@@ -60,9 +65,13 @@ public class UpdateCompanyCommandValidator : AbstractValidator<UpdateCompanyComm
 
     public void ApplyCustomValidationRules()
     {
-        RuleFor(x => x.CompanyName)
-            .MustAsync(async (model, Key, CancellationToken) => !await _companyService.IsNameExistExludeSelf(Key!, model.ID))
+        RuleFor(x => x.NameAr)
+            .MustAsync(async (model, Key, CancellationToken) => !await _companyService.IsNameArExistExludeSelf(Key!, model.Id))
             .WithMessage("Already exist");
+
+        RuleFor(x => x.NameEn)
+         .MustAsync(async (model, Key, CancellationToken) => !await _companyService.IsNameEnExistExludeSelf(Key!, model.Id))
+         .WithMessage("Already exist");
     }
     #endregion
 }

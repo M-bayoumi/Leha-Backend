@@ -8,75 +8,79 @@ public class CompanyConfiguration : IEntityTypeConfiguration<Company>
 {
     public void Configure(EntityTypeBuilder<Company> builder)
     {
-        builder.HasKey(x => x.ID);
+        builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.CompanyName)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.NameAr)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.CompanyEmployees)
+        builder.Property(x => x.NameEn)
+          .HasColumnType("Nvarchar(max)")
+          .IsRequired();
+
+        builder.Property(x => x.Employees)
            .HasColumnType("int")
            .IsRequired();
 
-        builder.Property(x => x.CompanyImage)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.Image)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.CompanyEmail)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.Email)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.CompanyPhone)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.Phone)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.CompanyLink)
-           .HasColumnType("varchar(max)")
-           .IsRequired();
-
-        builder.HasMany(x => x.Services)
-           .WithOne(x => x.Company)
-           .HasForeignKey(x => x.CompanyID)
+        builder.Property(x => x.Link)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
         builder.HasMany(x => x.Services)
            .WithOne(x => x.Company)
-           .HasForeignKey(x => x.CompanyID)
+           .HasForeignKey(x => x.CompanyId)
+           .IsRequired();
+
+        builder.HasMany(x => x.Services)
+           .WithOne(x => x.Company)
+           .HasForeignKey(x => x.CompanyId)
            .IsRequired();
 
         builder.HasMany(x => x.Products)
            .WithOne(x => x.Company)
-           .HasForeignKey(x => x.CompanyID)
+           .HasForeignKey(x => x.CompanyId)
            .IsRequired();
 
         builder.HasMany(x => x.HomeImages)
            .WithOne(x => x.Company)
-           .HasForeignKey(x => x.CompanyID)
+           .HasForeignKey(x => x.CompanyId)
            .IsRequired();
 
         builder.HasMany(x => x.CompanyAddresses)
            .WithOne(x => x.Company)
-           .HasForeignKey(x => x.CompanyID)
+           .HasForeignKey(x => x.CompanyId)
            .IsRequired();
 
         builder.HasMany(x => x.Posts)
            .WithOne(x => x.Company)
-           .HasForeignKey(x => x.CompanyID)
+           .HasForeignKey(x => x.CompanyId)
            .IsRequired();
 
         builder.HasMany(x => x.Jobs)
            .WithOne(x => x.Company)
-           .HasForeignKey(x => x.CompanyID)
+           .HasForeignKey(x => x.CompanyId)
            .IsRequired();
 
         builder.HasMany(x => x.Clients)
            .WithOne(x => x.Company)
-           .HasForeignKey(x => x.CompanyID)
+           .HasForeignKey(x => x.CompanyId)
            .IsRequired();
 
         builder.HasMany(x => x.Projects)
            .WithOne(x => x.Company)
-           .HasForeignKey(x => x.CompanyID)
+           .HasForeignKey(x => x.CompanyId)
            .IsRequired();
 
 

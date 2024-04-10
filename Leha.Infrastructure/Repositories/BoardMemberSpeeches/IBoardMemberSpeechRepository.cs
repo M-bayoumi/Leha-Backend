@@ -5,5 +5,5 @@ namespace Leha.Infrastructure.Repositories.BoardMemberSpeeches;
 
 public interface IBoardMemberSpeechRepository : IGenericRepository<BoardMemberSpeech>
 {
-    public IQueryable<BoardMemberSpeech?> GetAllByBoardMemberID(int id);
+    public IQueryable<BoardMemberSpeech?> GetAllByBoardMemberId(int id);
 }

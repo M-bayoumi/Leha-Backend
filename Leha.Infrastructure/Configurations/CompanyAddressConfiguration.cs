@@ -8,12 +8,15 @@ public class CompanyAddressConfiguration : IEntityTypeConfiguration<CompanyAddre
 {
     public void Configure(EntityTypeBuilder<CompanyAddress> builder)
     {
-        builder.HasKey(x => x.ID);
+        builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.Address)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.AddressAr)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
+        builder.Property(x => x.AddressEn)
+           .HasColumnType("Nvarchar(max)")
+           .IsRequired();
 
         builder.ToTable("CompanyAddresses");
     }

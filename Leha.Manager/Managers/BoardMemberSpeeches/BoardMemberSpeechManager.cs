@@ -26,9 +26,9 @@ public class BoardMemberSpeechManager : IBoardMemberSpeechManager
         return _boardMemberSpeechRepository.GetAll();
     }
 
-    public IQueryable<BoardMemberSpeech?> GetAllByBoardMemberID(int id)
+    public IQueryable<BoardMemberSpeech?> GetAllByBoardMemberId(int id)
     {
-        return _boardMemberSpeechRepository.GetAllByBoardMemberID(id);
+        return _boardMemberSpeechRepository.GetAllByBoardMemberId(id);
 
     }
 
@@ -39,7 +39,7 @@ public class BoardMemberSpeechManager : IBoardMemberSpeechManager
 
     public async Task<bool> AddAsync(BoardMemberSpeech pm)
     {
-        var dm = await _unitOfWork.BoardMemberRepository.GetByIdAsync(pm.BoardMemberID);
+        var dm = await _unitOfWork.BoardMemberRepository.GetByIdAsync(pm.BoardMemberId);
         if (dm != null)
             return await _boardMemberSpeechRepository.AddAsync(pm);
         return false;
@@ -47,7 +47,7 @@ public class BoardMemberSpeechManager : IBoardMemberSpeechManager
 
     public async Task<bool> UpdateAsync(BoardMemberSpeech pm)
     {
-        var dm = await _unitOfWork.BoardMemberRepository.GetByIdAsync(pm.BoardMemberID);
+        var dm = await _unitOfWork.BoardMemberRepository.GetByIdAsync(pm.BoardMemberId);
         if (dm != null)
             return await _boardMemberSpeechRepository.UpdateAsync(pm);
         return false;

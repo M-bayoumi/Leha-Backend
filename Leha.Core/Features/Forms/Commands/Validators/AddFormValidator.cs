@@ -22,27 +22,42 @@ public class AddFormValidator : AbstractValidator<AddFormCommand>
     #region Handle Functions
     public void ApplyValidationRules()
     {
-        RuleFor(x => x.FormFullName)
+        RuleFor(x => x.FullNameAr)
             .NotNull().WithMessage("Required.")
             .NotEmpty().WithMessage("Can't be empty.")
             .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.FormAddress)
+        RuleFor(x => x.FullNameEn)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.FormJobTitle)
+        RuleFor(x => x.AddressAr)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.FormCV)
+        RuleFor(x => x.AddressEn)
+          .NotNull().WithMessage("Required.")
+          .NotEmpty().WithMessage("Can't be empty.")
+          .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.JobTitleAr)
+           .NotNull().WithMessage("Required.")
+           .NotEmpty().WithMessage("Can't be empty.")
+           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.JobTitleEn)
+          .NotNull().WithMessage("Required.")
+          .NotEmpty().WithMessage("Can't be empty.")
+          .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.CV)
          .NotNull().WithMessage("Required.")
          .NotEmpty().WithMessage("Can't be empty.")
          .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.JobID)
+        RuleFor(x => x.JobId)
          .NotNull().WithMessage("Required.")
          .GreaterThanOrEqualTo(1).WithMessage("Not Found");
     }

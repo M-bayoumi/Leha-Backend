@@ -6,14 +6,18 @@ public class PhaseItemConfiguration : IEntityTypeConfiguration<PhaseItem>
 {
     public void Configure(EntityTypeBuilder<PhaseItem> builder)
     {
-        builder.HasKey(x => x.ID);
+        builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.PhaseItemNumber)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.Number)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.PhaseItemName)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.NameAr)
+           .HasColumnType("Nvarchar(max)")
+           .IsRequired();
+
+        builder.Property(x => x.NameEn)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
         builder.Property(x => x.AcumulativePercentage)
@@ -24,24 +28,44 @@ public class PhaseItemConfiguration : IEntityTypeConfiguration<PhaseItem>
            .HasColumnType("decimal(18, 2)")
            .IsRequired();
 
-        builder.Property(x => x.ExecutionProgress)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.ExecutionProgressAr)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.RFI)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.ExecutionProgressEn)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.WIR)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.RFIAr)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.Schedule)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.RFIEn)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
-        builder.Property(x => x.Unit)
-           .HasColumnType("varchar(max)")
+        builder.Property(x => x.WIRAr)
+           .HasColumnType("Nvarchar(max)")
+           .IsRequired();
+
+        builder.Property(x => x.WIREn)
+           .HasColumnType("Nvarchar(max)")
+           .IsRequired();
+
+        builder.Property(x => x.ScheduleAr)
+           .HasColumnType("Nvarchar(max)")
+           .IsRequired();
+
+        builder.Property(x => x.ScheduleEn)
+           .HasColumnType("Nvarchar(max)")
+           .IsRequired();
+
+        builder.Property(x => x.UnitAr)
+           .HasColumnType("Nvarchar(max)")
+           .IsRequired();
+
+        builder.Property(x => x.UnitEn)
+           .HasColumnType("Nvarchar(max)")
            .IsRequired();
 
         builder.Property(x => x.InitialInventoryQuantities)
@@ -55,7 +79,6 @@ public class PhaseItemConfiguration : IEntityTypeConfiguration<PhaseItem>
         builder.Property(x => x.PercentageLossOrExceed)
            .HasColumnType("decimal(18, 2)")
            .IsRequired();
-
 
         builder.ToTable("PhaseItems");
     }

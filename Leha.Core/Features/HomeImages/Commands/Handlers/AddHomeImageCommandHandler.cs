@@ -35,7 +35,7 @@ public class AddHomeImageCommandHandler : ResponseHandler, IRequestHandler<AddHo
     #region Handle Functions
     public async Task<Response<string>> Handle(AddHomeImageCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetByIdAsync(request.CompanyID);
+        var company = await _companyManager.GetByIdAsync(request.CompanyId);
         if (company != null)
         {
             var homeImage = _mapper.Map<HomeImage>(request);

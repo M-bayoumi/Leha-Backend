@@ -26,8 +26,8 @@ public class ProjectController : AppControllerBase
         return NewResult(response);
     }
 
-    [HttpGet(Router.ProjectRouting.GetAllByCompanyID)]
-    public async Task<IActionResult> GetAllByCompanyID([FromRoute] GetProjectListByCompanyIDQuery command)
+    [HttpGet(Router.ProjectRouting.GetAllByCompanyId)]
+    public async Task<IActionResult> GetAllByCompanyId([FromRoute] GetProjectListByCompanyIDQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

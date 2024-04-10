@@ -1,26 +1,28 @@
-﻿
+﻿using Leha.Data.Commons;
+
 namespace Leha.Data.Entities;
 
-public class Post
+public class Post : LocalizableEntity
 {
-    public int ID { get; set; }
-    public string PostContent { get; set; } = string.Empty;
-    public string PostImage { get; set; } = string.Empty;
-    public DateTime PostDateTime { get; set; } = DateTime.Now;
-    public int CompanyID { get; set; }
+    public int Id { get; set; }
+    public string ContentAr { get; set; } = string.Empty;
+    public string ContentEn { get; set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
+    public DateTime DateTime { get; set; } = DateTime.Now;
+    public int CompanyId { get; set; }
     public Company Company { get; set; } = null!;
 
     public Post()
     {
     }
 
-    public Post(int iD, string postContent, string postImage, DateTime postDateTime, int companyID)
+    public Post(int id, string contentAr, string contentEn, string image, int companyId)
     {
-        ID = iD;
-        PostContent = postContent;
-        PostImage = postImage;
-        PostDateTime = postDateTime;
-        CompanyID = companyID;
+        Id = id;
+        ContentAr = contentAr;
+        ContentEn = contentEn;
+        Image = image;
+        CompanyId = companyId;
     }
 }
 

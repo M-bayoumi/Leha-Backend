@@ -20,9 +20,9 @@ public class FormRepository : GenericRepository<Form>, IFormRepository
     #endregion
 
     #region Handle Functions
-    public IQueryable<Form?> GetAllByJobID(int id)
+    public IQueryable<Form?> GetAllByJobId(int id)
     {
-        return _forms.Where(x => x.JobID == id)
+        return _forms.Where(x => x.JobId == id)
             .AsNoTracking()
             .AsQueryable();
     }

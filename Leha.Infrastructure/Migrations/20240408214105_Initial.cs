@@ -17,9 +17,9 @@ namespace Leha.Infrastructure.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BoardMemberName = table.Column<string>(type: "varchar(max)", nullable: false),
-                    BoardMemberImage = table.Column<string>(type: "varchar(max)", nullable: false),
-                    BoardMemberPosition = table.Column<string>(type: "varchar(max)", nullable: false)
+                    BoardMemberName = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    BoardMemberImage = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    BoardMemberPosition = table.Column<string>(type: "Nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,12 +32,12 @@ namespace Leha.Infrastructure.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CompanyName = table.Column<string>(type: "varchar(max)", nullable: false),
+                    CompanyName = table.Column<string>(type: "Nvarchar(max)", nullable: false),
                     CompanyEmployees = table.Column<int>(type: "int", nullable: false),
-                    CompanyImage = table.Column<string>(type: "varchar(max)", nullable: false),
-                    CompanyEmail = table.Column<string>(type: "varchar(max)", nullable: false),
-                    CompanyPhone = table.Column<string>(type: "varchar(max)", nullable: false),
-                    CompanyLink = table.Column<string>(type: "varchar(max)", nullable: false)
+                    CompanyImage = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    CompanyEmail = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    CompanyPhone = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    CompanyLink = table.Column<string>(type: "Nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,7 +50,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BoardMemberSpeechContent = table.Column<string>(type: "varchar(max)", nullable: false),
+                    BoardMemberSpeechContent = table.Column<string>(type: "Nvarchar(max)", nullable: false),
                     BoardMemberID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -71,8 +71,8 @@ namespace Leha.Infrastructure.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ClientNameAr = table.Column<string>(type: "Nvarchar(max)", nullable: false),
-                    ClientNameEn = table.Column<string>(type: "varchar(max)", nullable: false),
-                    ClientImage = table.Column<string>(type: "varchar(max)", nullable: false),
+                    ClientNameEn = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    ClientImage = table.Column<string>(type: "Nvarchar(max)", nullable: false),
                     CompanyID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -92,7 +92,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Address = table.Column<string>(type: "varchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "Nvarchar(max)", nullable: false),
                     CompanyID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -112,7 +112,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    HomeImageBytes = table.Column<string>(type: "varchar(max)", nullable: false),
+                    HomeImageBytes = table.Column<string>(type: "Nvarchar(max)", nullable: false),
                     CompanyID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -132,9 +132,9 @@ namespace Leha.Infrastructure.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    JobTitle = table.Column<string>(type: "varchar(max)", nullable: false),
-                    JobDescription = table.Column<string>(type: "varchar(max)", nullable: false),
-                    JobAverageSalary = table.Column<string>(type: "varchar(max)", nullable: false),
+                    JobTitle = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    JobDescription = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    JobAverageSalary = table.Column<string>(type: "Nvarchar(max)", nullable: false),
                     JobDateTime = table.Column<DateTime>(type: "datetime", nullable: false),
                     CompanyID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -155,8 +155,8 @@ namespace Leha.Infrastructure.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PostContent = table.Column<string>(type: "varchar(max)", nullable: false),
-                    PostImage = table.Column<string>(type: "varchar(max)", nullable: false),
+                    PostContent = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    PostImage = table.Column<string>(type: "Nvarchar(max)", nullable: false),
                     PostDateTime = table.Column<DateTime>(type: "datetime", nullable: false),
                     CompanyID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -177,9 +177,9 @@ namespace Leha.Infrastructure.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductName = table.Column<string>(type: "varchar(max)", nullable: false),
-                    ProductDescription = table.Column<string>(type: "varchar(max)", nullable: false),
-                    ProductImage = table.Column<string>(type: "varchar(max)", nullable: false),
+                    ProductName = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    ProductDescription = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    ProductImage = table.Column<string>(type: "Nvarchar(max)", nullable: false),
                     CompanyID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -199,11 +199,11 @@ namespace Leha.Infrastructure.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProjectName = table.Column<string>(type: "varchar(max)", nullable: false),
-                    ProjectDescription = table.Column<string>(type: "varchar(max)", nullable: false),
-                    ProjectAddress = table.Column<string>(type: "varchar(max)", nullable: false),
-                    ProjectImage = table.Column<string>(type: "varchar(max)", nullable: false),
-                    SiteEngineerName = table.Column<string>(type: "varchar(max)", nullable: false),
+                    ProjectName = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    ProjectDescription = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    ProjectAddress = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    ProjectImage = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    SiteEngineerName = table.Column<string>(type: "Nvarchar(max)", nullable: false),
                     ProjectProgressPercentage = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CompanyID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -224,9 +224,9 @@ namespace Leha.Infrastructure.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ServiceName = table.Column<string>(type: "varchar(max)", nullable: false),
-                    ServiceDescription = table.Column<string>(type: "varchar(max)", nullable: false),
-                    ServiceImage = table.Column<string>(type: "varchar(max)", nullable: false),
+                    ServiceName = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    ServiceDescription = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    ServiceImage = table.Column<string>(type: "Nvarchar(max)", nullable: false),
                     CompanyID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -246,10 +246,10 @@ namespace Leha.Infrastructure.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FormFullName = table.Column<string>(type: "varchar(max)", nullable: false),
-                    FormAddress = table.Column<string>(type: "varchar(max)", nullable: false),
-                    FormJobTitle = table.Column<string>(type: "varchar(max)", nullable: false),
-                    FormCV = table.Column<string>(type: "varchar(max)", nullable: false),
+                    FormFullName = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    FormAddress = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    FormJobTitle = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    FormCV = table.Column<string>(type: "Nvarchar(max)", nullable: false),
                     FormDateTime = table.Column<DateTime>(type: "datetime", nullable: false),
                     JobID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -270,7 +270,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProjectPhaseName = table.Column<string>(type: "varchar(max)", nullable: false),
+                    ProjectPhaseName = table.Column<string>(type: "Nvarchar(max)", nullable: false),
                     ProjectID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -290,15 +290,15 @@ namespace Leha.Infrastructure.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PhaseItemNumber = table.Column<string>(type: "varchar(max)", nullable: false),
-                    PhaseItemName = table.Column<string>(type: "varchar(max)", nullable: false),
+                    PhaseItemNumber = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    PhaseItemName = table.Column<string>(type: "Nvarchar(max)", nullable: false),
                     AcumulativePercentage = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ProgressPercentage = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ExecutionProgress = table.Column<string>(type: "varchar(max)", nullable: false),
-                    RFI = table.Column<string>(type: "varchar(max)", nullable: false),
-                    WIR = table.Column<string>(type: "varchar(max)", nullable: false),
-                    Schedule = table.Column<string>(type: "varchar(max)", nullable: false),
-                    Unit = table.Column<string>(type: "varchar(max)", nullable: false),
+                    ExecutionProgress = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    RFI = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    WIR = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    Schedule = table.Column<string>(type: "Nvarchar(max)", nullable: false),
+                    Unit = table.Column<string>(type: "Nvarchar(max)", nullable: false),
                     InitialInventoryQuantities = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ActualInventoryQuantities = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PercentageLossOrExceed = table.Column<decimal>(type: "decimal(18,2)", nullable: false),

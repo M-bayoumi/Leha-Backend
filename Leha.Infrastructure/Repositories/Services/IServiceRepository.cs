@@ -5,5 +5,5 @@ namespace Leha.Infrastructure.Repositories.Services;
 
 public interface IServiceRepository : IGenericRepository<Service>
 {
-    public IQueryable<Service?> GetAllByCompanyID(int id);
+    public IQueryable<Service?> GetAllByCompanyId(int id);
 }

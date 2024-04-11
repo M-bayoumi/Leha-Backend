@@ -6,11 +6,11 @@ namespace Leha.Core.Features.Services.Quaries.Models;
 
 public class GetServiceByIdQuery : IRequest<Response<GetServiceByIdResponse>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public GetServiceByIdQuery(int serviceID)
     {
-        ID = serviceID;
+        Id = serviceID;
     }
     public GetServiceByIdQuery()
     {

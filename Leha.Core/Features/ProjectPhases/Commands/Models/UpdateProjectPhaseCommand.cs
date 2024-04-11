@@ -5,18 +5,20 @@ namespace Leha.Core.Features.ProjectPhases.Commands.Models;
 
 public class UpdateProjectPhaseCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
-    public string ProjectPhaseName { get; set; } = string.Empty;
-    public int ProjectID { get; set; }
+    public int Id { get; set; }
+    public string NameAr { get; set; } = string.Empty;
+    public string NameEn { get; set; } = string.Empty;
+    public int ProjectId { get; set; }
     public UpdateProjectPhaseCommand()
     {
 
     }
 
-    public UpdateProjectPhaseCommand(int iD, string projectPhaseName, int projectID)
+    public UpdateProjectPhaseCommand(int id, string nameAr, string nameEn, int projectId)
     {
-        ID = iD;
-        ProjectPhaseName = projectPhaseName;
-        ProjectID = projectID;
+        Id = id;
+        NameAr = nameAr;
+        NameEn = nameEn;
+        ProjectId = projectId;
     }
 }

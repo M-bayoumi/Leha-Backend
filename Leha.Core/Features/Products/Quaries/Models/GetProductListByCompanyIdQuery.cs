@@ -6,11 +6,11 @@ namespace Leha.Core.Features.Products.Quaries.Models;
 
 public class GetProductListByCompanyIDQuery : IRequest<Response<List<GetProductListByCompanyIDResponse>>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public GetProductListByCompanyIDQuery(int companyID)
     {
-        ID = companyID;
+        Id = companyID;
     }
     public GetProductListByCompanyIDQuery()
     {

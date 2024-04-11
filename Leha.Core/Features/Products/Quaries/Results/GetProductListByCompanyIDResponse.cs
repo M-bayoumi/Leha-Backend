@@ -2,11 +2,11 @@
 
 public class GetProductListByCompanyIDResponse
 {
-    public int ID { get; set; }
-    public string ProductName { get; set; } = string.Empty;
-    public string ProductDescription { get; set; } = string.Empty;
-    public string ProductImage { get; set; } = string.Empty;
-    public int CompanyID { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
+    public int CompanyId { get; set; }
     public string CompanyName { get; set; } = string.Empty;
     public int CompanyEmployees { get; set; }
     public string CompanyImage { get; set; } = string.Empty;

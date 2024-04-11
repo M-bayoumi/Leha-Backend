@@ -22,22 +22,32 @@ public class AddProductValidator : AbstractValidator<AddProductCommand>
     #region Handle Functions
     public void ApplyValidationRules()
     {
-        RuleFor(x => x.ProductName)
+        RuleFor(x => x.NameAr)
             .NotNull().WithMessage("Required.")
             .NotEmpty().WithMessage("Can't be empty.")
             .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.ProductDescription)
+        RuleFor(x => x.NameEn)
+            .NotNull().WithMessage("Required.")
+            .NotEmpty().WithMessage("Can't be empty.")
+            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.DescriptionAr)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.ProductImage)
+        RuleFor(x => x.DescriptionEn)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.CompanyID)
+        RuleFor(x => x.Image)
+           .NotNull().WithMessage("Required.")
+           .NotEmpty().WithMessage("Can't be empty.")
+           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.CompanyId)
          .NotNull().WithMessage("Required.")
          .GreaterThanOrEqualTo(1).WithMessage("Not Found");
     }

@@ -8,9 +8,13 @@ public partial class FormProfile : Profile
     public void GetFormListByJobIDMapping()
     {
         CreateMap<Form, GetFormListByJobIDResponse>()
-             .ForMember(dist => dist.JobTitle, opt => opt.MapFrom(src => src.Job.JobTitle))
-             .ForMember(dist => dist.JobDescription, opt => opt.MapFrom(src => src.Job.JobDescription))
-             .ForMember(dist => dist.JobAverageSalary, opt => opt.MapFrom(src => src.Job.JobAverageSalary))
-             .ForMember(dist => dist.JobDateTime, opt => opt.MapFrom(src => src.Job.JobDateTime));
+             .ForMember(dist => dist.FullName, opt => opt.MapFrom(src => src.GetLocalized(src.FullNameAr, src.FullNameEn)))
+             .ForMember(dist => dist.Address, opt => opt.MapFrom(src => src.GetLocalized(src.AddressAr, src.AddressEn)))
+             .ForMember(dist => dist.JobTitle, opt => opt.MapFrom(src => src.GetLocalized(src.JobTitleAr, src.JobTitleEn)))
+             .ForMember(dist => dist.FormDateTime, opt => opt.MapFrom(src => src.DateTime))
+             .ForMember(dist => dist.JobTitle, opt => opt.MapFrom(src => src.Job.GetLocalized(src.Job.TitleAr, src.Job.TitleEn)))
+             .ForMember(dist => dist.Description, opt => opt.MapFrom(src => src.Job.GetLocalized(src.Job.DescriptionAr, src.Job.DescriptionEn)))
+             .ForMember(dist => dist.AverageSalary, opt => opt.MapFrom(src => src.Job.GetLocalized(src.Job.AverageSalary, src.Job.AverageSalary)))
+             .ForMember(dist => dist.JobDateTime, opt => opt.MapFrom(src => src.Job.DateTime));
     }
 }

@@ -5,7 +5,7 @@ namespace Leha.Core.Features.Posts.Commands.Models;
 
 public class DeletePostCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public DeletePostCommand()
     {
@@ -14,6 +14,6 @@ public class DeletePostCommand : IRequest<Response<string>>
 
     public DeletePostCommand(int iD)
     {
-        ID = iD;
+        Id = iD;
     }
 }

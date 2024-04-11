@@ -34,7 +34,7 @@ public class AddServiceCommandHandler : ResponseHandler, IRequestHandler<AddServ
     #region Handle Functions
     public async Task<Response<string>> Handle(AddServiceCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetByIdAsync(request.CompanyID);
+        var company = await _companyManager.GetByIdAsync(request.CompanyId);
         if (company != null)
         {
             var service = _mapper.Map<Service>(request);

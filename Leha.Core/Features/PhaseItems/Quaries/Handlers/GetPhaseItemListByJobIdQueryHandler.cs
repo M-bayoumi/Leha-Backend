@@ -28,7 +28,7 @@ public class GetPhaseItemListByProjectPhaseIDQueryHandler : ResponseHandler, IRe
     #region Handle Functions
     public async Task<Response<List<GetPhaseItemListByProjectPhaseIDResponse>>> Handle(GetPhaseItemListByProjectPhaseIDQuery request, CancellationToken cancellationToken)
     {
-        var phaseItemListDB = await _phaseItemManager.GetAllByProjectPhaseID(request.ID).Include(x => x.ProjectPhase).ToListAsync();
+        var phaseItemListDB = await _phaseItemManager.GetAllByProjectPhaseID(request.Id).Include(x => x.ProjectPhase).ToListAsync();
         if (phaseItemListDB is null)
         {
             return NotFound<List<GetPhaseItemListByProjectPhaseIDResponse>>();

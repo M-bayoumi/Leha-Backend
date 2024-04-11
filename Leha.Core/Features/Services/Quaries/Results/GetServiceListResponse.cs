@@ -2,11 +2,11 @@
 
 public class GetServiceListResponse
 {
-    public int ID { get; set; }
-    public string ServiceName { get; set; } = string.Empty;
-    public string ServiceDescription { get; set; } = string.Empty;
-    public string ServiceImage { get; set; } = string.Empty;
-    public int CompanyID { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
+    public int CompanyId { get; set; }
     public string CompanyName { get; set; } = string.Empty;
     public int CompanyEmployees { get; set; }
     public string CompanyImage { get; set; } = string.Empty;

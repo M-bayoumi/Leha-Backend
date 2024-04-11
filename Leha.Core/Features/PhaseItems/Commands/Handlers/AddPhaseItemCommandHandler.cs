@@ -34,7 +34,7 @@ public class AddPhaseItemCommandHandler : ResponseHandler, IRequestHandler<AddPh
     #region Handle Functions
     public async Task<Response<string>> Handle(AddPhaseItemCommand request, CancellationToken cancellationToken)
     {
-        var projectPhase = await _projectPhaseManager.GetByIdAsync(request.ProjectPhaseID);
+        var projectPhase = await _projectPhaseManager.GetByIdAsync(request.ProjectPhaseId);
         if (projectPhase != null)
         {
             var phaseItem = _mapper.Map<PhaseItem>(request);

@@ -6,11 +6,11 @@ namespace Leha.Core.Features.Services.Quaries.Models;
 
 public class GetServiceListByCompanyIDQuery : IRequest<Response<List<GetServiceListByCompanyIDResponse>>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public GetServiceListByCompanyIDQuery(int companyID)
     {
-        ID = companyID;
+        Id = companyID;
     }
     public GetServiceListByCompanyIDQuery()
     {

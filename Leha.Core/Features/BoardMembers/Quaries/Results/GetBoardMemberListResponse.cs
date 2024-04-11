@@ -3,9 +3,7 @@
 public class GetBoardMemberListResponse
 {
     public int Id { get; set; }
-    public string NameAr { get; set; } = string.Empty;
-    public string NameEn { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
     public string Image { get; set; } = string.Empty;
-    public string PositionAr { get; set; } = string.Empty;
-    public string PositionEn { get; set; } = string.Empty;
+    public string Position { get; set; } = string.Empty;
 }

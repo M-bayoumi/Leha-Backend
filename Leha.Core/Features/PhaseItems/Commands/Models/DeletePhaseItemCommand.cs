@@ -5,7 +5,7 @@ namespace Leha.Core.Features.PhaseItems.Commands.Models;
 
 public class DeletePhaseItemCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public DeletePhaseItemCommand()
     {
@@ -14,6 +14,6 @@ public class DeletePhaseItemCommand : IRequest<Response<string>>
 
     public DeletePhaseItemCommand(int iD)
     {
-        ID = iD;
+        Id = iD;
     }
 }

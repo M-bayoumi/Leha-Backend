@@ -5,7 +5,7 @@ namespace Leha.Core.Features.Projects.Commands.Models;
 
 public class DeleteProjectCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public DeleteProjectCommand()
     {
@@ -14,6 +14,6 @@ public class DeleteProjectCommand : IRequest<Response<string>>
 
     public DeleteProjectCommand(int iD)
     {
-        ID = iD;
+        Id = iD;
     }
 }

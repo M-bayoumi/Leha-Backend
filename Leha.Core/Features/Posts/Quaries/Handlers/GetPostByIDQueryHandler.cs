@@ -29,7 +29,7 @@ public class GetPostByIdQueryHandler : ResponseHandler, IRequestHandler<GetPostB
     #region Handle Functions
     public async Task<Response<GetPostByIdResponse>> Handle(GetPostByIdQuery request, CancellationToken cancellationToken)
     {
-        var postDB = await _postManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var postDB = await _postManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.Id == request.Id);
 
         if (postDB is null)
         {

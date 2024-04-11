@@ -29,7 +29,7 @@ public class GetServiceByIdQueryHandler : ResponseHandler, IRequestHandler<GetSe
     #region Handle Functions
     public async Task<Response<GetServiceByIdResponse>> Handle(GetServiceByIdQuery request, CancellationToken cancellationToken)
     {
-        var serviceDB = await _serviceManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var serviceDB = await _serviceManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.Id == request.Id);
 
         if (serviceDB is null)
         {

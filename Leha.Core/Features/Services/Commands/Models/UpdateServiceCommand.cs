@@ -5,22 +5,29 @@ namespace Leha.Core.Features.Services.Commands.Models;
 
 public class UpdateServiceCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
-    public string ServiceName { get; set; } = string.Empty;
-    public string ServiceDescription { get; set; } = string.Empty;
-    public string ServiceImage { get; set; } = string.Empty;
-    public int CompanyID { get; set; }
+    public int Id { get; set; }
+    public string NameAr { get; set; } = string.Empty;
+    public string NameEn { get; set; } = string.Empty;
+    public string DescriptionAr { get; set; } = string.Empty;
+    public string DescriptionEn { get; set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
+    public int CompanyId { get; set; }
     public UpdateServiceCommand()
     {
 
     }
 
-    public UpdateServiceCommand(int iD, string serviceName, string serviceDescription, string serviceImage, int companyID)
+    public UpdateServiceCommand(int id,
+        string nameAr, string nameEn,
+        string descriptionAr, string descriptionEn,
+        string image, int companyId)
     {
-        ID = iD;
-        ServiceName = serviceName;
-        ServiceDescription = serviceDescription;
-        ServiceImage = serviceImage;
-        CompanyID = companyID;
+        Id = id;
+        NameAr = nameAr;
+        NameEn = nameEn;
+        DescriptionAr = descriptionAr;
+        DescriptionEn = descriptionEn;
+        Image = image;
+        CompanyId = companyId;
     }
 }

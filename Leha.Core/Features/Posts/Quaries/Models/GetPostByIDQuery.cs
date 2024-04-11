@@ -6,11 +6,11 @@ namespace Leha.Core.Features.Posts.Quaries.Models;
 
 public class GetPostByIdQuery : IRequest<Response<GetPostByIdResponse>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public GetPostByIdQuery(int postID)
     {
-        ID = postID;
+        Id = postID;
     }
     public GetPostByIdQuery()
     {

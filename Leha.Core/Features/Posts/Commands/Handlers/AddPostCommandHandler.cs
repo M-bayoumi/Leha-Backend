@@ -34,7 +34,7 @@ public class AddPostCommandHandler : ResponseHandler, IRequestHandler<AddPostCom
     #region Handle Functions
     public async Task<Response<string>> Handle(AddPostCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetByIdAsync(request.CompanyID);
+        var company = await _companyManager.GetByIdAsync(request.CompanyId);
         if (company != null)
         {
             var post = _mapper.Map<Post>(request);

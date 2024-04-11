@@ -6,11 +6,11 @@ namespace Leha.Core.Features.PhaseItems.Quaries.Models;
 
 public class GetPhaseItemByIdQuery : IRequest<Response<GetPhaseItemByIdResponse>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public GetPhaseItemByIdQuery(int phaseItemID)
     {
-        ID = phaseItemID;
+        Id = phaseItemID;
     }
     public GetPhaseItemByIdQuery()
     {

@@ -5,20 +5,22 @@ namespace Leha.Core.Features.Posts.Commands.Models;
 
 public class UpdatePostCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
-    public string PostContent { get; set; } = string.Empty;
-    public string PostImage { get; set; } = string.Empty;
-    public int CompanyID { get; set; }
+    public int Id { get; set; }
+    public string ContentAr { get; set; } = string.Empty;
+    public string ContentEn { get; set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
+    public int CompanyId { get; set; }
     public UpdatePostCommand()
     {
 
     }
 
-    public UpdatePostCommand(int iD, string postContent, string postImage, int companyID)
+    public UpdatePostCommand(int id, string contentAr, string contentEn, string image, int companyId)
     {
-        ID = iD;
-        PostContent = postContent;
-        PostImage = postImage;
-        CompanyID = companyID;
+        Id = id;
+        ContentAr = contentAr;
+        ContentEn = contentEn;
+        Image = image;
+        CompanyId = companyId;
     }
 }

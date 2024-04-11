@@ -5,26 +5,43 @@ namespace Leha.Core.Features.Projects.Commands.Models;
 
 public class UpdateProjectCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
-    public string ProjectName { get; set; } = string.Empty;
-    public string ProjectDescription { get; set; } = string.Empty;
-    public string ProjectAddress { get; set; } = string.Empty;
-    public string ProjectImage { get; set; } = string.Empty;
-    public string SiteEngineerName { get; set; } = string.Empty;
-    public int CompanyID { get; set; }
+    public int Id { get; set; }
+    public string NameAr { get; set; } = string.Empty;
+    public string NameEn { get; set; } = string.Empty;
+    public string DescriptionAr { get; set; } = string.Empty;
+    public string DescriptionEn { get; set; } = string.Empty;
+    public string AddressAr { get; set; } = string.Empty;
+    public string AddressEn { get; set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
+    public string SiteEngineerNameAr { get; set; } = string.Empty;
+    public string SiteEngineerNameEn { get; set; } = string.Empty;
+    public decimal ProjectProgressPercentage { get; set; }
+    public int CompanyId { get; set; }
     public UpdateProjectCommand()
     {
 
     }
 
-    public UpdateProjectCommand(int iD, string projectName, string projectDescription, string projectAddress, string projectImage, string siteEngineerName, int companyID)
+    public UpdateProjectCommand(int id,
+        string nameAr, string nameEn,
+        string descriptionAr, string descriptionEn,
+        string addressAr, string addressEn,
+        string image,
+        string siteEngineerNameAr, string siteEngineerNameEn,
+        decimal projectProgressPercentage,
+        int companyId)
     {
-        ID = iD;
-        ProjectName = projectName;
-        ProjectDescription = projectDescription;
-        ProjectAddress = projectAddress;
-        ProjectImage = projectImage;
-        SiteEngineerName = siteEngineerName;
-        CompanyID = companyID;
+        Id = id;
+        NameAr = nameAr;
+        NameEn = nameEn;
+        DescriptionAr = descriptionAr;
+        DescriptionEn = descriptionEn;
+        AddressAr = addressAr;
+        AddressEn = addressEn;
+        Image = image;
+        SiteEngineerNameAr = siteEngineerNameAr;
+        SiteEngineerNameEn = siteEngineerNameEn;
+        ProjectProgressPercentage = projectProgressPercentage;
+        CompanyId = companyId;
     }
 }

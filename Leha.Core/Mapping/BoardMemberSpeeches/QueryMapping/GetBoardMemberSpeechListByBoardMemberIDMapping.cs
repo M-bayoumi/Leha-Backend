@@ -9,8 +9,9 @@ public partial class BoardMemberSpeechProfile : Profile
     public void GetBoardMemberSpeechListByBoardMemberIDMapping()
     {
         CreateMap<BoardMemberSpeech, GetBoardMemberSpeechListByBoardMemberIDResponse>()
-             .ForMember(dist => dist.BoardMemberName, opt => opt.MapFrom(src => src.BoardMember.BoardMemberName))
-             .ForMember(dist => dist.BoardMemberPosition, opt => opt.MapFrom(src => src.BoardMember.BoardMemberPosition))
-             .ForMember(dist => dist.BoardMemberPosition, opt => opt.MapFrom(src => src.BoardMember.BoardMemberPosition));
+             .ForMember(dist => dist.Content, opt => opt.MapFrom(src => src.GetLocalized(src.ContentAr, src.ContentEn)))
+             .ForMember(dist => dist.BoardMemberName, opt => opt.MapFrom(src => src.GetLocalized(src.BoardMember.NameAr, src.BoardMember.NameEn)))
+             .ForMember(dist => dist.BoardMemberImage, opt => opt.MapFrom(src => src.BoardMember.Image))
+             .ForMember(dist => dist.BoardMemberPosition, opt => opt.MapFrom(src => src.GetLocalized(src.BoardMember.PositionAr, src.BoardMember.PositionEn)));
     }
 }

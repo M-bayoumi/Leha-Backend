@@ -27,7 +27,7 @@ public class DeleteServiceCommandHandler : ResponseHandler, IRequestHandler<Dele
     #region Handle Functions
     public async Task<Response<string>> Handle(DeleteServiceCommand request, CancellationToken cancellationToken)
     {
-        var service = await _serviceManager.GetByIdAsync(request.ID);
+        var service = await _serviceManager.GetByIdAsync(request.Id);
         if (service == null) return NotFound<string>("");
         if (await _serviceManager.DeleteAsync(service))
             return Deleted<string>("");

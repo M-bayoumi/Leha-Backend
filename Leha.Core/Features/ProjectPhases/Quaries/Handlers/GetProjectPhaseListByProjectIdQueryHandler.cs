@@ -28,7 +28,7 @@ public class GetProjectPhaseListByProjectIDQueryHandler : ResponseHandler, IRequ
     #region Handle Functions
     public async Task<Response<List<GetProjectPhaseListByProjectIDResponse>>> Handle(GetProjectPhaseListByProjectIDQuery request, CancellationToken cancellationToken)
     {
-        var projectPhaseListDB = await _projectPhaseManager.GetAllByProjectID(request.ID).Include(x => x.Project).ToListAsync();
+        var projectPhaseListDB = await _projectPhaseManager.GetAllByProjectID(request.Id).Include(x => x.Project).ToListAsync();
         if (projectPhaseListDB is null)
         {
             return NotFound<List<GetProjectPhaseListByProjectIDResponse>>();

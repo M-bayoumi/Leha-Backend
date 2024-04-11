@@ -22,21 +22,26 @@ public class UpdatePostValidator : AbstractValidator<UpdatePostCommand>
     #region Handle Functions
     public void ApplyValidationRules()
     {
-        RuleFor(x => x.ID)
+        RuleFor(x => x.Id)
             .NotNull().WithMessage("Required.")
             .GreaterThanOrEqualTo(1).WithMessage("Not Found");
 
-        RuleFor(x => x.PostContent)
-              .NotNull().WithMessage("Required.")
-              .NotEmpty().WithMessage("Can't be empty.")
-              .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+        RuleFor(x => x.ContentAr)
+                .NotNull().WithMessage("Required.")
+                .NotEmpty().WithMessage("Can't be empty.")
+                .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.PostImage)
+        RuleFor(x => x.ContentEn)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.CompanyID)
+        RuleFor(x => x.Image)
+           .NotNull().WithMessage("Required.")
+           .NotEmpty().WithMessage("Can't be empty.")
+           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.CompanyId)
          .NotNull().WithMessage("Required.")
          .GreaterThanOrEqualTo(1).WithMessage("Not Found");
     }

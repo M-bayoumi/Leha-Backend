@@ -6,11 +6,11 @@ namespace Leha.Core.Features.Posts.Quaries.Models;
 
 public class GetPostListByCompanyIDQuery : IRequest<Response<List<GetPostListByCompanyIDResponse>>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public GetPostListByCompanyIDQuery(int companyID)
     {
-        ID = companyID;
+        Id = companyID;
     }
     public GetPostListByCompanyIDQuery()
     {

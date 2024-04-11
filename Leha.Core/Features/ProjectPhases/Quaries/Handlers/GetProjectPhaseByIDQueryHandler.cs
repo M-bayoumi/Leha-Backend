@@ -29,7 +29,7 @@ public class GetProjectPhaseByIdQueryHandler : ResponseHandler, IRequestHandler<
     #region Handle Functions
     public async Task<Response<GetProjectPhaseByIdResponse>> Handle(GetProjectPhaseByIdQuery request, CancellationToken cancellationToken)
     {
-        var projectPhaseDB = await _projectPhaseManager.GetAll().Include(x => x.Project).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var projectPhaseDB = await _projectPhaseManager.GetAll().Include(x => x.Project).FirstOrDefaultAsync(x => x.Id == request.Id);
 
         if (projectPhaseDB is null)
         {

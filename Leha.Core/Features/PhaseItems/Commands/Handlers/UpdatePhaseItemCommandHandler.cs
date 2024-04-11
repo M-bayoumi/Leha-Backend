@@ -33,7 +33,7 @@ public class UpdatePhaseItemCommandHandler : ResponseHandler, IRequestHandler<Up
     #region Handle Functions
     public async Task<Response<string>> Handle(UpdatePhaseItemCommand request, CancellationToken cancellationToken)
     {
-        var projectPhase = await _projectPhaseManager.GetByIdAsync(request.ProjectPhaseID);
+        var projectPhase = await _projectPhaseManager.GetByIdAsync(request.ProjectPhaseId);
         if (projectPhase != null)
         {
             var phaseItem = _mapper.Map<PhaseItem>(request);

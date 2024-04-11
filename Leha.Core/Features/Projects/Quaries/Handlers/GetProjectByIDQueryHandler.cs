@@ -29,7 +29,7 @@ public class GetProjectByIdQueryHandler : ResponseHandler, IRequestHandler<GetPr
     #region Handle Functions
     public async Task<Response<GetProjectByIdResponse>> Handle(GetProjectByIdQuery request, CancellationToken cancellationToken)
     {
-        var projectDB = await _projectManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var projectDB = await _projectManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.Id == request.Id);
 
         if (projectDB is null)
         {

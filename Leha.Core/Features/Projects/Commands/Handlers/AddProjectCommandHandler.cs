@@ -34,7 +34,7 @@ public class AddProjectCommandHandler : ResponseHandler, IRequestHandler<AddProj
     #region Handle Functions
     public async Task<Response<string>> Handle(AddProjectCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetByIdAsync(request.CompanyID);
+        var company = await _companyManager.GetByIdAsync(request.CompanyId);
         if (company != null)
         {
             var project = _mapper.Map<Project>(request);

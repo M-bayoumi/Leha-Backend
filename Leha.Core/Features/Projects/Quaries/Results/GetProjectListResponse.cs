@@ -2,14 +2,14 @@
 
 public class GetProjectListResponse
 {
-    public int ID { get; set; }
-    public string ProjectName { get; set; } = string.Empty;
-    public string ProjectDescription { get; set; } = string.Empty;
-    public string ProjectAddress { get; set; } = string.Empty;
-    public string ProjectImage { get; set; } = string.Empty;
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string Address { get; set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
     public string SiteEngineerName { get; set; } = string.Empty;
     public decimal ProjectProgressPercentage { get; set; }
-    public int CompanyID { get; set; }
+    public int CompanyId { get; set; }
     public string CompanyName { get; set; } = string.Empty;
     public int CompanyEmployees { get; set; }
     public string CompanyImage { get; set; } = string.Empty;

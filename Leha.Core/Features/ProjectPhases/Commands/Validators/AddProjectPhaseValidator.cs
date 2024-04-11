@@ -22,12 +22,17 @@ public class AddProjectPhaseValidator : AbstractValidator<AddProjectPhaseCommand
     #region Handle Functions
     public void ApplyValidationRules()
     {
-        RuleFor(x => x.ProjectPhaseName)
+        RuleFor(x => x.NameAr)
             .NotNull().WithMessage("Required.")
             .NotEmpty().WithMessage("Can't be empty.")
             .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.ProjectID)
+        RuleFor(x => x.NameEn)
+           .NotNull().WithMessage("Required.")
+           .NotEmpty().WithMessage("Can't be empty.")
+           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.ProjectId)
          .NotNull().WithMessage("Required.")
          .GreaterThanOrEqualTo(1).WithMessage("Not Found");
     }

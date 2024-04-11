@@ -33,7 +33,7 @@ public class UpdateServiceCommandHandler : ResponseHandler, IRequestHandler<Upda
     #region Handle Functions
     public async Task<Response<string>> Handle(UpdateServiceCommand request, CancellationToken cancellationToken)
     {
-        var company = await _companyManager.GetByIdAsync(request.CompanyID);
+        var company = await _companyManager.GetByIdAsync(request.CompanyId);
         if (company != null)
         {
             var service = _mapper.Map<Service>(request);

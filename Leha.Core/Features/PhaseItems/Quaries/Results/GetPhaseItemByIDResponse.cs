@@ -2,9 +2,9 @@
 
 public class GetPhaseItemByIdResponse
 {
-    public int ID { get; set; }
-    public string PhaseItemNumber { get; set; } = string.Empty;
-    public string PhaseItemName { get; set; } = string.Empty;
+    public int Id { get; set; }
+    public string Number { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
     public decimal AcumulativePercentage { get; set; }
     public decimal ProgressPercentage { get; set; }
     public string ExecutionProgress { get; set; } = string.Empty;
@@ -15,6 +15,6 @@ public class GetPhaseItemByIdResponse
     public decimal InitialInventoryQuantities { get; set; }
     public decimal ActualInventoryQuantities { get; set; }
     public decimal PercentageLossOrExceed { get; set; }
-    public int ProjectPhaseID { get; set; }
+    public int ProjectPhaseId { get; set; }
     public string ProjectPhaseName { get; set; } = string.Empty;
 }

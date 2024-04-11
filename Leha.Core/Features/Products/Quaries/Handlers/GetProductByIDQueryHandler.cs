@@ -29,7 +29,7 @@ public class GetProductByIdQueryHandler : ResponseHandler, IRequestHandler<GetPr
     #region Handle Functions
     public async Task<Response<GetProductByIdResponse>> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
     {
-        var productDB = await _productManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == request.ID);
+        var productDB = await _productManager.GetAll().Include(x => x.Company).FirstOrDefaultAsync(x => x.Id == request.Id);
 
         if (productDB is null)
         {

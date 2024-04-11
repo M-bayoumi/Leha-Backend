@@ -5,7 +5,7 @@ namespace Leha.Core.Features.Services.Commands.Models;
 
 public class DeleteServiceCommand : IRequest<Response<string>>
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     public DeleteServiceCommand()
     {
@@ -14,6 +14,6 @@ public class DeleteServiceCommand : IRequest<Response<string>>
 
     public DeleteServiceCommand(int iD)
     {
-        ID = iD;
+        Id = iD;
     }
 }

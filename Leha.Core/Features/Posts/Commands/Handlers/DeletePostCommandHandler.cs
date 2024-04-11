@@ -27,7 +27,7 @@ public class DeletePostCommandHandler : ResponseHandler, IRequestHandler<DeleteP
     #region Handle Functions
     public async Task<Response<string>> Handle(DeletePostCommand request, CancellationToken cancellationToken)
     {
-        var post = await _postManager.GetByIdAsync(request.ID);
+        var post = await _postManager.GetByIdAsync(request.Id);
         if (post == null) return NotFound<string>("");
         if (await _postManager.DeleteAsync(post))
             return Deleted<string>("");

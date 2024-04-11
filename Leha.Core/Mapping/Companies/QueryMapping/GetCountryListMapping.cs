@@ -8,6 +8,8 @@ public partial class CompanyProfile : Profile
 {
     public void GetCountryListMapping()
     {
-        CreateMap<Company, GetCompanyListResponse>();
+        CreateMap<Company, GetCompanyListResponse>()
+             .ForMember(dist => dist.Name, opt => opt.MapFrom(src => src.GetLocalized(src.NameAr, src.NameEn)));
+
     }
 }

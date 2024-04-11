@@ -8,6 +8,8 @@ public partial class BoardMemberProfile : Profile
 {
     public void GetBoardMemberListMapping()
     {
-        CreateMap<BoardMember, GetBoardMemberListResponse>();
+        CreateMap<BoardMember, GetBoardMemberListResponse>()
+             .ForMember(dist => dist.Name, opt => opt.MapFrom(src => src.GetLocalized(src.NameAr, src.NameEn)))
+             .ForMember(dist => dist.Position, opt => opt.MapFrom(src => src.GetLocalized(src.PositionAr, src.PositionEn)));
     }
 }

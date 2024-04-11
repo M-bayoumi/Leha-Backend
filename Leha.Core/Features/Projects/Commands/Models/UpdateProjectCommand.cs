@@ -15,7 +15,6 @@ public class UpdateProjectCommand : IRequest<Response<string>>
     public string Image { get; set; } = string.Empty;
     public string SiteEngineerNameAr { get; set; } = string.Empty;
     public string SiteEngineerNameEn { get; set; } = string.Empty;
-    public decimal ProjectProgressPercentage { get; set; }
     public int CompanyId { get; set; }
     public UpdateProjectCommand()
     {
@@ -28,7 +27,6 @@ public class UpdateProjectCommand : IRequest<Response<string>>
         string addressAr, string addressEn,
         string image,
         string siteEngineerNameAr, string siteEngineerNameEn,
-        decimal projectProgressPercentage,
         int companyId)
     {
         Id = id;
@@ -41,7 +39,6 @@ public class UpdateProjectCommand : IRequest<Response<string>>
         Image = image;
         SiteEngineerNameAr = siteEngineerNameAr;
         SiteEngineerNameEn = siteEngineerNameEn;
-        ProjectProgressPercentage = projectProgressPercentage;
         CompanyId = companyId;
     }
 }

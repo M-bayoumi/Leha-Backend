@@ -22,7 +22,6 @@ public class AddPhaseItemCommand : IRequest<Response<string>>
     public string UnitEn { get; set; } = string.Empty;
     public decimal InitialInventoryQuantities { get; set; }
     public decimal ActualInventoryQuantities { get; set; }
-    public decimal PercentageLossOrExceed { get; set; }
     public int ProjectPhaseId { get; set; }
 
     public AddPhaseItemCommand()
@@ -42,7 +41,6 @@ public class AddPhaseItemCommand : IRequest<Response<string>>
         string unitAr, string unitEn,
         decimal initialInventoryQuantities,
         decimal actualInventoryQuantities,
-        decimal percentageLossOrExceed,
         int projectPhaseId)
     {
         Number = number;
@@ -62,7 +60,6 @@ public class AddPhaseItemCommand : IRequest<Response<string>>
         UnitEn = unitEn;
         InitialInventoryQuantities = initialInventoryQuantities;
         ActualInventoryQuantities = actualInventoryQuantities;
-        PercentageLossOrExceed = percentageLossOrExceed;
         ProjectPhaseId = projectPhaseId;
     }
 }

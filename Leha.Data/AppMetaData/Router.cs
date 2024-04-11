@@ -7,10 +7,10 @@ public static class Router
     private const string Rule = Root + Version;
 
     private const string GetAllRoute = "All";
-    private const string GetByIdRoute = "{ID}";
+    private const string GetByIdRoute = "{Id}";
     private const string AddRoute = "Add";
     private const string UpdateRoute = "Update";
-    private const string DeleteRoute = "{ID}";
+    private const string DeleteRoute = "{Id}";
     public static class BoardMemberRouting
     {
         private const string Prefix = Rule + "Member/";
@@ -24,7 +24,7 @@ public static class Router
     {
         private const string Prefix = Rule + "Speech/";
         public const string GetAll = Prefix + GetAllRoute;
-        public const string GetAllByBoardMemberId = Prefix + GetAllRoute + "/{ID}";
+        public const string GetAllByBoardMemberId = Prefix + GetAllRoute + "/{Id}";
         public const string GetById = Prefix + GetByIdRoute;
         public const string Add = Prefix + AddRoute;
         public const string Update = Prefix + UpdateRoute;
@@ -34,7 +34,7 @@ public static class Router
     {
         private const string Prefix = Rule + "Client/";
         public const string GetAll = Prefix + GetAllRoute;
-        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{ID}";
+        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{Id}";
         public const string GetById = Prefix + GetByIdRoute;
         public const string Add = Prefix + AddRoute;
         public const string Update = Prefix + UpdateRoute;
@@ -44,7 +44,7 @@ public static class Router
     {
         private const string Prefix = Rule + "Address/";
         public const string GetAll = Prefix + GetAllRoute;
-        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{ID}";
+        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{Id}";
         public const string GetById = Prefix + GetByIdRoute;
         public const string Add = Prefix + AddRoute;
         public const string Update = Prefix + UpdateRoute;
@@ -64,7 +64,7 @@ public static class Router
     {
         private const string Prefix = Rule + "Form/";
         public const string GetAll = Prefix + GetAllRoute;
-        public const string GetAllByJobId = Prefix + GetAllRoute + "/{ID}";
+        public const string GetAllByJobId = Prefix + GetAllRoute + "/{Id}";
         public const string GetById = Prefix + GetByIdRoute;
         public const string Add = Prefix + AddRoute;
         public const string Update = Prefix + UpdateRoute;
@@ -74,7 +74,7 @@ public static class Router
     {
         private const string Prefix = Rule + "HomeImage/";
         public const string GetAll = Prefix + GetAllRoute;
-        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{ID}";
+        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{Id}";
         public const string GetById = Prefix + GetByIdRoute;
         public const string Add = Prefix + AddRoute;
         public const string Update = Prefix + UpdateRoute;
@@ -84,7 +84,7 @@ public static class Router
     {
         private const string Prefix = Rule + "Job/";
         public const string GetAll = Prefix + GetAllRoute;
-        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{ID}";
+        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{Id}";
         public const string GetById = Prefix + GetByIdRoute;
         public const string Add = Prefix + AddRoute;
         public const string Update = Prefix + UpdateRoute;
@@ -94,7 +94,7 @@ public static class Router
     {
         private const string Prefix = Rule + "Item/";
         public const string GetAll = Prefix + GetAllRoute;
-        public const string GetAllByProjectPhaseID = Prefix + GetAllRoute + "/{ID}";
+        public const string GetAllByProjectPhaseId = Prefix + GetAllRoute + "/{Id}";
         public const string GetById = Prefix + GetByIdRoute;
         public const string Add = Prefix + AddRoute;
         public const string Update = Prefix + UpdateRoute;
@@ -104,7 +104,7 @@ public static class Router
     {
         private const string Prefix = Rule + "Post/";
         public const string GetAll = Prefix + GetAllRoute;
-        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{ID}";
+        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{Id}";
         public const string GetById = Prefix + GetByIdRoute;
         public const string Add = Prefix + AddRoute;
         public const string Update = Prefix + UpdateRoute;
@@ -114,7 +114,7 @@ public static class Router
     {
         private const string Prefix = Rule + "Product/";
         public const string GetAll = Prefix + GetAllRoute;
-        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{ID}";
+        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{Id}";
         public const string GetById = Prefix + GetByIdRoute;
         public const string Add = Prefix + AddRoute;
         public const string Update = Prefix + UpdateRoute;
@@ -124,7 +124,7 @@ public static class Router
     {
         private const string Prefix = Rule + "Project/";
         public const string GetAll = Prefix + GetAllRoute;
-        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{ID}";
+        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{Id}";
         public const string GetById = Prefix + GetByIdRoute;
         public const string Add = Prefix + AddRoute;
         public const string Update = Prefix + UpdateRoute;
@@ -134,7 +134,7 @@ public static class Router
     {
         private const string Prefix = Rule + "Phase/";
         public const string GetAll = Prefix + GetAllRoute;
-        public const string GetAllByProjectID = Prefix + GetAllRoute + "/{ID}";
+        public const string GetAllByProjectId = Prefix + GetAllRoute + "/{Id}";
         public const string GetById = Prefix + GetByIdRoute;
         public const string Add = Prefix + AddRoute;
         public const string Update = Prefix + UpdateRoute;
@@ -144,7 +144,7 @@ public static class Router
     {
         private const string Prefix = Rule + "Service/";
         public const string GetAll = Prefix + GetAllRoute;
-        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{ID}";
+        public const string GetAllByCompanyId = Prefix + GetAllRoute + "/{Id}";
         public const string GetById = Prefix + GetByIdRoute;
         public const string Add = Prefix + AddRoute;
         public const string Update = Prefix + UpdateRoute;

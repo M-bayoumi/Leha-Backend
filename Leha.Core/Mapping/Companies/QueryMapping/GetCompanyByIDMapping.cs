@@ -8,6 +8,8 @@ public partial class CompanyProfile : Profile
 {
     public void GetCompanyByIdMapping()
     {
-        CreateMap<Company, GetCompanyByIdResponse>();
+        CreateMap<Company, GetCompanyByIdResponse>()
+             .ForMember(dist => dist.Name, opt => opt.MapFrom(src => src.GetLocalized(src.NameAr, src.NameEn)));
+
     }
 }

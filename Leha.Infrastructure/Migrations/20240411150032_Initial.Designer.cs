@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Leha.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240408214105_Initial")]
+    [Migration("20240411150032_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -27,238 +27,281 @@ namespace Leha.Infrastructure.Migrations
 
             modelBuilder.Entity("Leha.Data.Entities.BoardMember", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("BoardMemberImage")
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("BoardMemberName")
+                    b.Property<string>("NameEn")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("BoardMemberPosition")
+                    b.Property<string>("PositionAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.Property<string>("PositionEn")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("BoardMembers", (string)null);
                 });
 
             modelBuilder.Entity("Leha.Data.Entities.BoardMemberSpeech", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BoardMemberID")
+                    b.Property<int>("BoardMemberId")
                         .HasColumnType("int");
 
-                    b.Property<string>("BoardMemberSpeechContent")
+                    b.Property<string>("ContentAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.Property<string>("ContentEn")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
 
-                    b.HasIndex("BoardMemberID");
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BoardMemberId");
 
                     b.ToTable("BoardMemberSpeeches", (string)null);
                 });
 
             modelBuilder.Entity("Leha.Data.Entities.Client", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ClientImage")
-                        .IsRequired()
-                        .HasColumnType("Nvarchar(max)");
-
-                    b.Property<string>("ClientNameAr")
-                        .IsRequired()
-                        .HasColumnType("Nvarchar(max)");
-
-                    b.Property<string>("ClientNameEn")
-                        .IsRequired()
-                        .HasColumnType("Nvarchar(max)");
-
-                    b.Property<int>("CompanyID")
+                    b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
 
-                    b.HasIndex("CompanyID");
+                    b.Property<string>("NameAr")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("Leha.Data.Entities.Company", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CompanyEmail")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<int>("CompanyEmployees")
+                    b.Property<int>("Employees")
                         .HasColumnType("int");
 
-                    b.Property<string>("CompanyImage")
+                    b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("CompanyLink")
+                    b.Property<string>("Link")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("CompanyName")
+                    b.Property<string>("NameAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("CompanyPhone")
+                    b.Property<string>("NameEn")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Companies", (string)null);
                 });
 
             modelBuilder.Entity("Leha.Data.Entities.CompanyAddress", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
+                    b.Property<string>("AddressAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<int>("CompanyID")
+                    b.Property<string>("AddressEn")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CompanyID");
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("CompanyAddresses", (string)null);
                 });
 
             modelBuilder.Entity("Leha.Data.Entities.Form", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("FormAddress")
+                    b.Property<string>("AddressAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("FormCV")
+                    b.Property<string>("AddressEn")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<DateTime>("FormDateTime")
+                    b.Property<string>("CV")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("FormFullName")
+                    b.Property<string>("FullNameAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("FormJobTitle")
+                    b.Property<string>("FullNameEn")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<int>("JobID")
+                    b.Property<int>("JobId")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.Property<string>("JobTitleAr")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
 
-                    b.HasIndex("JobID");
+                    b.Property<string>("JobTitleEn")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JobId");
 
                     b.ToTable("Forms", (string)null);
                 });
 
             modelBuilder.Entity("Leha.Data.Entities.HomeImage", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CompanyID")
+                    b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("HomeImageBytes")
+                    b.Property<string>("ImageBytes")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CompanyID");
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("HomeImages", (string)null);
                 });
 
             modelBuilder.Entity("Leha.Data.Entities.Job", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CompanyID")
+                    b.Property<string>("AverageSalary")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("JobAverageSalary")
-                        .IsRequired()
-                        .HasColumnType("Nvarchar(max)");
-
-                    b.Property<DateTime>("JobDateTime")
+                    b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("JobDescription")
+                    b.Property<string>("DescriptionAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("JobTitle")
+                    b.Property<string>("DescriptionEn")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.Property<string>("TitleAr")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
 
-                    b.HasIndex("CompanyID");
+                    b.Property<string>("TitleEn")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("Jobs", (string)null);
                 });
 
             modelBuilder.Entity("Leha.Data.Entities.PhaseItem", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("ActualInventoryQuantities")
                         .HasColumnType("decimal(18, 2)");
@@ -266,201 +309,265 @@ namespace Leha.Infrastructure.Migrations
                     b.Property<decimal>("AcumulativePercentage")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<string>("ExecutionProgress")
+                    b.Property<string>("ExecutionProgressAr")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.Property<string>("ExecutionProgressEn")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
                     b.Property<decimal>("InitialInventoryQuantities")
                         .HasColumnType("decimal(18, 2)");
 
+                    b.Property<string>("NameAr")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
                     b.Property<decimal>("PercentageLossOrExceed")
                         .HasColumnType("decimal(18, 2)");
-
-                    b.Property<string>("PhaseItemName")
-                        .IsRequired()
-                        .HasColumnType("Nvarchar(max)");
-
-                    b.Property<string>("PhaseItemNumber")
-                        .IsRequired()
-                        .HasColumnType("Nvarchar(max)");
 
                     b.Property<decimal>("ProgressPercentage")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<int>("ProjectPhaseID")
+                    b.Property<int>("ProjectPhaseId")
                         .HasColumnType("int");
 
-                    b.Property<string>("RFI")
+                    b.Property<string>("RFIAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("Schedule")
+                    b.Property<string>("RFIEn")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("Unit")
+                    b.Property<string>("ScheduleAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("WIR")
+                    b.Property<string>("ScheduleEn")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.Property<string>("UnitAr")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
 
-                    b.HasIndex("ProjectPhaseID");
+                    b.Property<string>("UnitEn")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.Property<string>("WIRAr")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.Property<string>("WIREn")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectPhaseId");
 
                     b.ToTable("PhaseItems", (string)null);
                 });
 
             modelBuilder.Entity("Leha.Data.Entities.Post", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CompanyID")
+                    b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("PostContent")
+                    b.Property<string>("ContentAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<DateTime>("PostDateTime")
+                    b.Property<string>("ContentEn")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("PostImage")
+                    b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CompanyID");
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("Leha.Data.Entities.Product", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CompanyID")
+                    b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ProductDescription")
+                    b.Property<string>("DescriptionAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("ProductImage")
+                    b.Property<string>("DescriptionEn")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("ProductName")
+                    b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.Property<string>("NameAr")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
 
-                    b.HasIndex("CompanyID");
+                    b.Property<string>("NameEn")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Leha.Data.Entities.Project", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CompanyID")
+                    b.Property<string>("AddressAr")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.Property<string>("AddressEn")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ProjectAddress")
+                    b.Property<string>("DescriptionAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("ProjectDescription")
+                    b.Property<string>("DescriptionEn")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("ProjectImage")
+                    b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("ProjectName")
+                    b.Property<string>("NameAr")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.Property<string>("NameEn")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
                     b.Property<decimal>("ProjectProgressPercentage")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<string>("SiteEngineerName")
+                    b.Property<string>("SiteEngineerNameAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.Property<string>("SiteEngineerNameEn")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
 
-                    b.HasIndex("CompanyID");
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("Projects", (string)null);
                 });
 
             modelBuilder.Entity("Leha.Data.Entities.ProjectPhase", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ProjectID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProjectPhaseName")
+                    b.Property<string>("NameAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.Property<string>("NameEn")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
 
-                    b.HasIndex("ProjectID");
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("ProjectPhases", (string)null);
                 });
 
             modelBuilder.Entity("Leha.Data.Entities.Service", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CompanyID")
+                    b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ServiceDescription")
+                    b.Property<string>("DescriptionAr")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("ServiceImage")
+                    b.Property<string>("DescriptionEn")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.Property<string>("ServiceName")
+                    b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.Property<string>("NameAr")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
 
-                    b.HasIndex("CompanyID");
+                    b.Property<string>("NameEn")
+                        .IsRequired()
+                        .HasColumnType("Nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("Servcies", (string)null);
                 });
@@ -469,7 +576,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     b.HasOne("Leha.Data.Entities.BoardMember", "BoardMember")
                         .WithMany("BoardMemberSpeeches")
-                        .HasForeignKey("BoardMemberID")
+                        .HasForeignKey("BoardMemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -480,7 +587,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     b.HasOne("Leha.Data.Entities.Company", "Company")
                         .WithMany("Clients")
-                        .HasForeignKey("CompanyID")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -491,7 +598,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     b.HasOne("Leha.Data.Entities.Company", "Company")
                         .WithMany("CompanyAddresses")
-                        .HasForeignKey("CompanyID")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -502,7 +609,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     b.HasOne("Leha.Data.Entities.Job", "Job")
                         .WithMany("Forms")
-                        .HasForeignKey("JobID")
+                        .HasForeignKey("JobId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -513,7 +620,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     b.HasOne("Leha.Data.Entities.Company", "Company")
                         .WithMany("HomeImages")
-                        .HasForeignKey("CompanyID")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -524,7 +631,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     b.HasOne("Leha.Data.Entities.Company", "Company")
                         .WithMany("Jobs")
-                        .HasForeignKey("CompanyID")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -535,7 +642,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     b.HasOne("Leha.Data.Entities.ProjectPhase", "ProjectPhase")
                         .WithMany("PhaseItems")
-                        .HasForeignKey("ProjectPhaseID")
+                        .HasForeignKey("ProjectPhaseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -546,7 +653,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     b.HasOne("Leha.Data.Entities.Company", "Company")
                         .WithMany("Posts")
-                        .HasForeignKey("CompanyID")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -557,7 +664,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     b.HasOne("Leha.Data.Entities.Company", "Company")
                         .WithMany("Products")
-                        .HasForeignKey("CompanyID")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -568,7 +675,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     b.HasOne("Leha.Data.Entities.Company", "Company")
                         .WithMany("Projects")
-                        .HasForeignKey("CompanyID")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -579,7 +686,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     b.HasOne("Leha.Data.Entities.Project", "Project")
                         .WithMany("ProjectPhases")
-                        .HasForeignKey("ProjectID")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -590,7 +697,7 @@ namespace Leha.Infrastructure.Migrations
                 {
                     b.HasOne("Leha.Data.Entities.Company", "Company")
                         .WithMany("Services")
-                        .HasForeignKey("CompanyID")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

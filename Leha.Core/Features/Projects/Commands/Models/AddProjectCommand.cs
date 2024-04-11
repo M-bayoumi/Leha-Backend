@@ -14,7 +14,6 @@ public class AddProjectCommand : IRequest<Response<string>>
     public string Image { get; set; } = string.Empty;
     public string SiteEngineerNameAr { get; set; } = string.Empty;
     public string SiteEngineerNameEn { get; set; } = string.Empty;
-    public decimal ProjectProgressPercentage { get; set; }
     public int CompanyId { get; set; }
 
     public AddProjectCommand()
@@ -26,8 +25,8 @@ public class AddProjectCommand : IRequest<Response<string>>
         string nameAr, string nameEn,
         string descriptionAr, string descriptionEn,
         string addressAr, string addressEn,
-        string image, string siteEngineerNameAr,
-        string siteEngineerNameEn, decimal projectProgressPercentage,
+        string image,
+        string siteEngineerNameAr, string siteEngineerNameEn,
         int companyId)
     {
         NameAr = nameAr;
@@ -39,7 +38,6 @@ public class AddProjectCommand : IRequest<Response<string>>
         Image = image;
         SiteEngineerNameAr = siteEngineerNameAr;
         SiteEngineerNameEn = siteEngineerNameEn;
-        ProjectProgressPercentage = projectProgressPercentage;
         CompanyId = companyId;
     }
 }

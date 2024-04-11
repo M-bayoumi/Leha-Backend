@@ -26,7 +26,7 @@ public class PhaseItemController : AppControllerBase
         return NewResult(response);
     }
 
-    [HttpGet(Router.PhaseItemRouting.GetAllByProjectPhaseID)]
+    [HttpGet(Router.PhaseItemRouting.GetAllByProjectPhaseId)]
 
     public async Task<IActionResult> GetAllByProjectPhaseID([FromRoute] GetPhaseItemListByProjectPhaseIDQuery command)
     {

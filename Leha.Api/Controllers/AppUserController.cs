@@ -1,5 +1,6 @@
 ﻿using Leha.Api.BaseController;
 using Leha.Core.Features.AppUsers.Commands.Models;
+using Leha.Core.Features.AppUsers.Quaries.Models;
 using Leha.Core.Features.BoardMembers.Commands.Models;
 using Leha.Core.Features.BoardMembers.Quaries.Models;
 using Leha.Data.AppMetaData;
@@ -27,7 +28,7 @@ public class AppUserController : AppControllerBase
     }
 
     [HttpGet(Router.AppUserRouting.GetById)]
-    public async Task<IActionResult> GetById([FromRoute] GetBoardMemberByIdQuery command)
+    public async Task<IActionResult> GetById([FromRoute] GetAppUserByIdQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

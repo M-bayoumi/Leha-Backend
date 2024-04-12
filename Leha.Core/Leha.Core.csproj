@@ -20,11 +20,4 @@
     <ProjectReference Include="..\Leha.Manager\Leha.Manager.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\AppUsers\Quaries\Handlers\" />
-    <Folder Include="Features\AppUsers\Quaries\Models\" />
-    <Folder Include="Features\AppUsers\Quaries\Results\" />
-    <Folder Include="Mapping\AppUsers\QueryMapping\" />
-  </ItemGroup>
-
 </Project>

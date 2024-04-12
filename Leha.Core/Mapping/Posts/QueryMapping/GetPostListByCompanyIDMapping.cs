@@ -10,6 +10,7 @@ public partial class PostProfile : Profile
         CreateMap<Post, GetPostListByCompanyIDResponse>()
              .ForMember(dist => dist.Content, opt => opt.MapFrom(src => src.GetLocalized(src.ContentAr, src.ContentEn)))
              .ForMember(dist => dist.CompanyName, opt => opt.MapFrom(src => src.Company.GetLocalized(src.Company.NameAr, src.Company.NameEn)))
+             .ForMember(dist => dist.CompanySlogan, opt => opt.MapFrom(src => src.Company.GetLocalized(src.Company.SloganAr, src.Company.SloganEn)))
              .ForMember(dist => dist.CompanyEmployees, opt => opt.MapFrom(src => src.Company.Employees))
              .ForMember(dist => dist.CompanyImage, opt => opt.MapFrom(src => src.Company.Image))
              .ForMember(dist => dist.CompanyEmail, opt => opt.MapFrom(src => src.Company.Email))

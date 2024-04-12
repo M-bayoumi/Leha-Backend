@@ -18,6 +18,15 @@ public class CompanyConfiguration : IEntityTypeConfiguration<Company>
           .HasColumnType("Nvarchar(max)")
           .IsRequired();
 
+        builder.Property(x => x.SloganAr)
+          .HasColumnType("Nvarchar(max)")
+          .IsRequired();
+
+        builder.Property(x => x.SloganEn)
+          .HasColumnType("Nvarchar(max)")
+          .IsRequired();
+
+
         builder.Property(x => x.Employees)
            .HasColumnType("int")
            .IsRequired();

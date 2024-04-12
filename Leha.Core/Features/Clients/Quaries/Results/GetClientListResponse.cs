@@ -7,6 +7,7 @@ public class GetClientListResponse
     public string Image { get; set; } = string.Empty;
     public int CompanyId { get; set; }
     public string CompanyName { get; set; } = string.Empty;
+    public string CompanySlogan { get; set; } = string.Empty;
     public int CompanyEmployees { get; set; }
     public string CompanyImage { get; set; } = string.Empty;
     public string CompanyEmail { get; set; } = string.Empty;

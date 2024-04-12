@@ -37,6 +37,16 @@ public class UpdateCompanyCommandValidator : AbstractValidator<UpdateCompanyComm
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
+        RuleFor(x => x.SloganAr)
+        .NotNull().WithMessage("Required.")
+        .NotEmpty().WithMessage("Can't be empty.")
+        .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
+        RuleFor(x => x.SloganEn)
+          .NotNull().WithMessage("Required.")
+          .NotEmpty().WithMessage("Can't be empty.")
+          .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+
         RuleFor(x => x.Employees)
          .NotNull().WithMessage("Required.")
          .NotEmpty().WithMessage("Can't be empty.")

@@ -94,5 +94,7 @@ public class CompanyConfiguration : IEntityTypeConfiguration<Company>
 
 
         builder.ToTable("Companies");
+        //builder.ToTable("Companies", schema: "YourSchemaName");
+
     }
 }

@@ -15,6 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 #region Database
 var constr = builder.Configuration.GetConnectionString("constr");
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -22,6 +23,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(constr);
 });
 #endregion
+
 
 #region Dependency Injections
 builder.Services
@@ -31,8 +33,8 @@ builder.Services
 
 #endregion
 
-#region Localization
 
+#region Localization
 builder.Services.AddControllersWithViews();
 builder.Services.AddLocalization(opt =>
 {
@@ -50,17 +52,35 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedUICultures = supportedCultures;
 
 });
-
 #endregion
+
+
+#region Allow CORS
+var CORS = "_cors";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        name: CORS,
+        policy =>
+        {
+            policy.AllowAnyOrigin();
+            policy.AllowAnyHeader();
+            policy.AllowAnyMethod();
+        });
+});
+#endregion
+
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
 #region Localization MiddleWare
 var options = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
 app.UseRequestLocalization(options.Value);
@@ -69,7 +89,10 @@ app.UseRequestLocalization(options.Value);
 
 
 app.UseMiddleware<ErrorHandlerMiddleware>();
+
 app.UseHttpsRedirection();
+
+app.UseCors(CORS);
 
 app.UseAuthorization();
 

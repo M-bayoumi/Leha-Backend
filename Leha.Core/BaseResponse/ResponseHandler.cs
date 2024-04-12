@@ -19,7 +19,7 @@ public class ResponseHandler
     #endregion
 
     #region Handle Functions
-    public Response<T> Success<T>(T? entity, string? message = null, object? Meta = null)
+    public Response<T> Success<T>(T? entity, string? message = null, object? Meta = null) // meta for general data like ListCount new{count = list.count()}
     {
         return new Response<T>()
         {

@@ -30,7 +30,8 @@ public class UpdateCompanyCommandHandler : ResponseHandler, IRequestHandler<Upda
     {
         var companyDB = await _companyManager.GetByIdAsync(request.Id);
         if (companyDB == null) return NotFound<string>("");
-        var company = _mapper.Map<Company>(request);
+        var company = _mapper.Map<Company>(request); // create a new object and fill it >> any field doesn't exist in requst will set by null 
+        //var company = _mapper.Map(request, companyDB); // update companyDB by request fields >> any field doesn't exist in requst will set by old value 
         if (await _companyManager.UpdateAsync(company))
             return Created("");
         return BadRequest<string>("");

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Infrastructure.Context;
 
-public class AppDbContext : IdentityDbContext<ApplicationUser>
+public class AppDbContext : IdentityDbContext<AppUser>
 {
     public AppDbContext()
     {
@@ -15,6 +15,7 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
 
     }
+    public DbSet<AppUser> ApplicationUsers { get; set; }
     public DbSet<Company> BoardMembers { get; set; }
     public DbSet<BoardMemberSpeech> BoardMemberSpeeches { get; set; }
     public DbSet<Client> Clients { get; set; }

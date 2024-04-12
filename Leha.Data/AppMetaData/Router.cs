@@ -11,6 +11,15 @@ public static class Router
     private const string AddRoute = "Add";
     private const string UpdateRoute = "Update";
     private const string DeleteRoute = "{Id}";
+    public static class AppUserRouting
+    {
+        private const string Prefix = Rule + "User/";
+        public const string GetAll = Prefix + GetAllRoute;
+        public const string GetById = Prefix + GetByIdRoute;
+        public const string Add = Prefix + AddRoute;
+        public const string Update = Prefix + UpdateRoute;
+        public const string Delete = Prefix + DeleteRoute;
+    }
     public static class BoardMemberRouting
     {
         private const string Prefix = Rule + "Member/";

@@ -1,13 +1,12 @@
-﻿namespace Leha.Core.Mapping.BoardMembers
+﻿namespace Leha.Core.Mapping.BoardMembers;
+
+public partial class BoardMemberProfile
 {
-    public partial class BoardMemberProfile
+    public BoardMemberProfile()
     {
-        public BoardMemberProfile()
-        {
-            GetBoardMemberByIdMapping();
-            GetBoardMemberListMapping();
-            AddBoardMemberCommandMapping();
-            UpdateBoardMemberCommandMapping();
-        }
+        GetBoardMemberByIdMapping();
+        GetBoardMemberListMapping();
+        AddBoardMemberCommandMapping();
+        UpdateBoardMemberCommandMapping();
     }
 }

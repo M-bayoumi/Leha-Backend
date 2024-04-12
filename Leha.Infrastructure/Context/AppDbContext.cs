@@ -1,9 +1,11 @@
 ﻿using Leha.Data.Entities;
+using Leha.Data.Entities.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Infrastructure.Context;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<ApplicationUser>
 {
     public AppDbContext()
     {

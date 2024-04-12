@@ -1,12 +1,15 @@
 using Leha.Core;
 using Leha.Core.MiddleWare;
+using Leha.Data.Entities.Identity;
 using Leha.Infrastructure;
 using Leha.Infrastructure.Context;
 using Leha.Manager;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Globalization;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,13 +27,24 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 #endregion
 
+#region Identity
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    options.SignIn.RequireConfirmedEmail = true;
+    options.Password.RequiredLength = 8;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = true;
+})
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
+#endregion
+
 
 #region Dependency Injections
 builder.Services
     .AddInfrastructureDependencies()
     .AddCoreDependencies()
     .AddManagerDependencies();
-
 #endregion
 
 

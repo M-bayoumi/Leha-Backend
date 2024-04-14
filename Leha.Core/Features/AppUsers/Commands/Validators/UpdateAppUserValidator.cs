@@ -1,20 +1,17 @@
 ﻿using FluentValidation;
 using Leha.Core.Features.AppUsers.Commands.Models;
-using Leha.Manager.Managers.BoardMembers;
 
 namespace Leha.Core.Features.AppUsers.Commands.Validators;
 
 public class UpdateAppUserValidator : AbstractValidator<UpdateAppUserCommand>
 {
     #region Fields
-    private readonly IBoardMemberManager _boardMemberManager;
 
     #endregion
 
     #region Constructors
-    public UpdateAppUserValidator(IBoardMemberManager boardMemberManager)
+    public UpdateAppUserValidator()
     {
-        _boardMemberManager = boardMemberManager;
         ApplyValidationRules();
     }
     #endregion
@@ -22,6 +19,10 @@ public class UpdateAppUserValidator : AbstractValidator<UpdateAppUserCommand>
     #region Handle Functions
     public void ApplyValidationRules()
     {
+        RuleFor(x => x.Id)
+           .NotNull().WithMessage("Required.")
+           .NotEmpty().WithMessage("Can't be empty.");
+
         RuleFor(x => x.FullName)
             .NotNull().WithMessage("Required.")
             .NotEmpty().WithMessage("Can't be empty.")

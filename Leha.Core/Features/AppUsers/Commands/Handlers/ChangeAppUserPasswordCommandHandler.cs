@@ -9,7 +9,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.AppUsers.Commands.Handlers;
 
-public class AddAppUserCommandHandler : ResponseHandler, IRequestHandler<AddAppUserCommand, Response<string>>
+public class ChangeAppUserPasswordCommandHandler : ResponseHandler, IRequestHandler<ChangeAppUserPasswordCommand, Response<string>>
 {
 
     #region Fields
@@ -18,7 +18,7 @@ public class AddAppUserCommandHandler : ResponseHandler, IRequestHandler<AddAppU
     #endregion
 
     #region Constructors
-    public AddAppUserCommandHandler(IMapper mapper, IStringLocalizer<SharedResources> localizer, UserManager<AppUser> userManager) : base(localizer)
+    public ChangeAppUserPasswordCommandHandler(IMapper mapper, IStringLocalizer<SharedResources> localizer, UserManager<AppUser> userManager) : base(localizer)
     {
         _mapper = mapper;
         _userManager = userManager;
@@ -26,19 +26,14 @@ public class AddAppUserCommandHandler : ResponseHandler, IRequestHandler<AddAppU
     #endregion
 
     #region Handle Functions
-    public async Task<Response<string>> Handle(AddAppUserCommand request, CancellationToken cancellationToken)
+    public async Task<Response<string>> Handle(ChangeAppUserPasswordCommand request, CancellationToken cancellationToken)
     {
-        // check if email is exist
+        var dm = await _userManager.FindByIdAsync(request.Id);
+        if (dm == null) return NotFound<string>();
 
-        var dm = await _userManager.FindByEmailAsync(request.Email);
-        if (dm != null) return BadRequest<string>("Email is Exist");
-
-
-        var userMapper = _mapper.Map<AppUser>(request);
-        var result = await _userManager.CreateAsync(userMapper, request.Password);
+        var result = await _userManager.ChangePasswordAsync(dm, request.CurrentPassword, request.NewPassword);
         if (result.Succeeded)
             return Created("");
-
 
         return BadRequest<string>(result.Errors.FirstOrDefault().Description);
     }

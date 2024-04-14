@@ -4,6 +4,6 @@ using MediatR;
 
 namespace Leha.Core.Features.AppUsers.Quaries.Models;
 
-public class GetAppUserListQuery : IRequest<Response<GetAppUserListResponse>>
+public class GetAppUserListQuery : IRequest<Response<List<GetAppUserListResponse>>>
 {
 }

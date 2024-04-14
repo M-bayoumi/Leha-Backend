@@ -1,7 +1,6 @@
 ﻿using Leha.Api.BaseController;
 using Leha.Core.Features.AppUsers.Commands.Models;
 using Leha.Core.Features.AppUsers.Quaries.Models;
-using Leha.Core.Features.BoardMembers.Commands.Models;
 using Leha.Data.AppMetaData;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,7 +45,13 @@ public class AppUserController : AppControllerBase
         return NewResult(response);
     }
     [HttpDelete(Router.AppUserRouting.Delete)]
-    public async Task<IActionResult> Delete([FromRoute] DeleteBoardMemberCommand command)
+    public async Task<IActionResult> Delete([FromRoute] DeleteAppUserCommand command)
+    {
+        var response = await _mediator.Send(command);
+        return NewResult(response);
+    }
+    [HttpPut(Router.AppUserRouting.ChangePassword)]
+    public async Task<IActionResult> ChangePassword([FromBody] ChangeAppUserPasswordCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

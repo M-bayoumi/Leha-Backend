@@ -21,6 +21,11 @@ public static class Router
         public const string Delete = Prefix + DeleteRoute;
         public const string ChangePassword = Prefix + "ChangePassword";
     }
+    public static class AuthenticationRouting
+    {
+        private const string Prefix = Rule + "Authentication/";
+        public const string SignIn = Prefix + "SignIn";
+    }
     public static class BoardMemberRouting
     {
         private const string Prefix = Rule + "Member/";

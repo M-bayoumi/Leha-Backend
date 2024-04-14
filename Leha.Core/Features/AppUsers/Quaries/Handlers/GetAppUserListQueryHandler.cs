@@ -11,7 +11,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.AppUsers.Quaries.Handlers;
 
-public class GetAppUserByIdQueryHandler : ResponseHandler, IRequestHandler<GetAppUserByIdQuery, Response<GetAppUserByIdResponse>>
+public class GetAppUserListQueryHandler : ResponseHandler, IRequestHandler<GetAppUserListQuery, Response<GetAppUserListResponse>>
 {
     #region Fields
     private readonly UserManager<AppUser> _userManager;
@@ -19,7 +19,7 @@ public class GetAppUserByIdQueryHandler : ResponseHandler, IRequestHandler<GetAp
     #endregion
 
     #region Constructors
-    public GetAppUserByIdQueryHandler(UserManager<AppUser> userManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
+    public GetAppUserListQueryHandler(UserManager<AppUser> userManager, IMapper mapper, IStringLocalizer<SharedResources> localizer) : base(localizer)
     {
         _userManager = userManager;
         _mapper = mapper;
@@ -27,16 +27,16 @@ public class GetAppUserByIdQueryHandler : ResponseHandler, IRequestHandler<GetAp
     #endregion
 
     #region Handle Functions
-    public async Task<Response<GetAppUserByIdResponse>> Handle(GetAppUserByIdQuery request, CancellationToken cancellationToken)
+    public async Task<Response<GetAppUserListResponse>> Handle(GetAppUserListQuery request, CancellationToken cancellationToken)
     {
         //var userDb = await _userManager.FindByIdAsync(request.Id);
-        var userDb = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == request.Id);
+        var userDb = await _userManager.Users.ToListAsync();
         if (userDb is null)
         {
-            return NotFound<GetAppUserByIdResponse>();
+            return NotFound<GetAppUserListResponse>();
         }
-        var userMapper = _mapper.Map<GetAppUserByIdResponse>(userDb);
-        return Success(userMapper);
+        var usersMapper = _mapper.Map<GetAppUserListResponse>(userDb);
+        return Success(usersMapper);
     }
     #endregion
 

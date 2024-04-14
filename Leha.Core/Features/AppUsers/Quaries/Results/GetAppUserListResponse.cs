@@ -1,6 +1,6 @@
 ﻿namespace Leha.Core.Features.AppUsers.Quaries.Results;
 
-public class GetAppUserByIdResponse
+public class GetAppUserListResponse
 {
     public string Id { get; set; } = string.Empty;
     public string FullName { get; set; } = string.Empty;

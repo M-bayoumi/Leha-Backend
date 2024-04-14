@@ -2,7 +2,6 @@
 using Leha.Core.Features.AppUsers.Commands.Models;
 using Leha.Core.Features.AppUsers.Quaries.Models;
 using Leha.Core.Features.BoardMembers.Commands.Models;
-using Leha.Core.Features.BoardMembers.Quaries.Models;
 using Leha.Data.AppMetaData;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +22,7 @@ public class AppUserController : AppControllerBase
     [HttpGet(Router.AppUserRouting.GetAll)]
     public async Task<IActionResult> GetAll()
     {
-        var response = await _mediator.Send(new GetBoardMemberListQuery());
+        var response = await _mediator.Send(new GetAppUserListQuery());
         return NewResult(response);
     }
 
@@ -41,7 +40,7 @@ public class AppUserController : AppControllerBase
         return NewResult(response);
     }
     [HttpPut(Router.AppUserRouting.Update)]
-    public async Task<IActionResult> Update([FromBody] UpdateBoardMemberCommand command)
+    public async Task<IActionResult> Update([FromBody] UpdateAppUserCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

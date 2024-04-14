@@ -17,4 +17,3 @@ public class GetAppUserByIdQuery : IRequest<Response<GetAppUserByIdResponse>>
     {
     }
 }
-

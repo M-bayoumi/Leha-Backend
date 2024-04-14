@@ -11,7 +11,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.AppUsers.Quaries.Handlers;
 
-public class GetAppUserListQueryHandler : ResponseHandler, IRequestHandler<GetAppUserListQuery, Response<GetAppUserListResponse>>
+public class GetAppUserListQueryHandler : ResponseHandler, IRequestHandler<GetAppUserListQuery, Response<List<GetAppUserListResponse>>>
 {
     #region Fields
     private readonly UserManager<AppUser> _userManager;
@@ -27,15 +27,15 @@ public class GetAppUserListQueryHandler : ResponseHandler, IRequestHandler<GetAp
     #endregion
 
     #region Handle Functions
-    public async Task<Response<GetAppUserListResponse>> Handle(GetAppUserListQuery request, CancellationToken cancellationToken)
+    public async Task<Response<List<GetAppUserListResponse>>> Handle(GetAppUserListQuery request, CancellationToken cancellationToken)
     {
         //var userDb = await _userManager.FindByIdAsync(request.Id);
         var userDb = await _userManager.Users.ToListAsync();
         if (userDb is null)
         {
-            return NotFound<GetAppUserListResponse>();
+            return NotFound<List<GetAppUserListResponse>>();
         }
-        var usersMapper = _mapper.Map<GetAppUserListResponse>(userDb);
+        var usersMapper = _mapper.Map<List<GetAppUserListResponse>>(userDb);
         return Success(usersMapper);
     }
     #endregion

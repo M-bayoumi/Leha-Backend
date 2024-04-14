@@ -19,6 +19,7 @@ public static class Router
         public const string Add = Prefix + AddRoute;
         public const string Update = Prefix + UpdateRoute;
         public const string Delete = Prefix + DeleteRoute;
+        public const string ChangePassword = Prefix + "ChangePassword";
     }
     public static class BoardMemberRouting
     {

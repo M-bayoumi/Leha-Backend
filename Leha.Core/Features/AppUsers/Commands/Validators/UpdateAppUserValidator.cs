@@ -38,6 +38,10 @@ public class UpdateAppUserValidator : AbstractValidator<UpdateAppUserCommand>
            .NotEmpty().WithMessage("Can't be empty.")
            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
+        RuleFor(x => x.PhoneNumber)
+        .NotNull().WithMessage("Required.")
+        .NotEmpty().WithMessage("Can't be empty.");
+
         RuleFor(x => x.Address)
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.")

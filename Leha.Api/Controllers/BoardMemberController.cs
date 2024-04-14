@@ -2,11 +2,13 @@
 using Leha.Core.Features.BoardMembers.Commands.Models;
 using Leha.Core.Features.BoardMembers.Quaries.Models;
 using Leha.Data.AppMetaData;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Leha.Api.Controllers;
 
 [ApiController]
+[Authorize]
 public class BoardMemberController : AppControllerBase
 {
     #region Fields

@@ -43,7 +43,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 
 #region Dependency Injections
 builder.Services
-    .AddInfrastructureDependencies()
+    .AddInfrastructureDependencies(builder.Configuration)
     .AddCoreDependencies()
     .AddManagerDependencies();
 #endregion
@@ -109,6 +109,7 @@ app.UseHttpsRedirection();
 
 app.UseCors(CORS);
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

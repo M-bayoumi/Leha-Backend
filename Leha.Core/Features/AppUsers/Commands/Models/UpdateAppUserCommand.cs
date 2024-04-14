@@ -1,6 +1,9 @@
-﻿namespace Leha.Core.Features.AppUsers.Quaries.Results;
+﻿using Leha.Core.BaseResponse;
+using MediatR;
 
-public class GetAppUserByIdResponse
+namespace Leha.Core.Features.AppUsers.Commands.Models;
+
+public class UpdateAppUserCommand : IRequest<Response<string>>
 {
     public string Id { get; set; } = string.Empty;
     public string FullName { get; set; } = string.Empty;

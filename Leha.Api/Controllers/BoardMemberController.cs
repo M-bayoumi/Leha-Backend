@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Leha.Api.Controllers;
 
 [ApiController]
-[Authorize]
+[Authorize(Roles = "Admin, Engineer")]
 public class BoardMemberController : AppControllerBase
 {
     #region Fields

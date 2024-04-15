@@ -31,9 +31,10 @@ public class AuthenticationManager : IAuthenticationManager
 
         var claims = new[]
         {
-            new Claim(nameof(UserClaimModel.UserName), user?.UserName),
-            new Claim(nameof(UserClaimModel.Email), user?.Email),
-            new Claim(nameof(UserClaimModel.PhoneNumber), user?.PhoneNumber),
+            new Claim(ClaimTypes.Name, user?.FullName),
+            new Claim(ClaimTypes.NameIdentifier, user?.UserName),
+            new Claim(ClaimTypes.Email, user?.Email),
+            new Claim(ClaimTypes.Role, user?.Role),
         };
 
         var securityToken = new JwtSecurityToken(

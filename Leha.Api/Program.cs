@@ -3,6 +3,7 @@ using Leha.Core.MiddleWare;
 using Leha.Data.Entities.Identity;
 using Leha.Infrastructure;
 using Leha.Infrastructure.Context;
+using Leha.Infrastructure.Seeder;
 using Leha.Manager;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -27,10 +28,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 #endregion
 
+
 #region Identity
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
-    options.SignIn.RequireConfirmedEmail = true;
     options.User.RequireUniqueEmail = true;
     options.Password.RequiredLength = 8;
     options.Password.RequireLowercase = true;
@@ -89,6 +90,11 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    await RoleSeeder.SeedAsync(roleManager);
+}
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

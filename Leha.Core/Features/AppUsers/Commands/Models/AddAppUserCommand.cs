@@ -12,4 +12,5 @@ public class AddAppUserCommand : IRequest<Response<string>>
     public string Password { get; set; } = string.Empty;
     public string ConfirmPassword { get; set; } = string.Empty;
     public string Address { get; set; } = string.Empty;
+    public string Role { get; set; } = string.Empty;
 }

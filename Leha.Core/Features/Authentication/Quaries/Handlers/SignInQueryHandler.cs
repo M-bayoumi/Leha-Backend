@@ -41,8 +41,8 @@ public class SignInQueryHandler : ResponseHandler, IRequestHandler<SignInQuery, 
 
         var signInResult = _signInManager.CheckPasswordSignInAsync(dm, request.Password, false);
         if (!signInResult.IsCompletedSuccessfully) return BadRequest<string>();
-        var accessToken = _authenticationManager.GenerateJwtToken(dm);
-        return Success(accessToken);
+        var result = _authenticationManager.GenerateJwtToken(dm);
+        return Success(result);
     }
 
     #endregion

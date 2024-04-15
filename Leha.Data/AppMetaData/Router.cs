@@ -26,6 +26,12 @@ public static class Router
         private const string Prefix = Rule + "Authentication/";
         public const string SignIn = Prefix + "SignIn";
     }
+    public static class AuthorizationRouting
+    {
+        private const string Prefix = Rule + "Authorization/";
+        public const string Create = Prefix + "Create";
+    }
+
     public static class BoardMemberRouting
     {
         private const string Prefix = Rule + "Member/";

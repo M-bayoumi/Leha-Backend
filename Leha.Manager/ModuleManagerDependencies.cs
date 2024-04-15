@@ -1,4 +1,5 @@
 ﻿using Leha.Manager.Managers.Authentication;
+using Leha.Manager.Managers.Authorization;
 using Leha.Manager.Managers.BoardMembers;
 using Leha.Manager.Managers.BoardMemberSpeeches;
 using Leha.Manager.Managers.Clients;
@@ -21,7 +22,8 @@ public static class ModuleManagerDependencies
 {
     public static IServiceCollection AddManagerDependencies(this IServiceCollection services)
     {
-        services.AddScoped<IAuthenticationManager, AuthenticationManager>();
+        services.AddScoped<IAuthenticationManager, AuthenticationManager>(); 
+        services.AddScoped<IAuthorizationManager, AuthorizationManager>(); 
         services.AddScoped<IBoardMemberManager, BoardMemberManager>();
         services.AddScoped<IBoardMemberSpeechManager, BoardMemberSpeechManager>();
         services.AddScoped<IClientManager, ClientManager>();

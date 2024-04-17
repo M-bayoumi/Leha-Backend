@@ -26,11 +26,6 @@ public class UpdateHomeImageValidator : AbstractValidator<UpdateHomeImageCommand
             .NotNull().WithMessage("Required.")
             .GreaterThanOrEqualTo(1).WithMessage("Not Found");
 
-        RuleFor(x => x.HomeImageBytes)
-            .NotNull().WithMessage("Required.")
-            .NotEmpty().WithMessage("Can't be empty.")
-            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
-
         RuleFor(x => x.CompanyId)
            .NotNull().WithMessage("Required.")
            .GreaterThanOrEqualTo(1).WithMessage("Not Found");

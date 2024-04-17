@@ -3,7 +3,7 @@
 public class GetHomeImageByIdResponse
 {
     public int Id { get; set; }
-    public string ImageBytes { get; set; } = string.Empty;
+    public string ImageURL { get; set; } = string.Empty;
     public int CompanyId { get; set; }
     public string CompanyName { get; set; } = string.Empty;
     public string CompanySlogan { get; set; } = string.Empty;

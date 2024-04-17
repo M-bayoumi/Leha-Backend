@@ -6,7 +6,7 @@ namespace Leha.Data.Entities;
 public class HomeImage : LocalizableEntity
 {
     public int Id { get; set; }
-    public string ImageBytes { get; set; } = string.Empty;
+    public string ImageURL { get; set; } = string.Empty;
     public int CompanyId { get; set; }
     public Company Company { get; set; } = null!;
 
@@ -14,10 +14,10 @@ public class HomeImage : LocalizableEntity
     {
     }
 
-    public HomeImage(int id, string imageBytes, int companyId)
+    public HomeImage(int id, string imageURL, int companyId)
     {
         Id = id;
-        ImageBytes = imageBytes;
+        ImageURL = imageURL;
         CompanyId = companyId;
     }
 }

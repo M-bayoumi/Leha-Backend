@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Manager.Managers.Authorization;
 
@@ -18,6 +19,12 @@ public class AuthorizationManager : IAuthorizationManager
     #endregion
 
     #region Handle Functions
+    public async Task<List<IdentityRole?>> GetAll()
+    {
+        var result = await _roleManager.Roles.ToListAsync();
+        return result;
+    }
+
     public async Task<bool> AddRoleAsync(string roleName)
     {
         var identityRole = new IdentityRole();

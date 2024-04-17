@@ -5,7 +5,7 @@ namespace Leha.Core.Features.HomeImages.Commands.Models;
 
 public class AddHomeImageCommand : IRequest<Response<string>>
 {
-    public string HomeImageBytes { get; set; } = string.Empty;
+    public string ImageURL { get; set; } = string.Empty;
     public int CompanyId { get; set; }
 
     public AddHomeImageCommand()
@@ -13,9 +13,9 @@ public class AddHomeImageCommand : IRequest<Response<string>>
 
     }
 
-    public AddHomeImageCommand(string homeImageBytes, int companyId)
+    public AddHomeImageCommand(string imageURL, int companyId)
     {
-        HomeImageBytes = homeImageBytes;
+        ImageURL = imageURL;
         CompanyId = companyId;
     }
 }

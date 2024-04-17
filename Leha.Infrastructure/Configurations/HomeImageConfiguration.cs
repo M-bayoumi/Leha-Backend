@@ -10,7 +10,7 @@ public class HomeImageConfiguration : IEntityTypeConfiguration<HomeImage>
     {
         builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.ImageBytes)
+        builder.Property(x => x.ImageURL)
            .HasColumnType("Nvarchar(max)")
            .IsRequired();
 

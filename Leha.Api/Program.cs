@@ -5,6 +5,7 @@ using Leha.Infrastructure;
 using Leha.Infrastructure.Context;
 using Leha.Infrastructure.Seeder;
 using Leha.Manager;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
@@ -15,9 +16,20 @@ using System.Globalization;
 var builder = WebApplication.CreateBuilder(args);
 
 
+
+#region Default Services
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+#endregion
+
+
+#region Files Service
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = long.MaxValue;
+});
+#endregion
 
 
 #region Database
@@ -114,7 +126,7 @@ app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseCors(CORS);
-
+app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
 

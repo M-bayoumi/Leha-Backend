@@ -248,7 +248,7 @@ namespace Leha.Infrastructure.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImageBytes")
+                    b.Property<string>("ImageURL")
                         .IsRequired()
                         .HasColumnType("Nvarchar(max)");
 

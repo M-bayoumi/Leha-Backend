@@ -1,6 +1,7 @@
 ﻿using Leha.Data.Entities;
 using Leha.Infrastructure.Repositories.Companies;
 using Leha.Infrastructure.UnitOfWorks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 namespace Leha.Manager.Managers.Companies;
@@ -10,13 +11,17 @@ public class CompanyManager : ICompanyManager
     #region Fields
     private readonly IUnitOfWork _unitOfWork;
     private readonly ICompanyRepository _companyRepository;
+    private readonly IWebHostEnvironment _webHostEnvironment;
+
     #endregion
 
     #region Constructors
-    public CompanyManager(IUnitOfWork unitOfWork)
+    public CompanyManager(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
     {
         _unitOfWork = unitOfWork;
         _companyRepository = unitOfWork.CompanyRepository;
+        _webHostEnvironment = webHostEnvironment;
+
     }
 
     #endregion
@@ -38,9 +43,21 @@ public class CompanyManager : ICompanyManager
     {
         return await _companyRepository.AddAsync(pm);
     }
+
     public async Task<bool> UpdateAsync(Company pm)
     {
+
+        var oldImage = await _companyRepository.GetByIdAsync(pm.Id);
+        var oldimagePath = oldImage.Image.Split('/').Last();
+        string imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images", oldimagePath);
+
+        if (File.Exists(imagePath))
+        {
+            File.Delete(imagePath);
+        }
+
         return await _companyRepository.UpdateAsync(pm);
+
     }
 
     public async Task<bool> DeleteAsync(Company pm)
@@ -84,7 +101,14 @@ public class CompanyManager : ICompanyManager
 
 
             await _companyRepository.DeleteAsync(pm);
+            var oldImage = await _companyRepository.GetByIdAsync(pm.Id);
+            var oldimagePath = oldImage.Image.Split('/').Last();
+            string imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images", oldimagePath);
 
+            if (File.Exists(imagePath))
+            {
+                File.Delete(imagePath);
+            }
             await transaction.CommitAsync();
 
             return true;

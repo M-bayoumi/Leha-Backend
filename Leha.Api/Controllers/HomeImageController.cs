@@ -11,10 +11,10 @@ namespace Leha.Api.Controllers;
 public class HomeImageController : AppControllerBase
 {
     #region Fields
-    #endregion
-
     private readonly IWebHostEnvironment _webHostEnvironment;
     private readonly JwtSettings _jwtSettings;
+    #endregion
+
 
 
     #region Constructors

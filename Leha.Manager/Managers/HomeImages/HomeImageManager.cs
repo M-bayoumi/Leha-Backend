@@ -22,7 +22,6 @@ public class HomeImageManager : IHomeImageManager
         _webHostEnvironment = webHostEnvironment;
 
     }
-
     #endregion
 
     #region Handle Functions

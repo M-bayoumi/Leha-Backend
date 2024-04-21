@@ -42,14 +42,21 @@ public class PhaseItemController : AppControllerBase
         return NewResult(response);
     }
 
+    [HttpGet(Router.PhaseItemRouting.GetDetails)]
+    public async Task<IActionResult> GetDetails([FromRoute] GetPhaseItemDetailsQuery command)
+    {
+        var response = await _mediator.Send(command);
+        return NewResult(response);
+    }
+
     [HttpPost(Router.PhaseItemRouting.Add)]
-    public async Task<IActionResult> Add([FromBody] AddPhaseItemCommand command)
+    public async Task<IActionResult> Add([FromForm] AddPhaseItemCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpPut(Router.PhaseItemRouting.Update)]
-    public async Task<IActionResult> Update([FromBody] UpdatePhaseItemCommand command)
+    public async Task<IActionResult> Update([FromForm] UpdatePhaseItemCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

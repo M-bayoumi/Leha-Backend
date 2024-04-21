@@ -1,6 +1,7 @@
 ﻿using Leha.Data.Entities;
 using Leha.Infrastructure.Repositories.Projects;
 using Leha.Infrastructure.UnitOfWorks;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Leha.Manager.Managers.Projects;
 
@@ -9,16 +10,16 @@ public class ProjectManager : IProjectManager
     #region Fields
     private readonly IUnitOfWork _unitOfWork;
     private readonly IProjectRepository _projectRepository;
+    private readonly IWebHostEnvironment _webHostEnvironment;
     #endregion
 
     #region Constructors
-    public ProjectManager(IUnitOfWork unitOfWork)
+    public ProjectManager(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
     {
         _unitOfWork = unitOfWork;
         _projectRepository = unitOfWork.ProjectRepository;
+        _webHostEnvironment = webHostEnvironment;
     }
-
-
     #endregion
 
     #region Handle Functions
@@ -51,7 +52,19 @@ public class ProjectManager : IProjectManager
     {
         var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
+        {
+
+            var oldImage = await _projectRepository.GetByIdAsync(pm.Id);
+            var oldimagePath = oldImage.Image.Split('/').Last();
+            string imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images", oldimagePath);
+
+            if (File.Exists(imagePath))
+            {
+                File.Delete(imagePath);
+            }
+
             return await _projectRepository.UpdateAsync(pm);
+        }
         return false;
     }
 
@@ -65,7 +78,16 @@ public class ProjectManager : IProjectManager
             if (dms != null)
                 await _unitOfWork.ProjectPhaseRepository.DeleteRangeAsync(dms);
 
-            await _projectRepository.DeleteAsync(pm);
+            var oldImage = await _projectRepository.GetByIdAsync(pm.Id);
+            var oldimagePath = oldImage.Image.Split('/').Last();
+            string imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images", oldimagePath);
+
+            if (File.Exists(imagePath))
+            {
+                File.Delete(imagePath);
+            }
+
+            return await _projectRepository.DeleteAsync(pm);
 
             await transaction.CommitAsync();
 

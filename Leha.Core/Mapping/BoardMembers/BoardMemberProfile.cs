@@ -5,6 +5,7 @@ public partial class BoardMemberProfile
     public BoardMemberProfile()
     {
         GetBoardMemberByIdMapping();
+        GetBoardMemberDetailsMapping();
         GetBoardMemberListMapping();
         AddBoardMemberCommandMapping();
         UpdateBoardMemberCommandMapping();

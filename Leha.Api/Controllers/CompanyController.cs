@@ -44,6 +44,12 @@ public class CompanyController : AppControllerBase
         return NewResult(response);
     }
 
+    [HttpGet(Router.CompanyRouting.GetDetails)]
+    public async Task<IActionResult> GetDetails([FromRoute] GetCompanyDetailsQuery command)
+    {
+        var response = await _mediator.Send(command);
+        return NewResult(response);
+    }
 
     [HttpPost(Router.CompanyRouting.Add)]
     public async Task<IActionResult> Add([FromForm] IFormFile file, [FromForm] AddCompanyCommand command)

@@ -7,17 +7,17 @@ public class AddBoardMemberSpeechCommand : IRequest<Response<string>>
 {
     public string ContentAr { get; set; } = string.Empty;
     public string ContentEn { get; set; } = string.Empty;
-    public int BoardMemberID { get; set; }
+    public int BoardMemberId { get; set; }
 
     public AddBoardMemberSpeechCommand()
     {
 
     }
 
-    public AddBoardMemberSpeechCommand(string contentAr, string contentEn, int boardMemberID)
+    public AddBoardMemberSpeechCommand(string contentAr, string contentEn, int boardMemberId)
     {
         ContentAr = contentAr;
         ContentEn = contentEn;
-        BoardMemberID = boardMemberID;
+        BoardMemberId = boardMemberId;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Leha.Data.Entities;
 using Leha.Infrastructure.Repositories.Services;
 using Leha.Infrastructure.UnitOfWorks;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Leha.Manager.Managers.Services;
 
@@ -9,13 +10,15 @@ public class ServiceManager : IServiceManager
     #region Fields
     private readonly IUnitOfWork _unitOfWork;
     private readonly IServiceRepository _serviceRepository;
+    private readonly IWebHostEnvironment _webHostEnvironment;
     #endregion
 
     #region Constructors
-    public ServiceManager(IUnitOfWork unitOfWork)
+    public ServiceManager(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
     {
         _unitOfWork = unitOfWork;
         _serviceRepository = unitOfWork.ServiceRepository;
+        _webHostEnvironment = webHostEnvironment;
     }
     #endregion
 
@@ -47,14 +50,35 @@ public class ServiceManager : IServiceManager
     {
         var dm = await _unitOfWork.CompanyRepository.GetByIdAsync(pm.CompanyId);
         if (dm != null)
+        {
+
+            var oldImage = await _serviceRepository.GetByIdAsync(pm.Id);
+            var oldimagePath = oldImage.Image.Split('/').Last();
+            string imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images", oldimagePath);
+
+            if (File.Exists(imagePath))
+            {
+                File.Delete(imagePath);
+            }
+
             return await _serviceRepository.UpdateAsync(pm);
+        }
         return false;
     }
 
     public async Task<bool> DeleteAsync(Service pm)
     {
 
-        return await _unitOfWork.ServiceRepository.DeleteAsync(pm);
+        var oldImage = await _serviceRepository.GetByIdAsync(pm.Id);
+        var oldimagePath = oldImage.Image.Split('/').Last();
+        string imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images", oldimagePath);
+
+        if (File.Exists(imagePath))
+        {
+            File.Delete(imagePath);
+        }
+
+        return await _serviceRepository.DeleteAsync(pm);
     }
 
     #endregion

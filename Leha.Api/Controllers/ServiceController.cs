@@ -2,6 +2,7 @@
 using Leha.Core.Features.Services.Commands.Models;
 using Leha.Core.Features.Services.Quaries.Models;
 using Leha.Data.AppMetaData;
+using Leha.Data.Helper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Leha.Api.Controllers;
@@ -10,10 +11,19 @@ namespace Leha.Api.Controllers;
 public class ServiceController : AppControllerBase
 {
     #region Fields
+    private readonly IWebHostEnvironment _webHostEnvironment;
+    private readonly JwtSettings _jwtSettings;
     #endregion
 
     #region Constructors
+    public ServiceController(IWebHostEnvironment webHostEnvironment, JwtSettings jwtSettings)
+    {
+        _webHostEnvironment = webHostEnvironment;
+        _jwtSettings = jwtSettings;
+
+    }
     #endregion
+
 
 
     #region Handle Functions
@@ -42,17 +52,89 @@ public class ServiceController : AppControllerBase
         return NewResult(response);
     }
 
-    [HttpPost(Router.ServiceRouting.Add)]
-    public async Task<IActionResult> Add([FromBody] AddServiceCommand command)
+    [HttpGet(Router.ServiceRouting.GetDetails)]
+    public async Task<IActionResult> GetDetails([FromRoute] GetServiceDetailsQuery command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
-    [HttpPut(Router.ServiceRouting.Update)]
-    public async Task<IActionResult> Update([FromBody] UpdateServiceCommand command)
+
+
+
+    [HttpPost(Router.ServiceRouting.Add)]
+    public async Task<IActionResult> Add([FromForm] IFormFile file, [FromForm] AddServiceCommand command)
     {
+        if (file == null || file.Length == 0)
+        {
+            return BadRequest("Invalid file");
+        }
+
+        string folderPath;
+
+        if (!Directory.Exists(Path.Combine(_webHostEnvironment!.WebRootPath!, "Images")))
+        {
+            folderPath = Path.Combine(_webHostEnvironment!.WebRootPath!, "Images");
+        }
+        else
+        {
+            Directory.CreateDirectory(Path.Combine(_webHostEnvironment!.WebRootPath!, "Images"));
+            folderPath = Path.Combine(_webHostEnvironment!.WebRootPath!, "Images");
+        }
+
+
+        string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+        string filePath = Path.Combine(folderPath, uniqueFileName);
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await file.CopyToAsync(stream);
+        }
+        var imageUrl = _jwtSettings.Issure + uniqueFileName;
+
+        command.Image = imageUrl;
+
+        var response = await _mediator.Send(command);
+
+        return NewResult(response);
+
+    }
+
+    [HttpPut(Router.ServiceRouting.Update)]
+    public async Task<IActionResult> UpdateAsync([FromForm] IFormFile file, [FromForm] UpdateServiceCommand command)
+    {
+        if (file == null || file.Length == 0)
+        {
+            return BadRequest("Invalid file");
+        }
+
+        string folderPath;
+
+        if (!Directory.Exists(Path.Combine(_webHostEnvironment!.WebRootPath!, "Images")))
+        {
+            folderPath = Path.Combine(_webHostEnvironment!.WebRootPath!, "Images");
+        }
+        else
+        {
+            Directory.CreateDirectory(Path.Combine(_webHostEnvironment!.WebRootPath!, "Images"));
+            folderPath = Path.Combine(_webHostEnvironment!.WebRootPath!, "Images");
+        }
+
+
+        string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+        string filePath = Path.Combine(folderPath, uniqueFileName);
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await file.CopyToAsync(stream);
+        }
+
+        var newImageUrl = _jwtSettings.Issure + uniqueFileName;
+
+
+        command.Image = newImageUrl;
         var response = await _mediator.Send(command);
         return NewResult(response);
+
     }
     [HttpDelete(Router.ServiceRouting.Delete)]
     public async Task<IActionResult> Delete([FromRoute] DeleteServiceCommand command)

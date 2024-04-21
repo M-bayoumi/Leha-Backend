@@ -15,10 +15,7 @@ public class HomeImageController : AppControllerBase
     private readonly JwtSettings _jwtSettings;
     #endregion
 
-
-
     #region Constructors
-
     public HomeImageController(IWebHostEnvironment webHostEnvironment, JwtSettings jwtSettings)
     {
         _webHostEnvironment = webHostEnvironment;
@@ -53,13 +50,6 @@ public class HomeImageController : AppControllerBase
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
-
-    //[HttpPost(Router.HomeImageRouting.Add)]
-    //public async Task<IActionResult> Add([FromBody] AddHomeImageCommand command)
-    //{
-    //    var response = await _mediator.Send(command);
-    //    return NewResult(response);
-    //}
 
     [HttpPost(Router.HomeImageRouting.Add)]
     public async Task<IActionResult> Add([FromForm] IFormFile file, [FromForm] AddHomeImageCommand command)

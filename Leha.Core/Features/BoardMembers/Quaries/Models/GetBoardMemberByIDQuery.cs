@@ -18,3 +18,4 @@ public class GetBoardMemberByIdQuery : IRequest<Response<GetBoardMemberByIdRespo
     }
 }
 
+

@@ -28,28 +28,23 @@ public class UpdateJobValidator : AbstractValidator<UpdateJobCommand>
 
         RuleFor(x => x.TitleAr)
             .NotNull().WithMessage("Required.")
-            .NotEmpty().WithMessage("Can't be empty.")
-            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+            .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.TitleEn)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.DescriptionAr)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.DescriptionEn)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.AverageSalary)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.CompanyId)
          .NotNull().WithMessage("Required.")

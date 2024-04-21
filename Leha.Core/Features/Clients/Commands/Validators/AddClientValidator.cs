@@ -26,18 +26,15 @@ public class AddClientValidator : AbstractValidator<AddClientCommand>
 
         RuleFor(x => x.NameAr)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.NameEn)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.Image)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.CompanyId)
         .NotNull().WithMessage("Required.")

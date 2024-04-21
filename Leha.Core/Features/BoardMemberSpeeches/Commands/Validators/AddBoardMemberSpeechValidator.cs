@@ -24,13 +24,11 @@ public class AddBoardMemberSpeechValidator : AbstractValidator<AddBoardMemberSpe
     {
         RuleFor(x => x.ContentAr)
             .NotNull().WithMessage("Required.")
-            .NotEmpty().WithMessage("Can't be empty.")
-            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+            .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.ContentEn)
             .NotNull().WithMessage("Required.")
-            .NotEmpty().WithMessage("Can't be empty.")
-            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+            .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.BoardMemberId)
         .NotNull().WithMessage("Required.")

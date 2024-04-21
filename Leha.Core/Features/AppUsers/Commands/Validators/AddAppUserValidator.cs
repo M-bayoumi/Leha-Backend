@@ -21,18 +21,15 @@ public class AddAppUserValidator : AbstractValidator<AddAppUserCommand>
     {
         RuleFor(x => x.FullName)
             .NotNull().WithMessage("Required.")
-            .NotEmpty().WithMessage("Can't be empty.")
-            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+            .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.UserName)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.Email)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.PhoneNumber)
           .NotNull().WithMessage("Required.")
@@ -40,8 +37,7 @@ public class AddAppUserValidator : AbstractValidator<AddAppUserCommand>
 
         RuleFor(x => x.Password)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .Equal(x => x.Password).WithMessage("Password must matche confirmPassword");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.ConfirmPassword)
            .NotNull().WithMessage("Required.")
@@ -49,8 +45,7 @@ public class AddAppUserValidator : AbstractValidator<AddAppUserCommand>
 
         RuleFor(x => x.Address)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
     }
     #endregion
 }

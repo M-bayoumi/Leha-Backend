@@ -28,13 +28,11 @@ public class UpdateCompanyAddressValidator : AbstractValidator<UpdateCompanyAddr
 
         RuleFor(x => x.AddressAr)
             .NotNull().WithMessage("Required.")
-            .NotEmpty().WithMessage("Can't be empty.")
-            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+            .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.AddressEn)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.CompanyId)
           .NotNull().WithMessage("Required.")

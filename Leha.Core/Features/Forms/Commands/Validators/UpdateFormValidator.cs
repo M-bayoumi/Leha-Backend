@@ -28,38 +28,31 @@ public class UpdateFormValidator : AbstractValidator<UpdateFormCommand>
 
         RuleFor(x => x.FullNameAr)
             .NotNull().WithMessage("Required.")
-            .NotEmpty().WithMessage("Can't be empty.")
-            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+            .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.FullNameEn)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.AddressAr)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.AddressEn)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.JobTitleAr)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.JobTitleEn)
           .NotNull().WithMessage("Required.")
-          .NotEmpty().WithMessage("Can't be empty.")
-          .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+          .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.CV)
           .NotNull().WithMessage("Required.")
-          .NotEmpty().WithMessage("Can't be empty.")
-          .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+          .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.JobId)
           .NotNull().WithMessage("Required.")

@@ -25,48 +25,39 @@ public class AddCompanyCommandValidator : AbstractValidator<AddCompanyCommand>
     {
         RuleFor(x => x.NameAr)
             .NotNull().WithMessage("Required.")
-            .NotEmpty().WithMessage("Can't be empty.")
-            .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+            .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.NameEn)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.SloganAr)
           .NotNull().WithMessage("Required.")
-          .NotEmpty().WithMessage("Can't be empty.")
-          .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+          .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.SloganEn)
           .NotNull().WithMessage("Required.")
-          .NotEmpty().WithMessage("Can't be empty.")
-          .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+          .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.Employees)
          .NotNull().WithMessage("Required.")
-         .NotEmpty().WithMessage("Can't be empty.")
-         .GreaterThanOrEqualTo(2).WithMessage("CompanyEmployees must be greater than or equal 2.");
+         .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.Image)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.Email)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.Phone)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
 
         RuleFor(x => x.Link)
            .NotNull().WithMessage("Required.")
-           .NotEmpty().WithMessage("Can't be empty.")
-           .MinimumLength(3).WithMessage("Minimum length is 3 char.");
+           .NotEmpty().WithMessage("Can't be empty.");
     }
 
     public void ApplyCustomValidationRules()

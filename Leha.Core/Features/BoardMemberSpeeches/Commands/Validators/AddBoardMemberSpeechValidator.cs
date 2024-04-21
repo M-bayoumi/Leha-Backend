@@ -32,7 +32,7 @@ public class AddBoardMemberSpeechValidator : AbstractValidator<AddBoardMemberSpe
             .NotEmpty().WithMessage("Can't be empty.")
             .MinimumLength(3).WithMessage("Minimum length is 3 char.");
 
-        RuleFor(x => x.BoardMemberID)
+        RuleFor(x => x.BoardMemberId)
         .NotNull().WithMessage("Required.")
         .GreaterThanOrEqualTo(1).WithMessage("Not Found");
     }

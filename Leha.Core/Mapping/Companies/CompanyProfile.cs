@@ -6,6 +6,7 @@
         {
             GetCountryListMapping();
             GetCompanyByIdMapping();
+            GetCompanyDetailsMapping();
             AddCompanyCommandMapping();
             UpdateCompanyCommandMapping();
         }

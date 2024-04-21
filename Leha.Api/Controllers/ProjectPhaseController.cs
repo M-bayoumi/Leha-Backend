@@ -42,6 +42,14 @@ public class ProjectPhaseController : AppControllerBase
         return NewResult(response);
     }
 
+    [HttpGet(Router.ProjectPhaseRouting.GetDetails)]
+    public async Task<IActionResult> GetDetails([FromRoute] GetProjectPhaseDetailsQuery command)
+    {
+        var response = await _mediator.Send(command);
+        return NewResult(response);
+    }
+
+
     [HttpPost(Router.ProjectPhaseRouting.Add)]
     public async Task<IActionResult> Add([FromBody] AddProjectPhaseCommand command)
     {

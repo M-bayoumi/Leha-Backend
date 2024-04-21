@@ -6,9 +6,6 @@ namespace Leha.Core.Mapping.CompanyAddresses;
 
 public partial class CompanyAddressProfile : Profile
 {
-    public int Id { get; set; }
-    public string Address { get; set; } = string.Empty;
-
     public void GetCompanyAddressByIdMapping()
     {
         CreateMap<CompanyAddress, GetCompanyAddressByIdResponse>()

@@ -7,6 +7,7 @@ public partial class PhaseItemProfile
     {
         GetPhaseItemByIdMapping();
         GetPhaseItemListMapping();
+        GetPhaseItemDetailsMapping();
         GetPhaseItemListByProjectPhaseIDMapping();
         AddPhaseItemCommandMapping();
         UpdatePhaseItemCommandMapping();

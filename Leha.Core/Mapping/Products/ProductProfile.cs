@@ -7,6 +7,7 @@ public partial class ProductProfile
     {
         GetProductByIdMapping();
         GetProductListMapping();
+        GetProductDetailsMapping();
         GetProductListByCompanyIDMapping();
         AddProductCommandMapping();
         UpdateProductCommandMapping();

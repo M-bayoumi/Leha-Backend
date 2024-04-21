@@ -9,18 +9,18 @@ public class UpdateBoardMemberSpeechCommand : IRequest<Response<string>>
     public int ID { get; set; }
     public string ContentAr { get; set; } = string.Empty;
     public string ContentEn { get; set; } = string.Empty;
-    public int BoardMemberID { get; set; }
+    public int BoardMemberId { get; set; }
 
     public UpdateBoardMemberSpeechCommand()
     {
 
     }
 
-    public UpdateBoardMemberSpeechCommand(int iD, string contentAr, string contentEn, int boardMemberID)
+    public UpdateBoardMemberSpeechCommand(int iD, string contentAr, string contentEn, int boardMemberId)
     {
         ID = iD;
         ContentAr = contentAr;
         ContentEn = contentEn;
-        BoardMemberID = boardMemberID;
+        BoardMemberId = boardMemberId;
     }
 }

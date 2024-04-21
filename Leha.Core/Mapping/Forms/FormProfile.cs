@@ -5,8 +5,9 @@ public partial class FormProfile
 {
     public FormProfile()
     {
-        GetFormByIdMapping();
         GetFormListMapping();
+        GetFormByIdMapping();
+        GetFormDetailsMapping();
         GetFormListByJobIDMapping();
         AddFormCommandMapping();
         UpdateFormCommandMapping();

@@ -7,6 +7,7 @@ public partial class ServiceProfile
     {
         GetServiceByIdMapping();
         GetServiceListMapping();
+        GetServiceDetailsMapping();
         GetServiceListByCompanyIDMapping();
         AddServiceCommandMapping();
         UpdateServiceCommandMapping();

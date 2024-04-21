@@ -42,14 +42,21 @@ public class CompanyAddressController : AppControllerBase
         return NewResult(response);
     }
 
+    [HttpGet(Router.CompanyAddressRouting.GetDetails)]
+    public async Task<IActionResult> GetDetails([FromRoute] GetCompanyAddressDetailsQuery command)
+    {
+        var response = await _mediator.Send(command);
+        return NewResult(response);
+
+    }
     [HttpPost(Router.CompanyAddressRouting.Add)]
-    public async Task<IActionResult> Add([FromBody] AddCompanyAddressCommand command)
+    public async Task<IActionResult> Add([FromForm] AddCompanyAddressCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpPut(Router.CompanyAddressRouting.Update)]
-    public async Task<IActionResult> Update([FromBody] UpdateCompanyAddressCommand command)
+    public async Task<IActionResult> Update([FromForm] UpdateCompanyAddressCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

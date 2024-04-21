@@ -42,14 +42,20 @@ public class JobController : AppControllerBase
         return NewResult(response);
     }
 
+    [HttpGet(Router.JobRouting.GetDetails)]
+    public async Task<IActionResult> GetDetails([FromRoute] GetJobDetailsQuery command)
+    {
+        var response = await _mediator.Send(command);
+        return NewResult(response);
+    }
     [HttpPost(Router.JobRouting.Add)]
-    public async Task<IActionResult> Add([FromBody] AddJobCommand command)
+    public async Task<IActionResult> Add([FromForm] AddJobCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpPut(Router.JobRouting.Update)]
-    public async Task<IActionResult> Update([FromBody] UpdateJobCommand command)
+    public async Task<IActionResult> Update([FromForm] UpdateJobCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

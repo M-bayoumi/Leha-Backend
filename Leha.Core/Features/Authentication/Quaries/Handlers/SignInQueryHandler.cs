@@ -1,5 +1,6 @@
 ﻿using Leha.Core.BaseResponse;
 using Leha.Core.Features.Authentication.Quaries.Models;
+using Leha.Core.Features.Authentication.Quaries.Results;
 using Leha.Core.Resources;
 using Leha.Data.Entities.Identity;
 using Leha.Manager.Managers.Authentication;
@@ -9,7 +10,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Leha.Core.Features.Authentication.Quaries.Handlers;
 
-public class SignInQueryHandler : ResponseHandler, IRequestHandler<SignInQuery, Response<string>>
+public class SignInQueryHandler : ResponseHandler, IRequestHandler<SignInQuery, Response<SignInResponse>>
 {
 
     #region Fields
@@ -34,15 +35,16 @@ public class SignInQueryHandler : ResponseHandler, IRequestHandler<SignInQuery, 
     #endregion
 
     #region Handle Functions
-    public async Task<Response<string>> Handle(SignInQuery request, CancellationToken cancellationToken)
+    public async Task<Response<SignInResponse>> Handle(SignInQuery request, CancellationToken cancellationToken)
     {
         var dm = await _userManager.FindByEmailAsync(request.Email);
-        if (dm == null) return BadRequest<string>();
+        if (dm == null) return BadRequest<SignInResponse>();
 
         var signInResult = _signInManager.CheckPasswordSignInAsync(dm, request.Password, false);
-        if (!signInResult.IsCompletedSuccessfully) return BadRequest<string>();
-        var result = _authenticationManager.GenerateJwtToken(dm);
-        return Success(result);
+        if (!signInResult.IsCompletedSuccessfully) return BadRequest<SignInResponse>();
+        var token = _authenticationManager.GenerateJwtToken(dm);
+        var response = new SignInResponse() { UserName = dm.UserName, Role = dm.Role, Token = token };
+        return Success(response);
     }
 
     #endregion

@@ -100,7 +100,6 @@ public class CompanyManager : ICompanyManager
                 await _unitOfWork.JobRepository.DeleteRangeAsync(dms_jobs);
 
 
-            await _companyRepository.DeleteAsync(pm);
             var oldImage = await _companyRepository.GetByIdAsync(pm.Id);
             var oldimagePath = oldImage.Image.Split('/').Last();
             string imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Images", oldimagePath);
@@ -109,6 +108,7 @@ public class CompanyManager : ICompanyManager
             {
                 File.Delete(imagePath);
             }
+            await _companyRepository.DeleteAsync(pm);
             await transaction.CommitAsync();
 
             return true;

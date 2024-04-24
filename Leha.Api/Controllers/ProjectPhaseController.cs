@@ -51,13 +51,13 @@ public class ProjectPhaseController : AppControllerBase
 
 
     [HttpPost(Router.ProjectPhaseRouting.Add)]
-    public async Task<IActionResult> Add([FromBody] AddProjectPhaseCommand command)
+    public async Task<IActionResult> Add([FromForm] AddProjectPhaseCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);
     }
     [HttpPut(Router.ProjectPhaseRouting.Update)]
-    public async Task<IActionResult> Update([FromBody] UpdateProjectPhaseCommand command)
+    public async Task<IActionResult> Update([FromForm] UpdateProjectPhaseCommand command)
     {
         var response = await _mediator.Send(command);
         return NewResult(response);

@@ -12,10 +12,10 @@ public class AddPhaseItemCommand : IRequest<Response<string>>
     public decimal ProgressPercentage { get; set; }
     public string ExecutionProgressAr { get; set; } = string.Empty;
     public string ExecutionProgressEn { get; set; } = string.Empty;
-    public string RFIAr { get; set; } = string.Empty;
-    public string RFIEn { get; set; } = string.Empty;
-    public string WIRAr { get; set; } = string.Empty;
-    public string WIREn { get; set; } = string.Empty;
+    public string RfiAr { get; set; } = string.Empty;
+    public string RfiEn { get; set; } = string.Empty;
+    public string WirAr { get; set; } = string.Empty;
+    public string WirEn { get; set; } = string.Empty;
     public string ScheduleAr { get; set; } = string.Empty;
     public string ScheduleEn { get; set; } = string.Empty;
     public string UnitAr { get; set; } = string.Empty;
@@ -29,19 +29,7 @@ public class AddPhaseItemCommand : IRequest<Response<string>>
 
     }
 
-    public AddPhaseItemCommand(
-        string number,
-        string nameAr, string nameEn,
-        decimal acumulativePercentage,
-        decimal progressPercentage,
-        string executionProgressAr, string executionProgressEn,
-        string rFIAr, string rFIEn,
-        string wIRAr, string wIREn,
-        string scheduleAr, string scheduleEn,
-        string unitAr, string unitEn,
-        decimal initialInventoryQuantities,
-        decimal actualInventoryQuantities,
-        int projectPhaseId)
+    public AddPhaseItemCommand(string number, string nameAr, string nameEn, decimal acumulativePercentage, decimal progressPercentage, string executionProgressAr, string executionProgressEn, string rfiAr, string rfiEn, string wirAr, string wirEn, string scheduleAr, string scheduleEn, string unitAr, string unitEn, decimal initialInventoryQuantities, decimal actualInventoryQuantities, int projectPhaseId)
     {
         Number = number;
         NameAr = nameAr;
@@ -50,10 +38,10 @@ public class AddPhaseItemCommand : IRequest<Response<string>>
         ProgressPercentage = progressPercentage;
         ExecutionProgressAr = executionProgressAr;
         ExecutionProgressEn = executionProgressEn;
-        RFIAr = rFIAr;
-        RFIEn = rFIEn;
-        WIRAr = wIRAr;
-        WIREn = wIREn;
+        RfiAr = rfiAr;
+        RfiEn = rfiEn;
+        WirAr = wirAr;
+        WirEn = wirEn;
         ScheduleAr = scheduleAr;
         ScheduleEn = scheduleEn;
         UnitAr = unitAr;

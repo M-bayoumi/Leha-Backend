@@ -44,10 +44,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 #region Identity
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
-    options.User.RequireUniqueEmail = true;
-    options.Password.RequiredLength = 8;
-    options.Password.RequireLowercase = true;
-    options.Password.RequireUppercase = true;
 })
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();

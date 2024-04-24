@@ -54,19 +54,19 @@ public class UpdatePhaseItemValidator : AbstractValidator<UpdatePhaseItemCommand
            .NotNull().WithMessage("Required.")
            .NotEmpty().WithMessage("Can't be empty.");
 
-        RuleFor(x => x.RFIAr)
+        RuleFor(x => x.RfiAr)
             .NotNull().WithMessage("Required.")
             .NotEmpty().WithMessage("Can't be empty.");
 
-        RuleFor(x => x.RFIEn)
+        RuleFor(x => x.RfiEn)
             .NotNull().WithMessage("Required.")
             .NotEmpty().WithMessage("Can't be empty.");
 
-        RuleFor(x => x.WIRAr)
+        RuleFor(x => x.WirAr)
             .NotNull().WithMessage("Required.")
             .NotEmpty().WithMessage("Can't be empty.");
 
-        RuleFor(x => x.WIREn)
+        RuleFor(x => x.WirEn)
             .NotNull().WithMessage("Required.")
             .NotEmpty().WithMessage("Can't be empty.");
 

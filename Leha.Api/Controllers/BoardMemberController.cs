@@ -3,13 +3,12 @@ using Leha.Core.Features.BoardMembers.Commands.Models;
 using Leha.Core.Features.BoardMembers.Quaries.Models;
 using Leha.Data.AppMetaData;
 using Leha.Data.Helper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Leha.Api.Controllers;
 
 [ApiController]
-[Authorize(Roles = "Admin, Engineer")]
+//[Authorize(Roles = "Admin, Engineer")]
 public class BoardMemberController : AppControllerBase
 {
     #region Fields

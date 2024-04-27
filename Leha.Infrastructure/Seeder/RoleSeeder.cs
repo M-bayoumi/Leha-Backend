@@ -12,19 +12,23 @@ public static class RoleSeeder
         {
             await roleManager.CreateAsync(new IdentityRole()
             {
+                Name = "SuperAdmin",
+            });
+
+            await roleManager.CreateAsync(new IdentityRole()
+            {
                 Name = "Admin",
             });
 
             await roleManager.CreateAsync(new IdentityRole()
             {
-                Name = "User",
+                Name = "Supervisor",
             });
 
             await roleManager.CreateAsync(new IdentityRole()
             {
                 Name = "Engineer",
             });
-
         }
     }
 }
